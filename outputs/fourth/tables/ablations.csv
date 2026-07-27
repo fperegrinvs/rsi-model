@@ -1,0 +1,19 @@
+scenario,variant,definition,feasible,first_passage_year,operating_at_horizon,growth_share_of_baseline
+terrestrial_rehearsal,baseline,declared coefficients,1,9.250000,1.930362,1.000000
+terrestrial_rehearsal,no_intelligence_growth,learning_rate_per_year = 0,1,9.250000,1.930362,1.000000
+terrestrial_rehearsal,productivity_channel_only,autonomy_learning_multiplier = 0,1,9.250000,1.930362,1.000000
+terrestrial_rehearsal,autonomy_channel_only,productivity_elasticity = 0,1,9.250000,1.930362,1.000000
+terrestrial_rehearsal,fully_uncoupled,productivity_elasticity = autonomy_learning_multiplier = 0,1,9.250000,1.930362,1.000000
+terrestrial_rehearsal,seed_sized_at_base_autonomy,seed re-sized at AI level 1.0,1,9.250000,1.930362,1.000000
+lunar_vitamin_bridge,baseline,declared coefficients,1,11.250000,2.293174,1.000000
+lunar_vitamin_bridge,no_intelligence_growth,learning_rate_per_year = 0,1,11.250000,2.293174,1.000000
+lunar_vitamin_bridge,productivity_channel_only,autonomy_learning_multiplier = 0,1,11.250000,2.293174,1.000000
+lunar_vitamin_bridge,autonomy_channel_only,productivity_elasticity = 0,1,11.250000,2.293174,1.000000
+lunar_vitamin_bridge,fully_uncoupled,productivity_elasticity = autonomy_learning_multiplier = 0,1,11.250000,2.293174,1.000000
+lunar_vitamin_bridge,seed_sized_at_base_autonomy,seed re-sized at AI level 1.0,0,,,
+moon_asteroid_network,baseline,declared coefficients,1,22.750000,12.547340,1.000000
+moon_asteroid_network,no_intelligence_growth,learning_rate_per_year = 0,1,22.750000,12.547340,1.000000
+moon_asteroid_network,productivity_channel_only,autonomy_learning_multiplier = 0,1,22.750000,12.547340,1.000000
+moon_asteroid_network,autonomy_channel_only,productivity_elasticity = 0,1,22.750000,12.547340,1.000000
+moon_asteroid_network,fully_uncoupled,productivity_elasticity = autonomy_learning_multiplier = 0,1,22.750000,12.547340,1.000000
+moon_asteroid_network,seed_sized_at_base_autonomy,seed re-sized at AI level 1.0,0,,,

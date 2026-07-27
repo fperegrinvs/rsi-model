@@ -97,33 +97,43 @@ re-baseline). Remaining:
       (removes the 20-yr-window qualifier from the model-fatal label)
 
 ### r4.0 external-review follow-ups (r4.1 scope — Fourth layer model work)
-- [ ] **Durable Fourth-layer endpoints** mirroring the r3.5 endpoint
-      hierarchy: first passage to 2.0 cell-equivalents (current metric);
-      still >= 2.0 at horizon; positive net reproduction over the final
-      five years; positive reproduction after vitamin exhaustion /
-      import cutoff; minimum sector-service margin at horizon; recovery
-      after a source or equipment shock. (Terrestrial rehearsal currently
-      reaches 2.0 at 9.2 yr but holds only 1.93 at year 40 — the
-      transient-vs-durable distinction the inherited model already makes.)
-- [ ] **Intelligence/autonomy ablations**: no intelligence improvement;
-      fixed autonomy; productivity-only; autonomy-only; delayed gains;
-      lower verification; fully uncoupled. Report how much of the
-      12.55-cell Moon–asteroid growth survives each ablation.
-- [ ] **Seed-mass vs time-to-durable-reproduction Pareto frontier**, plus
-      alternative objectives: minimum Earth-supplied mass, minimum
-      intervention demand, minimum time to import independence, maximum
-      year-40 capacity, maximum survival after source interruption.
-- [ ] **Fourth-layer diagnostics** matching Part I discipline: per-draw
-      failure-reason histogram, binding-constraint frequencies, global
-      sensitivity for seed mass / reproduction time / year-40 cells,
-      correlated-draw robustness, feasible/infeasible boundary surface.
-- [ ] **Vitamin-stock resolution**: composition by material class,
-      years of replacement coverage, consumption profile, shelf-life and
-      obsolescence treatment, residual stock at first reproduction and at
-      year 40 (58.1 t is ~27% of the central lunar-bridge seed).
-- [ ] **Strict-lunar infeasibility certificate**: report the minimum
-      unsatisfied material/service cut (irreducible infeasible subsystem)
-      rather than only the solver's infeasible status.
+- [x] **Durable Fourth-layer endpoints** (r4.1: `fourth_analysis.durable_endpoints`
+      + ensemble diagnostics — retention at horizon, final-5-year net
+      reproduction, vitamin-pool exhaustion timing; finding: lunar bridge
+      retained 126/126 but durable 0/126; network durable 187/187).
+      Remaining: shock-recovery endpoint (needs declared shock
+      coefficients) and minimum sector-margin endpoint (needs
+      sector-resolved reproduction below).
+- [x] **Intelligence/autonomy ablations** (r4.1: zero/freeze family in
+      `fourth_analysis.ablation_suite` — finding: ALL of the 12.55
+      survives every ablation; the dynamic coupling is inert at central
+      coefficients because construction is material-limited at every
+      step, while the AI level binds statically via seed feasibility).
+      Remaining: delayed-gain and degraded-verification variants need
+      declared magnitudes (authorial sign-off).
+- [x] **Seed-mass vs reproduction-time frontier** (r4.1:
+      `fourth_analysis.oversize_frontier` — doubling the bridge seed cuts
+      first reproduction 11.25 -> 8.0 yr; minimum mass is not
+      time-optimal). Remaining: alternative LP objectives (minimum
+      Earth-supplied mass, minimum intervention, maximum year-40
+      capacity, survival after source interruption).
+- [x] **Fourth-layer diagnostics** (r4.1:
+      `fourth_analysis.ensemble_diagnostics` — failure-reason histogram,
+      binding-constraint frequencies, Spearman sensitivity over the exact
+      named draws; note the depreciation/oversizing sizing artifact,
+      rho ~ +0.8-0.98 on year-40 cells). Remaining: correlated-draw
+      robustness and a feasible/infeasible boundary surface.
+- [x] **Vitamin-stock resolution** (r4.1:
+      `fourth_analysis.vitamin_composition` — per-category stock, share,
+      initial-rate coverage, pooled residuals at first passage and
+      horizon, first-exhaustion year; Ni/Cu/C ~80% of the bridge stock).
+      Remaining: shelf-life and obsolescence treatment for vitamin
+      categories (needs declared decay coefficients).
+- [x] **Strict-lunar infeasibility certificate** (r4.1:
+      `fourth_analysis.infeasibility_certificate` — elastic relaxation of
+      the exact seed LP; quantified Ni/Cu/C/Co/Cr/rare-earth/Li/H/dopant
+      shortfalls in tonnes over the horizon). Remaining: a strict
+      irreducible infeasible subsystem (IIS) if ever needed.
 - [ ] **Sector-resolved reproduction dynamics**: de-aggregate the
       cell-equivalent phase so sectors commission at different times,
       partial second cells exist, and sector-specific depreciation/repair

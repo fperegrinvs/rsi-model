@@ -333,20 +333,17 @@ def _constraint_slacks(
     return tuple((labels[i], float(normalized[i])) for i in order)
 
 
-def size_seed(params: FourthParams, scenario: str) -> SeedResult:
-    cfg = params.scenarios[scenario]
-    profile = process_profile(params, scenario)
-    digital_mass = float(params.seed["fixed_digital_seed_mass_t"])
-    min_required = float(cfg["minimum_task_coverage"])
-    if profile.minimum_coverage + 1e-12 < min_required:
-        return SeedResult(
-            scenario, False,
-            f"autonomy threshold {profile.minimum_coverage:.3f} < {min_required:.3f}",
-            None, None, None, digital_mass,
-            np.zeros(params.n), np.zeros(params.m), 0.0, 0.0,
-            profile.minimum_coverage, 0.0, (), profile,
-        )
+def build_seed_lp(
+    params: FourthParams,
+    scenario: str,
+    profile: ProcessProfile,
+) -> dict[str, Any]:
+    """Assemble the seed-sizing LP exactly as ``size_seed`` solves it.
 
+    Shared with the r4.1 analysis layer (elastic infeasibility
+    certificates) so the certificate interrogates the identical matrix.
+    """
+    cfg = params.scenarios[scenario]
     # Variables: sector capacities z[n], lunar feed p_l, asteroid feed p_a,
     # and initial Earth-vitamin stocks v[m].
     n, m = params.n, params.m
@@ -462,9 +459,47 @@ def size_seed(params: FourthParams, scenario: str) -> SeedResult:
     rhs.append(float(cfg["remote_intervention_budget_hours_per_year"]))
     labels.append("autonomy:intervention_budget")
 
-    A_ub = np.vstack(rows)
-    b_ub = np.array(rhs)
-    solved = linprog(c, A_ub=A_ub, b_ub=b_ub, bounds=bounds, method="highs")
+    return {
+        "c": c,
+        "A_ub": np.vstack(rows),
+        "b_ub": np.array(rhs),
+        "bounds": bounds,
+        "labels": labels,
+        "iz": iz,
+        "ip_l": ip_l,
+        "ip_a": ip_a,
+        "iv": iv,
+        "nv": nv,
+        "mass_per_capacity": mass_per_capacity,
+    }
+
+
+def size_seed(
+    params: FourthParams,
+    scenario: str,
+    *,
+    ai_level: float | None = None,
+) -> SeedResult:
+    cfg = params.scenarios[scenario]
+    profile = process_profile(params, scenario, ai_level=ai_level)
+    digital_mass = float(params.seed["fixed_digital_seed_mass_t"])
+    min_required = float(cfg["minimum_task_coverage"])
+    if profile.minimum_coverage + 1e-12 < min_required:
+        return SeedResult(
+            scenario, False,
+            f"autonomy threshold {profile.minimum_coverage:.3f} < {min_required:.3f}",
+            None, None, None, digital_mass,
+            np.zeros(params.n), np.zeros(params.m), 0.0, 0.0,
+            profile.minimum_coverage, 0.0, (), profile,
+        )
+
+    lp = build_seed_lp(params, scenario, profile)
+    n, m = params.n, params.m
+    iz, ip_l, ip_a, iv = lp["iz"], lp["ip_l"], lp["ip_a"], lp["iv"]
+    mass_per_capacity = lp["mass_per_capacity"]
+    A_ub, b_ub, labels = lp["A_ub"], lp["b_ub"], lp["labels"]
+    solved = linprog(lp["c"], A_ub=A_ub, b_ub=b_ub, bounds=lp["bounds"],
+                     method="highs")
     if not solved.success:
         return SeedResult(
             scenario, False, solved.message, None, None, None, digital_mass,
@@ -504,7 +539,15 @@ def simulate_reproduction(
     *,
     years: float = 40.0,
     dt: float = 0.25,
+    initial_cells: float = 1.0,
 ) -> ReproductionResult:
+    """Advance the aggregate cell-equivalent reproduction dynamics.
+
+    ``initial_cells`` scales the installed seed to that many
+    cell-equivalents of the given design (capacities, feeds, and vitamin
+    stock all scale with it); the default 1.0 reproduces the canonical
+    single-seed run exactly. Used by the r4.1 oversize frontier.
+    """
     if not seed_result.feasible:
         raise ValueError(f"Cannot simulate infeasible seed: {seed_result.status}")
     cfg = params.scenarios[seed_result.scenario]
@@ -531,12 +574,12 @@ def simulate_reproduction(
     compute = np.zeros(steps + 1)
     inventory = np.zeros((steps + 1, params.m))
     ordered = np.zeros(steps + 1)
-    installed[0] = operating[0] = 1.0
+    installed[0] = operating[0] = float(initial_cells)
     intelligence[0] = float(cfg["ai_level"])
     i_compute = params.sector_idx("compute")
     compute_scale = float(params.intelligence["compute_units_per_compute_capacity"])
     compute[0] = operating[0] * z[i_compute] * compute_scale
-    inventory[0] = seed_result.vitamin_stock_t
+    inventory[0] = seed_result.vitamin_stock_t * float(initial_cells)
 
     lag_steps = max(1, int(round(float(params.seed["construction_lag_years"]) / dt)))
     queue = np.zeros(lag_steps + 1)

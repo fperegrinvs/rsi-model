@@ -30,6 +30,15 @@ from rsimodel.fourth import (
     simulate_reproduction,
     size_seed,
 )
+from rsimodel.fourth_analysis import (
+    ablation_suite,
+    durable_endpoints,
+    ensemble_diagnostics,
+    infeasibility_certificate,
+    material_limited_steps,
+    oversize_frontier,
+    vitamin_composition,
+)
 
 OUT = ROOT / "outputs" / "fourth"
 FIG = OUT / "figures"
@@ -232,7 +241,153 @@ def write_compute_and_debris_tables(compute, debris_runs) -> None:
             ])
 
 
-def write_report(params, seeds, runs, ensembles, compute, debris_runs) -> Path:
+def write_analysis_tables(endpoints, vitamins, ablations, frontiers,
+                          diags, certs) -> None:
+    with open(TAB / "durable_endpoints.csv", "w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f, lineterminator="\n")
+        w.writerow([
+            "scenario", "first_passage_year", "operating_at_horizon",
+            "retained_at_horizon", "net_reproduction_final5y",
+            "durable_final5y", "vitamin_pools_exhausted_year",
+            "ensemble_n_feasible", "ensemble_n_retained",
+            "ensemble_n_durable_final5y",
+        ])
+        for name, d in diags.items():
+            e = endpoints.get(name)
+            w.writerow([
+                name,
+                "" if e is None or e.first_passage_year is None
+                else f"{e.first_passage_year:.6f}",
+                "" if e is None else f"{e.operating_at_horizon:.6f}",
+                "" if e is None else int(e.retained_at_horizon),
+                "" if e is None else f"{e.net_reproduction_final5:.6f}",
+                "" if e is None else int(e.durable_final5),
+                "" if e is None or e.vitamin_pools_exhausted_year is None
+                else f"{e.vitamin_pools_exhausted_year:.6f}",
+                d.n_feasible, d.n_retained, d.n_durable_final5,
+            ])
+
+    with open(TAB / "vitamin_composition.csv", "w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f, lineterminator="\n")
+        w.writerow([
+            "scenario", "element", "initial_stock_t",
+            "share_of_vitamin_stock", "initial_rate_coverage_years",
+            "pool_min_t", "pool_at_first_passage_t", "pool_at_horizon_t",
+            "pool_first_exhaustion_year",
+        ])
+        for name, rows in vitamins.items():
+            for r in rows:
+                w.writerow([
+                    name, r.element, f"{r.initial_stock_t:.6f}",
+                    f"{r.share_of_vitamin_stock:.6f}",
+                    "" if r.initial_rate_coverage_years is None
+                    else f"{r.initial_rate_coverage_years:.4f}",
+                    f"{r.pool_min_t:.6f}",
+                    "" if r.pool_at_first_passage_t is None
+                    else f"{r.pool_at_first_passage_t:.6f}",
+                    f"{r.pool_at_horizon_t:.6f}",
+                    "" if r.pool_exhaustion_year is None
+                    else f"{r.pool_exhaustion_year:.4f}",
+                ])
+
+    with open(TAB / "ablations.csv", "w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f, lineterminator="\n")
+        w.writerow([
+            "scenario", "variant", "definition", "feasible",
+            "first_passage_year", "operating_at_horizon",
+            "growth_share_of_baseline",
+        ])
+        for name, rows in ablations.items():
+            for a in rows:
+                w.writerow([
+                    name, a.variant, a.definition, int(a.feasible),
+                    "" if a.first_passage_year is None
+                    else f"{a.first_passage_year:.6f}",
+                    "" if a.operating_at_horizon is None
+                    else f"{a.operating_at_horizon:.6f}",
+                    "" if a.growth_share_of_baseline is None
+                    else f"{a.growth_share_of_baseline:.6f}",
+                ])
+
+    with open(TAB / "oversize_frontier.csv", "w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f, lineterminator="\n")
+        w.writerow([
+            "scenario", "oversize_factor", "installed_mass_t",
+            "time_to_one_additional_cell_year",
+            "additional_cells_at_horizon", "retained_plus_one_at_horizon",
+        ])
+        for name, rows in frontiers.items():
+            for r in rows:
+                w.writerow([
+                    name, f"{r.oversize_factor:.2f}",
+                    f"{r.installed_mass_t:.6f}",
+                    "" if r.time_to_one_additional_cell is None
+                    else f"{r.time_to_one_additional_cell:.6f}",
+                    f"{r.additional_cells_at_horizon:.6f}",
+                    int(r.retained_plus_one_at_horizon),
+                ])
+
+    with open(TAB / "ensemble_sensitivity.csv", "w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f, lineterminator="\n")
+        w.writerow([
+            "scenario", "multiplier", "rho_seed_mass",
+            "rho_first_passage_year", "rho_operating_at_horizon",
+        ])
+        for name, d in diags.items():
+            if d.n_feasible < 8:
+                continue
+            for mult, s in d.sensitivity.items():
+                w.writerow([
+                    name, mult,
+                    f"{s['seed_mass_t']:.4f}",
+                    f"{s['first_passage_year']:.4f}",
+                    f"{s['operating_at_horizon']:.4f}",
+                ])
+
+    with open(TAB / "diagnostics_histograms.csv", "w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f, lineterminator="\n")
+        w.writerow(["scenario", "kind", "key", "count"])
+        for name, d in diags.items():
+            for key, count in sorted(d.failure_histogram.items(),
+                                     key=lambda kv: -kv[1]):
+                w.writerow([name, "failure_reason", key, count])
+            for key, count in sorted(d.binding_histogram.items(),
+                                     key=lambda kv: -kv[1]):
+                w.writerow([name, "top_binding_constraint", key, count])
+
+    with open(TAB / "infeasibility_certificate.csv", "w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f, lineterminator="\n")
+        w.writerow(["scenario", "constraint", "minimum_violation", "units"])
+        for name, rows in certs.items():
+            for r in rows:
+                w.writerow([name, r.constraint,
+                            f"{r.minimum_violation:.6f}", r.units])
+
+
+def generate_analysis_figures(frontiers) -> None:
+    fig, ax = plt.subplots(figsize=(8.5, 5.0))
+    for name, rows in frontiers.items():
+        xs = [r.installed_mass_t for r in rows]
+        ys = [r.time_to_one_additional_cell for r in rows]
+        ax.plot(xs, ys, marker="o", label=name)
+        for r in rows:
+            if r.time_to_one_additional_cell is not None:
+                ax.annotate(f"×{r.oversize_factor:g}",
+                            (r.installed_mass_t, r.time_to_one_additional_cell),
+                            textcoords="offset points", xytext=(4, 4),
+                            fontsize=8)
+    ax.set_xlabel("Installed seed mass (scenario tonnes)")
+    ax.set_ylabel("Years to one additional operating cell-equivalent")
+    ax.set_title("Oversize frontier: installed mass versus reproduction time")
+    ax.legend()
+    fig.tight_layout()
+    fig.savefig(FIG / "oversize_frontier.png", dpi=180)
+    plt.close(fig)
+
+
+def write_report(params, seeds, runs, ensembles, compute, debris_runs,
+                 endpoints, vitamins, ablations, frontiers, diags,
+                 certs, limited) -> Path:
     lines = [
         "# Fourth Edition integrated-bootstrap model",
         "",
@@ -359,6 +514,160 @@ def write_report(params, seeds, runs, ensembles, compute, debris_runs) -> Path:
         "boundary ratio only because its collision kernel is explicitly lower; "
         "that multiplier is an assumption to be replaced by shell- and trajectory-specific data.",
         "",
+        "## Durable reproduction endpoints (r4.1)",
+        "",
+        "First passage to two cell-equivalents is a reproduction *event*; "
+        "these endpoints ask whether it was durable. Machine-readable: "
+        "`tables/durable_endpoints.csv`.",
+        "",
+        "| scenario | first passage | at year 40 | retained >= 2 | net final-5y | "
+        "ensemble retained | ensemble durable final-5y |",
+        "|---|---:|---:|:---:|---:|---:|---:|",
+    ]
+    for name, d in diags.items():
+        e = endpoints.get(name)
+        if e is None:
+            lines.append(f"| {name} | — | — | — | — | 0/{d.n_runs} | 0/{d.n_runs} |")
+        else:
+            lines.append(
+                f"| {name} | {fmt(e.first_passage_year)} yr | "
+                f"{e.operating_at_horizon:.2f} | "
+                f"{'yes' if e.retained_at_horizon else 'no'} | "
+                f"{e.net_reproduction_final5:+.3f} | "
+                f"{d.n_retained}/{d.n_feasible} | "
+                f"{d.n_durable_final5}/{d.n_feasible} |"
+            )
+    lines += [
+        "",
+        "Reading: the lunar vitamin bridge retains two cell-equivalents in "
+        "every feasible draw but is contracting over the final five years in "
+        "every one of them; the terrestrial rehearsal reproduces once and "
+        "falls back below two; only the Moon-asteroid network is durably "
+        "expanding. Vitamin-pool exhaustion years are per-category first "
+        "dips of the pooled inventory (initial Earth stock plus recycled "
+        "returns and local production) and are reported in "
+        "`tables/vitamin_composition.csv`; pools can refill later from "
+        "local production, so a first dip is not permanent depletion.",
+        "",
+        "## Intelligence-coupling ablations (r4.1)",
+        "",
+        "Zero/freeze ablations of the declared coupling coefficients; the "
+        "seed LP does not read the intelligence block, so dynamics variants "
+        "share the central seed. Machine-readable: `tables/ablations.csv`.",
+        "",
+        "| scenario | variant | first passage | at year 40 | growth share of baseline |",
+        "|---|---|---:|---:|---:|",
+    ]
+    for name, rows in ablations.items():
+        for a in rows:
+            lines.append(
+                f"| {name} | {a.variant} | "
+                f"{'—' if a.first_passage_year is None else f'{a.first_passage_year:.2f} yr'} | "
+                f"{'infeasible' if not a.feasible else f'{a.operating_at_horizon:.2f}'} | "
+                f"{'—' if a.growth_share_of_baseline is None else f'{a.growth_share_of_baseline:.0%}'} |"
+            )
+    lim_text = "; ".join(
+        f"{name}: {lim}/{tot}" for name, (lim, tot) in limited.items()
+    )
+    lines += [
+        "",
+        "Finding: every dynamics ablation reproduces the baseline exactly, "
+        "because realized cell orders are capped by material availability at "
+        f"every step ({lim_text} steps material-limited). Under the central "
+        "coefficients the recursive intelligence-industry coupling "
+        "contributes nothing to the reported growth trajectories; the "
+        "declared AI level is instead load-bearing *statically*, through "
+        "seed feasibility and sizing — re-sizing the seed at AI level 1.0 "
+        "(base autonomy) leaves the terrestrial rehearsal unchanged and "
+        "makes the lunar-bridge and Moon-asteroid scenarios infeasible on "
+        "the autonomy threshold. The headline growth numbers are therefore "
+        "material-throughput results, not artifacts of the assumed AI "
+        "feedback; and the coupling's dynamic coefficients are currently "
+        "untestable from these trajectories.",
+        "",
+        "## Installed-mass versus reproduction-time frontier (r4.1)",
+        "",
+        "A factor-f seed installs f cell-equivalents of the minimum-mass "
+        "design (capacities, feeds, vitamin stock scale with f; the digital "
+        "package is shared). Time is first passage to one *additional* "
+        "operating cell-equivalent, so f = 1 coincides with the canonical "
+        "metric. The oversize factor is a sweep axis, not a new assumption. "
+        "Machine-readable: `tables/oversize_frontier.csv`; figure: "
+        "`figures/oversize_frontier.png`.",
+        "",
+        "| scenario | factor | installed mass | time to +1 cell | additional cells at year 40 |",
+        "|---|---:|---:|---:|---:|",
+    ]
+    for name, rows in frontiers.items():
+        for r in rows:
+            lines.append(
+                f"| {name} | ×{r.oversize_factor:g} | "
+                f"{r.installed_mass_t:,.1f} t | "
+                f"{'—' if r.time_to_one_additional_cell is None else f'{r.time_to_one_additional_cell:.2f} yr'} | "
+                f"{r.additional_cells_at_horizon:+.2f} |"
+            )
+    lines += [
+        "",
+        "Minimum mass is not time-optimal: oversizing the lunar-bridge seed "
+        "by 2x cuts the first reproduction from 11.25 to 8.0 years. Returns "
+        "diminish along the axis, and mass-optimal versus time-optimal "
+        "designs are different points on this frontier.",
+        "",
+        "## Ensemble diagnostics (r4.1)",
+        "",
+        "Per-draw failure reasons, top binding constraints among feasible "
+        "draws, and Spearman rank sensitivity of the named multipliers "
+        "(machine-readable: `tables/diagnostics_histograms.csv`, "
+        "`tables/ensemble_sensitivity.csv`):",
+        "",
+    ]
+    for name, d in diags.items():
+        fh = ", ".join(f"{k} {v}" for k, v in
+                       sorted(d.failure_histogram.items(), key=lambda kv: -kv[1]))
+        bh = ", ".join(f"{k} {v}" for k, v in
+                       sorted(d.binding_histogram.items(), key=lambda kv: -kv[1])[:4])
+        lines.append(f"- **{name}**: failures — {fh or 'none'}; "
+                     f"top binding — {bh or 'n/a'}.")
+    lines += [
+        "",
+        "The depreciation multiplier correlates *positively* with year-40 "
+        "cell-equivalents (rho about +0.8 to +0.98) while shortening first "
+        "passage: higher assumed sector depreciation forces the minimum-mass "
+        "LP to install more service and feed capacity per cell, and that "
+        "oversizing accelerates reproduction — the same mechanism the "
+        "oversize frontier isolates deliberately. It is a within-model "
+        "consequence of minimum-mass sizing, not a claim that wear helps.",
+        "",
+        "## Strict-lunar infeasibility certificate (r4.1)",
+        "",
+        "Elastic relaxation of the exact seed LP (every row receives a "
+        "nonnegative slack; the slack sum is minimized in row-native "
+        "units). This is a minimum total-violation certificate, not a "
+        "strict irreducible infeasible subsystem. Machine-readable: "
+        "`tables/infeasibility_certificate.csv`.",
+        "",
+    ]
+    for name, rows in certs.items():
+        if not rows:
+            continue
+        lines.append(f"**{name}** — unsatisfiable requirement rows "
+                     "(minimum shortfall over the horizon):")
+        lines.append("")
+        lines.append("| constraint | minimum shortfall | units |")
+        lines.append("|---|---:|---|")
+        for r in rows:
+            lines.append(f"| {r.constraint} | {r.minimum_violation:,.2f} | {r.units} |")
+        lines.append("")
+    lines += [
+        "The strict-lunar cut is material, category-specific, and "
+        "quantified: the configured lunar yields cannot supply the Ni, Cu, "
+        "C, Co, Cr, rare-earth, Li, and H demands of the declared "
+        "electronics and process-equipment stack within the horizon's "
+        "throughput and energy limits. Substituting recipes, richer "
+        "measured deposits, or a different electronics architecture would "
+        "change this table, which is exactly what makes it a useful "
+        "engineering target list.",
+        "",
         "## Reproducibility",
         "",
         "```bash",
@@ -379,7 +688,7 @@ def write_manifest(files: list[Path]) -> Path:
     lines = [
         "# Fourth Edition artifact manifest",
         "",
-        "- generated: 2026-07-27",
+        "- generated: 2026-07-28",
         f"- python: {platform.python_version()}",
         f"- numpy: {np.__version__}",
         f"- scipy: {scipy.__version__}",
@@ -441,16 +750,37 @@ def main() -> None:
         ),
     ]
 
+    endpoints = {n: durable_endpoints(params, seeds[n], runs[n]) for n in runs}
+    vitamins = {n: vitamin_composition(params, seeds[n], runs[n]) for n in runs}
+    ablations = {n: ablation_suite(params, n)
+                 for n in SCENARIOS if seeds[n].feasible}
+    frontiers = {n: oversize_frontier(params, n)
+                 for n in SCENARIOS if seeds[n].feasible}
+    diags = {n: ensemble_diagnostics(params, n, n_runs=N_ENSEMBLE,
+                                     seed=ENSEMBLE_SEED, years=40.0, dt=0.5)
+             for n in SCENARIOS}
+    certs = {n: infeasibility_certificate(params, n)
+             for n in SCENARIOS if not seeds[n].feasible}
+    limited = {n: material_limited_steps(params, seeds[n], runs[n])
+               for n in runs}
+
     write_scenario_tables(params, seeds, runs, ensembles)
     write_compute_and_debris_tables(compute, debris_runs)
+    write_analysis_tables(endpoints, vitamins, ablations, frontiers,
+                          diags, certs)
     generate_figures(params, seeds, runs, ensembles, compute, debris_runs)
-    report = write_report(params, seeds, runs, ensembles, compute, debris_runs)
+    generate_analysis_figures(frontiers)
+    report = write_report(params, seeds, runs, ensembles, compute,
+                          debris_runs, endpoints, vitamins, ablations,
+                          frontiers, diags, certs, limited)
 
     inputs = [
         ROOT / "params" / "fourth_edition.yaml",
         ROOT / "src" / "rsimodel" / "fourth.py",
+        ROOT / "src" / "rsimodel" / "fourth_analysis.py",
         ROOT / "scripts" / "run_fourth.py",
         ROOT / "tests" / "test_fourth.py",
+        ROOT / "tests" / "test_fourth_analysis.py",
     ]
     artifacts = [report, *TAB.glob("*.csv"), *FIG.glob("*.png")]
     manifest = write_manifest(inputs + artifacts)

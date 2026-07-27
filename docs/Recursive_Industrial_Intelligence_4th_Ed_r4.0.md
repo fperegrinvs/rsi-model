@@ -54,7 +54,11 @@ composite Moon–asteroid portfolio satisfies the same constraints at
 185.5 t, reaches two cell-equivalents at 22.8 years, and reaches 12.55 at
 year 40. These are deterministic consequences of a stipulated
 architecture and assumption ensemble (Part I.8), not seed designs,
-engineering estimates, or forecasts. The model operationalizes the
+engineering estimates, or forecasts. Ablation of the declared
+intelligence coupling leaves every central trajectory unchanged — growth
+is material-limited at every step, so the coupling's dynamic
+coefficients never bind — and reproduction is durable only in the
+Moon–asteroid case. The model operationalizes the
 coupled loop and sharpens its material and autonomy conditions; it does
 not demonstrate that the assumed processes, source portfolio, AI gains,
 or industrial closure exist.
@@ -206,7 +210,7 @@ complex. Both escapes pass through one passage: the bridge, in which the
 first self-replicating seed is bought at full market price, operated where
 depreciation is most severe, and financed by intermediate products.
 
-This edition prices the passage and models the seed. Four headline results:
+This edition prices the passage and models the seed. Five headline results:
 
 1. **The active bottleneck is architecture-specific.** A unit-invariant
    finite-response diagnostic relaxes each material balance by 1%, then
@@ -271,6 +275,20 @@ This edition prices the passage and models the seed. Four headline results:
    cases are model-feasible in 126, 0, and 187 draws (the terrestrial
    rehearsal in 83); these frequencies measure the satisfying volume of
    the declared parameter box, not success probabilities.
+5. **The declared AI coupling does not drive the Fourth-layer growth.**
+   Ablations that zero or freeze the intelligence–industry coupling
+   reproduce every central trajectory exactly: realized construction is
+   capped by material availability at every step, so the coupling's
+   dynamic coefficients never bind — the headline growth is a
+   material-throughput result, not an artifact of the assumed AI
+   feedback, and symmetrically these trajectories cannot test that
+   feedback. The assumed AI level is load-bearing *statically* instead:
+   at base autonomy the lunar-bridge and Moon–asteroid seeds fail the
+   feasibility threshold outright. Durability splits the cases the same
+   way — the lunar bridge retains two cell-equivalents in all 126
+   feasible draws yet has negative net reproduction over the final five
+   years in every one of them; only the Moon–asteroid network expands
+   durably (187/187).
 
 The Fourth layer also makes one architecture boundary stateful:
 **industrial closure does not license a dense orbital shell.** Active,
@@ -1139,9 +1157,11 @@ trace imports. The year-40 column carries the transient-versus-durable
 distinction: the terrestrial rehearsal crosses two cell-equivalents at
 9.2 years yet holds only 1.93 at year 40 — reproduction occurred once and
 was not durably retained — the lunar bridge barely grows past its first
-reproduction (2.29), and only the Moon–asteroid case compounds.
-Durable-reproduction endpoints analogous to the inherited model's
-sustained hierarchy are queued (ROADMAP).
+reproduction (2.29), and only the Moon–asteroid case compounds. The
+vitamin stock's composition is resolved in
+`outputs/fourth/tables/vitamin_composition.csv`: Ni, Cu, and C dominate
+at roughly 80% of the lunar-bridge stock, with initial-rate coverage
+near five years per category.
 
 The strict lunar-only case is a structural infeasibility, not a sampled
 tail: the central LP is infeasible — the configured trace-material yields
@@ -1166,6 +1186,60 @@ engineering uncertainty.](../outputs/fourth/figures/seed_mass_ensemble.png)
 ![Operating cell-equivalents over time in the central scenarios:
 construction and commissioning lags separate ordering from operating
 capacity.](../outputs/fourth/figures/cell_reproduction.png)
+
+**Durability, ablation, and frontier diagnostics (r4.1).** Five analysis
+passes interrogate the same declared architecture without introducing any
+new coefficient (machine-readable tables in `outputs/fourth/tables/`;
+all regenerate with `scripts/run_fourth.py`):
+
+- **Reproduction is mostly transient.** Retention and durability split
+  the ensembles sharply: the lunar bridge retains ≥ 2 cell-equivalents
+  in all 126 feasible draws yet has *negative* net reproduction over
+  years 35–40 in every one of them (central −0.036); the terrestrial
+  rehearsal retains in 11 of 83 with none durable; only the
+  Moon–asteroid network expands durably (187/187, central +5.17). First
+  passage to two cell-equivalents is a reproduction event, not a growth
+  regime.
+- **The dynamic intelligence coupling is inert at central
+  coefficients.** Zero/freeze ablations of the declared coupling — no
+  intelligence growth, either channel alone, fully uncoupled —
+  reproduce every central trajectory exactly, because realized cell
+  orders are capped by material availability below desired orders at
+  all 160 steps of all three feasible scenarios. The declared AI level
+  is load-bearing *statically* instead: re-sizing the seed at base
+  autonomy (AI level 1.0) leaves the terrestrial rehearsal unchanged
+  and makes the lunar-bridge and Moon–asteroid scenarios infeasible on
+  the autonomy threshold. The headline growth is a material-throughput
+  result, not an artifact of the assumed AI feedback — and,
+  symmetrically, these trajectories cannot test the coupling's dynamic
+  coefficients.
+- **Minimum mass is not time-optimal.** Installing f cell-equivalents
+  of the minimum-mass design (a sweep axis, not a new assumption) buys
+  reproduction time: doubling the lunar-bridge seed (428.5 t) cuts
+  first reproduction from 11.25 to 8.0 years, with diminishing returns
+  along the axis. Mass-optimal and time-optimal seeds are different
+  designs; the declared LP answers only the first question.
+- **Failure reasons and binding constraints are per-draw.** Infeasible
+  draws split between the autonomy threshold and the material LP
+  (terrestrial 77/40, bridge 54/20, strict 33/167); feasible draws bind
+  most often on Cu, C, Ni, and Cr (terrestrial and bridge) and on
+  dopants plus refining and asteroid-transport throughput (network).
+  One sensitivity is a sizing artifact worth naming: the depreciation
+  multiplier correlates *positively* (ρ ≈ +0.8 to +0.98) with year-40
+  cell-equivalents, because pessimistic depreciation forces the
+  minimum-mass LP to oversize service and feed capacity per cell — the
+  frontier effect arrived at inadvertently.
+- **The strict-lunar cut is quantified.** An elastic relaxation of the
+  exact seed LP names the unsatisfiable rows and their minimum
+  shortfalls over the horizon: Ni 19.0 t, Cu 18.4 t, C 15.3 t, Co
+  3.6 t, Cr 3.1 t, rare earths 2.3 t, Li 2.3 t, H 0.2 t, and dopants
+  0.1 t. The infeasibility is a distributed material cut, and the table
+  doubles as the engineering target list any lunar-only architecture
+  claim would have to defeat.
+
+![Oversize frontier: installed seed mass versus years to one additional
+operating cell-equivalent, central
+scenarios.](../outputs/fourth/figures/oversize_frontier.png)
 
 The coupled run distinguishes installed compute from the industrial stock
 that manufactures it. At year 40, the Moon–asteroid scenario has 12.55
@@ -2483,7 +2557,13 @@ coefficients are ASSUMPTION-class and they omit training data, algorithmic
 regime changes, verification failures, hardware-node detail, and many
 coordination limits. The model therefore tests the consequences of a
 coupling law; it does not measure that law or establish takeoff, subject
-also to the speed caveat of II.5.
+also to the speed caveat of II.5. The r4.1 ablations sharpen this
+further: at central coefficients the dynamic coupling is inert — material
+supply caps construction at every step — so the declared f and h
+currently matter through seed feasibility (the static autonomy level),
+not through the growth trajectories (I.8). A coupling whose removal
+changes nothing is not evidence for recursion; it is a declared
+mechanism awaiting a regime in which it binds.
 
 **What the thesis does not claim**
 
@@ -2944,6 +3024,25 @@ with `params/anchors.yaml`; corrected the 95%-lunar-closure distance
 the committed figures into the manuscript; and queued durable-endpoint,
 ablation, Pareto-frontier, and diagnostics work as r4.1 scope (ROADMAP).
 
+An r4.1 analysis pass then implemented the computable subset of that
+queue as an additive layer (`fourth_analysis.py`; seven tables, one
+figure, seven tests; no previously reported quantity changed): durable
+reproduction endpoints, vitamin-stock resolution, zero/freeze
+intelligence-coupling ablations, the oversize mass-versus-time frontier,
+per-draw ensemble diagnostics, and the strict-lunar elastic
+infeasibility certificate. Its headline findings: the declared dynamic
+intelligence coupling is inert at central coefficients (construction is
+material-limited at every step, so ablating the coupling changes
+nothing, while the assumed AI level binds statically through seed
+feasibility); lunar-bridge reproduction is transient (retained in all
+126 feasible draws, durable in none); minimum mass is not time-optimal
+(doubling the bridge seed cuts first reproduction from 11.25 to 8.0
+years); and the strict-lunar infeasibility resolves to a quantified
+Ni/Cu/C/Co/Cr/rare-earth/Li/H/dopant shortfall table. Items needing new
+declared coefficients (sector-resolved reproduction, a delivered-seed
+deployment stage, shock-recovery endpoints, shell-resolved debris)
+remain queued.
+
 **3.5 (frozen Third Edition baseline)** — final integrity and publication pass: the
 lexicographic allocator now ends in a normalized strictly convex QP so the
 state transition is unique; binding is a unit-invariant finite 1% response
@@ -3091,7 +3190,7 @@ r3.1: rewritten standalone.
     npm run build:manuscript -- --html-only  # r3.5 standalone HTML
     npm run build:fourth                     # r4.0 standalone HTML only
     .venv/bin/python scripts/write_manifest.py  # run last
-    .venv/bin/pytest tests/ -q                # 72 tests
+    .venv/bin/pytest tests/ -q                # 79 tests
 
 Model: `src/rsimodel/{model,delta,cutsets,montecarlo,lco,policies,plots,report}.py`;
 parameters: `params/{anchors,assumptions,environments}.yaml`; generated
@@ -3116,10 +3215,11 @@ the committed CSV against the committed report so mutually stale artifacts
 script and cannot diverge. Structural coefficients are ASSUMPTION-class and
 live only inside named assumption sets.
 
-The Fourth model is `src/rsimodel/fourth.py`, configured entirely by
-`params/fourth_edition.yaml` and run by `scripts/run_fourth.py`.
-`outputs/fourth/report.md`, six CSV tables, and four figures are generated
-from one in-memory scenario set. `outputs/fourth/MANIFEST.md` records the
+The Fourth model is `src/rsimodel/fourth.py`, with the additive r4.1
+analysis layer in `src/rsimodel/fourth_analysis.py`, configured entirely
+by `params/fourth_edition.yaml` and run by `scripts/run_fourth.py`.
+`outputs/fourth/report.md`, thirteen CSV tables, and five figures are
+generated from one in-memory scenario set. `outputs/fourth/MANIFEST.md` records the
 sha256 of the configuration, implementation, runner, focused tests, and
 every generated artifact. Its ensemble uses 200 deterministic named draws
 per scenario from seed 404. Adding a draw or changing a coefficient changes
@@ -3143,7 +3243,7 @@ transitive hash-pinning is roadmapped). Citation metadata:
 `CITATION.cff`. License: MIT for code (`/LICENSE`), CC BY 4.0 for the
 manuscript and documents (`docs/LICENSE`). DOI: concept
 **10.5281/zenodo.21619447** (all versions); each release tag mints its own
-version DOI via the Zenodo integration. The 72 tests cover selected
+version DOI via the Zenodo integration. The 79 tests cover selected
 invariants, determinism, metric identities, artifact consistency, and the
 generated HTML's semantic publication structure — they do not establish
 that the specification adequately represents industrial reality, and no
@@ -3299,6 +3399,23 @@ nonnegative balances, strict-lunar infeasibility, finite-vitamin behavior,
 gravity overhead, second-cell commissioning, named-draw stability, and the
 debris threshold. `outputs/fourth/MANIFEST.md` binds the configuration,
 implementation, runner, tests, tables, figures, and report.
+
+**r4.1 analysis layer.** `src/rsimodel/fourth_analysis.py` adds derived
+diagnostics over the same declared coefficients, inventing none:
+durable-reproduction endpoints (retention at horizon, final-five-year
+net reproduction, vitamin-pool exhaustion timing); vitamin-stock
+resolution; zero/freeze intelligence-coupling ablations; the
+installed-mass-versus-reproduction-time oversize frontier
+(`simulate_reproduction(initial_cells=f)` installs f cell-equivalents of
+the fixed minimum-mass design); per-draw ensemble diagnostics over the
+identical named crc32 draws (failure reasons, binding-constraint
+frequencies, Spearman sensitivity); and an elastic-relaxation
+infeasibility certificate that interrogates the exact seed LP through a
+shared matrix builder. Seven additional tables and one figure regenerate
+with the run; no previously reported quantity changes. Ablation variants
+requiring new declared magnitudes (delayed gains, degraded
+verification), shock-recovery endpoints, and alternative seed objectives
+remain queued (ROADMAP).
 
 ## D.2 Inherited ten-sector model
 

@@ -1,0 +1,10 @@
+scenario,constraint,minimum_violation,units
+lunar_strict,element:Ni,19.049100,tonnes over the horizon
+lunar_strict,element:Cu,18.435423,tonnes over the horizon
+lunar_strict,element:C,15.343750,tonnes over the horizon
+lunar_strict,element:Co,3.626985,tonnes over the horizon
+lunar_strict,element:Cr,3.105500,tonnes over the horizon
+lunar_strict,element:rare_earths,2.276250,tonnes over the horizon
+lunar_strict,element:Li,2.253850,tonnes over the horizon
+lunar_strict,element:H,0.230750,tonnes over the horizon
+lunar_strict,element:dopants,0.121885,tonnes over the horizon

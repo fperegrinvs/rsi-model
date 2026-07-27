@@ -61,6 +61,14 @@ The paper argues about self-sustaining / self-expanding (space) industrial syste
   seed-sizing LP, task autonomy/intervention, process-specific gravity,
   commissioning and explicit second-cell dynamics, compute/intelligence
   coupling, rate-limited Earth/orbit counterfactuals, and debris stocks.
+- `src/rsimodel/fourth_analysis.py` — additive r4.1 analysis layer over
+  the declared fourth-layer coefficients (invents none): durable
+  reproduction endpoints, vitamin-stock resolution, zero/freeze
+  intelligence-coupling ablations, oversize mass-vs-time frontier
+  (`simulate_reproduction(initial_cells=f)`), per-draw ensemble
+  diagnostics over the identical named crc32 draws, and an
+  elastic-relaxation infeasibility certificate sharing the exact seed-LP
+  matrix via `fourth.build_seed_lp`.
 - `scripts/run_baseline.py` — Part I smoke run + figures (~30 s).
 - `scripts/run_deep.py` — large-n Part I MC + cut-set fatality probabilities
   (measured 706.6 s on nine workers on the 2026-07-27 release host;
@@ -133,6 +141,27 @@ Terafab walls restructured; "How to read this document" added; r4.1
 model work (durable endpoints, ablations, Pareto, diagnostics,
 delivered-seed stage) queued in ROADMAP.
 
+r4.1 analysis pass (2026-07-28): implemented the computable subset of the
+queued work as `fourth_analysis.py` (7 new tables, oversize_frontier.png,
+7 new tests; NO previously reported quantity changed — verified against
+regenerated artifacts). HEADLINE FINDINGS to keep straight in future
+sessions: (1) the dynamic intelligence coupling is INERT at central
+coefficients — construction is material-limited at every step (160/160
+in all three feasible scenarios), so every zero/freeze ablation
+reproduces the baselines exactly; the AI level binds STATICALLY (seed at
+base autonomy: terrestrial unchanged, bridge and network infeasible on
+the autonomy threshold) — do not describe the central growth as
+AI-driven; (2) lunar-bridge reproduction is TRANSIENT — retained >= 2 in
+126/126 feasible draws, durable (positive final-5-yr) in 0/126; only
+moon_asteroid_network is durably expanding (187/187); (3) minimum mass
+is not time-optimal — 2x bridge seed cuts first reproduction 11.25 ->
+8.0 yr (oversize frontier; same mechanism explains the counterintuitive
+POSITIVE depreciation-multiplier rho ~ +0.8-0.98 on year-40 cells:
+pessimistic depreciation forces LP oversizing per cell); (4) strict-lunar
+infeasibility is a quantified material cut (elastic certificate: Ni 19.0,
+Cu 18.4, C 15.3, Co 3.6, Cr 3.1, rare earths 2.3, Li 2.3, H 0.2, dopants
+0.1 t over the horizon).
+
 r3.5 = reproducibility/model-identity pass against a third external review
 (all its factual claims verified against the repo before acting): stable
 crc32 seeds everywhere incl. Part II (hash() was process-salted and r3.4's
@@ -163,7 +192,7 @@ anchors.yaml NEVER re-rolls existing cells (old sequential stream did —
 that plus chunking re-baselined all MC values once, within Wilson).
 outputs/MANIFEST.md sha256 manifest;
 tests/test_repro.py cross-checks committed CSV vs report. The full r4.0
-suite has 72 tests.
+suite has 79 tests (72 + 7 for the r4.1 analysis layer).
 Reports: `outputs/report.md`, `outputs/report_deep.md`,
 `outputs/report_part2.md`, `docs/PART_III_HYPOTHESES.md`,
 `docs/PART_IV_SPECULATIVE.md`.
