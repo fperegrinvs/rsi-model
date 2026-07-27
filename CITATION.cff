@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "If you use this model or cite its results, please cite it as below."
+title: "Recursive Industrial Intelligence — Third Edition companion model"
+version: r3.4
+date-released: 2026-07-27
+authors:
+  - family-names: Stern
+    given-names: Leonardo
+abstract: >-
+  Multisector industrial-reproduction model (lexicographic maximin LP,
+  decomposed depreciation, vitamin-part stockpiles, minimum-cut-set and
+  retooling analysis) and Earth-space compute cost-crossover model,
+  companion to "Recursive Industrial Intelligence, Third Edition" (r3.4,
+  docs/). All structural coefficients are ASSUMPTION-class; results are
+  assumption-ensemble frequencies, not forecasts.

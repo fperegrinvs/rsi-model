@@ -1,0 +1,83 @@
+# ASSUMPTION-class coefficients. None of these are anchored to published measurements.
+# They exist only inside named sets; every result must state which set produced it.
+#
+# Sectors (order everywhere): power, mining, refining, robotics, machine_tools,
+# electronics, thermal, transport, repair, recycling.
+#
+# repair and recycling are SERVICE sectors: their output is not consumed to build
+# capacity, so their rows in A are zero. Repair output is allocated by the LP to
+# offset the WEAR component of delta (and only that component). Recycling output is
+# secondary feedstock that substitutes for mining/refining supply, capped by the
+# scrap flow released by retiring capacity.
+#
+# delta is NOT set here — it is assembled per environment from anchored components
+# in params/environments.yaml (wear + catastrophic + obsolescence + logistics).
+# Sets may only scale the assembled vector via scale_delta.
+
+sectors: [power, mining, refining, robotics, machine_tools, electronics, thermal, transport, repair, recycling]
+
+service_sectors:
+  repair: repair
+  recycling: recycling
+
+sets:
+  central:
+    # output units per capacity unit per year
+    q: [1.0, 1.2, 1.0, 0.8, 0.5, 0.4, 0.9, 0.7, 1.0, 0.9]
+
+    # A[i][j] = units of sector i output consumed to BUILD 1 unit of sector j capacity.
+    # Column j is the recipe for sector j. Rows follow the sector order above.
+    #      power mining refin robot mtool elect therm trans repair recyc
+    A:
+      - [0.30, 0.35, 0.40, 0.25, 0.30, 0.45, 0.20, 0.30, 0.20, 0.40]   # power
+      - [0.20, 0.15, 0.30, 0.15, 0.20, 0.10, 0.15, 0.20, 0.10, 0.08]   # mining
+      - [0.25, 0.20, 0.15, 0.25, 0.30, 0.30, 0.20, 0.25, 0.18, 0.20]   # refining
+      - [0.15, 0.20, 0.15, 0.10, 0.15, 0.15, 0.10, 0.15, 0.25, 0.18]   # robotics
+      - [0.10, 0.10, 0.10, 0.20, 0.10, 0.25, 0.10, 0.10, 0.30, 0.22]   # machine_tools
+      - [0.08, 0.06, 0.06, 0.20, 0.15, 0.10, 0.08, 0.12, 0.15, 0.10]   # electronics
+      - [0.05, 0.05, 0.08, 0.05, 0.05, 0.10, 0.05, 0.05, 0.06, 0.15]   # thermal
+      - [0.10, 0.15, 0.10, 0.08, 0.08, 0.08, 0.08, 0.05, 0.10, 0.12]   # transport
+      - [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00]   # repair    (service)
+      - [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00]   # recycling (service)
+
+    import_profile: [0.0, 0.0, 0.05, 0.10, 0.20, 0.55, 0.05, 0.0, 0.05, 0.0]
+    import_budget0: 0.6        # output-units/yr of Earth supply at t=0
+    import_decay_years: 15     # e-folding of import budget (deliberate closure ramp)
+
+    repair:
+      efficiency: 0.75         # capacity-units of wear offset per unit of repair service
+      spares_fraction: 0.15    # a repair draws this fraction of the BUILD recipe A[:, j]
+    recycling:
+      scrap_recovery: 0.40     # fraction of retiring capacity recoverable as secondary feed
+      # where recycled feed lands (shares, must sum to 1): displaces primary supply
+      output_profile: [0.0, 0.35, 0.65, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+      # operating inputs per unit of recycled feed produced
+      opex: [0.50, 0.02, 0.05, 0.08, 0.04, 0.02, 0.10, 0.05, 0.0, 0.0]
+
+    stockpile:
+      # only durable discrete parts can be warehoused; you cannot stockpile kW or ore throughput
+      stockable:          [0, 0, 0, 0, 1, 1, 0, 0, 1, 0]
+      # years of replacement-demand pre-positioned at t=0
+      initial_years:      2.0
+      # maximum holding, in years of replacement-demand
+      capacity_years:     4.0
+      # shelf life of the held stock (yr); .inf = indefinite
+      shelf_life_years:   [.inf, .inf, .inf, .inf, 15.0, 5.0, .inf, .inf, 8.0, .inf]
+
+  conservative:
+    inherit: central
+    scale_A: 1.35              # everything costs more to build
+    scale_delta: 1.4
+    import_decay_years: 10     # supply ramps down faster than closure ramps up
+    scale_repair_efficiency: 0.7
+    scale_scrap_recovery: 0.6
+    scale_stock: 0.5
+
+  optimistic:
+    inherit: central
+    scale_A: 0.75
+    scale_delta: 0.8
+    import_decay_years: 25
+    scale_repair_efficiency: 1.2
+    scale_scrap_recovery: 1.5
+    scale_stock: 1.5

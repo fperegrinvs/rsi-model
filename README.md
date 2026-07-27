@@ -1,0 +1,17 @@
+# rsi-model
+
+Simulation companion to *Recursive Industrial Intelligence* (Second Edition, current rev r2.10 — see `docs/`).
+Third Edition Parts I–II: multisector closure feasibility + Earth–space cost crossover.
+
+Start with `CLAUDE.md` (project rules and roadmap), then:
+
+    pip install -r requirements.txt
+    python scripts/run_baseline.py    # Part I smoke sweep (~2 min)
+    python scripts/run_part2.py       # Part II LCO sweep (~1 min)
+    python scripts/run_deep.py        # large-n MC + cut probabilities (~20 min)
+    pytest tests/ -q
+
+Reports land in `outputs/`; Parts III–IV are documents in `docs/`.
+
+Key discipline: system replication time is a model **output**, never an input;
+structural coefficients are ASSUMPTION-class and live only in named sets.
