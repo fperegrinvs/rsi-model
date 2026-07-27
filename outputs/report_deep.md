@@ -216,6 +216,13 @@ cut analysis understates dependency risk. Over sampled anchors
 Receding-horizon lookahead reproduces the myopic maximin; the aggregate-growth-with-floor policy collapses. The maximin allocation is load-bearing, not incidental.
 
 
+## Import-decay e-folding sweep (central set, n=60 per point)
+
+Share of runs with realized g > 0 at year 30 vs the e-folding time of Earth-supply withdrawal (machine-readable: `tables/import_decay_deep.csv`). At n=60 per point the non-monotonic wobble is within binomial noise; the sweep is suggestive, not a stable response curve:
+
+- **central/leo**: 4 yr -> 0.63, 7 yr -> 0.72, 10 yr -> 0.60, 15 yr -> 0.68, 25 yr -> 0.77
+- **central/lunar**: 4 yr -> 0.40, 7 yr -> 0.57, 10 yr -> 0.43, 15 yr -> 0.57, 25 yr -> 0.73
+
 ## Scalar-anchor sensitivity screening (Spearman rho of anchor draw vs g at year 30)
 
 central/lunar, n=300, null band ~ +/-0.11 (wider under multiplicity):

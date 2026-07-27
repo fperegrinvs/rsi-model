@@ -116,6 +116,23 @@ Every new structural coefficient is ASSUMPTION-class. The untagged HTML
 omits canonical URL, publication date, and version DOI until immutable
 release metadata is supplied.
 
+r4.0 RC correction pass (2026-07-28, against a fourth external review):
+seed restated as INSTALLED operating nucleus; reproduction metric renamed
+first passage to two operating-cell equivalents with year-40 durability
+reading; model relabeled material-category-resolved; strict-lunar 0/200
+restated as structural LP infeasibility; R_debris renamed five-year
+fragment creation-to-clearance ratio (sub/supercritical language
+withdrawn); three stale Third Edition passages removed (I.3/I.4/I.5);
+vitamin share (23–27%) reported; import-decay sweep committed
+(`outputs/tables/import_decay_deep.csv`, run_deep.py now writes it);
+Appendix A reconciled with anchors.yaml (five-class taxonomy, 14 missing
+anchors added, context rows marked); "two orders of magnitude" lunar
+closure claim corrected to ~15–30×; 8 figures embedded in manuscript and
+HTML (build uses --resource-path=.:docs); P1–P6/I.10/I.4/Suncatcher/
+Terafab walls restructured; "How to read this document" added; r4.1
+model work (durable endpoints, ablations, Pareto, diagnostics,
+delivered-seed stage) queued in ROADMAP.
+
 r3.5 = reproducibility/model-identity pass against a third external review
 (all its factual claims verified against the repo before acting): stable
 crc32 seeds everywhere incl. Part II (hash() was process-salted and r3.4's
@@ -161,9 +178,9 @@ Headline structure (ASSUMPTION-class inputs — sweep, don't quote):
 - **Part II**: generic space ~4–9× Earth at published prices (Earth-supplied
   lunar ~200×); the separate Starmind AI1 company-statement scenario uses its
   disclosed 150/120 kW, 150 kW array, and 70 kW/t specifications, reducing
-  central mass 46→16 kg/kW and cost to 2.56× Earth. P(space cheaper) remains
-  0/2000 for the original references and responsive AI1; AI1/base has
-  1/2000. With qual=1.2, life=7 yr, utilization=.95 AI1 breaks even at
+  central mass 46→16 kg/kW and cost to 2.56× Earth. P(space cheaper) is
+  0/2000 in all sixteen architecture/reference cells (an earlier 1/2000
+  note for AI1/base was stale). With qual=1.2, life=7 yr, utilization=.95 AI1 breaks even at
   ~$1,152/kg and is 0.79× at $250/kg. Qualification/life/availability
   remain undisclosed. A separate deterministic best case uses company targets
   $185/kg and 100 kW/t plus those three favorable non-company bounds: 0.76×
@@ -171,10 +188,16 @@ Headline structure (ASSUMPTION-class inputs — sweep, don't quote):
   from MC. Its 100-GW/year scale implies 1M t/year and 10,000 V3 launches/year.
   Earth base ≈$1.67/kW-hr.
 - **Part III**: P4a documented, P4b not established; indicators ordinal.
-- **Fourth layer**: central terrestrial rehearsal 206.7 t / second cell
-  9.25 yr; lunar vitamin bridge 216.7 t / 11.25 yr; strict lunar
-  infeasible; Moon–asteroid network 185.5 t / 22.75 yr. These are scenario
-  implications of the declared architecture, not engineering estimates.
+- **Fourth layer**: central terrestrial rehearsal 206.7 t installed /
+  first passage to two cell-equivalents 9.25 yr (holds only 1.93 at yr
+  40); lunar vitamin bridge 216.7 t (58.1 t = 27% Earth vitamin stock) /
+  11.25 yr; strict lunar structurally infeasible (LP infeasible, all 200
+  draws); Moon–asteroid network 185.5 t / 22.75 yr. Seeds are INSTALLED
+  operating nuclei (no deployment stage); the model is
+  material-category-resolved (15 elements + rare-earth/dopant classes);
+  R_debris is a five-year fragment creation-to-clearance flow ratio, not
+  a criticality measure. These are scenario implications of the declared
+  architecture, not engineering estimates.
 
 Next: ROADMAP higher-fidelity block (claim-level anchor bibliography,
 vacuum/dust/radiation process coupling, mineralogy and purity ladders,

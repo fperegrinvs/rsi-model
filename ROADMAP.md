@@ -96,6 +96,48 @@ re-baseline). Remaining:
 - [ ] Longer-horizon retooling recovery tests + knock-fraction sweep
       (removes the 20-yr-window qualifier from the model-fatal label)
 
+### r4.0 external-review follow-ups (r4.1 scope — Fourth layer model work)
+- [ ] **Durable Fourth-layer endpoints** mirroring the r3.5 endpoint
+      hierarchy: first passage to 2.0 cell-equivalents (current metric);
+      still >= 2.0 at horizon; positive net reproduction over the final
+      five years; positive reproduction after vitamin exhaustion /
+      import cutoff; minimum sector-service margin at horizon; recovery
+      after a source or equipment shock. (Terrestrial rehearsal currently
+      reaches 2.0 at 9.2 yr but holds only 1.93 at year 40 — the
+      transient-vs-durable distinction the inherited model already makes.)
+- [ ] **Intelligence/autonomy ablations**: no intelligence improvement;
+      fixed autonomy; productivity-only; autonomy-only; delayed gains;
+      lower verification; fully uncoupled. Report how much of the
+      12.55-cell Moon–asteroid growth survives each ablation.
+- [ ] **Seed-mass vs time-to-durable-reproduction Pareto frontier**, plus
+      alternative objectives: minimum Earth-supplied mass, minimum
+      intervention demand, minimum time to import independence, maximum
+      year-40 capacity, maximum survival after source interruption.
+- [ ] **Fourth-layer diagnostics** matching Part I discipline: per-draw
+      failure-reason histogram, binding-constraint frequencies, global
+      sensitivity for seed mass / reproduction time / year-40 cells,
+      correlated-draw robustness, feasible/infeasible boundary surface.
+- [ ] **Vitamin-stock resolution**: composition by material class,
+      years of replacement coverage, consumption profile, shelf-life and
+      obsolescence treatment, residual stock at first reproduction and at
+      year 40 (58.1 t is ~27% of the central lunar-bridge seed).
+- [ ] **Strict-lunar infeasibility certificate**: report the minimum
+      unsatisfied material/service cut (irreducible infeasible subsystem)
+      rather than only the solver's infeasible status.
+- [ ] **Sector-resolved reproduction dynamics**: de-aggregate the
+      cell-equivalent phase so sectors commission at different times,
+      partial second cells exist, and sector-specific depreciation/repair
+      apply during reproduction (currently a two-stage hybrid: multisector
+      seed LP + aggregate cell-equivalent dynamics).
+- [ ] **First-cell deployment stage**: model the delivered->installed
+      transition (unloading, staging, initial power, site preparation,
+      calibration, first commissioning, deployment-fault recovery) so seed
+      mass refers to a delivered seed, not an installed operating cell.
+- [ ] Shell-resolved debris model with expected-hazardous-descendants
+      metric (the implemented aggregate ratio is a five-year fragment
+      creation-to-clearance flow ratio, not a branching-process
+      reproduction number, and is non-monotonic in mitigation strength).
+
 ### r3.4 review follow-ups (model integrity)
 - [ ] LEO embodied-mass conservation: explicit finite orbital-matter reservoir
       state (M += imports + capture − unrecoverable loss; recycled ≤ η·retired,

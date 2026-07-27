@@ -1,6 +1,6 @@
 # Output manifest
 
-- generated: 2026-07-27
+- generated: 2026-07-28
 - python: 3.13.0, numpy 2.1.3, scipy 1.16.0, osqp 1.1.3
 - generators: scripts/run_baseline.py, scripts/run_part2.py, scripts/run_deep.py, npm run build:manuscript (in that order), then this script
 
@@ -21,6 +21,7 @@
 | outputs/figures/survival_deep_central.png | 07216ccad9e372e45bae791e8162572823b2aeb86ebbb0fcffde2f9dbb7a88e6 |
 | outputs/figures/survival_deep_lunar.png | 9b29233e19c8cbb07dafb991c7b8f5c24ab2029fc7dfed7febeccd244f42a137 |
 | outputs/report.md | 5512cd8b833ac9be6dec74f41895146b713dd6a57252636a70cf82964b31d85d |
-| outputs/report_deep.md | 6d84c65c738c14959b4d6c175a35c89c0840e643a86841b44532dd2fd706b7bc |
+| outputs/report_deep.md | b4a810742130d2f2abd2554ae454c14c330dbf38ad5c01310fc475e5538af4d6 |
 | outputs/report_part2.md | 8d210a6d6d5282daa045683b916f2a9034c084038522d03e02442b66c4b70f3f |
+| outputs/tables/import_decay_deep.csv | eb1ed132bcec94fd09715f50e82a642dfbfa575075de198506f6cdc8d2bd656f |
 | outputs/tables/mc_deep.csv | 3136edc170757202734b0ea9d241b5f0ff48abf34587104d4d54c7e5d6a5a314 |

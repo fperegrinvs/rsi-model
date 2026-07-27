@@ -12,7 +12,8 @@ adds the structures that the Fourth Edition manuscript names as missing:
   commissioned second production cell;
 * a coupled, intentionally stylized intelligence/compute/productivity loop;
 * rate-limited terrestrial and Earth-fed orbital compute counterfactuals; and
-* endogenous debris stocks with a reported debris reproduction ratio.
+* endogenous debris stocks with a reported five-year fragment
+  creation-to-clearance ratio.
 
 The numerical coefficients in ``params/fourth_edition.yaml`` are scenario
 assumptions unless a source reference is named.  A cited composition datum

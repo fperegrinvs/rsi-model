@@ -6,14 +6,14 @@
 
 ## Headline results
 
-| scenario | central seed mass | Earth vitamin stock | second commissioned cell | operating cells at year 40 | ensemble feasible | ensemble seed p10/p50/p90 |
+| scenario | central installed seed mass | Earth vitamin stock | first passage to two cell-equivalents | cell-equivalents at year 40 | model-feasible draws | ensemble seed p10/p50/p90 |
 |---|---:|---:|---:|---:|---:|---:|
 | terrestrial_rehearsal | 206.7 t | 48.1 t | 9.2 yr | 1.93 | 83/200 | 171/201/228 t |
 | lunar_vitamin_bridge | 216.7 t | 58.1 t | 11.2 yr | 2.29 | 126/200 | 181/212/247 t |
 | lunar_strict | infeasible | — | — | — | 0/200 | — |
 | moon_asteroid_network | 185.5 t | 0.0 t | 22.8 yr | 12.55 | 187/200 | 155/204/310 t |
 
-The strict lunar-only case is an infeasibility result inside the declared architecture: trace lunar yields cannot reproduce the element-resolved electronics and process-equipment stack. It is not a proof that lunar-only closure is physically impossible; substitution, different recipes, new processes, or measured richer deposits could change the constraint graph.
+The strict lunar-only case is a structural infeasibility inside the declared architecture: trace lunar yields cannot reproduce the configured electronics and process-equipment stack, in the central case and in every ensemble draw. It is not a proof that lunar-only closure is physically impossible; substitution, different recipes, new processes, or measured richer deposits could change the constraint graph.
 
 The Moon–asteroid case is likewise conditional. Its `diverse_asteroid_portfolio` is a deliberately composite source with ASSUMPTION-class recoverable yields. The model says what those yields would imply; it does not establish that a specific accessible portfolio has them.
 
@@ -26,7 +26,7 @@ The Moon–asteroid case is likewise conditional. Its `diverse_asteroid_portfoli
 - Construction lag, commissioning ramp, minimum viable scale, and an explicit second operating production cell.
 - Coupled local compute, verified intelligence improvement, autonomy, and productivity.
 - Rate-limited Earth and Earth-fed orbital counterfactuals.
-- Active, derelict, and fragment stocks with a last-five-year debris reproduction ratio.
+- Active, derelict, and fragment stocks with a five-year fragment creation-to-clearance ratio.
 
 ## Central process and seed diagnostics
 
@@ -76,7 +76,7 @@ The endogenous curve compounds only after the seed survives commissioning and so
 
 ## Debris condition
 
-| case | R_debris, last 5 yr | subcritical/non-supercritical | fragment index, year 40 |
+| case | creation-to-clearance ratio, last 5 yr | clearance >= creation | fragment index, year 40 |
 |---|---:|:---:|---:|
 | Earth-fed orbit / weak mitigation | 0.61 | yes | 1.602 |
 | Earth-fed orbit / strong mitigation | 0.35 | yes | 0.284 |
@@ -84,7 +84,7 @@ The endogenous curve compounds only after the seed survives commissioning and so
 | dense endogenous / strong mitigation | 5.58 | no | 12.632 |
 | distributed endogenous / sparse topology | 1.00 | yes | 0.000 |
 
-A dense shell is not licensed by industrial closure alone. In this scenario record, rapid endogenous deployment remains supercritical under weak and strong shell mitigation. The sparse/distributed topology reaches the non-supercritical boundary because its collision kernel is explicitly lower; that multiplier is an assumption to be replaced by shell- and trajectory-specific data.
+A dense shell is not licensed by industrial closure alone. In this scenario record, rapid endogenous deployment creates several times the fragments it clears under both weak and strong shell mitigation (the ratio is a flow ratio, not a branching-process reproduction number, and is not monotonic in mitigation strength). The sparse/distributed topology sits at the boundary ratio only because its collision kernel is explicitly lower; that multiplier is an assumption to be replaced by shell- and trajectory-specific data.
 
 ## Reproducibility
 

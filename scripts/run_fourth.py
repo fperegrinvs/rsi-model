@@ -147,7 +147,7 @@ def generate_figures(params, seeds, runs, ensembles, compute, debris_runs) -> No
             [i], [central.total_seed_mass_t], marker="D", s=45, color="#d1495b",
             label="central scenario" if i == 1 else None, zorder=4,
         )
-    ax.set_ylabel("Delivered seed mass (scenario tonnes)")
+    ax.set_ylabel("Installed seed mass (scenario tonnes)")
     ax.set_title("Fourth Edition seed-sizing assumption ensembles")
     ax.legend(loc="upper left")
     fig.tight_layout()
@@ -242,8 +242,9 @@ def write_report(params, seeds, runs, ensembles, compute, debris_runs) -> Path:
         "",
         "## Headline results",
         "",
-        "| scenario | central seed mass | Earth vitamin stock | second commissioned cell | "
-        "operating cells at year 40 | ensemble feasible | ensemble seed p10/p50/p90 |",
+        "| scenario | central installed seed mass | Earth vitamin stock | "
+        "first passage to two cell-equivalents | "
+        "cell-equivalents at year 40 | model-feasible draws | ensemble seed p10/p50/p90 |",
         "|---|---:|---:|---:|---:|---:|---:|",
     ]
     for name in SCENARIOS:
@@ -269,9 +270,10 @@ def write_report(params, seeds, runs, ensembles, compute, debris_runs) -> Path:
             )
     lines += [
         "",
-        "The strict lunar-only case is an infeasibility result inside the declared "
-        "architecture: trace lunar yields cannot reproduce the element-resolved "
-        "electronics and process-equipment stack. It is not a proof that lunar-only "
+        "The strict lunar-only case is a structural infeasibility inside the declared "
+        "architecture: trace lunar yields cannot reproduce the configured "
+        "electronics and process-equipment stack, in the central case and in every "
+        "ensemble draw. It is not a proof that lunar-only "
         "closure is physically impossible; substitution, different recipes, new "
         "processes, or measured richer deposits could change the constraint graph.",
         "",
@@ -291,7 +293,8 @@ def write_report(params, seeds, runs, ensembles, compute, debris_runs) -> Path:
         "second operating production cell.",
         "- Coupled local compute, verified intelligence improvement, autonomy, and productivity.",
         "- Rate-limited Earth and Earth-fed orbital counterfactuals.",
-        "- Active, derelict, and fragment stocks with a last-five-year debris reproduction ratio.",
+        "- Active, derelict, and fragment stocks with a five-year fragment "
+        "creation-to-clearance ratio.",
         "",
         "## Central process and seed diagnostics",
         "",
@@ -338,7 +341,7 @@ def write_report(params, seeds, runs, ensembles, compute, debris_runs) -> Path:
         "",
         "## Debris condition",
         "",
-        "| case | R_debris, last 5 yr | subcritical/non-supercritical | fragment index, year 40 |",
+        "| case | creation-to-clearance ratio, last 5 yr | clearance >= creation | fragment index, year 40 |",
         "|---|---:|:---:|---:|",
     ]
     for d in debris_runs:
@@ -349,9 +352,11 @@ def write_report(params, seeds, runs, ensembles, compute, debris_runs) -> Path:
     lines += [
         "",
         "A dense shell is not licensed by industrial closure alone. In this scenario "
-        "record, rapid endogenous deployment remains supercritical under weak and "
-        "strong shell mitigation. The sparse/distributed topology reaches the "
-        "non-supercritical boundary because its collision kernel is explicitly lower; "
+        "record, rapid endogenous deployment creates several times the fragments it "
+        "clears under both weak and strong shell mitigation (the ratio is a flow "
+        "ratio, not a branching-process reproduction number, and is not monotonic "
+        "in mitigation strength). The sparse/distributed topology sits at the "
+        "boundary ratio only because its collision kernel is explicitly lower; "
         "that multiplier is an assumption to be replaced by shell- and trajectory-specific data.",
         "",
         "## Reproducibility",

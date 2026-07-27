@@ -47,6 +47,9 @@ const pandocArgs = [
   "--section-divs",
   "--mathml",
   "--embed-resources",
+  // Figure paths in the Markdown are docs-relative (../outputs/...) so the
+  // canonical .md renders on GitHub; resolve them from docs/ here.
+  "--resource-path=.:docs",
   `--template=${template}`,
   `--css=${css}`,
   "--metadata=lang:en",

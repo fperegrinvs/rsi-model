@@ -199,6 +199,18 @@ def main() -> None:
                         f"{np.median(lam):.3f}" if len(lam) else ""])
     print(f"[{time.time()-t0:6.1f}s] wrote {tables/'mc_deep.csv'}")
 
+    # Machine-readable import-decay sweep: previously these shares existed
+    # only in the figure, so the manuscript's quoted values were uncommitted.
+    with open(tables / "import_decay_deep.csv", "w", newline="") as f:
+        w = csv.writer(f, lineterminator="\n")
+        w.writerow(["set", "env", "decay_efolding_years",
+                    "share_expanding_at_30", "n_runs"])
+        for key, (grid, ps) in sorted(curves.items()):
+            set_name, env = key.split("/")
+            for d, p in zip(grid, ps):
+                w.writerow([set_name, env, f"{d:g}", f"{p:.4f}", 60])
+    print(f"[{time.time()-t0:6.1f}s] wrote {tables/'import_decay_deep.csv'}")
+
     figures.append(survival_curves([m for m in mcs if m.environment == "lunar"],
                                    fname="survival_deep_lunar.png"))
     figures.append(survival_curves([m for m in mcs if m.label == "central"],
@@ -222,6 +234,17 @@ def main() -> None:
     extra.append("\nReceding-horizon lookahead reproduces the myopic maximin; the "
                  "aggregate-growth-with-floor policy collapses. The maximin "
                  "allocation is load-bearing, not incidental.\n")
+
+    extra.append("\n## Import-decay e-folding sweep (central set, n=60 per point)\n")
+    extra.append("Share of runs with realized g > 0 at year 30 vs the e-folding "
+                 "time of Earth-supply withdrawal (machine-readable: "
+                 "`tables/import_decay_deep.csv`). At n=60 per point the "
+                 "non-monotonic wobble is within binomial noise; the sweep is "
+                 "suggestive, not a stable response curve:\n")
+    for key, (grid, ps) in sorted(curves.items()):
+        extra.append(f"- **{key}**: "
+                     + ", ".join(f"{d:g} yr -> {p:.2f}"
+                                 for d, p in zip(grid, ps)))
 
     extra.append("\n## Scalar-anchor sensitivity screening "
                  "(Spearman rho of anchor draw vs g at year 30)\n")

@@ -1,0 +1,11 @@
+set,env,decay_efolding_years,share_expanding_at_30,n_runs
+central,leo,4,0.6333,60
+central,leo,7,0.7167,60
+central,leo,10,0.6000,60
+central,leo,15,0.6833,60
+central,leo,25,0.7667,60
+central,lunar,4,0.4000,60
+central,lunar,7,0.5667,60
+central,lunar,10,0.4333,60
+central,lunar,15,0.5667,60
+central,lunar,25,0.7333,60

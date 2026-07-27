@@ -6,7 +6,7 @@
 
 *A self-sustaining, self-expanding space industrial system is coherent as an argument; whether it is feasible or economical is a question for models. This standalone edition preserves the executed Third Edition models and adds an explicit autonomous seed, its knowledge package, its material flows, and the dynamics by which it attempts to reproduce.*
 
->> **Status.** Fourth Edition r4.0 release candidate, completed 2026-07-27 from the frozen Third Edition r3.5 baseline and not yet represented as an immutable tag or version DOI. **Standalone:** this document carries the full argument and requires no prior edition; earlier editions are intellectual history, not dependencies. The inherited r3.5 results regenerate via `scripts/run_baseline.py`, `run_part2.py`, and `run_deep.py` and are checksummed in `outputs/MANIFEST.md`. The new integrated-bootstrap results regenerate via `scripts/run_fourth.py` and are checksummed separately in `outputs/fourth/MANIFEST.md`. They resolve element flows, seed sizing, embodied autonomy, process-specific gravity, construction and commissioning, source transfers, a rate-limited Earth counterfactual, the intelligence–compute coupling, and debris state dynamics. Every structural coefficient in the new layer is ASSUMPTION-class; its outputs are scenario implications, not measurements, probabilities, engineering estimates, or forecasts. The completed change ledger is `docs/FOURTH_EDITION_PLAN.md`; see Appendices B–D.
+> **Status.** Fourth Edition r4.0 release candidate, completed 2026-07-27 from the frozen Third Edition r3.5 baseline and not yet represented as an immutable tag or version DOI. The complete implementation and artifacts are published on the repository's `main` branch; the final tagged build must add the immutable URL, release date, and version DOI. **Standalone:** this document carries the full argument and requires no prior edition; earlier editions are intellectual history, not dependencies. The inherited r3.5 results regenerate via `scripts/run_baseline.py`, `run_part2.py`, and `run_deep.py` and are checksummed in `outputs/MANIFEST.md`. The new integrated-bootstrap results regenerate via `scripts/run_fourth.py` and are checksummed separately in `outputs/fourth/MANIFEST.md`. They reserve explicit terms for material flows, seed sizing, embodied autonomy, process-specific gravity, construction and commissioning, source transfers, a rate-limited Earth counterfactual, the intelligence–compute coupling, and debris state dynamics — and test their consequences through declared, stylized proxies rather than resolving the underlying engineering. Every structural coefficient in the new layer is ASSUMPTION-class; its outputs are scenario implications, not measurements, probabilities, engineering estimates, or forecasts. The completed change ledger is `docs/FOURTH_EDITION_PLAN.md`; see Appendices B–D.
 
 ## Abstract
 
@@ -17,7 +17,7 @@ its own productive capacity. This Fourth Edition retains the complete
 Third Edition quantitative baseline and expands the object of analysis from
 an abstract industrial substrate to a reproducible autonomous seed:
 physical equipment, embodied autonomy, software and simulation, industrial
-memory, experimental capacity, and element-resolved supply. Part I implements a ten-sector, multisector
+memory, experimental capacity, and material-category-resolved supply. Part I implements a ten-sector, multisector
 capacity model with decomposed depreciation, repair, recycling, stockpiles,
 imports, common-cause shocks, and architecture-specific constraints for LEO,
 the lunar surface, and Mars. Its unit-invariant replication metric is
@@ -38,21 +38,26 @@ and disposable; the disclosed Starmind AI1 mass case remains 2.56 and 2.90
 times Earth, respectively. The analysis therefore supports neither a point
 forecast of autonomous industry nor present orbital-compute parity. It
 identifies the architecture-dependent measurements and demonstrations that
-would most change those conclusions. A new 18-sector, 17-material
-integrated-bootstrap model then asks how much seed mass is sufficient,
-whether its material graph can close first on the Moon and later across
-asteroidal sources, and whether it can construct and commission a second
-production cell without routine human intervention. Under the declared
-central assumptions, a lunar seed retaining an Earth-supplied material
-vitamin stock is 216.7 t and commissions a second cell at 11.2 years; the
-strict lunar-only architecture is infeasible; and a composite
-Moon–asteroid network is 185.5 t, commissions at 22.8 years, and reaches
-12.55 normalized operating cells at year 40. Across 200 deterministic
-assumption draws per case, respectively 126, 0, and 187 are feasible.
-Those frequencies characterize only the stipulated ensemble. The model
-operationalizes the coupled loop and sharpens its material and autonomy
-conditions; it does not demonstrate that the assumed processes, source
-portfolio, AI gains, or industrial closure exist.
+would most change those conclusions. A new 18-sector, 17-material-group
+integrated-bootstrap model then represents an installed operating seed —
+physical equipment with stylized autonomy, intervention, construction, and
+commissioning constraints — and asks how much installed mass is
+sufficient, whether its material graph can close first on the Moon and
+later across asteroidal sources, and whether it can reach a second
+operating production cell without routine human intervention. Under the
+declared central assumptions, the minimum-mass lunar design retaining an
+Earth-supplied vitamin stock is 216.7 t installed — 58.1 t (27%) of it
+that stock — and first reaches two operating-cell equivalents at
+11.2 years, holding 2.29 equivalents at year 40; the configured strict
+lunar-only source graph is structurally infeasible; and a synthetic
+composite Moon–asteroid portfolio satisfies the same constraints at
+185.5 t, reaches two cell-equivalents at 22.8 years, and reaches 12.55 at
+year 40. These are deterministic consequences of a stipulated
+architecture and assumption ensemble (Part I.8), not seed designs,
+engineering estimates, or forecasts. The model operationalizes the
+coupled loop and sharpens its material and autonomy conditions; it does
+not demonstrate that the assumed processes, source portfolio, AI gains,
+or industrial closure exist.
 
 **Keywords:** recursive industrial improvement; space manufacturing;
 industrial closure; orbital compute; lunar industry; multisector capacity;
@@ -76,26 +81,48 @@ reductants, coolants, lubricants, polymers, process gases, and chemical
 feedstocks; removing agriculture narrows the closure problem but does not
 remove volatile chemistry from it.
 
-Six distinct propositions run through this document and carry different evidence: **(P1)** a recursively expanding industrial system is conceptually
-possible — a respectable case is made; **(P2)** such a system might
-eventually be technically feasible — quantitatively explored for both the
-inherited industrial substrate and a first explicit integrated bootstrap
-(Part I): outcomes span failure to sustained expansion across named
-assumption sets, with the feasibility margin localized to
-architecture-specific bottlenecks; the coupled intelligence–industry
-functions now have an operational stylized form, but their coefficients
-remain assumptions rather than evidence of complete-system feasibility
-(III.6); **(P3a)** orbital and lunar *compute during the Earth-dependent
-bridge* would be economically competitive — now quantified (Part II) and,
-at anchored values, *negative*, with crossover requiring a specific,
-currently unanchored corner of parameter space; **(P3b)** a *mature,
-high-closure* space-industrial ecology would eventually obtain a structural
-economic advantage over terrestrial expansion — **unquantified**: Part II
-prices the bridge architectures, not an ecology that manufactures its own
-power systems, radiators, structures, and replacement hardware off Earth,
-so nothing in this document establishes or refutes P3b (the Fourth Edition
-couples physical and compute quantities, not the mature ecology's full
-costs); **(P4a)** the companies are deliberately integrating launch, communications, AI, terrestrial and orbital compute, chip design and manufacture, and prospective off-world energy and manufacturing — substantially documented, since SEC-filed offering materials associated with the S-1 (the Rule 433 free-writing prospectus and incorporated materials) name orbital compute, lunar manufacturing and energy, in-orbit manufacturing, manufacturing on the Moon and Mars, asteroid mining, and "interplanetary industrialization" among the initiatives [S27]; and **(P4b)** that this integration is intended to produce recursive industrial closure — inferential, with no closure program, seed bill of materials, reproduction metric, or minimum-cut roadmap published, and assessed against competing explanations (Part III). The split matters: the two halves carry materially different evidential status, and earlier editions conflated them. Conclusions are licensed by the strongest proposition they rest on, not by the conjunction of all six.
+Six distinct propositions run through this document and carry different
+evidence:
+
+- **(P1)** A recursively expanding industrial system is conceptually
+  possible — a respectable case is made.
+- **(P2)** Such a system might eventually be technically feasible —
+  quantitatively explored for both the inherited industrial substrate and
+  a first explicit integrated bootstrap (Part I): outcomes span failure to
+  sustained expansion across named assumption sets, with the feasibility
+  margin localized to architecture-specific bottlenecks. The coupled
+  intelligence–industry functions now have an operational stylized form,
+  but their coefficients remain assumptions rather than evidence of
+  complete-system feasibility (III.6).
+- **(P3a)** Orbital and lunar *compute during the Earth-dependent bridge*
+  would be economically competitive — now quantified (Part II) and, at
+  anchored values, *negative*, with crossover requiring a specific,
+  currently unanchored corner of parameter space.
+- **(P3b)** A *mature, high-closure* space-industrial ecology would
+  eventually obtain a structural economic advantage over terrestrial
+  expansion — **unquantified**: Part II prices the bridge architectures,
+  not an ecology that manufactures its own power systems, radiators,
+  structures, and replacement hardware off Earth, so nothing in this
+  document establishes or refutes P3b (the Fourth Edition couples
+  physical and compute quantities, not the mature ecology's full costs).
+- **(P4a)** The companies are deliberately integrating launch,
+  communications, AI, terrestrial and orbital compute, chip design and
+  manufacture, and prospective off-world energy and manufacturing —
+  substantially documented, since SEC-filed offering materials associated
+  with the S-1 (the Rule 433 free-writing prospectus and incorporated
+  materials) name orbital compute, lunar manufacturing and energy,
+  in-orbit manufacturing, manufacturing on the Moon and Mars, asteroid
+  mining, and "interplanetary industrialization" among the initiatives
+  [S27].
+- **(P4b)** That this integration is intended to produce recursive
+  industrial closure — inferential, with no closure program, seed bill of
+  materials, reproduction metric, or minimum-cut roadmap published, and
+  assessed against competing explanations (Part III).
+
+The P4 split matters: the two halves carry materially different
+evidential status, and earlier editions conflated them. Conclusions are
+licensed by the strongest proposition they rest on, not by the
+conjunction of all six.
 
 **Evidential classes.** Documented statements; announced initiatives;
 technically grounded pathways; inferred strategy; speculative closure — as
@@ -111,8 +138,8 @@ label is a misquotation.
 |---|---|---|
 | Documented | Mars-city objective; integrated energy and manufacturing programs; AI research mission; the SEC-filed off-world initiative list (P4a) | direct statements and regulatory filing |
 | Announced / partly advanced | Terafab, Intel participation, executed county agreements, and a named orbital-silicon line | declared initiative with unsettled implementation |
-| Technically grounded | ISRU, autonomous excavation, robotic construction, and the self-replicating-factory literature (P1/P2 pathway) | recognized engineering pathway; system closure undemonstrated |
-| Computed | industrial-substrate feasibility, element-resolved seed and second-cell scenarios (P2), and bridge-economy compute costs (P3a) | mechanical implications of assumption-class inputs, not measurements or empirical probabilities |
+| Technically grounded | ISRU, autonomous excavation, robotic construction, and the self-replicating-factory literature (P1/P2 pathway) [S4, S5, S23, S24] | recognized engineering pathway; system closure undemonstrated |
+| Computed | industrial-substrate feasibility, material-category-resolved seed and second-cell scenarios (P2), and bridge-economy compute costs (P3a) | mechanical implications of assumption-class inputs, not measurements or empirical probabilities |
 | Inferred | the observed portfolio is intended to progress from integrated off-world industry to recursive closure (P4b) | strategic synthesis; closure-specific observables remain absent |
 | Speculative | a mature high-closure ecology obtains a structural economic advantage (P3b) | physical quantities are coupled in r4.0; complete mature-system economics remain unquantified |
 
@@ -218,30 +245,50 @@ This edition prices the passage and models the seed. Four headline results:
    deterministic aspirational case reaches 0.76× only by combining company
    targets with three favorable, unpublished model bounds and is assigned
    no probability.
-4. **The autonomous seed is a material-and-knowledge graph, not a cargo
-   total.** The new 18-sector, 17-material layer requires physical
+4. **The installed seed is a material-and-knowledge graph, not a cargo
+   total.** The new 18-sector, 17-material-group layer requires physical
    equipment, digital tools, industrial memory, experiments, task-resolved
-   autonomy, gravity-compatible processes, and a commissioned second cell.
-   Under its declared central assumptions, the Earth-vitamin lunar bridge
-   requires 216.7 t of seed including 58.1 t of vitamin stock and
-   commissions the second cell at 11.2 years. Strict lunar-only closure is
-   infeasible because trace inputs cannot reproduce the assumed electronics
-   and process-equipment stack. A deliberately composite Moon–asteroid
-   source closes at 185.5 t, commissions at 22.8 years, and reaches 12.55
-   normalized operating cells at year 40. Across 200 deterministic
-   assumption draws, the three cases are feasible in 126, 0, and 187
-   draws; these are ensemble frequencies, not success probabilities.
+   autonomy, gravity-compatible processes, and reproduction to a second
+   operating cell. It sizes an already installed, operating seed —
+   deployment, unpacking, and first commissioning are not simulated — and
+   its reproduction metric is first passage to two operating-cell
+   equivalents in a continuous aggregate, not a discretely commissioned
+   second factory. Under the declared central assumptions, the
+   Earth-vitamin lunar bridge requires 216.7 t installed, of which 58.1 t
+   (27%) is Earth-supplied vitamin stock — a substantially
+   Earth-provisioned seed, not a nearly closed one — reaching two
+   cell-equivalents at 11.2 years and holding 2.29 at year 40. The
+   terrestrial rehearsal reaches two at 9.2 years but holds only 1.93 at
+   year 40: reproduction occurred once and was not durably retained, the
+   same transient-versus-durable distinction Part I's endpoint hierarchy
+   enforces. The configured strict lunar-only source graph is structurally
+   infeasible — its trace inputs cannot reproduce the assumed electronics
+   and process-equipment stack, in the central case and in every draw. A
+   deliberately synthetic composite Moon–asteroid portfolio satisfies the
+   same constraints at 185.5 t, reaches two cell-equivalents at 22.8
+   years, and reaches 12.55 at year 40. Across 200 deterministic
+   assumption draws, the lunar-bridge, strict-lunar, and Moon–asteroid
+   cases are model-feasible in 126, 0, and 187 draws (the terrestrial
+   rehearsal in 83); these frequencies measure the satisfying volume of
+   the declared parameter box, not success probabilities.
 
 The Fourth layer also makes one architecture boundary stateful:
 **industrial closure does not license a dense orbital shell.** Active,
-derelict, and fragment stocks feed a last-five-year debris reproduction
-ratio. In the declared year-40 scenarios, the Earth-fed orbital cases are
-subcritical ($R_{\mathrm{debris}}=0.61$ with weak mitigation and 0.35
-with strong mitigation), while dense endogenous deployment is supercritical
-under both ($R=5.53$ and 5.58). A sparse distributed topology reaches the
-non-supercritical boundary only because its collision-kernel multiplier is
-explicitly set to 0.01. These are topology stress tests, not orbital
-traffic forecasts [S45–S49].
+derelict, and fragment stocks feed a **five-year fragment
+creation-to-clearance ratio** $R_{\mathrm{debris}}$ — a flow ratio over
+the final five years, not a branching-process reproduction number or a
+derived criticality threshold. In the declared year-40 scenarios, the
+Earth-fed orbital cases clear more fragments than they create
+($R_{\mathrm{debris}}=0.61$ with weak mitigation and 0.35 with strong),
+while dense endogenous deployment creates roughly 5.5× what it clears
+under both mitigation levels ($R=5.53$ weak and 5.58 strong — the ratio
+is not monotonic in mitigation strength even as the fragment stock falls
+from 16.5 to 12.6, one reason it is a stress-test indicator rather than
+a safety measure). A sparse distributed topology sits at the boundary
+ratio of 1.00 with an empty fragment stock only because its
+collision-kernel multiplier is explicitly set to 0.01. These are
+topology stress tests, not orbital traffic forecasts or
+cascade-threshold results [S45–S49].
 
 The strategic assessment (Part III): the evidence **substantially
 establishes deliberate integrated space–AI–industrial development (P4a)**
@@ -256,6 +303,33 @@ that the discriminating indicators are now *model-ranked*: the rational
 next moves of a closure-seeking actor — electronics-closure engineering,
 loss-tolerant orbital-compute persistence, materials-recovery recycling —
 are exactly the observations the models identify as informative.
+
+## How to read this document
+
+The four parts carry different kinds of claim and can be read
+independently:
+
+- **Part I** is model: the inherited ten-sector capacity model and the
+  new integrated-bootstrap layer. Its results are computed implications
+  of declared assumption sets, never measurements. The canonical numeric
+  tables are in I.8; every restatement elsewhere (Abstract, this
+  summary, III.6, IV.1) follows them.
+- **Part II** is techno-economics: the levelized-cost crossover model and
+  its reconciliation with independent studies. Canonical tables in II.3.
+- **Part III** is interpretation: an ordinal, evidence-tabled assessment
+  of corporate strategy. It contains no model outputs, only their use as
+  ranking criteria for observables.
+- **Part IV** is quarantined scenario extrapolation plus the limitations
+  statement; nothing in it feeds back into Parts I–II.
+
+Readers who want only the load-bearing results should read the
+Executive Summary, I.8, II.3, and the Limitations section. The
+epistemic rules — source classes, ASSUMPTION labeling, and the
+frequency-not-probability convention — are defined in Scope and Status
+and apply everywhere. Appendix A carries parameter provenance,
+Appendix B the revision history (including what changed under each
+external review), Appendix C reproducibility, and Appendix D the
+complete model specification.
 
 ---
 
@@ -336,7 +410,7 @@ not as robot count or degrees of freedom.
 
 The loops couple through a second channel: **data as the exhaust of the
 physical loop**. Operating physical industry generates data that exists
-nowhere else — test telemetry, process parameters, failure archives, fleet traces. It commoditises less readily than public text, for four reasons: negative
+nowhere else — test telemetry, process parameters, failure archives, fleet traces. It commoditizes less readily than public text, for four reasons: negative
 results (the map of what does not work survives only in the archives of
 whoever paid for the failures); sim-to-real ground truth (real telemetry is
 the verification fuel for AI-proposed physical designs); legal fencing
@@ -386,8 +460,8 @@ calibration procedures, controller firmware, CAD/CAM files, compilers,
 simulators, verification suites, dependency mirrors, failure histories, and
 intervention records determine whether physical equipment can be operated,
 repaired, and adapted after communication or supply is cut. The manuscript
-calls this package **industrial memory**. It is not equivalent to “all
-industrial knowledge,” an incoherent completion standard; it is a
+calls this package **industrial memory**. It is not equivalent to "all
+industrial knowledge," an incoherent completion standard; it is a
 machine-readable operating foundation coupled to the experimental capacity
 to discover what the initial package omitted.
 
@@ -438,7 +512,7 @@ environmental and transport terms but leaves its growth exogenous to the
 off-world system. Moving a reproducible production graph off Earth does two
 different things: closure makes growth endogenous, while location relaxes
 terrestrial biosphere, land, and political rate limits. Either property can
-exist without the other. “Free industrial expansion” is shorthand for
+exist without the other. "Free industrial expansion" is shorthand for
 their conjunction, never for costless matter, energy, control, or time.
 
 **Gravity is a process variable, not a system prerequisite.** Industrial
@@ -448,7 +522,7 @@ acceleration assists excavation, hopper flow, phase separation, drainage,
 and conventional machine layout; and processes that need a specified
 acceleration, hydrostatic head, or convection regime. Lunar gravity
 (approximately $0.165g$) supplies the second class with a persistent
-“down,” although lower weight also reduces traction and changes granular
+"down," although lower weight also reduces traction and changes granular
 flow. It cannot be declared sufficient for every casting, chemical,
 lubrication, thermal, or separation process without testing that process.
 
@@ -461,8 +535,8 @@ $$
 a_c=\omega^2R.
 $$
 
-One terrestrial $g$ requires about 30 rpm at a one-metre radius or
-9.5 rpm at ten metres. An ideal rotor consumes energy to spin up and stores
+One terrestrial $g$ requires about 30 rpm at a one-meter radius or
+9.5 rpm at ten meters. An ideal rotor consumes energy to spin up and stores
 $E=\tfrac12 I\omega^2$; it does not require continuous power merely to
 remain in uniform rotation. The engineering cost lies in structural mass,
 containment, bearings or magnetic suspension, balance control, vibration,
@@ -471,8 +545,11 @@ to share one acceleration geometry across every process. Lunar gravity is
 therefore plausibly enough for many bulk operations, while local
 centrifugation is the fallback for gravity-sensitive steps. No credible
 single dollar estimate exists without a process list, throughput, rotor
-radius, and maintenance architecture. The current model has none of these
-variables; a Fourth Edition process-environment matrix must add them.
+radius, and maintenance architecture. The inherited ten-sector model has
+none of these variables; the Fourth layer adds declared per-process
+gravity requirements, centrifuge radii, and structural-mass and
+parasitic-power penalties (D.1) — stylized equipment overheads, not
+simulations of the underlying processes.
 
 The complex need not be one self-contained factory: a distributed network
 of specialized nodes — lunar mines, orbital refineries, propellant depots,
@@ -492,9 +569,45 @@ $$
 $$
 
 Every claim ultimately reduces to whether gross replication r exceeds
-depreciation δ. Terrestrial industry operates inside an ambient repair economy; space assets have none of it. Published measurements constrain a few component classes without bounding the depreciation of an autonomous industrial ecology. GEO solar arrays degrade 0.4–1.7%/yr [S19], overlapping a terrestrial PV median of 0.5–0.6%/yr at the low end and reaching several times it at the high end [S18] — one component class, silent about bearings, seals, lubricated mechanisms, batteries, machine tools, robots, radiators, dust-exposed joints, and optical metrology. Constellation figures are cohort-dependent: reported early-generation failure fractions near 3% fall below 0.5% for later generations, the underlying tracker separates early deorbit, uncontrolled decay, retirement, and disposal, and a fleet fraction without a cohort definition, observation interval, and satellite-years is not a hazard rate [S22]. Large-training-run figures near one interruption per two thousand accelerator-days mix permanent component failures with recoverable host, network, and software events, most automatically recovered: a **cluster interruption frequency**, not a component hazard rate. The space penalty is not faster wear — it is the five-to-fifteen-year
+depreciation δ. Terrestrial industry operates inside an ambient repair
+economy; space assets have none of it.
+
+Published measurements constrain a few component classes without bounding
+the depreciation of an autonomous industrial ecology:
+
+- **GEO solar arrays** degrade 0.4–1.7%/yr [S19], overlapping a
+  terrestrial PV median of 0.5–0.6%/yr at the low end and reaching
+  several times it at the high end [S18] — one component class, silent
+  about bearings, seals, lubricated mechanisms, batteries, machine tools,
+  robots, radiators, dust-exposed joints, and optical metrology.
+- **Constellation figures** are cohort-dependent: reported
+  early-generation failure fractions near 3% fall below 0.5% for later
+  generations, the underlying tracker separates early deorbit,
+  uncontrolled decay, retirement, and disposal, and a fleet fraction
+  without a cohort definition, observation interval, and satellite-years
+  is not a hazard rate [S22].
+- **Large-training-run figures** near one interruption per two thousand
+  accelerator-days mix permanent component failures with recoverable
+  host, network, and software events, most automatically recovered: a
+  **cluster interruption frequency**, not a component hazard rate.
+
+The space penalty is not faster wear — it is the five-to-fifteen-year
 no-repair design envelope, the internality of every repair chain, and
-discrete loss without salvage. Meanwhile the most advanced terrestrial capital — fab tools on 2–5-year schedules, accelerators retired within 3–6 years — is written off faster than a space solar array physically degrades, because obsolescence sets the terrestrial clock. Five quantities must be kept apart, since compressing them was an internal inconsistency of earlier revisions: **physical degradation**, **functional failure**, **accounting depreciation**, **economic obsolescence**, and **frontier-equivalent capacity loss**. The last two are not physical — an accelerator does not vanish because a better one exists — so obsolescence enters a growth equation only where H is measured in quality-adjusted or frontier-equivalent capacity, which is why the terrestrial paradox above is a statement about accounting and frontier equivalence rather than about matter. The corrected form, decomposed per environment,
+discrete loss without salvage. Meanwhile the most advanced terrestrial
+capital — fab tools on 2–5-year schedules, accelerators retired within
+3–6 years — is written off faster than a space solar array physically
+degrades, because obsolescence sets the terrestrial clock.
+
+Five quantities must be kept apart, since compressing them was an
+internal inconsistency of earlier revisions: **physical degradation**,
+**functional failure**, **accounting depreciation**, **economic
+obsolescence**, and **frontier-equivalent capacity loss**. The last two
+are not physical — an accelerator does not vanish because a better one
+exists — so obsolescence enters a growth equation only where H is
+measured in quality-adjusted or frontier-equivalent capacity, which is
+why the terrestrial paradox above is a statement about accounting and
+frontier equivalence rather than about matter. The corrected form,
+decomposed per environment,
 
 $$
 \delta_{\mathrm{total}}
@@ -521,12 +634,15 @@ capacity. The continuous catastrophic term is likewise an exogenous hazard
 range. These terms can represent ordinary impact exposure but cannot test
 the cascade threshold, avoidance saturation, shell-to-shell fragment
 transport, or recovery through decay and active removal. Accordingly, every
-LEO scale result in I.8 is conditional on a subcritical debris reproduction
-regime. The missing state is not assigned a silent proxy value: the queued
-model tracks active assets, intact derelicts, trackable and untrackable
-fragments, collision-generated yield, disposal and natural clearance by
-orbital region, with the expected hazardous descendants per object as the
-reported cascade metric. Lunar orbit does not remove the issue: breakup
+LEO scale result in I.8 is conditional on a debris regime in which
+fragment creation does not outrun clearance. The missing state is not
+assigned a silent proxy value. The Fourth layer supplies a first
+aggregate stress test — active assets, intact derelicts, and a fragment
+index, reported through a five-year fragment creation-to-clearance ratio
+(I.8, D.1); a shell-resolved model tracking trackable and untrackable
+fragments, collision-generated yield, and disposal and natural clearance
+by orbital region, with expected hazardous descendants per object as the
+cascade metric, remains queued (ROADMAP). Lunar orbit does not remove the issue: breakup
 simulations find strongly orbit-dependent evolution, including long-lasting
 debris in some low lunar orbits and nonuniform lunar impact patterns [S46].
 
@@ -600,7 +716,7 @@ edition it appears only as a computed output distribution (Part I.8). For κ, th
 of Part III.5 from rhetoric into measurable distance.
 
 **The seed-factory transition.** Earth stops transporting finished
-infrastructure and transports a compact industrial seed, but “seed” denotes
+infrastructure and transports a compact industrial seed, but "seed" denotes
 four inseparable layers:
 
 1. **Physical seed:** power, extraction, refining, manufacturing, robots,
@@ -618,15 +734,20 @@ four inseparable layers:
 The package is viable only if it grows its productive base before critical
 imported components fail. A credible design requires redundancy, recycling,
 buffers, and an explicit path for every nonlocal dependency. No finite seed
-can encode “all necessary industrial knowledge”; the operational criterion
+can encode "all necessary industrial knowledge"; the operational criterion
 is a sufficient foundation plus the capacity to diagnose gaps, run
 experiments, validate new processes, and incorporate the results into
-industrial memory. The current model represents only part of the physical
-layer: spares are a shelf-life-limited stockpile state; nonlocal
-dependencies are import lines that can be cut; and the “explicit path” is
-an abstract sector requirement matrix. It does not yet size the seed or
-represent its digital, memory, experimental, commissioning, or
-knowledge-generation requirements.
+industrial memory. The inherited ten-sector model represents only part of
+the physical layer: spares are a shelf-life-limited stockpile state;
+nonlocal dependencies are import lines that can be cut; and the "explicit
+path" is an abstract sector requirement matrix. The Fourth layer sizes
+the seed and adds stylized representations of the remaining layers — a
+fixed 5 t digital-seed mass, task-coverage autonomy, intervention
+budgets, and commissioning dynamics (I.7, D.1). Those are declared
+proxies, not resolved requirements: collapsing storage, compute,
+calibration standards, laboratory machinery, consumables, and test
+articles into one constant means the model cannot yet determine which
+component of knowledge closure binds.
 
 ## I.6 Intelligence, coordination, and time
 
@@ -753,8 +874,11 @@ whether a declared physical seed can supply the material, service,
 autonomy, and commissioning requirements of another operating cell. It
 expands the graph to 18 sectors — separating interconnects/boards,
 passives/power, sensors/control, packaging/test, mature logic, advanced
-logic/memory, and process equipment/metrology — and 17 material categories.
-Its element balance is
+logic/memory, and process equipment/metrology — and 17 material
+categories (15 elements plus rare-earth and dopant classes; the model is
+material-category-resolved, not element-resolved — stoichiometric and
+process-chemical closure is not checked at the species level). Its
+material balance is
 
 $$
 \Delta M_e
@@ -832,26 +956,23 @@ All doubling columns below are **balanced capacity** events (λ ≥ 2: every
 modeled sector doubled in its own units);
 the aggregate-metric columns live in the CSV. LEO rows describe the
 **import/capture-supported orbital recycling network** of I.6, not an
-autonomous ecology. (Cell values differ from r3.4's for two declared,
-one-time reasons: the binding definition changed to finite 1% responses, and the
-draw scheme was re-keyed — each anchor's draw now derives from the run seed
-plus the anchor's *name*, so that adding anchors to `anchors.yaml` — which
-under the old sequential stream re-rolled every cell — can never shift
-existing results again. Each cell moved within its Wilson interval; cells
+autonomous ecology. (Cell values differ from the prior revision's for two
+declared, one-time reasons — a binding-definition change and a
+draw-scheme re-key; each cell moved within its Wilson interval, and cells
 whose leading binding sector or margin-conditional statistics flipped are
-noted where quoted.)
+noted where quoted. Appendix B records the details.)
 
 | set | env | realized expanding@30 (share, 95% CI) | sustained 25–30 | pre-shock allocation endpoint | balanced doubled: n, median (IQR) | λ@30 median | co-binds most |
 |---|---|---|---|---|---|---|---|
 | conservative | LEO | 12/400 (0.03, 0.02–0.05) | 5 | 13 | 0 | 0.40 | mining 99.5% |
-| conservative | lunar | 33/400 (0.08, 0.06–0.11) | 4 | 36 | 51, 9.5 (8.5–12.6) | 0.84 | electronics 93.8%, power 5.2% |
-| conservative | Mars | 2/400 (0.01, 0.00–0.02) | 0 | 2 | 0 | 0.12 | power 51.8%, electronics 48.0% |
+| conservative | lunar | 33/400 (0.08, 0.06–0.11) | 4 | 36 | 51, 9.5 (8.5–12.6) | 0.84 | electronics 93.8%, power 5% |
+| conservative | Mars | 2/400 (0.01, 0.00–0.02) | 0 | 2 | 0 | 0.12 | power 51.8%, electronics 48% |
 | central | LEO | 267/400 (0.67, 0.62–0.71) | 122 | 277 | 67, 26.0 (23.2–30.0) | 1.26 | mining 97.7% |
 | central | lunar | 224/400 (0.56, 0.51–0.61) | 20 | 255 | 379, 5.0 (4.2–6.2) | 2.87 | electronics 95.5% |
-| central | Mars | 60/400 (0.15, 0.12–0.19) | 4 | 66 | 33, 11.0 (8.0–11.2) | 0.55 | electronics 61.7%, power 38.1% |
-| optimistic | LEO | 387/400 (0.97, 0.95–0.98) | 173 | 400 | 399, 10.8 (9.2–12.8) | 4.61 | mining 86.5%, electronics 13.5% |
+| central | Mars | 60/400 (0.15, 0.12–0.19) | 4 | 66 | 33, 11.0 (8.0–11.2) | 0.55 | electronics 61.7%, power 38% |
+| optimistic | LEO | 387/400 (0.97, 0.95–0.98) | 173 | 400 | 399, 10.8 (9.2–12.8) | 4.61 | mining 86.5%, electronics 14% |
 | optimistic | lunar | 347/400 (0.87, 0.83–0.90) | 56 | 394 | 400, 2.8 (2.5–3.2) | 8.20 | electronics 96.5% |
-| optimistic | Mars | 195/400 (0.49, 0.44–0.54) | 10 | 232 | 275, 5.5 (5.0–8.4) | 1.43 | electronics 66.8%, power 33.0% |
+| optimistic | Mars | 195/400 (0.49, 0.44–0.54) | 10 | 232 | 275, 5.5 (5.0–8.4) | 1.43 | electronics 66.8%, power 33% |
 
 Earth-import cutoff (central set, all Earth imports cut at year 30; endpoint
 = realized g > 0 at each step ending in the 30–35 window):
@@ -863,7 +984,8 @@ Earth-import cutoff (central set, all Earth imports cut at year 30; endpoint
 | Mars | 53/400 (0.13, 0.10–0.17) | 2 | 64 |
 
 Reading: the conservative ensemble mostly fails on the realized endpoint:
-3% of LEO, 8% of lunar, and 1% of Mars runs are expanding at year 30.
+3% of LEO, 8% of lunar, and 0.5% (2/400) of Mars runs are expanding at
+year 30.
 Central results are architecture-dependent: the realized endpoint is 67%
 in LEO, 56% on the Moon, and 15% on Mars, while only 31%, 5%, and 1% of
 all runs, respectively, remain positive throughout years 25–30. The gap
@@ -871,6 +993,11 @@ between the pre-shock allocation endpoint and the realized endpoint is the
 cost of shocks at the reported step. The Mars synodic pulse can still
 flatter a single endpoint; λ = 0.55 and 4/400 sustained central runs show
 that contraction is the more informative reading there.
+
+![Survival curves, central assumption set: fraction of runs with positive
+realized maximin growth over time, by architecture. Ensemble frequencies
+under the stipulated assumption set, not empirical
+probabilities.](../outputs/figures/survival_deep_central.png)
 
 Balanced doubling is faster on the Moon but the endpoint is more durable
 in LEO: among runs that ever reach λ ≥ 2, the central median is 5.0 years
@@ -903,17 +1030,18 @@ real-world probability. Capacity knockouts at central
 values: the eight physical production sectors (power, mining, refining,
 robotics, machine tools, electronics, thermal, transport) are
 knockout-indispensable in both architectures tested; repair is
-additionally indispensable on the lunar surface. **An r3.5 correction:
-earlier revisions claimed recycling was knockout-indispensable in LEO.
-That claim came from a stale r3.3-era output and does not reproduce —
-after r3.4 gave LEO its 5% capture feed, a recycling knockout is
+additionally indispensable on the lunar surface. **A recorded correction
+(Appendix B): earlier revisions claimed recycling was
+knockout-indispensable in LEO. That claim came from a stale output and
+does not reproduce — with LEO's 5% capture feed, a recycling knockout is
 survivable at central values.** What survives is the structural point:
 the LEO architecture lives on recovered and captured mass (capture/mining
 receives 98% of central co-binding credit), so its dependency is the feed loop as a whole
 rather than any single import line.
 
 **The clock-setting curve.** Expansion frequency against the e-folding
-time of Earth-supply withdrawal (n = 60 per grid point): on the lunar
+time of Earth-supply withdrawal (n = 60 per grid point; machine-readable:
+`outputs/tables/import_decay_deep.csv`): on the lunar
 surface under central assumptions, the realized year-30 endpoint is 0.40,
 0.57, 0.43, 0.57, and 0.73 at 4-, 7-, 10-, 15-, and 25-year e-folding
 times. The non-monotonic wobble is within binomial noise at this n. The
@@ -921,6 +1049,10 @@ experiment is suggestive of a penalty for withdrawing the umbilical faster
 than the closure ramp, with electronics stockpile shelf life as a plausible
 mechanism. At $n=60$ per point it does not estimate a stable response
 curve or its steepness.
+
+![Expansion frequency at year 30 versus the e-folding time of
+Earth-supply withdrawal, central set, n = 60 per grid point. The wobble is
+within binomial noise at this n.](../outputs/figures/import_decay_sweep_deep.png)
 
 **Allocation-policy robustness.** The results above could in principle be
 an artifact of the myopic one-step maximin allocator — a forward-looking
@@ -933,14 +1065,13 @@ six-year window). On paired
 draws (identical parameter samples per policy, shocks off), a six-year
 receding-horizon maximin reproduces the myopic policy essentially exactly
 — 16/30 vs 16/30 sampled runs expanding on the lunar surface, 11/30 vs
-11/30 in LEO, with matching co-binding shares (now computed with the
-same finite 1% response and co-binding definition as the baseline, so this comparison tests the
-claim it appears to test — an r3.5 fix; the lunar count itself swung from
-22/30 to 25/30 to 16/30 across regenerations at this small paired n — the
-policy *equality* is the stable finding, the level is not) — because the
-maximin
-criterion already directs each step's investment at the worst-off sector,
-which is the future bottleneck. A third policy, maximizing aggregate
+11/30 in LEO, with co-binding shares computed under the same finite 1%
+response definition as the baseline. The absolute level is not stable at
+this small paired n — the lunar count has swung across equally valid
+regenerations, so the policy *equality* is the stable finding, not the
+level. The agreement holds because the maximin criterion already directs
+each step's investment at the worst-off sector, which is the future
+bottleneck. A third policy, maximizing aggregate
 growth subject to no sector shrinking, collapses (0/30 in both
 architectures): worst-case allocation is load-bearing, not incidental.
 Bottleneck-first heuristics are subsumed by the maximin construction
@@ -972,41 +1103,91 @@ screened anchor sits at or near
 the null band. (`montecarlo.sensitivity`; ranked table in
 `outputs/report_deep.md`.)
 
-**Fourth Edition seed and second-cell results.** The new layer is a second,
-explicitly assumption-class model, not a relabeling of the inherited
-balanced-capacity runs. Its central deterministic scenarios and
-deterministic 200-draw assumption ensembles are:
+**Fourth Edition seed and reproduction results.** The new layer is a
+second, explicitly assumption-class model, not a relabeling of the
+inherited balanced-capacity runs. Structurally it is a two-stage hybrid:
+a multisector, multi-material seed-sizing LP, followed by an aggregate
+reproduction pass that advances a continuous count of operating
+cell-equivalents through construction and commissioning lags — the
+18-sector detail constrains seed sizing but does not persist into the
+reproduction dynamics (sector-resolved reproduction is queued, ROADMAP).
+A scenario is **model-feasible** when the seed LP admits a solution
+satisfying every material, service, autonomy, intervention, and
+throughput constraint over the scenario horizon. The reproduction metric
+is **first passage to two operating-cell equivalents** — a continuous
+aggregate crossing, not a discretely commissioned second factory — with
+the year-40 column showing whether reproduction was durable. Central
+deterministic scenarios and deterministic 200-draw assumption ensembles:
 
-| bootstrap architecture | central optimized seed | Earth vitamin stock | central second commissioned cell | operating cells, year 40 | feasible ensemble draws | feasible-draw seed p10 / p50 / p90 |
+| bootstrap architecture | central minimum-mass installed seed | Earth vitamin stock (share of seed) | first passage to two cell-equivalents | cell-equivalents, year 40 | model-feasible draws | feasible-draw seed p10 / p50 / p90 |
 |---|---:|---:|---:|---:|---:|---:|
-| terrestrial closure rehearsal | 206.7 t | 48.1 t | 9.2 yr | 1.93 | 83/200 | 171 / 201 / 228 t |
-| lunar vitamin bridge | 216.7 t | 58.1 t | 11.2 yr | 2.29 | 126/200 | 181 / 212 / 247 t |
+| terrestrial closure rehearsal | 206.7 t | 48.1 t (23%) | 9.2 yr | 1.93 | 83/200 | 171 / 201 / 228 t |
+| lunar vitamin bridge | 216.7 t | 58.1 t (27%) | 11.2 yr | 2.29 | 126/200 | 181 / 212 / 247 t |
 | strict lunar-only | infeasible | — | — | — | 0/200 | — |
 | Moon–asteroid network | 185.5 t | 0.0 t | 22.8 yr | 12.55 | 187/200 | 155 / 204 / 310 t |
 
-“Optimized” means minimum delivered mass inside the declared linear seed
-architecture, not a global optimum over unknown processes or designs.
-The strict lunar result follows from the configured trace-material yields
-and bills of material; substitution, a different electronics stack, a new
-refining route, or a richer measured deposit can change it. The
-Moon–asteroid case assumes a composite diverse portfolio rather than a
-known accessible body. In its central solution the Moon supplies 366.2
+"Minimum-mass installed seed" means minimum *installed operating* mass
+inside the declared linear seed architecture: the LP sizes a seed that is
+already unloaded, sited, powered, calibrated, and operating — delivery,
+unpacking, site preparation, and first commissioning are outside the
+model — and it is not a global optimum over unknown processes, designs,
+or objectives (a mass-versus-reproduction-time frontier is queued,
+ROADMAP). The vitamin share is worth stating plainly: at 27% of installed
+mass, the central lunar bridge is a substantially Earth-provisioned seed
+whose local loop supplies bulk mass, not a nearly closed system with
+trace imports. The year-40 column carries the transient-versus-durable
+distinction: the terrestrial rehearsal crosses two cell-equivalents at
+9.2 years yet holds only 1.93 at year 40 — reproduction occurred once and
+was not durably retained — the lunar bridge barely grows past its first
+reproduction (2.29), and only the Moon–asteroid case compounds.
+Durable-reproduction endpoints analogous to the inherited model's
+sustained hierarchy are queued (ROADMAP).
+
+The strict lunar-only case is a structural infeasibility, not a sampled
+tail: the central LP is infeasible — the configured trace-material yields
+cannot supply the assumed electronics and process-equipment stack — and
+all 200 draws preserve that infeasibility, so 0/200 restates the
+structure rather than measuring an uncertainty. Substitution, a different
+electronics stack, a new refining route, or a richer measured deposit can
+change it; the result is not a proof that lunar-only industry is
+impossible. The Moon–asteroid case assumes a deliberately synthetic
+composite portfolio rather than a known accessible body: 187/200 states
+what a sufficiently diverse source network would have to supply, not that
+such a portfolio is accessible, jointly recoverable on the assumed
+timetable, or economical. In its central solution the Moon supplies 366.2
 t/yr of feed and the asteroid portfolio 173.8 t/yr. Source occurrence
 [S51–S56] bounds plausibility; it does not validate recoverable yield,
 reserve, throughput, purity, or transfer cost.
 
+![Installed seed mass across the 200-draw assumption ensembles, by
+scenario. Distributions describe the declared parameter box, not
+engineering uncertainty.](../outputs/fourth/figures/seed_mass_ensemble.png)
+
+![Operating cell-equivalents over time in the central scenarios:
+construction and commissioning lags separate ordering from operating
+capacity.](../outputs/fourth/figures/cell_reproduction.png)
+
 The coupled run distinguishes installed compute from the industrial stock
 that manufactures it. At year 40, the Moon–asteroid scenario has 12.55
-normalized total endogenous compute capacity and exports 1.63 units to
-orbit. Constant-rate Earth-fed orbital deployment reaches 1.56, 2.81, or
+normalized total endogenous compute capacity — numerically identical to
+its cell-equivalent count by construction, since endogenous compute is
+proportional to operating cells and normalized to the one-cell start —
+and exports 1.63 units to orbit. Constant-rate Earth-fed orbital deployment reaches 1.56, 2.81, or
 4.99 units under the tight, base, and responsive rate cases. Those curves
 show the difference between rate-limited deployment and endogenous
 reproduction under the configured coefficients; they do not forecast
 datacenter capacity.
 
-The stateful debris stress test gives:
+![Rate-limited Earth-fed deployment versus endogenous reproduction,
+normalized compute capacity under the configured
+coefficients.](../outputs/fourth/figures/compute_growth_regimes.png)
 
-| deployment topology / mitigation | $R_{\mathrm{debris}}$, last 5 yr | fragment index, year 40 |
+The stateful debris stress test reports the **five-year fragment
+creation-to-clearance ratio** $R_{\mathrm{debris}}$ — fragments created
+divided by fragments cleared over the final five years, a flow ratio
+rather than a branching-process reproduction number:
+
+| deployment topology / mitigation | creation-to-clearance ratio, last 5 yr | fragment index, year 40 |
 |---|---:|---:|
 | Earth-fed orbit / weak | 0.61 | 1.602 |
 | Earth-fed orbit / strong | 0.35 | 0.284 |
@@ -1014,11 +1195,22 @@ The stateful debris stress test gives:
 | dense endogenous / strong | 5.58 | 12.632 |
 | distributed endogenous / sparse topology | 1.00 | 0.000 |
 
-The sparse case sits at the non-supercritical boundary only under an
-assumed 0.01 collision-kernel multiplier. The result supports topology as
-a co-designed industrial constraint; it does not establish a safe orbit
-or validate a debris environment model. Complete tables and figures are
-generated from the same run in `outputs/fourth/`.
+A ratio above one means only that more fragments were created than
+cleared in the window; it is not a monotonic safety indicator. Strong
+mitigation lowers the dense case's fragment stock (16.5 → 12.6) while the
+flow ratio stays essentially unchanged, because clearance scales with the
+shrinking fragment population. The sparse case reads exactly 1.00 with an
+empty stock because realized clearance is capped by the fragments
+available — a zero-stock boundary, not a computed equilibrium — and it
+reaches that boundary only under an assumed 0.01 collision-kernel
+multiplier. The result supports topology as a co-designed industrial
+constraint; it does not establish a safe orbit, validate a debris
+environment model, or locate a cascade threshold. Complete tables and
+figures are generated from the same run in `outputs/fourth/`.
+
+![Fragment-index trajectories by deployment topology and mitigation: the
+debris stress test that produces the creation-to-clearance table
+above.](../outputs/fourth/figures/debris_regimes.png)
 
 **What Part I establishes and does not.** It establishes structure: which
 sector binds, what the minimum cut is, how locations differ qualitatively
@@ -1122,7 +1314,7 @@ For closure, the more coherent topology is:
    Productive nodes then spread across separated Sun-orbiting trajectories
    and resource paths—potentially including near-Earth objects—rather than
    reproducing one dense shell. The point is diversity of orbital elements
-   and feedstocks, not one privileged “solar orbit.” Moving inward raises
+   and feedstocks, not one privileged "solar orbit." Moving inward raises
    solar flux but also heat-rejection, radiation, communications, and
    materials constraints, so no optimal solar radius is claimed.
 
@@ -1140,9 +1332,9 @@ advanced chips, dopants, catalysts, specialty chemicals, bearings, sensors,
 precision tools, metrology, and any alloying elements whose local recovery
 is not yet viable.
 
-An order-of-magnitude inventory check prevents “no iron” from becoming a
+An order-of-magnitude inventory check prevents "no iron" from becoming a
 false premise. At an average regolith bulk density near 1.5 t/m³ [S52],
-one square kilometre excavated to one metre contains about 1.5 million
+one square kilometer excavated to one meter contains about 1.5 million
 tonnes of regolith. Applying the approximately 3 wt% iron reported for lunar
 highlands material [S53] gives roughly 45,000 tonnes of iron **in place**.
 This is an illustrative inventory, not an ore reserve: it says nothing
@@ -1178,9 +1370,9 @@ complements: orbit is the transfer and service network; the surface supplies
 bulk matter and shielding. The inherited ten-sector and Part II models
 cannot compare that hybrid directly: they isolate lunar-surface capacity,
 cislunar compute, and Earth-supplied lunar compute, and they aggregate
-elements into industries. The Fourth layer adds element bills of material,
-source yields, Earth–Moon–orbit–asteroid arcs, and aggregate endogenous
-debris states. It therefore computes an explicit hybrid scenario, but its
+elements into industries. The Fourth layer adds material-category bills
+of material, source yields, Earth–Moon–orbit–asteroid arcs, and aggregate
+endogenous debris states. It therefore computes an explicit hybrid scenario, but its
 recipes, yields, transfer capacities, composite asteroid source, and
 collision kernels are declared assumptions. It does not establish lunar
 material sufficiency, a recoverable reserve, a launch date for asteroid
@@ -1188,22 +1380,29 @@ supply, or an orbital safety case.
 
 ## I.10 Binding bottlenecks and failure modes
 
-With model annotations: **lithography and fabrication equipment** (the named residual chokepoint one layer below
-foundries — and the deepest single closure problem in this framework);
-**reliability and repair** (the model makes mean-time-to-repair and spares
-closure first-class: repair is an explicit sector with an efficiency and a
-spares bill); **thermal management** (radiators are launched mass — Part
-II's radiator axis); **energy storage and continuity** (the lunar night
-storage mass term; Mars dust-storm shocks); **resource quality** (LEO has
-no ore body, so the sustained capture-and-recovery feed loop binds even
-though the separately modeled recycling sector is not knockout-indispensable
-at central values); **verification and
-control** (Part III.4); **political and legal environment**; **economic
-survival of the transition** (Part II.1); **concentrated coordination**
-(single points of failure a distributed competitor lacks);
-**paradigm-shift stranding** (Part IV.3 — exposure concentrated in the
-fabrication layer; the fleet self-insures through its own 3–6-year
-depreciation).
+With model annotations:
+
+- **Lithography and fabrication equipment** — the named residual
+  chokepoint one layer below foundries, and the deepest single closure
+  problem in this framework.
+- **Reliability and repair** — the model makes mean-time-to-repair and
+  spares closure first-class: repair is an explicit sector with an
+  efficiency and a spares bill.
+- **Thermal management** — radiators are launched mass; Part II's
+  radiator axis.
+- **Energy storage and continuity** — the lunar night storage mass term;
+  Mars dust-storm shocks.
+- **Resource quality** — LEO has no ore body, so the sustained
+  capture-and-recovery feed loop binds even though the separately modeled
+  recycling sector is not knockout-indispensable at central values.
+- **Verification and control** — Part III.4.
+- **Political and legal environment.**
+- **Economic survival of the transition** — Part II.1.
+- **Concentrated coordination** — single points of failure a distributed
+  competitor lacks.
+- **Paradigm-shift stranding** — Part IV.3; exposure concentrated in the
+  fabrication layer, while the fleet self-insures through its own
+  3–6-year depreciation.
 
 ---
 
@@ -1385,7 +1584,7 @@ separate company-specification case. Below both are research architectures:
 an integrated solar-compute-radiator panel concept at about **8.9 kg/kW**
 and a tethered inference architecture at about **5 kg/kW** [S40]. Those
 figures are legitimate lower-bound scenarios, but depend respectively on
-kilometre-scale integrated arrays, unqualified vapor chambers, thin tandem
+kilometer-scale integrated arrays, unqualified vapor chambers, thin tandem
 PV and custom ASICs, or on long tethers, distributed deployment, shielding,
 station-keeping, and micrometeoroid tolerance. They are pre-prototype
 architecture claims, not evidence that the generic spacecraft prior should
@@ -1432,7 +1631,7 @@ flight. It states instead that fully reusable V3 is designed to carry
 100 metric tonnes to orbit, that a future generation could reach 200
 tonnes as soon as V4, and that mature Starship is intended to reduce the
 historical $18,500/kg cost benchmark by 99% or more [S37]. Exactly 99%
-implies **$185/kg**; “or more” implies a lower value. The table converts
+implies **$185/kg**; "or more" implies a lower value. The table converts
 that formal aspiration and three more aggressive sensitivity cases into
 full-payload flight-cost equivalents:
 
@@ -1464,7 +1663,7 @@ terrestrial data center — and the qualification multiplier, service life,
 and utilization are sampled independently, although the favorable corner
 (cheap qualification, long life, high utilization) likely involves
 correlated engineering assumptions; both refinements are queued (ROADMAP).
-Calibration: the Earth base case works out to ≈$1.7/kW-hr, matching
+Calibration: the Earth base case works out to ≈$1.7/kWh, matching
 published accelerator rental rates.
 
 **Cost accounting — included and excluded.** Included: IT hardware with
@@ -1523,17 +1722,16 @@ values regenerate in `outputs/`):
 | Earth tight | — | 15,980 | — | — |
 | Earth responsive | — | 12,783 | — | — |
 
-(r3.5 note: these central values are lower than r3.4's — LEO ≈72,000, lunar
-≈5.1 million — for a modeled reason, not a data change: r3.4 annualized *all*
-space capex, including PV, radiators, storage, structure, and the launch
-spend that emplaced them, on the short compute-refresh life. r3.5 now
-reports that integrated-disposable result explicitly alongside the
-serviceable-platform case, which amortizes infrastructure on a separate
-`infrastructure_life_years` range (10–25 yr, ASSUMPTION-class with a stated
-bounding argument); replacement chips and their launch mass still recur on
-the compute life. The lunar case is labeled
-**Earth-supplied** because its central closure fraction is zero — local
-manufacture enters only through the closure sweep axis.)
+(The integrated-disposable rows annualize *all* space capex — PV,
+radiators, storage, structure, and the launch spend that emplaced them —
+on the short compute-refresh life; the serviceable-platform rows amortize
+infrastructure on a separate `infrastructure_life_years` range (10–25 yr,
+ASSUMPTION-class with a stated bounding argument), with replacement chips
+and their launch mass still recurring on the compute life. Earlier
+revisions reported only the disposable reading; Appendix B records the
+change. The lunar case is labeled **Earth-supplied** because its central
+closure fraction is zero — local manufacture enters only through the
+closure sweep axis.)
 
 Monte Carlo over anchored ranges, shared draws both sides (n = 2,000
 sampled runs per row; frequencies under this ensemble, not empirical
@@ -1560,17 +1758,20 @@ probability distributions:
 | Starmind AI1 disclosure | integrated disposable | base | 2.0 / 2.9 / 4.4 | 0 / 2,000 | −1,771 (−402) |
 | Starmind AI1 disclosure | integrated disposable | responsive | 2.4 / 3.7 / 6.0 | 0 / 2,000 | −2,345 (−839) |
 
-(These are the first Part II Monte Carlo figures for which the stated
-shared-draw methodology is actually implemented: r3.5 caches each anchor's
-draw inside the per-iteration AnchorSet, so Earth and space genuinely see the
-same sampled WACC and hardware cost, and the script's seeds are stable
-crc32 values rather than process-salted `hash()` — the r3.4 tables were
-nondeterministic across processes and uncorrelated across sides.)
+(Earth and space see the same sampled WACC and hardware cost in every
+draw — each anchor's draw is cached per iteration — and the script's
+seeds are stable, so the tables are deterministic across processes.
+Earlier revisions implemented neither property; Appendix B records the
+fix.)
 
 All sixteen architecture/reference rows have zero observed successes in
 2,000 draws, bounding each ensemble frequency below approximately 0.15%
 (95%). These are statements about this assumption ensemble, not empirical
 probabilities.
+
+![Distribution of the space/Earth cost ratio over the anchored Monte
+Carlo, shared draws both sides. No draw crosses parity in any
+architecture/reference cell.](../outputs/figures/lco_ratio_mc.png)
 
 AI1's aggregate mass disclosure is material but not sufficient at the
 retained central values: it cuts launched mass from about 46 to 16 kg/kW
@@ -1646,10 +1847,15 @@ the current launch bill, but a negative break-even still means they cannot
 overcome the fixed qualification/life/utilization gap on their own. Lunar
 closure is the weakest
 lever: chips are never closed, so even 95% closure of non-chip mass leaves
-the lunar case two orders of magnitude from parity at published prices.
+the lunar case roughly 15–30× Earth at published prices — still more than
+an order of magnitude from parity.
+
+![The generic-LEO crossover surface: space/Earth cost ratio against
+launch price with each companion axis varied over its anchored range. No
+single-axis path reaches parity at published prices.](../outputs/figures/crossover_surface.png)
 
 The mass-multiplier refinement: at anchored values a 2× FLOPS/W advantage
-buys only ~40% of the benefit of halving launch price (ratio 4.0 vs
+buys only ~39% of the benefit of halving launch price (ratio 4.0 vs
 3.2 at $3,000/kg, both from 4.5), because the hardware term — untouched by
 efficiency — dominates both mass and capex. "The compute tax outweighs the
 launch tax" [S34] becomes true only after the qualification premium and
@@ -1668,7 +1874,7 @@ does **not** claim system-level parity. Its cost section states twice that it
 is not a full economic analysis and not a comprehensive economic feasibility
 study, and its comparison sets the **amortised launch component alone**
 (≈$810/kW-yr for a Starlink-v2-class mass-to-power ratio at $200/kg;
-$810–7,500 across satellite classes) beside terrestrial data-centre
+$810–7,500 across satellite classes) beside terrestrial data-center
 **electricity spend** (≈$570–3,000/kW-yr), explicitly excluding
 infrastructure, building, and chip costs [S32]. That is a launch-cost
 feasibility marker — the finding that launch need not remain independently
@@ -1682,7 +1888,34 @@ own.
   Under the favorable corner *within anchored ranges* (qualification ×1.2,
   7-year life, 0.95 utilization, 3 kg/kW radiators): **0.88** — the claim
   reproduced. The dispute is three numbers, none of them launch price.
-- **The Suncatcher design study** [S32]: an 81-satellite dawn-dusk sun-synchronous cluster near 650 km, terabit-class optical links (an 800 Gbps unidirectional bench demonstration against a stated ~10 Tbps per-link requirement), and a learning-curve projection of ≲$200/kg by the mid-2030s — itself conditional on roughly 370,000 tonnes of additional cumulative mass launched, on the order of 1,800 Starship-class flights averaging ~180 per year, which the authors call ambitious. Its engineering results should be read precisely (arXiv v2, 17 June 2026): HBM was the most **TID**-sensitive subsystem (irregularities from ~2 krad(Si) against a ~750 rad(Si) shielded five-year requirement, no hard total-dose failures to 15 krad(Si)), while core logic and on-chip SRAM were the most **SEE**-sensitive; the reported inference error probability is roughly one per three million inferences under the stated assumptions, with the effect on **training** explicitly reserved. At ~150 rad(Si)/yr, a seven-year dose (~1.05 krad) sits below the ~2 krad irregularity onset — so the radiation results support five-year TID survivability with margin and *do not obviously contradict seven-year TID survival*. What they do not establish is seven-year **system** reliability: SEE-induced corruption, host interruptions, training sensitivity, thermal management, and whole-spacecraft failure remain unresolved, with orbital repair called impracticable and redundant provisioning proposed instead — a cost, not an absence of one. The COTS practice supporting a low qualification premium (unmodified accelerators flying on imaging satellites [S34]) demonstrates cheapness, not five-year reliability.
+- **The Suncatcher design study** [S32] describes an 81-satellite
+  dawn-dusk sun-synchronous cluster near 650 km with terabit-class
+  optical links (an 800 Gbps unidirectional bench demonstration against
+  a stated ~10 Tbps per-link requirement) and a learning-curve projection
+  of ≲$200/kg by the mid-2030s — itself conditional on roughly 370,000
+  tonnes of additional cumulative mass launched, on the order of 1,800
+  Starship-class flights averaging ~180 per year, which the authors call
+  ambitious. Its engineering results should be read precisely (arXiv v2,
+  17 June 2026):
+  - HBM was the most **TID**-sensitive subsystem — irregularities from
+    ~2 krad(Si) against a ~750 rad(Si) shielded five-year requirement,
+    with no hard total-dose failures to 15 krad(Si) — while core logic
+    and on-chip SRAM were the most **SEE**-sensitive. The reported
+    inference error probability is roughly one per three million
+    inferences under the stated assumptions, with the effect on
+    **training** explicitly reserved.
+  - At ~150 rad(Si)/yr, a seven-year dose (~1.05 krad) sits below the
+    ~2 krad irregularity onset — the radiation results support five-year
+    TID survivability with margin and *do not obviously contradict
+    seven-year TID survival*.
+  - What they do not establish is seven-year **system** reliability:
+    SEE-induced corruption, host interruptions, training sensitivity,
+    thermal management, and whole-spacecraft failure remain unresolved,
+    with orbital repair called impracticable and redundant provisioning
+    proposed instead — a cost, not an absence of one. The COTS practice
+    supporting a low qualification premium (unmodified accelerators
+    flying on imaging satellites [S34]) demonstrates cheapness, not
+    five-year reliability.
 
 The independent checks localize four additional gates:
 
@@ -1861,8 +2094,8 @@ not common ownership [S27].
 
 | layer | contributor | capability | role in recursion |
 |---|---|---|---|
-| Intelligence | xAI (within SpaceX) | AI research, large-scale compute | design, coordination, recursive digital improvement |
-| Energy | Tesla Energy | generation, storage, power electronics | power for compute, factories, robots |
+| Intelligence | xAI (within SpaceX) | AI research, large-scale compute [S3] | design, coordination, recursive digital improvement |
+| Energy | Tesla Energy | generation, storage, power electronics [S2] | power for compute, factories, robots |
 | Robotic labor | Optimus | manipulation, maintenance; stated Terafab construction role | manufactured labor capacity |
 | Manufacturing | Tesla | high-volume factories, batteries, motors | factory design, machine production at scale |
 | Fabrication | Terafab (Tesla, SpaceX, xAI; Intel from Apr 2026) | declared: chip design, lithography operation, fabrication, memory, packaging [S6–S10, S27, S29] | declared compute-substrate layer; framework stage |
@@ -1923,7 +2156,30 @@ target rather than demonstrated capacity.
 target; the residual dependency moves one layer down (EUV lithography,
 deposition, etch, metrology, ultra-pure feedstocks — sole-supplier
 equipment, not foundries); the fab-to-space link becomes explicit (D3).
-**What it does not change**: no wafers have been produced; the timeline is faster than any historical ramp; industry skepticism is on record. The competence question needs stating precisely, since earlier drafts got it wrong: Tesla, SpaceX, and xAI have no advanced-fab operating record, but **Intel plainly does**, and the reported process plan is Intel 14A — so the open question is whether that experience transfers into this organisational structure and what obligations Intel has actually accepted, not whether anyone involved has run a fab. Two further corrections: the sites are distinct — a smaller Tesla research fab at the Giga Texas campus and a proposed SpaceX-led scaled facility in Grimes County, whose county tax and economic-development agreements are now recorded as fully executed, strengthening site-level commitment without constituting a definitive construction, funding, or operating agreement [S6–S10] — and scale comparisons used in earlier drafts are withdrawn: wafer-start counts cannot be set against a foundry's global output without controlling for wafer diameter, node, product mix, yield, and effective die output, and "one terawatt per year" is a claimed annual production rate of hardware whose aggregate nameplate power draw would total a terawatt, a manufacturing-throughput figure not commensurable with national electricity consumption. **The lithography question**: for terrestrial operation, purchased
+**What it does not change**: no wafers have been produced; the timeline
+is faster than any historical ramp; industry skepticism is on record.
+
+The competence question needs stating precisely, since earlier drafts got
+it wrong: Tesla, SpaceX, and xAI have no advanced-fab operating record,
+but **Intel plainly does**, and the reported process plan is Intel 14A —
+so the open question is whether that experience transfers into this
+organizational structure and what obligations Intel has actually
+accepted, not whether anyone involved has run a fab.
+
+Two further corrections. The sites are distinct: a smaller Tesla research
+fab at the Giga Texas campus, and a proposed SpaceX-led scaled facility
+in Grimes County whose county tax and economic-development agreements are
+now recorded as fully executed — strengthening site-level commitment
+without constituting a definitive construction, funding, or operating
+agreement [S6–S10]. And scale comparisons used in earlier drafts are
+withdrawn: wafer-start counts cannot be set against a foundry's global
+output without controlling for wafer diameter, node, product mix, yield,
+and effective die output, and "one terawatt per year" is a claimed annual
+production rate of hardware whose aggregate nameplate power draw would
+total a terawatt — a manufacturing-throughput figure not commensurable
+with national electricity consumption.
+
+**The lithography question**: for terrestrial operation, purchased
 lithography is an acceptable permanent dependency; for high space closure
 it must eventually be reproduced, substituted (older nodes at volume;
 nanoimprint; e-beam), or accepted as designed permanent import — the
@@ -1993,7 +2249,7 @@ study's content) are removed from this table in r3.4: they are actions of
 *independent* actors and bear on no hypothesis about the Musk-associated
 complex's intentions. They are retained as engineering reference-class
 observations under external cross-checks below — an announced prototype
-program (satellites slated for early 2027), and radiation results bounding
+program (satellites slated for early 2027 [S33]), and radiation results bounding
 the qualification corner (5-yr TID survivability supported with margin;
 7-yr *system* reliability unresolved; II.4).
 
@@ -2010,7 +2266,7 @@ demonstration phase is what H0 and H0′ predict. On-orbit
 *materials-recovery* recycling at scale (not debris-compliance servicing)
 would be *moderate-to-strong for H2 specifically*: Part I's structural
 result that the LEO architecture lives on its recovered-mass feed loop
-(mining/capture receives ~98% of central co-binding credit; r3.5 withdraws the stronger
+(capture/mining receives ~98% of central co-binding credit; r3.5 withdraws the stronger
 stale claim that the recycling *sector* was knockout-indispensable) makes
 building that loop the rational early move of a
 LEO-first closure strategy and of no one else.
@@ -2118,7 +2374,7 @@ Second Edition are retained:
 - robots performing unscripted maintenance, construction, mining, and
   machine tending for long periods, with autonomous recovery fraction and
   human intervention hours reported per machine-hour rather than described
-  only as “limited”;
+  only as "limited";
 - local production of propellant, structural material, and replacement
   parts at operational rather than laboratory scale;
 - factories using locally processed feedstock to manufacture additional
@@ -2141,7 +2397,7 @@ Second Edition are retained:
   engineering tasks in a way attributable to proprietary process data; the
   contrary result would show that κ_D does not bind;
 - a sustained measured decline in cost per verified improvement loop, and
-  replication-relevant conditions appearing in launch licences or
+  replication-relevant conditions appearing in launch licenses or
   export-control terms while material leverage still exists.
 
 Threshold observations that would move Appendix A: a demonstrated ISRU
@@ -2194,9 +2450,10 @@ expansion under some assumption sets and failure under others, with
 electronics and feedstock dependencies localized by architecture. The new
 integrated-bootstrap model makes a first explicit pass through the complete
 intelligence–industry loop, seed bill of material, source network, and
-second-cell commissioning; it finds the lunar vitamin bridge and the
-composite Moon–asteroid scenario feasible under central assumptions and
-strict lunar closure infeasible. Because every new structural coefficient
+reproduction to a second operating cell; it finds the lunar vitamin
+bridge and the synthetic Moon–asteroid scenario model-feasible under
+central assumptions and the configured strict lunar source graph
+structurally infeasible. Because every new structural coefficient
 is declared rather than measured, that is an executable hypothesis, not
 evidence that the complete recursion can be built. The comparative-economics
 model finds the Earth-dependent bridge uneconomic at anchored values and
@@ -2430,17 +2687,25 @@ uncertainty, interactions, policy families, or all environments, and its
 LEO model has neither an endogenous debris stock nor a depleted capture
 reservoir.
 
-The Fourth layer adds an element-by-sector bill of materials, source yields,
-Earth–Moon–orbit–asteroid transfer arcs, seed-mass optimization, four
-knowledge layers, task-resolved autonomy, intervention demand,
-process-specific gravity and centrifuge overhead, construction and
-transport lags, commissioning, yield ramps, minimum viable scale, a second
-production cell, and an active/derelict/fragment debris state. These are
+The Fourth layer adds a material-category-by-sector bill of materials,
+source yields, Earth–Moon–orbit–asteroid transfer arcs, seed-mass
+optimization, four knowledge layers, task-resolved autonomy, intervention
+demand, process-specific gravity and centrifuge overhead, construction
+and transport lags, commissioning, yield ramps, minimum viable scale,
+reproduction to a second cell-equivalent, and an
+active/derelict/fragment debris state. These are
 model features, not validated factories. Its bills of material, recoverable
 yields, source throughput, autonomy/productivity gains, lag and ramp
 coefficients, intervention budget, asteroid portfolio, transfer capacities,
 and collision kernels are declared assumptions. The seed is minimum-mass
-only inside its fixed linear architecture. Seventeen material categories
+only inside its fixed linear architecture, and it is sized as an
+installed, operating nucleus: delivery, unloading, site preparation,
+initial power deployment, calibration, and first commissioning are not
+simulated. The reproduction dynamics advance one continuous aggregate
+cell-equivalent — the 18-sector detail constrains seed sizing but does
+not persist into reproduction, so sector-specific commissioning order,
+partially complete second cells, and mid-construction bottlenecks are
+not represented. Seventeen material categories
 do not resolve mineralogy, alloying routes, contamination, process
 chemistry, purity ladders, tool wear, quality yield, or every consumable.
 The electronics tiers remain aggregates rather than fabs and tool chains.
@@ -2483,7 +2748,11 @@ The authoritative, machine-readable anchor set is `params/anchors.yaml`
 reflect genuine disagreement across sources; values are anchors, not
 precision claims. The Second Edition's discipline — quantities normalized
 by type, rate quantities never averaged into one "r" — is implemented in
-code (`delta.py`) rather than prose.
+code (`delta.py`) rather than prose. Rows marked *(context)* are
+documentary quantities cited for interpretation only: they are not wired
+model inputs and have no YAML entry. Every other row resolves from the
+YAML, and source classes use only the five enumerated classes of Scope
+and Status.
 
 **Calibration-provenance boundary.** Reproducible anchor resolution is not
 the same as a complete scholarly source audit. Later sources provide exact
@@ -2501,10 +2770,11 @@ Part II multiples should not be described as independently source-audited.
 | Solar-array degradation, GEO | 0.4–1.7 %/yr | peer_reviewed [S19] | continuous degradation |
 | Terrestrial PV degradation | 0.5–0.6 %/yr median | peer_reviewed [S18] | continuous degradation |
 | LEO constellation failure | ~3 % early generations; <0.5 % later | reporting [S22] | cohort-dependent; mixes failure, retirement, disposal; not a hazard rate |
-| Satellite design life | ~15 yr GEO; ~5 yr LEO | industry standard [S22] | engineering envelope, not a hazard rate |
-| Fab-tool depreciation | 2–5 yr | foundry reports | accounting schedule |
-| Accelerator retirement | 3–6 yr | operator practice | technological retirement |
-| Cluster interruption frequency | ~1 / 2,000 accelerator-days | training-run disclosure | mixes component, host, network, software events, mostly auto-recovered — NOT a component hazard rate |
+| Satellite design life | ~15 yr GEO; ~5 yr LEO | technical_report (GEO) / reporting (LEO) [S22] | engineering envelope, not a hazard rate |
+| Fab-tool depreciation | 2–5 yr | technical_report [S36] | accounting schedule; the wired model input is the advanced-obsolescence rate below |
+| Advanced-node obsolescence rate, Earth | 0.15–0.35 /yr | technical_report [S36] | `delta.obsolescence_earth_adv`; frontier-equivalent capacity loss |
+| Accelerator retirement | 3–6 yr | technical_report [S36] | technological retirement; `compute.life_years_earth` |
+| Cluster interruption frequency | ~1 / 2,000 accelerator-days *(context)* | technical_report [S36] | mixes component, host, network, software events, mostly auto-recovered — NOT a component hazard rate |
 | Space logistics penalty | 1–5 %/yr | **ASSUMPTION** | internal repair-chain tax; unanchored |
 
 These are not interchangeable; the model converts each to
@@ -2519,9 +2789,9 @@ in `params/environments.yaml`.
 | quantity | range | class [ref] | what it does NOT measure |
 |---|---|---|---|
 | PV energy payback | 0.9–1.1 yr Europe; 1.0–4.1 harmonized | peer_reviewed [S20] | reproduction of mines, refineries, tools, or the panel line |
-| Strawman replication design target | ~1 yr (assumed) | technical_report [S23] | an estimate or measurement of anything — it is a proof-of-principle design assumption |
+| Strawman replication design target | ~1 yr (assumed) *(context)* | technical_report [S23] | an estimate or measurement of anything — it is a proof-of-principle design assumption |
 | Construction-execution cadence | ~10 months | reporting | recursive reproduction; used a mature host economy |
-| Humanoid robot production | 50–100k targeted | company_statement | feasibility — targets evidence intent |
+| Humanoid robot production | 50–100k targeted *(context)* | company_statement | feasibility — targets evidence intent |
 
 System replication time is unknown as a measurement. In this edition it
 exists only as a computed output distribution (Part I.8), set-labeled.
@@ -2531,12 +2801,12 @@ exists only as a computed output distribution (Part I.8), set-labeled.
 | quantity | range | class [ref] | note |
 |---|---|---|---|
 | Closure reported in cited nonreplicating applications | 90–96 % | technical_report [S23] | not a demonstrated result for the proposed factory; complete parts closure was outside its scope |
-| Demonstrated ISRU O₂, Mars | 6–12 g/hr | mission results [S21] | single output, small scale |
+| Demonstrated ISRU O₂, Mars | 6–12 g/hr *(context)* | peer_reviewed [S21] | single output, small scale |
 | Demonstrated lunar O₂ yield | ~20 %, TRL 5/6 | technical_report [S21] | full-system closure undemonstrated |
 | Vitamin import fraction | 4–10 % | technical_report [S23] | CP-2255 residual |
 | **Space electronics q-scale** | **0.10–0.30** | **ASSUMPTION** | **the vitamin gap — the results-driving unanchored number** |
-| Fleet data scale | >10B supervised miles; ~220M fully driverless miles at another operator | company_statement [S17, S30] | no conversion between regimes; not an advantage multiple or a model input |
-| Heavy-lift flight tests | 13 through mid-2026 | reporting [S31] | low-volume, high-information development proxy; not a capacity or reliability input |
+| Fleet data scale | >10B supervised miles; ~220M fully driverless miles at another operator *(context)* | company_statement [S17, S30] | no conversion between regimes; not an advantage multiple or a model input |
+| Heavy-lift flight tests | 13 through mid-2026 *(context)* | reporting [S31] | low-volume, high-information development proxy; not a capacity or reliability input |
 
 ## A.4 Comparative-economics budgets (Part II)
 
@@ -2553,7 +2823,14 @@ no single permanent identifier.
 | Radiator specific mass | 3–12 kg/kW | technical_report [S36: deployable radiators at electronics-friendly reject temps; ISS EATCS practice ~6 kg/kW] |
 | Accelerator system cost | $25–45k /kW IT | reporting [S36: H100/B200-class system pricing 2024–26] |
 | Space qualification multiplier | 1.2–3.0× | ASSUMPTION (low end: COTS practice [S34]; [S32] radiation data supports 5-yr TID at the low end, system reliability open) |
-| Equipment life, space / Earth | 3–7 / 3–6 yr | reporting [S36: LEO design lives; accelerator refresh cycles per A.1] |
+| Equipment life, space / Earth | 3–7 / 3–6 yr | reporting (space) / technical_report (Earth) [S36: LEO design lives; accelerator refresh cycles per A.1] |
+| Accelerator mass | 10–30 kg/kW IT | ASSUMPTION |
+| Space power overhead | 1.10–1.25× | ASSUMPTION |
+| Operations fraction | 2–6 % of capex/yr | ASSUMPTION |
+| PV cost | $500–2,000 /kW | reporting [S36] |
+| Radiator cost | $200–1,000 /kW | ASSUMPTION |
+| Structure overhead fraction | 0.20–0.50 | ASSUMPTION |
+| Lunar night storage | 4–10 kg/kWh | technical_report [S36] |
 | Serviceable-platform infrastructure life | 10–25 yr | ASSUMPTION; requires power/thermal/structure reuse across compute refreshes |
 | Integrated-disposable infrastructure life | equal to space equipment life | architecture definition; all assets retire together |
 | Utilization LEO / cislunar / lunar | 0.65–0.95 / 0.90–0.99 / 0.45–0.85 | ASSUMPTION ([S32] dawn-dusk cluster design supports the LEO high end) |
@@ -2565,6 +2842,12 @@ no single permanent identifier.
 | DC capex | $11–20k /kW IT | reporting [S36: AI-optimized facility costs 2025–26, $11–20M/MW] |
 | PUE | 1.10–1.40 | reporting [S36: hyperscale AI facilities] |
 | Firm-power floors: nuclear PPA / gas | $0.09–0.13 / $0.04–0.06 per kWh | reporting [S36: restart PPAs ~$100–115/MWh; gas floor politically conditional, CCGT <$1,000/kW per S35] |
+| Earth electricity price | $0.05–0.12 /kWh | reporting [S36] |
+| Gas power capex | $700–1,200 /kW | reporting [S36] |
+| Older-node hardware | $8,000–15,000 /kW | reporting [S36] |
+| Older-node energy penalty | 1.5–3.0× | technical_report [S36] |
+| Starmind AI1 solar power density | 250 W/m² | company_statement [S38] |
+| Orbital-compute scale target | 100 GW/yr | company_statement [S37]; enters II.3's scale audit only |
 | WACC | 8–15 % | ASSUMPTION |
 
 ## A.5 External claims and quarantined sensitivity targets
@@ -2624,18 +2907,42 @@ Earth as the early material-vitamin supplier, and asteroids as a later
 diversity layer.
 
 The new executable layer implements the program: 18 sectors, 17 material
-categories, an element-resolved bill of material, explicit source and
-transfer arcs, minimum-mass seed sizing, autonomy/intervention constraints,
-gravity and centrifuge overhead, construction/commissioning dynamics,
-rate-limited Earth and Earth-fed orbital counterfactuals, operational
-compute–intelligence–productivity coupling, electronics tiers, and
-active/derelict/fragment debris dynamics. Central and 200-draw deterministic
-assumption-ensemble results are reported in I.8 and regenerate from
-`scripts/run_fourth.py`; `outputs/fourth/MANIFEST.md` checksums their exact
-inputs and outputs. The completed ledger in
+categories, a material-category-resolved bill of material, explicit source
+and transfer arcs, minimum-mass seed sizing, autonomy/intervention
+constraints, gravity and centrifuge overhead, construction/commissioning
+dynamics, rate-limited Earth and Earth-fed orbital counterfactuals,
+operational compute–intelligence–productivity coupling, electronics
+tiers, and active/derelict/fragment debris dynamics. Central and 200-draw
+deterministic assumption-ensemble results are reported in I.8 and
+regenerate from `scripts/run_fourth.py`; `outputs/fourth/MANIFEST.md`
+checksums their exact inputs and outputs. The completed ledger in
 `docs/FOURTH_EDITION_PLAN.md` maps each proposed change to prose, code,
 tests, and artifacts. No Fourth Edition output is presented as a
 measurement, empirical probability, engineering estimate, or forecast.
+
+A release-candidate correction pass against a fourth external review
+then: restated the seed as an installed operating nucleus (delivery,
+unpacking, and first commissioning outside the model); renamed the
+reproduction metric to first passage to two operating-cell equivalents
+and added the transient-versus-durable year-40 reading (the terrestrial
+rehearsal reproduces once and holds only 1.93 equivalents at year 40);
+relabeled the model material-category-resolved (15 elements plus
+rare-earth and dopant classes); restated strict-lunar 0/200 as a
+structural LP infeasibility preserved by every draw, and the
+Moon–asteroid case as a synthetic composite portfolio; renamed
+$R_{\mathrm{debris}}$ the five-year fragment creation-to-clearance ratio
+and withdrew subcritical/supercritical language (the ratio is
+non-monotonic in mitigation strength); documented the 0.5
+autonomy-productivity floor and the fixed 5 t digital-seed aggregation as
+declared conventions; removed three stale Third Edition passages (I.3
+process-gravity variables, I.4 queued-debris metric, I.5 unsized seed);
+reported the vitamin stock's 23–27% share of installed seed mass;
+committed the import-decay sweep the manuscript had quoted only from a
+figure (`outputs/tables/import_decay_deep.csv`); reconciled Appendix A
+with `params/anchors.yaml`; corrected the 95%-lunar-closure distance
+(≈15–30×, not two orders of magnitude) and two rounding drifts; embedded
+the committed figures into the manuscript; and queued durable-endpoint,
+ablation, Pareto-frontier, and diagnostics work as r4.1 scope (ROADMAP).
 
 **3.5 (frozen Third Edition baseline)** — final integrity and publication pass: the
 lexicographic allocator now ends in a normalized strictly convex QP so the
@@ -2713,7 +3020,7 @@ remains the canonical editable source. A subsequent
 location-architecture addendum made
 the unmodeled Kessler feedback explicit, partitioned a lunar-surface material
 backbone from its sparse orbital service layer, and corrected
-“Sun-synchronous” versus “heliocentric” in the post-lunar sequence without
+"Sun-synchronous" versus "heliocentric" in the post-lunar sequence without
 adding unsupported numerical priors [S45–S49].
 
 Second Edition history (2.1–2.10) is summarized: 2.1 economics of closure;
@@ -2820,8 +3127,8 @@ the manifest; none of that upgrades an assumption to evidence.
 
 **Archival status.** Public repository:
 **[rsi-model repository](https://github.com/fperegrinvs/rsi-model)**. r4.0
-is the release candidate to be published atomically from `main`; this text
-does not claim that the tag already exists. The frozen r3.5 Markdown,
+is the release candidate published on `main`; this text does not claim
+that the release tag already exists. The frozen r3.5 Markdown,
 HTML, and DOCX remain present as the inherited release baseline.
 Accordingly, the untagged r4.0 HTML omits canonical/public URL,
 publication-date, and `citation_doi` metadata rather than pointing at
@@ -2865,11 +3172,14 @@ repair, recycling, interconnects/boards, passives/power,
 sensors/control, packaging/test, mature logic, advanced logic/memory,
 process equipment/metrology, and compute. It tracks 17 material categories:
 O, Si, Al, Fe, Mg, Ca, Ti, H, C, N, Cu, Ni, Co, Cr, Li, rare earths, and
-dopants. The full coefficient set is the machine-readable specification in
+dopants — 15 elements plus two material classes, so the model is
+material-category-resolved rather than element-resolved: stoichiometric
+and process-chemical closure is not checked at the species level. The
+full coefficient set is the machine-readable specification in
 `params/fourth_edition.yaml`.
 
-**Element and service closure.** For element $e$, sector $j$, and
-source/transfer arc $a$:
+**Material and service closure.** For material category $e$, sector $j$,
+and source/transfer arc $a$:
 
 $$
 \Delta M_e
@@ -2877,9 +3187,9 @@ $$
 - \sum_j B_{e,j}x_j - L_e - \sum_a F^{\mathrm{out}}_{a,e},
 $$
 
-where $B_{e,j}$ is the amount of element $e$ required per unit of
-sector-$j$ build, $Y_{s,e}$ is the recoverable yield from source and
-process $s$, and $F_{a,e}$ is element flow across an Earth, lunar
+where $B_{e,j}$ is the amount of material category $e$ required per unit
+of sector-$j$ build, $Y_{s,e}$ is the recoverable yield from source and
+process $s$, and $F_{a,e}$ is material flow across an Earth, lunar
 surface, orbital, or asteroid transfer arc. Concentration alone does not
 set $Y$; mineral form, beneficiation, refining energy, purity, and loss
 remain outside the occurrence citations. Service closure uses
@@ -2895,8 +3205,15 @@ $$
 c_j(I)=\min\{c_j^{\max},\ c_j^0+\alpha_j\max(I-1,0)\}.
 $$
 
-Effective productivity is multiplied by $(0.5+0.5c_j)$. Residual annual
-intervention is $h_j(1-c_j)z_j$ and its sum must fit the scenario budget.
+Effective productivity is multiplied by $(0.5+0.5c_j)$ — a declared
+ASSUMPTION-class convention assigning fully scripted, conventionally
+automated operation half of full productivity at zero unscripted-task
+coverage, not a measured relation. Residual annual
+intervention is $h_j(1-c_j)z_j$ and its sum must fit the scenario budget;
+the linear form treats missing autonomy as smoothly divisible labor
+demand and does not represent threshold effects, where one unrecoverable
+diagnosis, calibration, or repair task stops a line despite high average
+coverage.
 Where declared required acceleration $g_j^\ast$ exceeds lunar gravity
 $g_L=0.165g$, the acceleration gap adds centrifuge structural material
 and parasitic power. The reported centrifuge speed follows
@@ -2928,13 +3245,18 @@ software, simulation, industrial-memory, and experimental package; its
 value is an assumption, not a storage-mass estimate.
 
 **Dynamic reproduction.** A feasible seed begins as one installed and
-operating cell. Each quarter, lunar production, commissioned asteroid
-production, and recovered retirement enter inventory; the complete
+operating cell — delivery, unloading, site preparation, and first
+commissioning are outside the model, so seed mass refers to an installed
+operating nucleus, not a self-deploying delivered package. Each quarter,
+lunar production, commissioned asteroid production, and recovered
+retirement enter inventory; the complete
 cell-level material vector limits new orders. Orders become installed after
 a two-year construction queue and operating through a 1.5-year yield ramp.
 Cells depreciate at 0.04/yr and 82% of retired cell material is assumed
-recoverable. The first time operating cells reach 2.0 is the explicit
-second-cell result.
+recoverable. The state is a continuous aggregate of cell-equivalents; the
+reported reproduction event is **first passage of operating
+cell-equivalents to 2.0**, not the discrete commissioning of a second
+factory's subsystems.
 
 Installed compute $C_t$ raises normalized intelligence according to
 
@@ -2956,8 +3278,12 @@ transport-capacity ceiling.
 **Debris state.** A separate stress test evolves active assets, derelicts,
 and a fragment index. Failures, controlled disposal, retrieval, collisions,
 fragment creation, natural clearance, and active removal are explicit.
-$R_{\mathrm{debris}}$ is fragments created divided by fragments cleared
-over the last five years. The distributed case multiplies the collision
+$R_{\mathrm{debris}}$ — the five-year fragment creation-to-clearance
+ratio — is fragments created divided by fragments cleared
+over the last five years: a flow ratio, not a branching-process
+reproduction number, and not monotonic in mitigation strength. Realized
+clearance is capped by the fragments available, so at an empty fragment
+stock the ratio reads exactly one. The distributed case multiplies the collision
 kernel by 0.01; it is therefore a declared topology test, not a derived
 property of heliocentric space.
 
@@ -3204,6 +3530,12 @@ candidate off-world seed under constrained materials, energy,
 communications, spares, and human access, culminating in construction and
 commissioning of a second production cell.
 
+**Operating-cell equivalent:** the Fourth layer's continuous unit of
+installed, commissioned productive capacity, normalized to the initial
+seed cell. The reported reproduction event is first passage of this
+aggregate to 2.0; it is not a claim that a discrete second factory has
+completed commissioning.
+
 **Exogenous deployment:** capacity growth supplied by an external
 industrial base, such as Earth-manufactured data centers delivered to orbit.
 
@@ -3347,7 +3679,7 @@ local solar time. Earth SSO is ordinarily a LEO architecture; it does not
 mean an orbit around the Sun.
 
 **Heliocentric orbit:** an orbit around the Sun. In the post-lunar scenario,
-“distributed heliocentric” means separated orbital elements and resource
+"distributed heliocentric" means separated orbital elements and resource
 trajectories rather than a new single dense shell.
 
 # Sources
@@ -3761,7 +4093,7 @@ SciTech 2026.
 
 > Low-mass inference architecture studies. The first reports a design basis
 > above 100 kW/t using integrated PV, vapor-chamber radiators, and custom
-> accelerators in a kilometre-scale array; its large example is about
+> accelerators in a kilometer-scale array; its large example is about
 > 150 tonnes and 16 MW. The second proposes 2–20 MW tethered systems with
 > approximately 10 kg, 2 kW nodes. Both make mass-reducing integration
 > assumptions whose deployment, dynamics, thermal, shielding, qualification,
@@ -3932,7 +4264,7 @@ Samples"](https://doi.org/10.1126/science.167.3918.495),
 > in those samples, not a global lunar resource map.
 
 **[S55]** NASA Goddard Space Flight Center,
-["NASA’s LRO: Lunar Ice Deposits Are
+["NASA's LRO: Lunar Ice Deposits Are
 Widespread"](https://science.nasa.gov/solar-system/moon/nasas-lro-lunar-ice-deposits-are-widespread/),
 October 3, 2024.
 
