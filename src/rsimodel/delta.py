@@ -9,9 +9,18 @@ print a full provenance table.
 Anchored ranges resolve to their geometric mid deterministically; under Monte
 Carlo each anchor is drawn once per run (loguniform over [low, high]) and shared
 by every entry referencing it — parameter-level common-cause correlation.
+
+Draw-stream stability (r3.5): each anchor's draw is derived from a per-run
+entropy integer mixed with crc32 of the anchor's NAME, not from one sequential
+stream over the anchor list. Consequence: adding an anchor to anchors.yaml
+never changes any other anchor's draw or the caller's RNG stream — MC results
+are stable under anchor-list growth. (The sequential scheme re-rolled every
+Part I cell whenever a Part II anchor was added.) This re-baselined all MC
+numbers once, at introduction.
 """
 from __future__ import annotations
 
+import zlib
 from dataclasses import dataclass, field
 from functools import lru_cache
 from pathlib import Path
@@ -65,10 +74,25 @@ def anchor_value(entry: dict, rng: np.random.Generator | None = None) -> float:
     return float(np.exp(rng.uniform(np.log(lo), np.log(hi))))
 
 
+def anchor_child_rng(entropy: int, name: str) -> np.random.Generator:
+    """Per-anchor generator keyed by (run entropy, anchor NAME) — the draw for
+    one anchor depends only on these two values, never on which other anchors
+    exist or the order they appear in (r3.5 draw-stream stability)."""
+    return np.random.default_rng([entropy, zlib.crc32(name.encode())])
+
+
 def draw_anchors(anchors: dict[str, dict],
                  rng: np.random.Generator | None = None) -> dict[str, float]:
-    """One value per anchor — a single shared draw per MC run."""
-    return {name: anchor_value(entry, rng) for name, entry in anchors.items()}
+    """One value per anchor — a single shared draw per MC run.
+
+    Consumes exactly ONE integer from `rng` per call (the run entropy),
+    regardless of how many anchors exist; each anchor then draws from its own
+    name-keyed child generator. See the module docstring."""
+    if rng is None:
+        return {name: anchor_value(entry) for name, entry in anchors.items()}
+    entropy = int(rng.integers(0, 2**63))
+    return {name: anchor_value(entry, anchor_child_rng(entropy, name))
+            for name, entry in anchors.items()}
 
 
 def resolve_entry(entry, draws: dict[str, float], anchors: dict[str, dict],

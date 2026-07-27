@@ -12,7 +12,7 @@ from pathlib import Path
 import numpy as np
 
 from .cutsets import CutProbability, CutSetResult
-from .lco import CASES, EarthLCO, LCOMC, SpaceLCO
+from .lco import CASE_LABELS, CASES, EarthLCO, LCOMC, SpaceLCO
 from .model import Params, RunResult
 from .montecarlo import MCResult
 
@@ -45,15 +45,18 @@ def provenance_table(p: Params) -> str:
 def deterministic_table(results: dict[tuple[str, str], RunResult],
                         horizon: float = 30.0) -> str:
     lines = [
-        f"| set | environment | g @10yr | g @{horizon:g}yr | doubling (yr) | last binding sector |",
-        "|---|---|---|---|---|---|",
+        f"| set | environment | g @10yr | g @{horizon:g}yr | balanced dbl (yr) "
+        "| aggregate dbl (yr) | last binding sector |",
+        "|---|---|---|---|---|---|---|",
     ]
     for (set_name, env), r in results.items():
         i10 = min(int(np.searchsorted(r.t, 10.0)), len(r.g) - 1)
         ih = min(int(np.searchsorted(r.t, horizon)), len(r.g) - 1)
         d = r.doubling_time()
+        b = r.balanced_doubling_time()
         lines.append(
             f"| {set_name} | {env} | {r.g[i10]:+.3f} | {r.g[ih]:+.3f} "
+            f"| {'never' if b is None else f'{b:.1f}'} "
             f"| {'never' if d is None else f'{d:.1f}'} "
             f"| {r.params.sectors[r.binding[-1]]} |")
     return "\n".join(lines)
@@ -123,6 +126,21 @@ All replication/doubling times below are MODEL OUTPUTS. No single trajectory is
 `params/assumptions.yaml`) and Monte Carlo over anchored ranges
 (`params/anchors.yaml`). Structural coefficients are ASSUMPTION-class.
 
+Metric definitions (r3.5):
+- **balanced doubling** — first t with λ(t) = min_j K_j(t)/K_j(0) ≥ 2: every
+  modelled sector has at least twice its initial abstract capacity.
+  Unit-invariant; it is a balanced-capacity event, not a commissioned second
+  physical seed.
+- **aggregate doubling** — first t with Σ_j K_j ≥ 2 Σ_j K_j(0). Depends on the
+  arbitrary per-sector capacity units and can be reached by overbuilding easy
+  sectors; kept for continuity only.
+- **expanding @horizon** — instantaneous worst-case growth g > 0 at one step
+  (endpoint 1). May still be import- or stock-supported.
+- **sustained** — g > 0 at every step of the trailing window (endpoint 3).
+- **binding sector/co-binding set** — unit-invariant finite response to a 1%
+  relaxation of each material-balance supply. Rows within 5% of the largest
+  positive response share fractional credit.
+
 ## Deterministic sweeps (central anchor values)
 
 {deterministic_table(results, horizon)}
@@ -165,37 +183,173 @@ def write_part2_report(spaces: dict[str, SpaceLCO], earths: dict[str, EarthLCO],
                        mcs: list[LCOMC], figures: list[Path],
                        breakeven_notes: str = "",
                        path: Path | None = None) -> Path:
-    ctable = ["| case | LCO $/kW-yr | launched kg/kW | hardware | pv | radiator | storage | launch |",
-              "|---|---|---|---|---|---|---|---|"]
-    for c, s in spaces.items():
+    arch_label = {
+        "serviceable_platform": "serviceable/reusable platform",
+        "integrated_disposable": "integrated disposable satellite",
+    }
+    ctable = [
+        "| case | architecture | LCO $/kW-yr | launched kg/kW | hardware | pv | radiator | storage | launch |",
+        "|---|---|---:|---:|---:|---:|---:|---:|---:|",
+    ]
+    for _, s in spaces.items():
         k = s.capex_per_kw
-        ctable.append(f"| {c} | {s.lco:,.0f} | {s.mass_kg_per_kw:,.0f} "
+        ctable.append(
+            f"| {CASE_LABELS.get(s.case, s.case)} "
+            f"| {arch_label[s.architecture]} | {s.lco:,.0f} "
+            f"| {s.mass_kg_per_kw:,.0f} "
                       f"| {k['hardware']:,.0f} | {k['pv']:,.0f} | {k['radiator']:,.0f} "
-                      f"| {k['storage']:,.0f} | {k['launch']:,.0f} |")
+            f"| {k['storage']:,.0f} | {k['launch']:,.0f} |"
+        )
     etable = ["| scenario | LCO $/kW-yr | node choice |", "|---|---|---|"]
     for scen, e in earths.items():
         etable.append(f"| {scen} | {e.lco:,.0f} | {e.node} |")
-    mtable = ["| case | vs Earth | ratio p10/p50/p90 | P(space cheaper) | break-even LEO $/kg p50 (p90) |",
-              "|---|---|---|---|---|"]
+    mtable = [
+        "| case | architecture | vs Earth | ratio p10/p50/p90 | P(space cheaper) | break-even LEO $/kg p50 (p90) |",
+        "|---|---|---|---|---|---|",
+    ]
     for m in mcs:
         mtable.append(
-            f"| {m.case} | {m.scenario} "
+            f"| {CASE_LABELS.get(m.case, m.case)} "
+            f"| {arch_label[m.architecture]} | {m.scenario} "
             f"| {m.ratio_pcts[10]:.1f} / {m.ratio_pcts[50]:.1f} / {m.ratio_pcts[90]:.1f} "
             f"| {m.p_space_cheaper:.3f} "
             f"| {m.breakeven_pcts[50]:,.0f} ({m.breakeven_pcts[90]:,.0f}) |")
+    spectable = ["| case | disclosed/derived quantity | central value | source_class | model role |",
+                 "|---|---|---:|---|---|"]
+    seen_specs = set()
+    for _, s in spaces.items():
+        prov_by_name = {pr.quantity: pr for pr in s.provenance}
+        for name, value in s.architecture_specs.items():
+            key = (s.case, name)
+            if key in seen_specs:
+                continue
+            seen_specs.add(key)
+            pr = prov_by_name[name]
+            spectable.append(
+                f"| {CASE_LABELS.get(s.case, s.case)} | `{name}` | {value:,.4g} "
+                f"| {pr.source_class} | {pr.note} |")
+    specs_block = ("\n## Disclosed and aspirational scenario inputs\n\n"
+                   "These company statements and separately source-classed model "
+                   "assumptions define conditional scenarios; they do not replace "
+                   "the generic reference cases or establish achieved cost, "
+                   "lifetime, or availability.\n\n"
+                   + "\n".join(spectable)
+                   if len(spectable) > 2 else "")
     fig_lines = "\n\n".join(f"![{f.stem}](figures/{f.name})" for f in figures)
     prov = _lco_provenance_table([s.provenance for s in spaces.values()]
                                  + [e.provenance for e in earths.values()])
+    leo = next(
+        (
+            s for s in spaces.values()
+            if s.case == "leo_inference"
+            and s.architecture == "serviceable_platform"
+        ),
+        None,
+    )
+    worked = ""
+    if leo is not None:
+        d, k = leo.detail, leo.capex_per_kw
+        worked = fr"""
+For the central LEO serviceable-platform case, the resolved values are
+\(C_h={k['hardware']:,.0f}\), \(C_I={d['infra_capex']:,.0f}\) $/kW,
+\(M_h={d['hw_mass']:.1f}\), \(M_I={d['non_hw_launched_mass']:.1f}\) kg/kW,
+\(p_L={leo.launch_per_kg_leo:,.0f}\) $/kg,
+\(a_h={d['ann_hw']:.4f}\), \(a_I={d['ann_infra']:.4f}\), and
+\(U_s={d['utilization']:.3f}\). Substitution gives
+
+\[
+L_s =
+\frac{{{k['hardware']:,.0f}({d['ann_hw']:.4f})
++{d['infra_capex']:,.0f}({d['ann_infra']:.4f})
++{leo.launch_per_kg_leo:,.0f}
+[{d['hw_mass']:.1f}({d['ann_hw']:.4f})
++{d['non_hw_launched_mass']:.1f}({d['ann_infra']:.4f})]}}
+{{{d['utilization']:.3f}}}
+= {leo.lco:,.0f}\ \$/\mathrm{{kW\!-\!yr}}.
+\]
+"""
+    formula_block = fr"""
+## Complete levelized-cost specification
+
+For WACC \(r\), useful life \(T\), and annual operations fraction \(f_o\),
+
+\[
+\operatorname{{CRF}}(r,T)=\frac{{r}}{{1-(1+r)^{{-T}}}},
+\qquad
+a(T)=\operatorname{{CRF}}(r,T)+f_o.
+\]
+
+Let \(C_h\) be qualified accelerator capex, \(C_I\) the sum of PV, radiator
+and storage capex, \(M_h\) accelerator mass, \(M_I\) launched non-hardware
+mass after local closure, \(\mu\) the destination launch multiplier,
+\(p_L\) the LEO launch price, and \(U_s\) delivered utilization. The complete
+space expression is
+
+\[
+L_s =
+\frac{{C_h a(T_h)+C_I a(T_I)
++p_L\mu[M_h a(T_h)+M_I a(T_I)]}}{{U_s}}
+=\alpha+\beta p_L.
+\]
+
+The integrated-disposable case sets \(T_I=T_h\): the power, thermal,
+structure, compute, and original launch spend retire together. The
+serviceable/reusable-platform case sets
+\(T_I=\max(T_{{I,\mathrm{{anchor}}}},T_h)\) and therefore assumes compute
+payload replacement without retiring the platform.
+
+For Earth scenario \(e\), PUE \(\psi_e\), electricity price \(p_e\),
+data-centre shell capex \(C_{{DC}}\), utilization \(U_E\), and the selected
+node's frontier-equivalent penalty \(\phi_e\),
+
+\[
+L_E =
+\frac{{\phi_e\left[
+C_{{h,e}}\operatorname{{CRF}}(r,T_{{h,e}})
++C_{{DC}}\operatorname{{CRF}}(r,15)
++8760\,p_e\psi_e\right]}}{{U_E}}.
+\]
+
+The responsive Earth case evaluates both frontier and older-node hardware,
+including the older node's energy/computational penalty, and selects the
+lower \(L_E\). Communications and ground systems are excluded unless an
+explicit anchor enters \(C_I\); the current cases do not invent such costs.
+The exact affine break-even launch price is
+
+\[
+p_L^*=\frac{{L_E-\alpha}}{{\beta}},
+\]
+
+with a negative value meaning non-launch costs alone exceed the Earth
+counterfactual.
+
+{worked}
+"""
     md = f"""# Part II report: levelized cost of compute, space vs Earth — {date.today().isoformat()}
 
 Unit: **$ per frontier-equivalent kW-year of delivered IT load** (older-node
 hardware is compute-normalized by its J/FLOP penalty). Three reference cases
-(paper Section 9): LEO inference, cislunar batch, lunar-surface compute.
+(paper Section 9): LEO inference, cislunar batch, and **Earth-supplied**
+lunar-surface compute (central closure fraction is zero — local manufacture
+enters only through the closure sweep axis), plus separate Starmind AI1
+current-disclosure and aspirational-best-case scenarios.
+Two architectures are reported explicitly. In the integrated-disposable
+satellite, compute, PV, radiator, storage, structure, and original launch
+retire together. In the serviceable/reusable platform, compute refreshes
+separately while infrastructure and its original launch spend amortize on
+the longer `infrastructure_life_years`; this is a scenario assumption, not
+an inference from modularity alone.
 The Earth counterfactual RESPONDS: the responsive scenario prices induced
 supply at the nuclear-PPA floor and may deploy older-node hardware.
-Aspirational launch targets appear only as sweep axes (rule 3).
+Aspirational launch targets appear as sweep axes and in one explicitly labeled,
+deterministic best-case sensitivity (rule 3); that case is excluded from Monte
+Carlo and is not assigned a probability.
+Shared draws both sides: each MC iteration resolves every anchor once per
+draw-cached AnchorSet, so Earth and space see the same wacc and hardware cost.
 
-## Central anchor values
+{formula_block}
+
+## Central references and deterministic aspiration case
 
 Space cases (capex $/kW before annualization):
 
@@ -205,11 +359,17 @@ Earth scenarios:
 
 {chr(10).join(etable)}
 
-A calibration check: the Earth base LCO corresponds to ≈ ${next(iter(earths.values())).lco / 8760:,.2f}/kW-hr,
+A calibration check: the Earth base LCO corresponds to ≈ ${earths.get("base", next(iter(earths.values()))).lco / 8760:,.2f}/kW-hr,
 consistent with published accelerator rental rates — the model is anchored at
 the right order of magnitude.
 
+{specs_block}
+
 ## Monte Carlo over anchored ranges (shared draws both sides)
+
+The aspirational best case is excluded: company targets and deliberately
+favorable unpublished assumptions are point sensitivities, not probability
+distributions.
 
 {chr(10).join(mtable)}
 

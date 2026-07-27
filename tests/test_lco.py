@@ -6,8 +6,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 import numpy as np
 import pytest
 
-from rsimodel.lco import (CASES, AnchorSet, breakeven_launch_price, crf,
-                          crossover_grid, lco_earth, lco_mc, lco_space)
+from rsimodel.lco import (CASES, MONTE_CARLO_CASES, AnchorSet,
+                          breakeven_launch_price, crf, crossover_grid,
+                          lco_earth, lco_mc, lco_space, orbital_ai_scale)
 
 
 def test_crf_sane():
@@ -22,10 +23,116 @@ def test_space_lco_affine_in_launch_price():
     assert s1.lco > s0.lco
 
 
+def test_disposable_and_serviceable_architectures_are_separate():
+    reusable = lco_space("leo_inference", architecture="serviceable_platform")
+    disposable = lco_space(
+        "leo_inference", architecture="integrated_disposable"
+    )
+    assert reusable.detail["life_infra"] > reusable.detail["life_hw"]
+    assert disposable.detail["life_infra"] == disposable.detail["life_hw"]
+    assert disposable.lco > reusable.lco
+    with pytest.raises(ValueError):
+        lco_space("leo_inference", architecture="unsupported")
+
+
+def test_starmind_ai1_uses_disclosed_aggregate_mass_and_power_ratio():
+    s = lco_space("starmind_ai1")
+    assert 14.285714 <= s.mass_kg_per_kw <= 17.857143
+    assert s.mass_kg_per_kw < lco_space("leo_inference").mass_kg_per_kw
+    # Central PV cost is $1,000/kW; 150 kW array / 120 kW average compute
+    # therefore gives $1,250 of PV capex per delivered average kW.
+    assert s.capex_per_kw["pv"] == pytest.approx(1250.0)
+    assert s.architecture_specs["starmind.compute_payload_kw_peak"] == 150.0
+    assert s.architecture_specs["starmind.compute_payload_kw_average"] == 120.0
+    assert s.architecture_specs["starmind.vehicle_efficiency_kw_per_tonne"] == 70.0
+
+
+def test_starmind_total_mass_constraint_survives_component_uncertainty():
+    light = lco_space(
+        "starmind_ai1",
+        a=AnchorSet(overrides={
+            "compute.hw_mass_kg_per_kw": 10.0,
+            "power_systems.radiator_kg_per_kw": 3.0,
+        }),
+    )
+    heavy = lco_space(
+        "starmind_ai1",
+        a=AnchorSet(overrides={
+            "compute.hw_mass_kg_per_kw": 30.0,
+            "power_systems.radiator_kg_per_kw": 12.0,
+        }),
+    )
+    assert light.mass_kg_per_kw == pytest.approx(heavy.mass_kg_per_kw)
+
+
+def test_starmind_mass_moves_favorable_corner_near_published_launch_band():
+    favorable = {
+        "compute.space_qual_multiplier": 1.2,
+        "compute.utilization_leo": 0.95,
+        "power_systems.radiator_kg_per_kw": 3.0,
+    }
+    earth = lco_earth("base").lco
+    s = lco_space("starmind_ai1", a=AnchorSet(overrides=favorable),
+                  launch_per_kg_leo=0.0, life_years=7.0)
+    breakeven = (earth - s.alpha) / s.beta
+    assert 500.0 < breakeven < 1400.0
+    at_250 = lco_space("starmind_ai1", a=AnchorSet(overrides=favorable),
+                       launch_per_kg_leo=250.0, life_years=7.0)
+    assert at_250.lco < earth
+
+
+def test_starmind_aspirational_case_is_cheaper_but_quarantined_from_mc():
+    s = lco_space("starmind_ai1_aspirational")
+    earth = lco_earth("base").lco
+    assert s.launch_per_kg_leo == 185.0
+    assert s.mass_kg_per_kw == pytest.approx(10.0)
+    assert s.architecture_specs[
+        "aspirations.starmind_vehicle_efficiency_kw_per_tonne"] == 100.0
+    assert s.lco / earth == pytest.approx(0.7605, abs=5e-4)
+    assert "starmind_ai1_aspirational" in CASES
+    assert "starmind_ai1_aspirational" not in MONTE_CARLO_CASES
+
+
+def test_company_targets_alone_do_not_make_starmind_cheaper():
+    central = AnchorSet()
+    s = lco_space(
+        "starmind_ai1_aspirational",
+        a=AnchorSet(overrides={
+            "aspirations.starmind_qualification_multiplier":
+                central("compute.space_qual_multiplier"),
+            "aspirations.starmind_life_years":
+                central("compute.life_years_space"),
+            "aspirations.starmind_utilization":
+                central("compute.utilization_leo"),
+        }),
+    )
+    assert s.lco / lco_earth("base").lco == pytest.approx(1.8501, abs=5e-4)
+
+
+def test_orbital_ai_scale_exposes_cadence_requirement():
+    scale = orbital_ai_scale(100.0, 100.0, 100.0, 120.0)
+    assert scale["mass_tonnes"] == 1_000_000.0
+    assert scale["launches_per_year"] == 10_000.0
+    assert scale["launches_per_day"] == pytest.approx(27.38, abs=0.01)
+    assert scale["spacecraft_count"] == pytest.approx(833_333.33, abs=0.01)
+
+
 def test_breakeven_exact():
     e = lco_earth("base")
     be = breakeven_launch_price("leo_inference", e.lco)
     s = lco_space("leo_inference", launch_per_kg_leo=be)
+    assert s.lco == pytest.approx(e.lco, rel=1e-9)
+
+
+def test_breakeven_respects_life_override():
+    e = lco_earth("base")
+    a = AnchorSet(overrides={"compute.space_qual_multiplier": 1.2,
+                             "compute.utilization_leo": 0.95})
+    be = breakeven_launch_price("starmind_ai1", e.lco, a=a, life_years=7.0)
+    s = lco_space("starmind_ai1",
+                  a=AnchorSet(overrides={"compute.space_qual_multiplier": 1.2,
+                                         "compute.utilization_leo": 0.95}),
+                  launch_per_kg_leo=be, life_years=7.0)
     assert s.lco == pytest.approx(e.lco, rel=1e-9)
 
 

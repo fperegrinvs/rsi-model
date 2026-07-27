@@ -124,9 +124,18 @@ def lco_composition(spaces: dict[str, "SpaceLCO"], earths: dict[str, "EarthLCO"]
     for style, (scen, e) in zip(("-", "--", ":"), earths.items()):
         ax.axhline(e.lco, color="k", ls=style, lw=1.0,
                    label=f"Earth {scen} ({e.node})")
+    display = {
+        "leo_inference": "LEO",
+        "leo_inference_disposable": "LEO disposable",
+        "cislunar_batch": "cislunar",
+        "lunar_surface": "lunar",
+        "starmind_ai1": "AI1 current",
+        "starmind_ai1_disposable": "AI1 disposable",
+        "starmind_ai1_aspirational": "AI1 aspirational",
+    }
     ax.set_xticks(xpos)
-    ax.set_xticklabels(cases)
-    ax.set(title="Levelized cost of compute (central anchor values)",
+    ax.set_xticklabels([display.get(c, c) for c in cases])
+    ax.set(title="Levelized cost of compute (references + aspiration case)",
            ylabel="$ per frontier-equiv kW-yr")
     ax.set_yscale("log")
     ax.legend(fontsize=7, ncol=2)
@@ -140,8 +149,11 @@ def ratio_distributions(mcs: list, fname: str = "lco_ratio_mc.png") -> Path:
     """MC distribution of space/earth cost ratio per case x scenario."""
     fig, ax = plt.subplots(figsize=(8, 4.6))
     for mc in mcs:
+        arch = ("reuse" if mc.architecture == "serviceable_platform"
+                else "disposable")
         ax.hist(np.log10(mc.ratio_samples), bins=50, density=True, alpha=0.5,
-                label=f"{mc.case} vs {mc.scenario} (P(<1)={mc.p_space_cheaper:.2f})")
+                label=f"{mc.case}/{arch} vs {mc.scenario} "
+                      f"(P(<1)={mc.p_space_cheaper:.2f})")
     ax.axvline(0, color="k", lw=1.0)
     ax.set(title="Space/Earth cost ratio over anchored MC",
            xlabel="log10(space LCO / Earth LCO)", ylabel="density")
@@ -154,7 +166,7 @@ def ratio_distributions(mcs: list, fname: str = "lco_ratio_mc.png") -> Path:
 
 def crossover_contours(panels: dict[str, tuple[np.ndarray, np.ndarray, np.ndarray, str]],
                        published_band: tuple[float, float] = (1400.0, 4000.0),
-                       target_band: tuple[float, float] = (30.0, 150.0),
+                       target_band: tuple[float, float] = (30.0, 185.0),
                        fname: str = "crossover_surface.png") -> Path:
     """Each panel: (launch_prices, other_values, ratio_grid, ylabel).
     Contour space/earth ratio with the =1 crossover line; launch price on log x.

@@ -1,18 +1,23 @@
 cff-version: 1.2.0
 message: "If you use this model or cite its results, please cite it as below."
-title: "Recursive Industrial Intelligence — Third Edition companion model"
-version: r3.4.1
-date-released: 2026-07-27
+title: "Recursive Industrial Intelligence — Fourth Edition companion model"
+version: r4.0
 license: MIT
 repository-code: "https://github.com/fperegrinvs/rsi-model"
-doi: 10.5281/zenodo.21619447
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.21619447
+    description: "Concept DOI for all versions; not the r4.0 version DOI."
 authors:
   - family-names: Stern
     given-names: Leonardo
 abstract: >-
-  Multisector industrial-reproduction model (lexicographic maximin LP,
-  decomposed depreciation, vitamin-part stockpiles, minimum-cut-set and
-  retooling analysis) and Earth-space compute cost-crossover model,
-  companion to "Recursive Industrial Intelligence, Third Edition" (r3.4,
-  docs/). All structural coefficients are ASSUMPTION-class; results are
-  assumption-ensemble frequencies, not forecasts.
+  Multisector industrial-reproduction and Earth-space compute
+  cost-crossover models, plus an 18-sector, 17-material autonomous-bootstrap
+  model with seed sizing, task-resolved autonomy, gravity overhead,
+  construction and commissioning, source-transfer arcs, coupled
+  compute-intelligence growth, and debris-state stress tests, companion to
+  "Recursive Industrial Intelligence, Fourth Edition" (r4.0, docs/). All
+  structural coefficients are ASSUMPTION-class; optimized masses and
+  assumption-ensemble frequencies are scenario implications, not
+  measurements, probabilities, or forecasts.

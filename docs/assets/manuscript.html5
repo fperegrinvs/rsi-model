@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="$if(lang)$$lang$$else$en$endif$">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Leonardo Stern">
+  <meta name="description" content="A reproducible multisector feasibility and comparative-economics analysis of recursively expanding space industry.">
+$if(legacythird)$
+  <meta name="citation_title" content="Recursive Industrial Intelligence — Third Edition, revision 3.5">
+$else$
+  <meta name="citation_title" content="$if(citationtitle)$$citationtitle$$else$Recursive Industrial Intelligence$endif$">
+$endif$
+  <meta name="citation_author" content="Leonardo Stern">
+$if(legacythird)$
+  <meta name="citation_publication_date" content="2026-07-27">
+  <meta name="citation_doi" content="10.5281/zenodo.21619447">
+$else$
+$if(releasedate)$
+  <meta name="citation_publication_date" content="$releasedate$">
+$endif$
+$if(versiondoi)$
+  <meta name="citation_doi" content="$versiondoi$">
+$endif$
+  <meta name="dc.relation.isversionof" content="https://doi.org/10.5281/zenodo.21619447">
+$endif$
+  <!-- CANONICAL_LINK -->
+  <title>$if(pagetitle)$$pagetitle$$else$Recursive Industrial Intelligence$endif$</title>
+$for(css)$
+  <link rel="stylesheet" href="$css$">
+$endfor$
+$for(header-includes)$
+  $header-includes$
+$endfor$
+</head>
+<body>
+  <a class="skip-link" href="#manuscript">Skip to manuscript</a>
+  <div class="reading-progress" aria-hidden="true"><span></span></div>
+  <header class="masthead">
+    <span class="brand">Recursive Industrial Intelligence</span>
+    <span class="edition">$if(editionlabel)$$editionlabel$$else$Third Edition · r3.5$endif$</span>
+    <button class="toc-toggle" type="button" aria-controls="TOC"
+      aria-expanded="false">Contents</button>
+  </header>
+  <div class="publication-shell">
+$if(toc)$
+    <nav id="TOC" aria-label="Table of contents">
+      <h2>Contents</h2>
+      $table-of-contents$
+    </nav>
+$endif$
+    <main id="manuscript">
+$body$
+    </main>
+  </div>
+  <footer class="publication-footer">
+    $if(footerlabel)$$footerlabel$$else$Third Edition, revision 3.5 · generated from the canonical Markdown source$endif$
+  </footer>
+  <script>
+  (() => {
+    const bar = document.querySelector(".reading-progress span");
+    const button = document.querySelector(".toc-toggle");
+    const toc = document.getElementById("TOC");
+    const updateProgress = () => {
+      const max = document.documentElement.scrollHeight - innerHeight;
+      bar.style.width = (max > 0 ? (scrollY / max) * 100 : 0) + "%";
+    };
+    addEventListener("scroll", updateProgress, {passive: true});
+    addEventListener("resize", updateProgress, {passive: true});
+    updateProgress();
+    if (button && toc) {
+      button.addEventListener("click", () => {
+        const open = document.body.classList.toggle("toc-open");
+        button.setAttribute("aria-expanded", String(open));
+      });
+      toc.addEventListener("click", event => {
+        if (event.target.closest("a")) {
+          document.body.classList.remove("toc-open");
+          button.setAttribute("aria-expanded", "false");
+        }
+      });
+    }
+    document.querySelectorAll("table").forEach(table => {
+      if (!table.parentElement.classList.contains("table-wrap")) {
+        const wrapper = document.createElement("div");
+        wrapper.className = "table-wrap";
+        table.parentNode.insertBefore(wrapper, table);
+        wrapper.appendChild(table);
+      }
+    });
+    document.querySelectorAll('a[href^="http"]').forEach(link => {
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+    });
+
+    const sourceTargets = new Map();
+    document.querySelectorAll("p > strong:first-child").forEach(marker => {
+      const markerText = marker.textContent.trim();
+      const match = markerText.match(/\[S(\d+)\]/);
+      if (!match || match[0] !== markerText) return;
+      const id = "source-s" + match[1];
+      marker.parentElement.id = id;
+      sourceTargets.set(match[1], id);
+    });
+    const walker = document.createTreeWalker(
+      document.getElementById("manuscript"),
+      NodeFilter.SHOW_TEXT,
+    );
+    const sourcePattern = /\[S(\d+)\]/g;
+    const textNodes = [];
+    while (walker.nextNode()) textNodes.push(walker.currentNode);
+    textNodes.forEach(node => {
+      if (!sourcePattern.test(node.nodeValue)) {
+        sourcePattern.lastIndex = 0;
+        return;
+      }
+      sourcePattern.lastIndex = 0;
+      if (node.parentElement.closest("a, code, pre") ||
+          node.parentElement.closest("[id^='source-s']")) return;
+      const fragment = document.createDocumentFragment();
+      let last = 0;
+      for (const match of node.nodeValue.matchAll(sourcePattern)) {
+        fragment.append(node.nodeValue.slice(last, match.index));
+        const target = sourceTargets.get(match[1]);
+        if (target) {
+          const link = document.createElement("a");
+          link.className = "source-marker";
+          link.href = "#" + target;
+          link.textContent = match[0];
+          link.setAttribute("aria-label", "Go to source S" + match[1]);
+          fragment.append(link);
+        } else {
+          fragment.append(match[0]);
+        }
+        last = match.index + match[0].length;
+      }
+      fragment.append(node.nodeValue.slice(last));
+      node.replaceWith(fragment);
+    });
+  })();
+  </script>
+</body>
+</html>

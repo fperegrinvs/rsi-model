@@ -4,7 +4,7 @@
 
 *A self-sustaining, self-expanding space industrial system is coherent as an argument; whether it is feasible or economical is a question for models. This edition contains the argument and the executed models in one document.*
 
->> **Status.** Third Edition r3.4, assembled 2026-07-27. **Standalone:** this document carries the full argument and requires no prior edition; where earlier editions are mentioned, it is as intellectual history, not as a dependency. It incorporates the Second Edition's final correction pass (r2.11) in full. Every computed claim regenerates from the companion model repository [S28] via `scripts/run_baseline.py`, `run_part2.py`, and `run_deep.py` (35 tests); see Appendix C. Revision history in Appendix B.
+>> **Status.** Third Edition r3.4, assembled 2026-07-27. **Standalone:** this document carries the full argument and requires no prior edition; where earlier editions are mentioned, it is as intellectual history, not as a dependency. It carries forward the Second Edition's final correction pass (r2.11), including its supporting evidence, control requirements, development stages, falsifiable indicators, glossary, and source annotations, reorganized around the executed models. Every computed claim regenerates from the companion model repository [S28] via `scripts/run_baseline.py`, `run_part2.py`, and `run_deep.py` (35 tests); see Appendix C. Revision history in Appendix B.
 
 ## Scope and Status
 
@@ -44,7 +44,39 @@ Every computed number below carries its assumption-set label
 (conservative / central / optimistic); a result quoted without its set
 label is a misquotation.
 
+| evidential category | proposition or observation | current status |
+|---|---|---|
+| Documented | Mars-city objective; integrated energy and manufacturing programs; AI research mission; the S-1's off-world initiative list (P4a) | direct statements and regulatory filing |
+| Announced / partly advanced | Terafab, Intel participation, executed county agreements, and a named orbital-silicon line | declared initiative with unsettled implementation |
+| Technically grounded | ISRU, autonomous excavation, robotic construction, and the self-replicating-factory literature (P1/P2 pathway) | recognized engineering pathway; system closure undemonstrated |
+| Computed | industrial-substrate feasibility across named assumption sets (P2) and bridge-economy compute costs (P3a) | mechanical implications of assumption-class inputs, not measurements |
+| Inferred | the observed portfolio is intended to progress from integrated off-world industry to recursive closure (P4b) | strategic synthesis; closure-specific observables remain absent |
+| Speculative | a mature high-closure ecology reproduces advanced compute and obtains a structural economic advantage (P3b) | long-run hypothesis, not quantified here |
+
 ## Executive Summary
+
+This document develops a unified hypothesis: the deepest strategic value of
+advanced AI, reusable launch, energy systems, robotics, and automated
+manufacturing may lie in combining them into a recursively improving
+industrial system beyond Earth. The end state is not merely a rocket fleet,
+a settlement, a humanoid robot, or a frontier model, but a distributed
+industrial ecology able to sustain itself, expand productive capacity, and
+progressively reduce Earth dependence.
+
+> **Central proposition.** Once a space-based industrial system can obtain
+> local energy and materials, maintain its machinery, manufacture additional
+> productive equipment, and coordinate itself through AI, the primary
+> constraint shifts from acquiring terrestrial inputs to allocating
+> productive throughput over time.
+
+The framework contains two coupled loops. In the digital loop, AI improves
+software, research, engineering, evaluation, and coordination. In the
+physical loop, AI and robots improve mining, refining, power, manufacturing,
+construction, transport, and the production of additional compute. Each
+loop strengthens the other:
+
+    better intelligence → better automation → more productive capacity →
+    more compute → better intelligence
 
 The economic argument compresses to two walls and two escapes. The capital
 wall: expansion purchased through markets runs into scarcity pricing and
@@ -141,12 +173,17 @@ the least scalable part of the development system:
 — each conversion function turning its resource (compute, data,
 experimental throughput, verification capacity, deployment reliability)
 into verified loops per unit time. Efficiency is partly a function of
-intelligence, E(t) = f(I(t)), and the form of f — logarithmic, linear,
+intelligence, E(t) = f(I(t)): more capable systems may improve coding,
+architecture search, synthetic-data generation, hardware design, factory
+scheduling, scientific modeling, and evaluation design. The form of f — logarithmic, linear,
 superlinear, saturating — is unknown; a rigorous analysis identifies which
 regime observed loop completion supports rather than assuming takeoff.
 Public releases are lagging indicators; the strategically relevant measure
 is verified improvement loops per calendar time. The verification term V
 recurs in a second role as the governing safety constraint (Part III.4).
+Time-spaced releases nevertheless remain useful: they generate real-world
+feedback, revenue, reliability data, and operational learning. A release is
+part of the loop, but it is not the loop.
 
 ## I.2 Recursive industrial improvement: the physical loop
 
@@ -185,6 +222,48 @@ physical data is lead time, not permanence — any actor operating comparable
 fleets and factories generates comparable exhaust, at national scale in
 China's case.
 
+The public record supplies two applications of the same supplemental-training
+mechanism, which is evidence of an emerging pattern rather than proof of a
+repeatable one. In July 2026, days after an in-house engineering model was
+reported to have received a supplemental pass over the coding data of an
+acquired developer-tools company, Musk said that the SpaceX engineering
+corpus — excluding ITAR-controlled material — would enter supplemental
+training of its roughly two-trillion-parameter successor [S11–S13]. The
+relevant advantage is therefore not raw ownership alone:
+
+    D_advantage = f(uniqueness, causal linkage, coverage, quality,
+                    accessibility, integration, verification value)
+
+Generation is insufficient; the data must be integrated and attributable
+enough to train on. Tesla's first CIO has described building the custom Warp
+enterprise system in roughly four months in 2012 after the company rejected
+off-the-shelf ERP, then extending it continuously so operations could change
+without waiting on a vendor [S15]. SpaceX independently built its own internal
+manufacturing and enterprise system, Warp Drive [S16]. The convergence on the
+same build-don't-buy pattern is evidence that iteration speed, not a common
+brand name, drives the architecture.
+
+Commentary describes the resulting ideal as a **unified build record** for
+each produced unit: *as designed* (models and simulations), *as built*
+(supplier batches, process settings, torques, and factory tests), and *as
+deployed* (fleet telemetry). Integrated cross-functional data and
+over-the-air learning are independently documented; the exact tri-phase
+schema is only partially confirmed and is treated as indicative [S14–S17].
+Its analytical importance is the causal linkage from design intent through
+production parameters to field behavior — the quality dimension of κ_D.
+
+Scale proxies require disciplined interpretation. By mid-2026 the vehicle
+fleet had accumulated more than ten billion miles under supervised autonomy,
+against roughly 220 million fully driverless miles disclosed by another
+operator [S17, S30]. No valid conversion exists between those regimes, so the
+figures are not an advantage multiple. More informative disclosures concern
+structure: an occupancy network trained on 1.4 billion fleet video frames and
+an auto-labeling system replacing roughly five million hours of manual
+annotation [S17]. The aerospace analogue is thirteen heavy-lift flight tests
+by mid-2026: few observations, each with high information content [S31].
+These quantities demonstrate data generation and integration capacity, not
+autonomous industrial closure.
+
 ## I.3 Why space changes the cost structure
 
 On Earth, useful locations compete with communities, ecosystems,
@@ -196,6 +275,14 @@ maintaining matter through an automated production network:
 
     Earth: land + permits + construction + energy + materials + labor + coordination
     Space: transport + energy + extraction + refining + manufacturing + maintenance + coordination
+
+The land term declines sharply, but useful positions can remain scarce
+because of illumination, thermal conditions, communications geometry,
+orbital stability, resource proximity, political accessibility, and
+transport energy. The first system must still arrive, survive, obtain or
+import matter, reject heat, maintain operations, and replace failed
+equipment. Space removes neither scarcity nor cost; it changes their
+composition.
 
 The standard external objections — station-keeping, collision management,
 imported mass, maintenance, coordination — become *internal product
@@ -247,10 +334,24 @@ Effective survival includes installed redundancy, spare inventory, repair probab
 
 Self-sustaining (P ≥ D: replacing what is consumed and lost) and
 self-expanding (P > D: net additional capacity) are different milestones.
+
+    g_H = (P − D) / H
+
+P is productive capacity manufactured during the period, D is capacity lost
+or consumed, and g_H is the net growth rate of productive infrastructure H.
 Industrial closure measures how much of the critical input set is produced
 inside the network:
 
     κ = critical inputs produced internally / total critical inputs required
+
+At low closure, nearly all equipment arrives from Earth. At intermediate
+closure, local industry supplies propellant, shielding, structural material,
+tanks, roads, landing pads, and simple machines. At high closure, the network
+also supplies motors, sensors, precision tools, computers, robots, spacecraft,
+factory machinery, high-purity chemicals, and semiconductor equipment. The
+progression is descriptive, not a scalar score: the identity and
+replaceability of the residual imports determine whether the system is
+actually autonomous.
 
 The scalar form is vocabulary, not measure: a system supplying 99.9% of its
 mass locally has effectively zero autonomous closure if the residual 0.1%
@@ -260,7 +361,8 @@ contains irreplaceable electronics. The proper object is a vector —
 smallest combinations of imported inputs whose loss collapses the network.
 The clock-setting component is the scalar shadow of this vector structure.
 The hardest closure problem is the deep technological stack — precision
-metrology, advanced electronics, semiconductor fabrication, and the
+metrology, advanced electronics, semiconductor fabrication, optics,
+high-purity processing, specialized alloys, software verification, and the
 machines that make those machines (Part III.2 examines the first announced
 attempt on its terrestrial face).
 
@@ -289,22 +391,62 @@ lines that can be cut; the "explicit path" is the requirement matrix.
 ## I.6 Intelligence, coordination, and time
 
 A sufficiently capable AI converts much of organizational coordination from
-human management into a computational service — scheduling, allocation,
-routing, diagnosis, redesign, bottleneck selection. Coordination cannot
-reach zero: sensing, propagation latency, verification, and contention set
-a physical information floor. After high closure the central allocation
-question changes from "can the system obtain land, permits, workers,
-components?" to "how much productive throughput should be assigned, and
-when will output be complete?" — scarcity becomes latency, and the
-accounting unit shifts toward joules, kilograms, machine-hours, and
-completion time. In the mature regime, growth is bottleneck-limited:
+human management into a computational service: scheduling machines,
+allocating energy, routing materials, diagnosing failures, redesigning
+components, balancing inventories, planning construction, and selecting the
+next bottleneck to expand.
+
+    Coordination burden = f(number of agents, complexity, uncertainty,
+                            intelligence)
+
+As intelligence and local autonomy improve, human management per unit of
+infrastructure can decline. The likely architecture is hierarchical rather
+than perfectly centralized: local controllers manage fast operations;
+facility-level agents coordinate production; higher-level planners allocate
+resources across the network.
+
+An early terrestrial version is documented inside the same corporate
+ecosystem, though more weakly than some commentary claims. The confirmed
+systems provide real-time monitoring, production scheduling, quality
+management, and linked operational data at factory scale [S14–S17]. That is
+evidence that coordination functions traditionally mediated by human
+management are already becoming industrial data infrastructure. Claims that
+the systems replace management wholesale remain commentary-class and are not
+used here.
+
+Coordination cannot reach zero. Machines must sense their environment;
+signals require propagation time; fabrication and motion take time;
+uncertain results require verification; and two projects cannot consume the
+same indivisible machine or stored resource simultaneously:
+
+    Minimum coordination cost =
+        sensing + communication latency + verification + contention
+
+The strongest claim is therefore that coordination approaches a physical
+information floor, not zero. Intelligence compresses planning and management
+overhead until observation, propagation, actuation, and verification dominate.
+
+After high closure the central allocation question changes from "can the
+system obtain land, permits, workers, components?" to "how much productive
+throughput should be assigned, and when will output be complete?"
+
+    Infrastructure created by time t = ∫ productive throughput(τ) dτ
+
+Scarcity becomes latency: outputs remain scarce because machines, energy,
+compute, transport capacity, and time have alternative uses, but the
+accounting unit shifts toward joules, kilograms processed, machine-hours,
+compute-hours, delta-v, and completion time. In the mature regime, growth is
+bottleneck-limited:
 
     dH/dt = [r(I, E, M) − δ] H
 
-with intelligence accelerating growth by detecting and expanding the active
-bottleneck. The model below implements exactly this: the allocation LP *is*
-the coordination service, and the binding sector it reports each step *is*
-the active bottleneck.
+When r exceeds δ, the idealized solution is exponential growth; real
+systems instead move through phases in which extraction, refining, power,
+thermal control, transport, precision manufacturing, compute, or maintenance
+is slowest. Intelligence accelerates growth by detecting and expanding that
+active bottleneck. The model below implements exactly this: the allocation
+LP *is* the coordination service, and the binding sector it reports each
+step *is* the active bottleneck.
 
 ## I.7 The multisector model
 
@@ -480,17 +622,41 @@ dust-exposed radiators.
 
 ## I.9 Development path, annotated
 
-Stage 1 Earth-dependent operations → Stage 2 local resource
-supplementation → Stage 3 heavy-industry closure → Stage 4 advanced
-manufacturing closure → Stage 5 self-sustenance → Stage 6 self-expansion →
-Stage 7 intelligence-industry recursion. Terafab is best read as a
-terrestrial rehearsal of Stage 4 (Part III.2). The model adds stage
-warnings: the Stage 4→5 transition is where the vitamin gap binds — no
-amount of Stage 3 bulk closure substitutes for an electronics tier — and
-Stage 5 is location-dependent: LEO cannot pass it without
-materials-recovery recycling; Mars cannot pass it without either
-electronics stockpiles engineered to synodic shelf-life or a local
-electronics tier; the lunar surface has the widest viable corridor.
+1. **Earth-dependent operations.** Earth supplies vehicles, energy systems,
+   consumables, spares, electronics, and nearly all machinery; space assets
+   perform narrow missions.
+2. **Local-resource supplementation.** Local water, oxygen, shielding,
+   construction feedstock, and selected propellant inputs reduce imported
+   mass without yet closing the industrial loop.
+3. **Heavy-industry closure.** The network produces bulk metals, glass,
+   ceramics, structural parts, tanks, simple mechanisms, roads, pads, and
+   large power structures.
+4. **Advanced-manufacturing closure.** It adds motors, actuators, sensors,
+   precision tools, robots, spacecraft subsystems, computers, and factory
+   machinery. Terafab is best read as a terrestrial rehearsal of this stage
+   (Part III.2): advanced-manufacturing integration practiced on Earth before
+   any attempt to export it.
+5. **Self-sustenance.** Internal production replaces depreciation and
+   failure across every mission-critical category; Earth supply becomes
+   optional rather than load-bearing.
+6. **Self-expansion.** The system builds more mines, refineries, factories,
+   power systems, robots, transports, and compute than replacement requires.
+7. **Intelligence-industry recursion.** Additional compute improves
+   intelligence; improved intelligence raises industrial replication
+   efficiency; higher output creates still more compute.
+
+    I increases → replication efficiency increases → infrastructure
+    increases → compute increases → I increases
+
+The bridge economy maps onto the ladder: terrestrial products carry the
+early stages; launch and connectivity carry Stages 2–4; orbital compute is a
+candidate Stage 4–5 tread; and in-space industrial services carry Stages
+5–6. The model adds stage warnings. The Stage 4→5 transition is where the
+vitamin gap binds — no amount of Stage 3 bulk closure substitutes for an
+electronics tier. Stage 5 is location-dependent: LEO cannot pass it without
+materials-recovery recycling; Mars cannot pass it without electronics
+stockpiles engineered to synodic shelf life or a local electronics tier; the
+lunar surface has the widest viable corridor.
 
 ## I.10 Binding bottlenecks and failure modes
 
@@ -548,6 +714,11 @@ Earth, every watt not computed must be radiated, and radiator, PV, storage,
 and structure are launched mass, so a FLOPS/W advantage scales the entire
 power side per unit of delivered compute — efficiency and launch price
 enter the crossover multiplicatively, with a quantitative refinement below.
+This makes the popular framing of orbital compute as a launch-price race
+incomplete and supplies a thermodynamic rationale for internalizing chip
+*design*, not merely fabrication or supply security: the most efficient
+accelerator can tolerate a higher launch price because it carries less power
+and heat-rejection mass per useful computation.
 
 The terrestrial counterfactual **responds** — the epistemic requirement
 earlier editions missed. Three scenarios: *tight* prices scarcity (the
@@ -782,6 +953,17 @@ a shorter verified end-to-end loop across design → manufacture → deploy →
 learn. The closure race rewards the shortest such loop, not the largest
 stock of any single input.
 
+    xAI improves intelligence → AI improves robots and factories →
+    factories expand energy and hardware → Terafab expands chips →
+    hardware expands compute on Earth and in orbit → compute improves AI
+
+The advantage, if it exists, is the ability to integrate feedback, capital
+allocation, engineering, deployment environments, and industrial production
+into that shorter loop. Reported preparations for a SpaceX public offering
+would, if completed, add a financing event for the capital-intensive middle
+of the loop [S9, S27]; financing capacity is an enabler, not evidence of
+closure intent.
+
 ## III.2 Terafab and the fabrication frontier
 
 **What was announced**: a Tesla–SpaceX–xAI chip fabrication initiative
@@ -801,6 +983,17 @@ cost decomposition, and names lunar mass drivers as the next step. The
 divergence between site and filing is itself informative: a strongly
 space-oriented declared strategy resting on unsettled implementation.
 
+The implementation detail matters. Reporting describes a roughly $3B
+research fab producing a few thousand wafers per month before any scaled
+phase, with ambitions moving from about 100,000 wafer starts per month
+toward one million [S6–S10]. Those figures evidence intended scale, not
+comparable output: wafer starts cannot be compared with a foundry's global
+production without node, wafer diameter, product mix, yield, and effective
+die output. Planned products include AI5/AI6 chips for vehicles and robots
+and radiation-tolerant D3 silicon for orbital deployment; Optimus robots
+have been assigned a stated construction and operating role. Each remains a
+target rather than demonstrated capacity.
+
 **What it changes**: fabrication moves from missing term to declared
 target; the residual dependency moves one layer down (EUV lithography,
 deposition, etch, metrology, ultra-pure feedstocks — sole-supplier
@@ -816,6 +1009,15 @@ as the near-term chip constraints [S35], and HBM is what the Suncatcher
 radiation testing found most dose-sensitive [S32] — the same component
 class is the terrestrial scaling bottleneck and the space reliability weak
 point.
+
+**Terafab-specific observables.** The milestones that would change this
+assessment are: the first research-fab wafer and disclosed yield at any
+node; visible order flow from lithography, deposition, etch, and metrology
+suppliers; evidence that memory and advanced packaging are actually produced
+in-house rather than outsourced; radiation-qualified D3 silicon with
+disclosed orbital-compute unit economics; and definitive agreements that
+commit capital and counterparties. Industry skepticism is therefore a
+testable forecast, not a rhetorical counterweight [S10].
 
 ## III.3 Competing hypotheses: the evidence table
 
@@ -940,7 +1142,20 @@ requirements, and replication limits are cheapest to embed as licensing
 conditions during the bridge period. Closure does not end governance
 (communications, cryptographic authority, personnel, ownership, insurance,
 treaties, orbital traffic, trade remain), but the material handle is the
-one that closes. Design principle: replication authority should be the
+one that closes.
+
+A serious control architecture — beyond this document's scope but within
+its obligation to specify — requires hardware roots of authority;
+multi-party authorization for replication steps; explicit rate limits;
+compartmentalization and fault-containment zones; secure update and rollback
+channels; explicit cyberattack and insider-risk models; independent
+verification capacity; operator and government incentive analysis;
+jurisdiction and liability rules; and failure recovery when communications
+with Earth are unavailable. These are named requirements, not solved
+problems. They must be tested under the same loss-of-import, shock, and
+degraded-communications conditions used to test the production system.
+
+Design principle: replication authority should be the
 most verified and least autonomous function in the system — positioned
 deliberately against the efficiency gradient, embedded at the seed stage,
 because it cannot be retrofitted onto a mature complex.
@@ -967,6 +1182,36 @@ The indicators now carry expected likelihood ratios informed by the models:
 8. **Terafab executed definitive agreements with committed capital**
    — weak-to-moderate (upgrades E7 from framework to program; hedging inside H0 still predicts it).
 
+The ranking above asks which observations discriminate among H0, H1, and
+H2. A second set asks whether the physical thesis is becoming feasible at
+all. These lower-likelihood-ratio but still necessary indicators from the
+Second Edition are retained:
+
+- robots performing unscripted maintenance, construction, mining, and
+  machine tending for long periods with limited human intervention;
+- local production of propellant, structural material, and replacement
+  parts at operational rather than laboratory scale;
+- factories using locally processed feedstock to manufacture additional
+  power, extraction, and production equipment;
+- a measured decline in imported mass per unit of local productive
+  capacity, reported by component class rather than as an aggregate mass
+  fraction;
+- space-manufactured compute, or production equipment capable of making it;
+- net positive industrial reproduction after depreciation — P > D in every
+  indispensable sector — with published r and δ estimates by component
+  class;
+- the Terafab-specific milestones in III.2: first wafer and yield, process
+  equipment orders, in-house memory and packaging, qualified D3 silicon,
+  orbital-compute revenue, and a measured robot reproduction ratio;
+- open-weight systems demonstrating sustained autonomous verified
+  improvement loops — evidence for the threshold-like branch in II.5 — and,
+  separately, fleet- and factory-owning actors outperforming open models on
+  engineering tasks in a way attributable to proprietary process data; the
+  contrary result would show that κ_D does not bind;
+- a sustained measured decline in cost per verified improvement loop, and
+  replication-relevant conditions appearing in launch licences or
+  export-control terms while material leverage still exists.
+
 Threshold observations that would move Appendix A: a demonstrated ISRU
 plant above ~50% full-system materials closure; audited robot production
 figures; an independent satellite-failure audit diverging from ~2.5–3%; and
@@ -980,6 +1225,42 @@ devolves into design-and-packaging dependent on external front-end
 fabrication, which would reopen the fabrication term entirely.
 
 ## III.6 Refined complete thesis
+
+The coherent end state remains a recursively self-expanding space industrial
+ecology. Reusable rockets transport an initial seed. AI supplies scientific,
+engineering, and coordinating intelligence. Robots provide scalable physical
+labor. Local energy systems supply power. Mining and refining convert
+extraterrestrial matter into industrial feedstocks. Automated factories
+produce structures, machines, robots, transport vehicles, energy systems,
+and — if the electronics tier can close — compute. Communications integrate
+specialized nodes into one economic and operational network.
+
+The network first reduces Earth dependence, then reaches self-sustenance,
+and finally produces net additional capacity. At high closure,
+station-keeping, collision management, maintenance, transport, and
+coordination remain real requirements; they are supplied by industries
+inside the network rather than purchased as externally scarce services.
+
+    matter + energy + intelligence + time → expanding productive capacity
+
+Recursive self-improvement is therefore not limited to software.
+Intelligence improves the machinery and institutions that create
+intelligence; the industrial substrate returns energy, compute, data,
+experimentation, and physical agency to the intelligence layer. The
+ultimate product is an industrial system capable of producing more of
+itself.
+
+The most precise formulation now available is conditional and
+model-separated. Current evidence substantially supports deliberate
+integrated space–AI–industrial development (P4a), but not an intended
+transition to recursive closure (P4b). The industrial model finds expansion
+under some assumption sets and failure under others, with electronics and
+feedstock dependencies localized by architecture; it does not establish the
+complete intelligence–industry recursion. The comparative-economics model
+finds the Earth-dependent bridge uneconomic at anchored values and does not
+price the mature high-closure ecology. Capability accumulation is observed;
+positive off-world industrial reproduction and a unified closure strategy
+are not.
 
     I(t+1) = I(t) + f(C, D, V, H)
     H(t+1) = H(t) + g(I, E, M, R) − δ_env · H(t)
@@ -995,11 +1276,28 @@ system; Part I computes when that condition holds *for the industrial
 half*, as a function of assumptions that are now named, bounded, and
 priced. The f and h functions — the intelligence and compute terms — remain
 unspecified; making them operational is the Fourth Edition's frontier,
-subject to the takeoff-speed caveat of II.5. What the thesis does not
-claim is unchanged: no assertion that the companies are managed as one
-program (III.3's evidence table is the assessment), no assertion that
-closure is imminent (I.8's distributions are the assessment), and no
-assertion that space is currently economical (II.3 is the assessment).
+subject to the takeoff-speed caveat of II.5.
+
+**What the thesis does not claim**
+
+- It does not establish that the companies are managed under one
+  confidential master plan; III.3 assesses the public evidence.
+- It does not imply that energy, matter, infrastructure, coordination, or
+  opportunity cost become literally free.
+- It does not assume intelligence automatically solves semiconductor
+  fabrication, reliability, verification, governance, or safety.
+- It does not require every industrial node to be self-contained; closure
+  can exist at network level.
+- It does not require uninterrupted exponential growth; the system can move
+  through bottleneck-limited regimes and can double before later losing
+  viability.
+- It does not claim Terafab will achieve viable yields or off-world
+  fabrication closure; it is a declared terrestrial attempt whose
+  implementation remains unsettled.
+- It does not claim a slow takeoff is certain; the physical-path thesis is
+  conditional on the slow-to-medium branch in II.5.
+- It does not claim that closure is imminent, that the model frequencies are
+  empirical probabilities, or that space compute is economical today.
 
 ---
 
@@ -1040,6 +1338,15 @@ compute-for-fixed-language-performance only. Under sustained compounding,
 distances that look like centuries become decades — *whether the
 compounding is sustained is precisely what is unknown*.
 
+The two regimes can be stated as marginal cost curves. On Earth, the
+marginal cost of the n-th node can rise as the operator bids up land,
+congests grids, and encounters political and thermal limits. In space,
+*after closure*, the marginal cost can fall through learning and
+self-replication. One curve rises and the other falls; their crossover is
+the migration point, and it moves earlier as launch cost declines, closure
+improves, equipment life lengthens, or qualification premiums fall. Part II
+shows that the curves do not cross at the anchored bridge-economy values.
+
 > **Model check.** The cost-curve claim — Earth's marginal node rises with
 > n, space's falls with n after closure — is the crossover surface, and at
 > anchored values the curves do not cross. The scenario needs three
@@ -1075,6 +1382,16 @@ energy, labor, transport, and materials are less paradigm-sensitive —
 substantially reusable, not immune. The fleet self-insures through its own
 3–6-year depreciation; the fab carries the stranding risk — the penalty of
 taking the lead.
+
+General-purpose robotic manufacturing is a partial hedge because it is the
+industry that builds industries: after a paradigm shift, the cheapest
+retrofitter may be the actor able to build the next fab faster than a rival
+builds its first. The corresponding strategy is to verticalize the less
+paradigm-sensitive layers aggressively, preserve hardware generality and
+retooling capacity at the paradigm-specific layer, and track retooling speed
+alongside doubling time. The model check below shows that this hedge must be
+pre-positioned; it cannot be improvised after a catastrophic electronics
+loss.
 
 > **Model check.** The paradigm-sensitivity split maps onto the model's
 > sector structure: a shift perturbs the electronics column of the
@@ -1178,6 +1495,8 @@ exists only as a computed output distribution (Part I.8), set-labeled.
 | Demonstrated lunar O₂ yield | ~20 %, TRL 5/6 | technical_report [S21] | full-system closure undemonstrated |
 | Vitamin import fraction | 4–10 % | technical_report [S23] | CP-2255 residual |
 | **Space electronics q-scale** | **0.10–0.30** | **ASSUMPTION** | **the vitamin gap — the results-driving unanchored number** |
+| Fleet data scale | >10B supervised miles; ~220M fully driverless miles at another operator | company_statement [S17, S30] | no conversion between regimes; not an advantage multiple or a model input |
+| Heavy-lift flight tests | 13 through mid-2026 | reporting [S31] | low-volume, high-information development proxy; not a capacity or reliability input |
 
 ## A.4 Comparative-economics budgets (Part II)
 
@@ -1236,7 +1555,11 @@ from the strategy table to external cross-checks; III.5 indicators made
 ordinal; governance leverage architecture-conditioned; hiring-corpus
 cross-check marked provisional; "probabilistic minimum cut" replaced by
 ensemble-frequency language; stale r3.2 numbers, cross-references, test
-counts, and register fixes throughout.
+counts, and register fixes throughout. A final carry-forward audit restored
+r2.11's physical-data evidence, coordination architecture, detailed control
+requirements, seven-stage roadmap, feasibility indicators, contextual
+anchors, full glossary, and annotated source record without reverting any
+of the Third Edition's model-based corrections.
 **3.3** — methods-and-consistency pass against external
 review: Executive Summary reconciled with the results tables (per-location
 binding statement; conservative sets mostly fail rather than fail
@@ -1401,94 +1724,466 @@ rec=recycling).
 
 # Glossary
 
-**Recursive self-improvement (RSI)**: a process in which an intelligent
-system contributes to producing a more capable successor. **Industrial
-closure (κ)**: the degree to which a production network internally supplies
-the critical inputs required for its own operation — a vector, not a
-scalar. **Closure engineering**: the quantitative discipline, from the 1980
-summer study, of accounting for every input a replicating system must
-produce or import. **Self-sustaining / self-expanding**: replacing consumed
-capacity / producing net additional capacity. **Industrial seed**: a
-compact initial system intended to grow into a local production network.
-**Clock-setting component**: the component with the shortest replacement
-horizon that cannot yet be produced or stockpiled locally. **Vitamin gap**:
-the unclosable fraction of electronics output — this document's binding
-unknown. **Maximin growth rate g**: the worst-case sector growth rate the
-allocation program maximizes. **Minimum cut set**: a minimal set of
-imported inputs whose loss prevents self-expansion. **Assumption set**: a
-named, complete collection of ASSUMPTION-class structural coefficients.
-**Anchor**: a published, source-classed range sampled by Monte Carlo.
-**Computed**: derived mechanically from stated assumptions by the open
-model; inherits the class of its weakest input.
+**Recursive self-improvement (RSI):** a process in which an intelligent
+system contributes to producing a more capable successor.
+
+**Industrial closure (κ):** the degree to which a production network
+internally supplies the critical inputs required for its own operation. The
+proper object is a sector vector with criticality and substitutability, not a
+single mass fraction.
+
+**Closure engineering:** the quantitative discipline, originating in the
+1980 NASA/ASEE summer study, of accounting for every input a replicating
+industrial system must produce or import.
+
+**Self-sustaining:** able to replace consumed and depreciated productive
+capacity without an essential external supply.
+
+**Self-expanding:** able to produce net additional productive capacity after
+replacement, repair, and losses.
+
+**Industrial seed:** a compact initial system intended to grow into a broader
+local production network.
+
+**Clock-setting component:** the component with the shortest effective
+replacement horizon that cannot yet be produced, repaired, substituted, or
+stockpiled locally; it bounds the survival time of the partially closed
+system.
+
+**Replication time:** the time a production network needs to reproduce a
+unit of productive capacity. It is unknown as a measurement here and appears
+only as a set-labeled model-output distribution.
+
+**Bridge economy:** the sequence of independently financeable products and
+services that carries the system through the capital-intensive stages before
+closure.
+
+**ISRU:** in-situ resource utilization — obtaining and using materials at the
+mission destination rather than importing every supply from Earth.
+
+**Productive throughput:** the rate at which a system converts energy,
+materials, compute, and machine time into useful output.
+
+**Distributed industrial ecology:** a network of specialized, mutually
+dependent production nodes whose combined input-output graph is
+self-sustaining or self-expanding.
+
+**Scarcity becomes latency:** the proposition that, after high closure, the
+principal limit on many outputs becomes production allocation and completion
+time rather than external purchase price. Opportunity cost remains.
+
+**Von Neumann replicator:** a machine system capable of constructing a
+functional copy of itself from available materials; the formal category to
+which a fully closed industrial complex belongs.
+
+**Terafab:** the chip-fabrication initiative announced in March 2026 by
+Tesla, SpaceX, and xAI and joined by Intel in April, targeting advanced AI
+chips including radiation-tolerant orbital silicon. The S-1 describes a
+general framework with unsettled implementation, not a demonstrated fab or
+legally constituted joint venture [S27].
+
+**Society-priced costs:** operating inputs priced substantially through human
+institutions rather than physical conversion alone — land, permitting,
+interconnection, litigation, and political consent. Space relocates these
+costs toward gateways such as launch, spectrum, liability, and treaty rather
+than abolishing them.
+
+**Threshold-model argument:** the proposition that once a base model crosses
+the capability needed to run verified improvement loops, a smarter starting
+model may confer only a transient head start and durable advantage may shift
+toward hardware doubling time and industrial closure. This is the small-α
+branch of II.5, not an established law.
+
+**Architectural convergence:** the point at which the marginal value of
+another design improvement falls below that of another deployed node.
+Beyond it, growth is increasingly deployment-limited.
+
+**Paradigm-sensitivity split:** the division between less
+paradigm-sensitive layers — energy, labor, transport, and bulk materials —
+and the more paradigm-specific fabrication layer, where stranding and
+leapfrog risk concentrate.
+
+**Retooling speed:** the time a manufacturing complex needs to reconfigure
+for a new technological paradigm. Alongside hardware doubling time, it is a
+first-class competitive and resilience metric.
+
+**Physical-process data:** training-relevant data generated by operating
+physical industry — telemetry, process settings, intervention records,
+failures, and fleet or manipulation traces.
+
+**Data-advantage index (κ_D):** an index over uniqueness, causal linkage,
+coverage, quality, accessibility, integration, and verification value.
+Total training-relevant data has no measurable denominator, so κ_D is not a
+closure ratio.
+
+**Unified build record:** a per-unit data structure linking design intent
+(*as designed*), production parameters (*as built*), and operational
+telemetry (*as deployed*), making physical-process data causally trainable.
+
+**Vitamin parts:** the residual imported microelectronics, bearings,
+precision instruments, catalysts, or other high-complexity inputs that
+resist local production. The term comes from the 1980 closure literature.
+
+**Vitamin gap:** in this model, the unclosable fraction of the electronics
+sector's output mix — the results-driving unknown sampled through the space
+electronics q-scale.
+
+**Coasean boundary:** the organizational boundary at which internal
+coordination costs equal market transaction costs. AI can lower both sides,
+so the direction in which the efficient boundary moves is empirical.
+
+**Gateway leverage:** enforceable governance authority concentrated at
+dependencies such as launch, spectrum, export control, finance, communications,
+cryptographic authority, and trade. Its material component follows
+criticality, substitutability, stockpile, supplier concentration, and
+enforceability — not the scalar expression (1 − κ).
+
+**Minimum cut set:** a smallest combination of imported inputs whose loss
+prevents self-expansion.
+
+**Likelihood ratio of evidence:** how much more expected an observation is
+under one hypothesis than under a competitor. Part III uses ordinal
+diagnosticity rather than numerical multiplication because evidence items are
+correlated and observability is uncertain.
+
+**Maximin growth rate g:** the worst-case sector growth rate maximized by the
+allocation program, ensuring that aggregate growth cannot hide collapse in
+an indispensable sector.
+
+**Assumption set:** a named, complete collection of ASSUMPTION-class
+structural coefficients used together in a model run.
+
+**Anchor:** a published, source-classed range sampled by Monte Carlo; an
+anchor constrains an input without converting it into a measurement of the
+whole system.
+
+**Computed:** derived mechanically from stated assumptions by the companion
+model. A computed result inherits the epistemic class of its weakest input.
 
 # Sources
 
-Second Edition numbering retained; [S35] is new in this edition.
+Second Edition numbering is retained through [S27]. The executed companion
+model occupies [S28], so the former [S28–S33] sources appear here as
+[S29–S34]; [S35] is the new external fast-takeoff/capital-mobilization
+cross-check, and the former collective source [S34] becomes [S36]. The
+Second Edition's planned-analysis entry [S35] is superseded by the executed
+model at [S28].
 
-**Primary statements.** [S1] SpaceX, "Mars & Beyond." [S2] Tesla, "Master
-Plan Part 3." [S3] xAI, company mission. [S4–S5] NASA, ISRU and lunar
-surface technology overviews.
+## Primary statements
 
-**2026 developments.** [S6] Reuters (Mar 14, 2026): Terafab launch, AI5,
-fab partnerships. [S7] CBS News (Mar 23, 2026): the Austin announcement.
-[S8] Proactive Investors (Mar 2026): 2-nm target, dual terrestrial/space
-lines, 2028 goal. [S9] CNBC (May 6, 2026): filing-based cost ceiling
-(~$119B), research fab, SpaceX lead role. [S10] Teslarati/Electrek
-(Mar 2026): venture structure, SpaceX–xAI merger, D3 line, skepticism.
-[S11] SpaceXAI, "Introducing Grok 4.5" (Jul 2026) with Axios coverage:
-in-house engineering model. [S12] VentureBeat/Northflank (Jul 2026): Kimi
-K3, 2.8T-parameter open weights near the frontier. [S13] Public statements
-(Jul 2026): SpaceX engineering corpus (ex-ITAR) entering supplemental
-training. [S14] Connecting The Dots (commentary; corroborated core only).
-[S15] Jay Vijayan interviews: Tesla's Warp ERP. [S16] Stack Overflow
-engineering blog (2021): SpaceX's Warp Drive. [S17] Tesla AI Day
-(2021–22): occupancy network, 1.4B frames, auto-labeling.
+**[S1]** SpaceX, ["Mars & Beyond: A City on
+Mars"](https://www.spacex.com/humanspaceflight/mars).
 
-**Parameter literature.** [S18] Jordan et al., Progress in Photovoltaics
-24(7), 2016. [S19] GEO telemetry study, Int. J. Space Science and
-Engineering, 2018. [S20] Fraunhofer ISE PV Report (2026); Bhandari et al.,
-RSER 47, 2015. [S21] MOXIE results, Science Advances 2022; NASA carbothermal
-reports 2024–25. [S22] Independent satellite tracking (J. McDowell), 2020–2026: constellation deorbit and status statistics; cohort-dependent, separating early deorbit, uncontrolled decay, retirement, and disposal — fleet fractions, not hazard rates.
+> SpaceX states that establishing a self-sufficient city on Mars requires
+> large-scale cargo and population transfer.
 
-**Closure engineering.** [S23] NASA CP-2255, *Advanced Automation for Space Missions*, 1980: a proof-of-principle self-replicating lunar factory from a ~100-ton seed; a one-year **strawman** replication target with component values described as crude estimates; 90–96% closure cited from earlier studies of specific **nonreplicating** production applications; rigorous demonstration of complete parts closure explicitly outside scope. [S24] Freitas & Merkle, *Kinematic Self-Replicating
-Machines*, 2004.
+**[S2]** Tesla, ["Master Plan Part
+3"](https://www.tesla.com/master-plan-part-3).
 
-**Economics and progress rates.** [S25] Coase, "The Nature of the Firm,"
-1937. [S26] Epoch AI (Ho et al.), "Algorithmic Progress in Language
-Models," 2024.
+> Tesla outlines a proposed path to a sustainable global energy economy
+> through electrification, renewable generation, and storage.
 
-**Corporate and orbital-compute record.** [S27] SpaceX Form S-1 (filed May
-20, 2026) and related offering material, including the Rule 433
-free-writing prospectus, SEC accession 0001628280-26-040610 (the source of
-the initiative-list quotations in E6; page-level cites to be pinned at
-archival): Terafab as unsettled framework; orbital data-center plans; chip
-shortfall; ~1,000 automated collision-avoidance maneuvers/day. [S28] Companion simulation program — this edition's model repository: https://github.com/fperegrinvs/rsi-model (release `r3.4.1`; DOI 10.5281/zenodo.21619447; Appendix C). Listed for reproducibility, not as evidence: it computes the consequences of stated assumptions and supports no claim on its own authority. [S29] Terafab official site (accessed Jul 2026):
-Kardashev framing, scaling figures, AI5/AI6/D3, Earth-vs-space cost
-decomposition, lunar mass drivers — declared intent, not commitment.
-[S30] Waymo safety disclosures, 2026. [S31] Heavy-lift flight-test
-reporting, 2026. [S32] B. Agüera y Arcas, T. Beals, M. Biggs, J. V. Bloom, T. Fischbacher, K. Gromov, U. Köster, R. Pravahan, J. Manyika (Google), "Towards a future space-based, highly scalable AI infrastructure system design," arXiv:2511.19468 (v1 22 Nov 2025; **v2 17 Jun 2026**, the version carrying the detailed figures cited here), with the accompanying Project Suncatcher blog post: 67 MeV proton-beam testing of a Trillium TPU v6e (**HBM most TID-sensitive**, irregularities from 2 krad(Si) against a 750 rad(Si) five-year requirement, no hard TID failures to 15 krad(Si); **core logic and on-chip SRAM most SEE-sensitive**; inference error probability ~1 per 3×10⁶ inferences under stated assumptions; training impact reserved); an 81-satellite, 1 km-radius cluster at ~650 km in dawn-dusk sun-synchronous orbit; free-space optical links demonstrated at 800 Gbps unidirectional against a ~10 Tbps per-link requirement; and a launch-cost analysis the authors twice state is **not** a full economic analysis, comparing amortised launch cost per kW-yr ($810 Starlink-v2-class, $810–7,500 across classes at $200/kg) with terrestrial **electricity spend** ($570–3,000/kW-yr), excluding infrastructure, building, and chip costs. Reaching ≲$200/kg by ~2035 requires ~370,000 t additional cumulative mass (~1,800 Starship-class flights, ~180/yr). Thermal management, ground communications, and on-orbit reliability and repair named unsolved; orbital repair called impracticable, redundant provisioning proposed. [S33] SpaceNews / Via
-Satellite / DCD orbital-compute coverage, 2025–26: Google–Planet
-partnership, two prototype satellites by early 2027. [S34] Will Marshall
-(co-founder and CEO, Planet Labs), interviewed on the Moonshots podcast
-with P. Diamandis and colleagues, episode #266, published 2026-06-26; full
-transcript with per-paragraph timestamps archived at
-`docs/transcripts/moonshots-266-2026-06-26.md` (launch-tax-vs-compute-tax
-at 0:00:22 and 1:17:49; the Google/Planet "$200–300/kg" study recollection
-at 0:52:07): launch tax vs compute
-tax; decay-life-matches-obsolescence; payload cost-performance; archive
-irreproducibility; finite-demand possibility; biosphere telos; the
-$200–300/kg study recollection. Recollections and projections unverified.
-[S35] L. Aschenbrenner, *Situational Awareness: The Decade Ahead*, June
-2024 (archived at `docs/sources/`): trillion-dollar-cluster trajectory;
-power as binding constraint resolved via natural gas ($0.04–0.06/kWh floor,
-politically conditional); CoWoS/HBM as chip bottlenecks; fast-takeoff
-thesis; capital-mobilization reference classes. Analyst estimates.
-[S36] Assorted company disclosures, industry reporting, and technical
-literature used in Appendix A.4 and `params/anchors.yaml`, cited
-collectively because no single permanent identifier applies: launch price
-sheets (2024–26); flexible-array and deployable-radiator performance
-literature; accelerator system pricing and refresh-cycle reporting;
-AI-optimized data-center capex and PUE reporting (2025–26); nuclear
-restart PPA reporting (2024). Each `anchors.yaml` entry names its own
-class and note; rows are auditable against the archived sources in
-`docs/sources/` and `docs/transcripts/` where applicable.
+**[S3]** xAI, ["Company: Accelerating Scientific
+Discovery"](https://x.ai/company).
+
+> xAI describes its mission as accelerating scientific discovery and
+> extending what humanity can know and do.
+
+**[S4]** NASA, ["Overview: In-Situ Resource
+Utilization"](https://www.nasa.gov/overview-in-situ-resource-utilization/).
+
+> NASA describes technologies for using destination resources to produce
+> water, fuel, supplies, and construction capability.
+
+**[S5]** NASA, ["Lunar Surface
+Technology"](https://www.nasa.gov/lunar-surface-technology/).
+
+> NASA identifies ISRU, excavation, infrastructure construction, power,
+> robotics, and autonomy as key lunar capabilities.
+
+## Reporting and records of the 2026 developments
+
+**[S6]** Reuters (via Yahoo Finance), March 14, 2026, "Musk says
+Tesla's mega AI chip fab project to launch in seven days."
+
+> Confirms the Terafab name, AI5 program, existing TSMC and Samsung
+> partnerships, and earlier remarks about a possible Intel collaboration.
+
+**[S7]** CBS News, March 23, 2026, "What is Elon Musk's Terafab chip
+project?"
+
+> Summarizes the Austin announcement and the stated purpose of supplying
+> chips for vehicles, spacecraft, and Optimus robots.
+
+**[S8]** Proactive Investors (via Yahoo Finance), March 2026, "Musk says
+Tesla, SpaceX to build $20B Terafab chip plant in Texas."
+
+> Reports the 2-nm target, terrestrial and space chip lines, and the stated
+> 2028 mass-production goal.
+
+**[S9]** CNBC, May 6, 2026, "Elon Musk's Terafab chip factory in Texas
+could cost up to $119 billion, filing shows."
+
+> Reports the filing-based cost ceiling, the roughly $3B research fab,
+> SpaceX's lead role in the scaled phase, and public-offering preparations.
+
+**[S10]** Teslarati and Electrek, March 22, 2026, launch coverage and
+critical commentary.
+
+> Together report the proposed venture structure, the SpaceX–xAI merger,
+> D3 orbital chip line, wafer-start ambitions, the Optimus construction
+> role, and skeptical assessments of feasibility. Later primary-source
+> corrections in [S27] control where the reports conflict with the filing.
+
+**[S11]** SpaceXAI, "Introducing Grok 4.5," July 2026, with
+contemporaneous Axios coverage.
+
+> Documents an in-house engineering-focused model trained in SpaceXAI data
+> centers, its use in internal engineering work, and reporting on
+> engineering data entering later training runs.
+
+**[S12]** VentureBeat and Northflank, July 2026, coverage of Moonshot AI's
+Kimi K3 release.
+
+> Reports a 2.8-trillion-parameter open-weight model benchmarking near the
+> proprietary frontier on agentic and coding tasks. Used as evidence of
+> benchmark compression, not of an autonomous-R&D threshold.
+
+**[S13]** Public statements and reporting, July 2026 (Teslarati, Yahoo
+Tech, and contemporaneous posts on X), on SpaceX engineering data entering
+a roughly two-trillion-parameter supplemental training run.
+
+> Musk states that the engineering corpus, excluding ITAR-restricted
+> material, will enter supplemental training of the next in-house model —
+> the same broad mechanism previously used with acquired coding data.
+
+**[S14]** *Connecting The Dots* video commentary, 2026, on Tesla's
+internal engineering systems.
+
+> Commentary-class source. Its integrated-systems core is corroborated by
+> [S15–S17]; unconfirmed claims of a "Tesla One" brand and a specific
+> manufacturing-CAD AI are excluded from the document's factual claims.
+
+**[S15]** Jay Vijayan, on-record interviews and profiles (*The Neon Show*,
+Indiaspora, and *Forbes India*).
+
+> Tesla's first CIO describes building the custom Warp enterprise system
+> in roughly four months in 2012 after rejecting off-the-shelf ERP, and its
+> continuous extension thereafter.
+
+**[S16]** Stack Overflow engineering blog, "Building the software that
+helps build SpaceX," 2021, with corroborating former-engineer accounts.
+
+> Documents SpaceX's internal Warp Drive enterprise and manufacturing
+> systems.
+
+**[S17]** Tesla AI Day presentations, 2021–2022.
+
+> First-party documentation of fleet-learning infrastructure: an occupancy
+> network trained on 1.4 billion fleet frames and auto-labeling replacing
+> roughly five million hours of manual annotation. Later fleet-mile totals
+> are company statements and are not converted into driverless-mile
+> equivalents.
+
+## Parameter literature
+
+**[S18]** D. Jordan et al., "Compendium of Photovoltaic Degradation
+Rates," *Progress in Photovoltaics* 24(7), 2016.
+
+> Meta-study of more than 11,000 measured degradation rates; terrestrial
+> crystalline-silicon median approximately 0.5–0.6% per year.
+
+**[S19]** Peer-reviewed telemetry study of solar-array degradation across
+eleven GEO satellites, *International Journal of Space Science and
+Engineering*, 2018.
+
+> Reported degradation ranges are approximately 0.44–1.03% per year for
+> gallium-arsenide arrays and 0.71–1.69% for silicon arrays. This anchors
+> one component class, not system-wide industrial depreciation.
+
+**[S20]** Fraunhofer ISE, *Photovoltaics Report* (2026 update); Bhandari
+et al., *Renewable and Sustainable Energy Reviews* 47, 2015.
+
+> Energy-payback estimates of roughly 0.9–1.1 years in Europe and a
+> harmonized 1.0–4.1-year range across technologies. These do not measure
+> reproduction of the production system.
+
+**[S21]** M. Hecht, J. Hoffman et al., MOXIE results, *Science Advances*,
+2022; NASA NTRS carbothermal ISRU reports, 2024–2025.
+
+> Oxygen produced on Mars at gram-per-hour scale at at least 98% purity;
+> lunar oxygen extraction demonstrated at approximately 20% yield and TRL
+> 5/6. Neither is a full-system closure demonstration.
+
+**[S22]** Independent satellite tracking and reporting by J. McDowell,
+Harvard-Smithsonian CfA, 2020–2026.
+
+> Constellation deorbit and status statistics. Reported fractions near 3%
+> for early generations fall below 0.5% for later ones, and the tracker
+> separates early deorbit, uncontrolled decay, retirement, and disposal.
+> Without cohort, observation interval, and satellite-years, these are
+> fleet fractions rather than hazard rates.
+
+## Closure-engineering literature
+
+**[S23]** NASA, *Advanced Automation for Space Missions* (NASA CP-2255),
+1980 NASA/ASEE summer study.
+
+> Designs a proof-of-principle self-replicating lunar factory from a
+> roughly 100-ton seed. It adopts a one-year **strawman** replication target
+> whose component values it calls crude estimates; cites 90–96% closure
+> from earlier studies of specific **nonreplicating** production
+> applications; and places rigorous demonstration of complete parts closure
+> outside its scope. These are design assumptions and plausibility
+> arguments, not demonstrated performance.
+
+**[S24]** R. A. Freitas Jr. and R. C. Merkle, *Kinematic
+Self-Replicating Machines*, Landes Bioscience, 2004.
+
+> Comprehensive survey of the design space for physical self-replicating
+> systems.
+
+## Economics and progress-rate literature
+
+**[S25]** R. H. Coase, "The Nature of the Firm," *Economica* 4(16), 1937.
+
+> Transaction-cost account of firm boundaries used in II.5's
+> integration-versus-modularity analysis.
+
+**[S26]** Epoch AI (Ho et al.), "Algorithmic Progress in Language Models,"
+2024.
+
+> Estimates that compute required for fixed language-model performance
+> halves roughly every eight months. The resulting approximately
+> threefold-per-year rate does not license extrapolation to autonomous
+> research or physical productivity.
+
+## Primary regulatory filing and model provenance
+
+**[S27]** SpaceX, Form S-1 registration statement filed with the U.S.
+Securities and Exchange Commission on May 20, 2026, and related offering
+material, including the Rule 433 free-writing prospectus, SEC accession
+0001628280-26-040610; contemporaneous analysis by Electrek, *Tom's
+Hardware*, *Forbes*, and KBTX.
+
+> This document's primary corporate source. On Terafab it describes a
+> general framework with Tesla; project timelines, milestones, and capital
+> expenditures not yet determined; no binding obligation on Tesla or Intel;
+> and a general warning that initiatives may not achieve commercial
+> viability. It acknowledges a present chip-supply shortfall for orbital AI.
+> The filing's initiative list includes terrestrial and orbital AI compute,
+> orbital data centers from as early as 2028, internal chip design and
+> manufacture, lunar manufacturing and energy, in-orbit manufacturing,
+> manufacturing on the Moon and Mars, asteroid mining, and
+> "interplanetary industrialization." It also reports on the order of one
+> thousand automated collision-avoidance maneuvers per day across the
+> constellation in 2025. Page-level quotations remain to be pinned to a
+> permanent archival copy.
+
+**[S28]** Companion simulation program, [rsi-model
+repository](https://github.com/fperegrinvs/rsi-model), release `r3.4.1`;
+DOI `10.5281/zenodo.21619447`; Appendices C–D.
+
+> Reproducibility source, not evidence. It computes consequences of stated
+> assumptions and supports no empirical claim on its own authority.
+
+## Corporate and orbital-compute record
+
+**[S29]** Terafab official project site (`terafab.ai`), accessed July
+2026.
+
+> First-party messaging: combined logic, memory, and advanced packaging;
+> Kardashev-scale framing; scaling figures of approximately one billion
+> robots, ten million tonnes per year launched to orbit, and more than one
+> terawatt of solar; AI5/AI6/D3 lines; an explicit Earth-versus-space cost
+> decomposition; and lunar mass drivers as a next step. Marketing and
+> recruiting material — evidence of declared intent, not commitment.
+
+**[S30]** Waymo safety-impact disclosures, 2026.
+
+> Cumulative fully driverless miles used as the comparison point in I.2 and
+> Appendix A.3. No conversion to supervised autonomy miles is made.
+
+**[S31]** Heavy-lift flight-test reporting, 2026.
+
+> Cumulative count of thirteen test flights through mid-2026, used as a
+> low-volume, high-information development proxy rather than a capacity or
+> reliability input.
+
+**[S32]** B. Agüera y Arcas, T. Beals, M. Biggs, J. V. Bloom,
+T. Fischbacher, K. Gromov, U. Köster, R. Pravahan, and J. Manyika
+(Google), "Towards a future space-based, highly scalable AI infrastructure
+system design," arXiv:2511.19468 (v1 November 22, 2025; **v2 June 17,
+2026**, the version carrying the detailed figures cited here), with the
+Project Suncatcher blog post.
+
+> Technical design study for satellite accelerator clusters: 67 MeV
+> proton-beam testing of a Trillium TPU v6e, with HBM most TID-sensitive
+> (irregularities from 2 krad(Si) against a 750 rad(Si) five-year
+> requirement, no hard TID failures to 15 krad(Si)) and core logic/on-chip
+> SRAM most SEE-sensitive; an inference error estimate near one per
+> 3×10⁶ inferences under stated assumptions, with training impact reserved;
+> an 81-satellite, 1 km-radius cluster near 650 km in dawn-dusk
+> sun-synchronous orbit; and 800 Gbps unidirectional optical links against
+> a roughly 10 Tbps per-link requirement. The authors twice state that the
+> cost section is **not** a full economic analysis: it compares amortized
+> launch cost per kW-year ($810 for a Starlink-v2-class ratio and
+> $810–7,500 across classes at $200/kg) with terrestrial electricity spend
+> ($570–3,000/kW-year), excluding buildings, infrastructure, and chips.
+> Reaching approximately $200/kg by 2035 requires about 370,000 tonnes of
+> additional cumulative launch mass, or roughly 1,800 Starship-class
+> flights averaging 180 per year. Thermal management, ground
+> communications, reliability, and repair remain open; orbital repair is
+> described as impracticable and redundant provisioning proposed instead.
+
+**[S33]** *SpaceNews*, *Via Satellite*, and *Data Center Dynamics*
+coverage of orbital-compute programs, 2025–2026.
+
+> Reports the Google–Planet partnership, two prototype satellites slated
+> for launch by early 2027, the research-stage status of the program, and
+> at least one additional entrant flying an accelerator demonstrator.
+
+**[S34]** Will Marshall, co-founder and CEO of Planet Labs, interviewed on
+the *Moonshots* podcast with P. Diamandis and colleagues, episode 266,
+published June 26, 2026. A transcript with paragraph timestamps is archived
+at `docs/transcripts/moonshots-266-2026-06-26.md`.
+
+> Cited for mechanisms rather than measurements: launch tax versus compute
+> tax (0:00:22 and 1:17:49); matching low-orbit decay life to hardware
+> obsolescence; payload cost-performance outpacing launch
+> cost-performance; limits on reproducing historical archives; finite
+> compute-demand possibility; the protect-the-biosphere telos; and the
+> recollected Google/Planet $200–300/kg crossover study (0:52:07).
+> Recollections and projections are unverified.
+
+## External strategic cross-check
+
+**[S35]** L. Aschenbrenner, *Situational Awareness: The Decade Ahead*,
+June 2024, archived in `docs/sources/`.
+
+> Analyst estimates used as external cross-checks: a trillion-dollar
+> compute-cluster trajectory; power as the binding constraint with a
+> politically conditional natural-gas floor; CoWoS/HBM as chip
+> bottlenecks; a fast-takeoff thesis; and historical capital-mobilization
+> reference classes. These claims affect priors and counterfactuals, not the
+> evidence table's item-level assessment.
+
+## Collective model-input and engineering sources
+
+**[S36]** Assorted company disclosures, industry reporting, agency
+guidance, price sheets, and technical literature used in Appendix A,
+`params/anchors.yaml`, and the Part II budgets.
+
+> Covers evidence not carried by [S18–S23]: foundry equipment-depreciation
+> schedules (2–5 years); data-center accelerator retirement practice
+> (3–6 years); a large-training-run disclosure of roughly 419
+> interruptions over 54 days across approximately 16,000 accelerators
+> (cluster interruption frequency, not component hazard); 2019 reporting on
+> factory construction cadence; 2026 humanoid-robot production targets;
+> NASA small-spacecraft guidance on altitude-, ballistic-coefficient-, and
+> solar-activity-dependent decay; launch price sheets; flexible-array and
+> deployable-radiator performance; accelerator system pricing;
+> AI-optimized data-center capex and PUE; and nuclear-restart PPA reporting.
+> No single permanent identifier covers the collection. Each anchor records
+> its own source class and note, and auditable material is archived in
+> `docs/sources/` or `docs/transcripts/` where available.

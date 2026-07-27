@@ -1,0 +1,8 @@
+{
+  "name": "rsi-model-publication",
+  "private": true,
+  "scripts": {
+    "build:manuscript": "node scripts/build_manuscript.cjs",
+    "build:fourth": "node scripts/build_manuscript.cjs --fourth"
+  }
+}

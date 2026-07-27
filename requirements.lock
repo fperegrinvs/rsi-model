@@ -1,6 +1,11 @@
+# Pinned direct dependencies (valid pip syntax: pip install -r requirements.lock)
+# Reference environment: CPython 3.12.7, macOS/arm64, 2026-07-27 (r3.5).
+# Known limitation (declared, ROADMAP): transitive dependencies are not pinned
+# and no --hash entries are included; a clean-venv pip-compile lockfile is
+# Fourth Edition packaging work.
 matplotlib==3.10.3
 numpy==2.1.3
+osqp==1.1.3
 pytest==9.0.2
 PyYAML==6.0.3
 scipy==1.16.0
-python 3.12.7

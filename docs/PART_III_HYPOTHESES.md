@@ -68,10 +68,16 @@ engineering reference-class observations (announced prototypes early 2027;
    rad-tolerant lines, stockpile logistics, shelf-life-rated spares,
    off-world packaging/test.
 2. **Part II makes orbital-compute persistence a test.** The bridge
-   economics are negative at anchored values (0 of 2,000 sampled runs
-   favor space). Sustained scaled deployment after the unit economics are
-   publicly evident is a moderate-to-strong discriminator for H1/H2 over
-   H0; quiet retreat after the demonstration phase is what H0/H0′ predict.
+   economics are negative at anchored values for the three reference
+   architectures (0 of 2,000 sampled runs favor space in each row). The
+   Starmind AI1 disclosure scenario narrows the gap but produces only 1 of
+   2,000 favorable draws against Earth base and none against responsive
+   Earth. A deterministic best case using SpaceX's $185/kg and 100 kW/t
+   aspirations plus favorable *unpublished* qualification, life, and
+   utilization is 0.76× Earth; the company targets alone are still 1.85×.
+   Sustained scaled deployment after the unit economics are publicly evident
+   is a moderate-to-strong discriminator for H1/H2 over H0; quiet retreat
+   after the demonstration phase is what H0/H0′ predict.
 3. **Recycling is the H2 tell in LEO.** Materials-recovery recycling at
    scale (not debris-compliance servicing) is the rational early move of a
    LEO-first closure strategy and of no one else — moderate-to-strong for

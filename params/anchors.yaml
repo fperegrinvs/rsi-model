@@ -37,8 +37,9 @@ buildout:
 
 # ---------------------------------------------------------------------------
 # Part II anchors: levelized-cost mass/power budgets (space vs Earth compute).
-# Company TARGETS (Starship $/kg aspirations) are evidence of intent, not
-# feasibility (rule 3): they appear ONLY as sweep axes in lco.py, never here.
+# Company TARGETS are evidence of intent, not feasibility (rule 3). They are
+# sweep axes except for the separately labeled `starmind_ai1_aspirational`
+# deterministic sensitivity below; they never enter the probabilistic baseline.
 
 launch:
   leo_per_kg:           {low: 1400, high: 4000, source_class: company_statement, note: "published price sheets 2024-26: F9 ~$70M/22.8t ≈ $3.0k/kg; FH reusable ~$97M/~63t ≈ $1.4-1.5k/kg. List prices, not costs"}
@@ -52,6 +53,12 @@ power_systems:
   radiator_cost_per_kw: {low: 200,  high: 1000, source_class: ASSUMPTION,         note: "manufactured cost at volume; UNANCHORED"}
   structure_overhead_fraction: {low: 0.20, high: 0.50, source_class: ASSUMPTION,  note: "bus/harness/avionics/shielding mass as fraction of (hw+pv+radiator) mass"}
   lunar_storage_kg_per_kwh: {low: 4.0, high: 10.0, source_class: technical_report, note: "Li-ion pack-level 100-250 Wh/kg; night-survival storage for lunar surface"}
+  infrastructure_life_years: {low: 10.0, high: 25.0, source_class: ASSUMPTION,     note: "amortization life for PV/radiator/storage/structure and the launch spend
+    that emplaced them, DISTINCT from the compute refresh cycle (r3.5 review fix:
+    a single short compute life over-annualized long-lived infrastructure).
+    Bounding: GEO comsat buses design to ~15 yr and ISS EATCS radiators exceed
+    20 yr service (upper); LEO debris/UV/thermal-cycling and lunar dust +
+    300-K-swing degradation argue the lower end. UNANCHORED within the range"}
 
 compute:
   hw_per_kw_it:         {low: 25000, high: 45000, source_class: reporting,        note: "accelerator+system $ per kW of IT load, 2024-26 (H100 ~0.7 kW ~$25-30k; B200 ~1 kW ~$30-40k incl. system share)"}
@@ -78,6 +85,37 @@ compute:
   utilization_lunar:    {low: 0.45, high: 0.85, source_class: ASSUMPTION,         note: "14-day night: low end = solar+partial storage; high end = polar site / oversized storage"}
   ops_fraction_per_year: {low: 0.02, high: 0.06, source_class: ASSUMPTION,        note: "ground segment, downlink, ops as fraction of space capex per year"}
   power_overhead_space: {low: 1.10, high: 1.25, source_class: ASSUMPTION,         note: "conversion + pumping losses; the space analogue of PUE"}
+
+# Starmind AI1 disclosed architecture, SpaceX company page accessed 2026-07-27:
+# https://www.spacex.com/spacexai/starmind
+# These values define a separate conditional scenario only. They do not replace
+# the generic LEO anchors or establish achieved cost, reliability, or lifetime.
+starmind:
+  compute_payload_kw_peak: {value: 150, source_class: company_statement, note: "AI1 disclosed compute payload peak, kW. CONTEXT: not used as delivered-average model denominator; official Starmind page, accessed 2026-07-27"}
+  compute_payload_kw_average: {value: 120, source_class: company_statement, note: "AI1 disclosed average compute payload, kW. USED with solar_array_kw to set the scenario's 1.25 array-power/average-compute ratio; official Starmind page, accessed 2026-07-27"}
+  vehicle_efficiency_kw_per_tonne: {value: 70, source_class: company_statement, note: "AI1 disclosed vehicle efficiency, kW/tonne. The page does not state whether kW means peak or average; official Starmind page, accessed 2026-07-27"}
+  vehicle_mass_kg_per_average_kw: {low: 14.285714, high: 17.857143, source_class: ASSUMPTION, note: "DERIVED interpretation range from the disclosed 70 kW/tonne and 120 average / 150 peak kW: low assumes the efficiency numerator is average power (1000/70); high assumes it is peak power and converts total vehicle mass to an average-kW denominator ((150/70 t)/120 kW). USED as aggregate launched vehicle mass; the generic component budget supplies only the lifecycle split"}
+  solar_array_kw: {value: 150, source_class: company_statement, note: "AI1 disclosed solar-array rating, kW. USED with average compute payload to set the 1.25 design power ratio; official Starmind page, accessed 2026-07-27"}
+  solar_power_density_w_per_m2: {value: 250, source_class: company_statement, note: "AI1 disclosed solar power density, W/m^2. CONTEXT ONLY: the cost model prices PV per kW and the aggregate vehicle mass constraint already captures array mass; official Starmind page, accessed 2026-07-27"}
+  radiator_area_m2: {value: 110, source_class: company_statement, note: "AI1 disclosed deployable liquid-radiator area, m^2. CONTEXT ONLY: no radiator areal mass or cost is disclosed, so the scenario retains the generic radiator cost and uses the aggregate vehicle mass constraint; official Starmind page, accessed 2026-07-27"}
+  deployed_height_m: {value: 20, source_class: company_statement, note: "AI1 disclosed deployed height, m. CONTEXT ONLY; official Starmind page, accessed 2026-07-27"}
+  wingspan_m: {value: 70, source_class: company_statement, note: "AI1 disclosed wingspan, m. CONTEXT ONLY; official Starmind page, accessed 2026-07-27"}
+
+# SpaceX long-term targets and the favorable undisclosed values used only by
+# `starmind_ai1_aspirational`. Company targets remain company statements, not
+# achieved specifications; analyst-selected values remain ASSUMPTIONs.
+# Source: SpaceX EU Prospectus approved 2026-06-05, pp. 63, 71-72, 82, 97, 137:
+# https://content.spacex.com/cms-assets/FINAL_Documents%20and%20Updates/SpaceX%20-%20EU%20Prospectus%20%28Approved%20by%20Bafin%29%20-%20June%205%2C%202026.pdf
+aspirations:
+  starship_leo_cost_per_kg: {value: 185, source_class: company_statement, note: "TARGET, not achieved price: exact arithmetic ceiling from SpaceX's aim to reduce its stated historical $18,500/kg launch cost by 99% or more (0.01 x $18,500 = $185/kg). USED only in the aspirational deterministic sensitivity; EU Prospectus 2026-06-05, pp. 63, 70, 137"}
+  starmind_vehicle_efficiency_kw_per_tonne: {value: 100, source_class: company_statement, note: "LONG-TERM TARGET/ASSUMPTION in SpaceX scale arithmetic: 100 kW of AI compute per deployed tonne. The later AI1 product page discloses only 70 kW/t, 30% below this target. USED only in the aspirational deterministic sensitivity; EU Prospectus 2026-06-05, p. 82"}
+  starmind_vehicle_mass_kg_per_average_kw: {value: 10, source_class: ASSUMPTION, note: "DERIVED exactly as 1000 kg/t divided by the company-target 100 kW/t. USED as aggregate launched mass only in the aspirational deterministic sensitivity"}
+  starship_v3_payload_tonnes: {value: 100, source_class: company_statement, note: "DESIGN TARGET: Starship V3 reusable payload capacity to orbit. CONTEXT ONLY for scale arithmetic; EU Prospectus 2026-06-05, pp. 71-72"}
+  starship_v4_payload_tonnes: {value: 200, source_class: company_statement, note: "FUTURE TARGET: possible Starship V4 reusable payload capacity to orbit. CONTEXT ONLY for scale arithmetic; EU Prospectus 2026-06-05, pp. 71-72"}
+  orbital_compute_gw_per_year: {value: 100, source_class: company_statement, note: "LONG-TERM TARGET: up to 100 GW of AI-compute power deployed to orbit annually. CONTEXT ONLY for scale arithmetic; EU Prospectus 2026-06-05, pp. 82, 97"}
+  starmind_qualification_multiplier: {value: 1.2, source_class: ASSUMPTION, note: "FAVORABLE MODEL BOUND, not published by SpaceX: low end of compute.space_qual_multiplier. USED only in the aspirational deterministic sensitivity"}
+  starmind_life_years: {value: 7, source_class: ASSUMPTION, note: "FAVORABLE MODEL BOUND, not published by SpaceX: high end of compute.life_years_space. USED only in the aspirational deterministic sensitivity"}
+  starmind_utilization: {value: 0.95, source_class: ASSUMPTION, note: "FAVORABLE MODEL BOUND, not achieved AI1 availability: high end of compute.utilization_leo. Starlink's reported network uptime is not evidence of AI1 spacecraft compute availability. USED only in the aspirational deterministic sensitivity"}
 
 earth:
   power_price_kwh:      {low: 0.05, high: 0.12, source_class: reporting,          note: "industrial/DC contracted power 2024-26; tight markets high end"}

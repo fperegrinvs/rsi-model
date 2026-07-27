@@ -1,9 +1,10 @@
-# RSI Model — Third Edition Simulation
+# RSI Model — Fourth Edition Simulation
 
-Companion codebase to *"Recursive Industrial Intelligence, Second Edition"*, current
-revision **r2.10** (docx in `docs/`; r2.8 FINAL kept alongside; the paper's [S28] is
-this repo). Goal: replace the paper's decorative equations with an executed model,
-producing the Third Edition's Parts I–II quantitative core.
+Companion codebase to *Recursive Industrial Intelligence, Fourth Edition*,
+current revision **r4.0** (canonical Markdown + standalone HTML in `docs/`;
+no PDF release artifact). The complete Third Edition r3.5 model and
+manuscript remain frozen as the inherited quantitative baseline; the Second
+Edition is frozen at r2.11 for provenance. The paper's [S28] is this repo.
 
 ## What this project is
 
@@ -52,15 +53,28 @@ The paper argues about self-sustaining / self-expanding (space) industrial syste
   lunar-surface compute vs. a RESPONDING terrestrial counterfactual (tight/base/
   responsive with nuclear-PPA floor and older-node option, compute-normalized).
   $ per frontier-equivalent kW-yr; affine in launch $/kg so break-evens are exact;
-  anchored MC with shared draws both sides; crossover_grid over any anchor axis.
-- `scripts/run_baseline.py` — Part I smoke run + figures (~2 min).
-- `scripts/run_deep.py` — large-n Part I MC + cut-set fatality probabilities (~20 min).
-- `scripts/run_part2.py` — Part II sweep + report (~1 min).
+  anchored MC with shared draws both sides; current AI1 disclosure case plus a
+  deterministic company-aspiration best case excluded from MC; crossover_grid
+  over any anchor axis.
+- `src/rsimodel/fourth.py` — separate Fourth Edition 18-sector,
+  17-material integrated-bootstrap layer: element BOM/source balances,
+  seed-sizing LP, task autonomy/intervention, process-specific gravity,
+  commissioning and explicit second-cell dynamics, compute/intelligence
+  coupling, rate-limited Earth/orbit counterfactuals, and debris stocks.
+- `scripts/run_baseline.py` — Part I smoke run + figures (~30 s).
+- `scripts/run_deep.py` — large-n Part I MC + cut-set fatality probabilities
+  (measured 706.6 s on nine workers on the 2026-07-27 release host;
+  hardware-dependent process pool over chunked cells + persistent HiGHS).
+- `scripts/run_part2.py` — Part II sweep + report (~10 s).
+- `scripts/run_fourth.py` — Fourth Edition central scenarios, named
+  200-draw ensembles, tables, figures, report, and separate sha256 manifest.
+- `scripts/build_manuscript.cjs` — Markdown → self-contained HTML with MathML;
+  `npm run build:fourth` selects r4.0. HTML only; no PDF output path.
 - `docs/PART_III_HYPOTHESES.md` — H0–H3 likelihood-ratio assessment (document).
 - `docs/PART_IV_SPECULATIVE.md` — quarantined Section 16 scenarios + model checks.
 - `docs/transcripts/` — primary-source transcripts with provenance headers
   (external claims land in `anchors.yaml` under `claims:` — comparison targets,
-  never model inputs).
+  never baseline inputs).
 
 Conventions: numpy-style everything, no classes where a dataclass + functions do, type hints,
 figures via `plots.py` only, all randomness through a passed `numpy.random.Generator`.
@@ -80,45 +94,89 @@ figures via `plots.py` only, all randomness through a passed `numpy.random.Gener
 ## Running
 
     pip install -r requirements.txt
-    python scripts/run_baseline.py          # smoke test + figures
+    python scripts/run_baseline.py          # inherited smoke test + figures
+    python scripts/run_fourth.py            # integrated-bootstrap artifacts
     pytest tests/ -q
+    npm run build:fourth                    # r4.0 standalone HTML only
 
 ## Current status
 
-Parts I–IV complete (v1); Third Edition manuscript at **r3.4**
-(`docs/Recursive_Industrial_Intelligence_3rd_Ed_r3.4.md` + .docx) — canonical
-(Second Edition frozen at r2.11; earlier revision docx kept for provenance).
-r3.4 = model-integrity/audit pass against a second external review: LEO
-relabeled an import-supported orbital recycling network (finite capture
-reservoir unmodeled — see ROADMAP r3.4 block); doubling denominators split
-(headline: 39% of central lunar runs double then lose viability — the
-import-ramp trap); Appendix D full model spec incl. central A matrix;
-cost inclusion/exclusion accounting; financing equalization declared
-pro-space; H0 redefined, independent actors (E12/E15) moved to
-cross-checks, III.5 ordinal; retooling metric computed
-(`cutsets.retooling_time`: 90% electronics/machine-tools stranding FATAL
-under both allocators — vitamin gap makes rebuild a multi-decade-payback
-asset); stable crc32 seeds (hash() was process-salted). 35 tests pass. Reports: `outputs/report.md` (Part I
-baseline), `outputs/report_deep.md` (large-n MC + cut-set fatality),
-`outputs/report_part2.md` (LCO), `docs/PART_III_HYPOTHESES.md`,
+Parts I–IV and the bounded integrated-bootstrap layer are complete for the
+**r4.0 release candidate**. Canonical source:
+`docs/Recursive_Industrial_Intelligence_4th_Ed_r4.0.md`; primary reading
+artifact: the same stem with `.html`. r3.5 is frozen as the inherited
+baseline; r3.4 is retained for provenance.
+
+r4.0 adds the explicit physical/digital seed, source network, electronics
+tiers, autonomy and gravity constraints, second-cell commissioning,
+rate-limited Earth/orbit comparison, stylized intelligence/compute loop,
+and aggregate debris threshold. `outputs/fourth/MANIFEST.md` binds its
+configuration, implementation, tests, report, six tables, and four figures.
+Every new structural coefficient is ASSUMPTION-class. The untagged HTML
+omits canonical URL, publication date, and version DOI until immutable
+release metadata is supplied.
+
+r3.5 = reproducibility/model-identity pass against a third external review
+(all its factual claims verified against the repo before acting): stable
+crc32 seeds everywhere incl. Part II (hash() was process-salted and r3.4's
+committed CSV/report were from DIFFERENT runs — rerun_cells.py deleted, one
+script now writes both); AnchorSet caches draws (the stated Earth/space
+shared-draw correlation is now real); headline replication metric is
+BALANCED doubling λ(t)=min_j K_j/K_j(0) ≥ 2 (unit-invariant; Σ K relabeled
+"aggregate"); endpoint hierarchy (instantaneous / sustained 25–30 /
+import-cutoff autonomy probe) — this exposed central-Mars "expansion" as
+substantially a synodic-pulse artifact (273/400 instantaneous vs 62/400
+sustained, median λ@30 = 0.54); binding sector = stage-1 LP shadow price,
+same definition in baseline and policy comparison (Mars binding split
+electronics ~62%/power ~38% under duals); Part II component lives split
+(new infrastructure_life_years ASSUMPTION anchor — central LCOs fell:
+LEO ≈58k, lunar ≈2.8M $/kW-yr), lunar case relabeled "Earth-supplied",
+exclusion bias no longer claimed uniformly pro-space; "recycling
+indispensable in LEO" WITHDRAWN (stale r3.3-era output; post-r3.4 capture
+feed makes the knockout survivable — feed-loop dependence is the surviving
+claim); retooling now "model-fatal within tested 20-yr window".
+SPEED (r3.5 final pass): allocate_step uses a persistent warm-started
+HiGHS model via scipy's bundled highspy (~10×, verified ≈1e-15 vs the
+retained linprog reference path; RSI_SLOW_LP=1 forces the reference);
+run_deep.py fans 4×100-run chunks per cell over a process pool → full
+deep run measured 706.6 s on nine workers on the 2026-07-27 release host
+(hardware-dependent; formerly ~40 min serial); anchor draws keyed by
+(run seed, anchor NAME) via delta.anchor_child_rng, so adding anchors to
+anchors.yaml NEVER re-rolls existing cells (old sequential stream did —
+that plus chunking re-baselined all MC values once, within Wilson).
+outputs/MANIFEST.md sha256 manifest;
+tests/test_repro.py cross-checks committed CSV vs report. The full r4.0
+suite has 72 tests.
+Reports: `outputs/report.md`, `outputs/report_deep.md`,
+`outputs/report_part2.md`, `docs/PART_III_HYPOTHESES.md`,
 `docs/PART_IV_SPECULATIVE.md`.
 
 Headline structure (ASSUMPTION-class inputs — sweep, don't quote):
-- **Part I**: electronics binds in ~85–97 % of MC steps in every location;
-  conservative fails everywhere, central marginal (P(expanding@30yr) ≈ 0.5–0.8
-  with shocks), optimistic expands. Recycling indispensable in LEO only. Over
-  sampled anchors the electronics import line ALONE is fatal in ~15 % of
-  otherwise-viable central LEO/lunar draws and ~80 % on Mars (pulsed imports +
-  deepest vitamin gap) — the probabilistic minimum cut, location-dependent. The
-  vitamin gap (closure.space_electronics_q_scale, 0.10–0.30 ASSUMPTION range)
-  drives most results.
-- **Part II**: at published launch prices space compute is ~5–9× Earth (lunar
-  ~300×); P(space cheaper) ≈ 0 over the anchored ensemble even vs the responsive
-  Earth. Break-even launch price is often NEGATIVE (qual premium + short life
-  dominate, not launch). Crossover needs qual≈1.2 + life≈7yr + high utilization
-  + target-class $/kg simultaneously. Earth base LCO ≈ $1.7/kW-hr — matches
-  published accelerator rentals (calibration check).
-- **Part III**: current evidence does not establish H1 over H0/H2; the model
-  makes the discriminating indicators operational (see ranked list).
+- **Inherited Part I**: central finite-response co-binding assigns about
+  98% to capture/mining in LEO, 96% to electronics on the Moon, and
+  62% electronics / 38% power on Mars. Central expanding@30 is 267/400,
+  224/400, and 60/400; sustained years 25–30 is 122/400, 20/400, and
+  4/400. Quote ensemble counts as stipulated frequencies, never
+  probabilities.
+- **Part II**: generic space ~4–9× Earth at published prices (Earth-supplied
+  lunar ~200×); the separate Starmind AI1 company-statement scenario uses its
+  disclosed 150/120 kW, 150 kW array, and 70 kW/t specifications, reducing
+  central mass 46→16 kg/kW and cost to 2.56× Earth. P(space cheaper) remains
+  0/2000 for the original references and responsive AI1; AI1/base has
+  1/2000. With qual=1.2, life=7 yr, utilization=.95 AI1 breaks even at
+  ~$1,152/kg and is 0.79× at $250/kg. Qualification/life/availability
+  remain undisclosed. A separate deterministic best case uses company targets
+  $185/kg and 100 kW/t plus those three favorable non-company bounds: 0.76×
+  Earth versus 1.85× if the undisclosed inputs stay central. It is excluded
+  from MC. Its 100-GW/year scale implies 1M t/year and 10,000 V3 launches/year.
+  Earth base ≈$1.67/kW-hr.
+- **Part III**: P4a documented, P4b not established; indicators ordinal.
+- **Fourth layer**: central terrestrial rehearsal 206.7 t / second cell
+  9.25 yr; lunar vitamin bridge 216.7 t / 11.25 yr; strict lunar
+  infeasible; Moon–asteroid network 185.5 t / 22.75 yr. These are scenario
+  implications of the declared architecture, not engineering estimates.
 
-Next (Fourth Edition candidates): see end of ROADMAP.md.
+Next: ROADMAP higher-fidelity block (claim-level anchor bibliography,
+vacuum/dust/radiation process coupling, mineralogy and purity ladders,
+shell-resolved debris, dynamic monetary coupling, Linux clean-clone
+reproduction, tag/archive/version DOI).

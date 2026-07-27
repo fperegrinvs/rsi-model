@@ -84,8 +84,11 @@ class RetoolingResult:
     g-trajectories, which the LP objective pins uniquely, rather than on
     total capacity, which is polluted by surplus-build vertex indeterminacy
     (pinning surplus would need a third lexicographic stage — flagged in
-    ROADMAP). None = the knocked system's worst-case growth never returns
-    positive — the knockout was fatal, not a delay.
+    ROADMAP). years_lost=None = MODEL-FATAL, a horizon-relative label: the
+    knocked system's worst-case growth has not returned positive within the
+    tested horizon while the counterfactual's stays positive. It is NOT a
+    proof of permanent impossibility — a longer horizon, different import
+    policy, plant design, or initial surplus could change the outcome (r3.5).
     Deterministic dynamics (no shocks) for clean measurement; the import ramp
     is time-shifted exactly via its memoryless exponential (Mars pulse phase
     is approximated by restarting the synodic clock at the knockout)."""
@@ -96,7 +99,7 @@ class RetoolingResult:
     t0: float
     knocked_share: float
     stall_years: float
-    years_lost: float | None   # None = fatal (no rejoin within horizon)
+    years_lost: float | None   # None = model-fatal: no rejoin within tested horizon
     policy: str = "myopic"
 
 

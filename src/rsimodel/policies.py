@@ -18,8 +18,13 @@ Policies:
                 infeasible (decline regimes).
 
 Comparison metric is the *realized* worst-case growth min_j dK_j/K_j, computed
-identically for every policy, so P(expanding) and limiting-sector shares are
-apples-to-apples.
+identically for every policy, so P(expanding) is apples-to-apples. The
+binding-sector diagnostic is the SAME unit-invariant one-percent finite
+response as model.run — evaluated at the current state
+(a state property, independent of which policy produced the state) — so the
+policy table tests whether the manuscript's binding-sector classification
+survives alternative policies, not a different statistic (r3.5 review fix:
+this previously used argmin dK_j/K_j, which is a different concept).
 """
 from __future__ import annotations
 
@@ -28,7 +33,8 @@ from dataclasses import dataclass
 import numpy as np
 from scipy.optimize import linprog
 
-from .model import Params, RunResult, allocate_step, imports_at, replacement_demand
+from .model import (Params, RunResult, allocate_step, imports_at,
+                    recoverable_retirement, replacement_demand)
 
 
 def _horizon_step(p: Params, K: np.ndarray, S: np.ndarray, t: float,
@@ -60,8 +66,10 @@ def _horizon_step(p: Params, K: np.ndarray, S: np.ndarray, t: float,
     delta, wear = p.delta, p.wear
     # import schedules over the window (deterministic lookahead)
     m_direct_s, inflow_s = [], []
-    next_pulse = (np.ceil(max(t, 1e-12) / p.pulse_years) * p.pulse_years
-                  if p.pulse_years is not None else None)
+    next_pulse = (
+        (0.0 if t <= 1e-12 else np.ceil(t / p.pulse_years) * p.pulse_years)
+        if p.pulse_years is not None else None
+    )
     for s in range(H):
         ts = t + s * dt
         m = imports_at(p, ts, cutoff_year, cutoff_idx)
@@ -138,17 +146,23 @@ def _horizon_step(p: Params, K: np.ndarray, S: np.ndarray, t: float,
             if ci is not None:
                 row[ci] = -p.q[i]
             A_ub.append(row); b_ub.append(rhs)
-        # scrap cap: w_s + sr*sum(u_s) - sr*sum(delta K_s) <= 0
+        # Scrap cap: only physically recoverable retirement components enter.
         row = np.zeros(nv)
         row[wi(s)] = 1.0
         rhs = 0.0
+        recoverable_delta = sum(
+            p.salvage_factors[comp] * delta_comp
+            for comp, delta_comp in p.delta_comps.items()
+        )
         for j in range(n):
-            row[ui(s, j)] = p.scrap_recovery
+            row[ui(s, j)] = (
+                p.scrap_recovery * p.salvage_factors["wear"][j]
+            )
             ci, cfix = Kcol(s, j)
             if ci is None:
-                rhs += p.scrap_recovery * delta[j] * cfix
+                rhs += p.scrap_recovery * recoverable_delta[j] * cfix
             else:
-                row[ci] -= p.scrap_recovery * delta[j]
+                row[ci] -= p.scrap_recovery * recoverable_delta[j]
         A_ub.append(row); b_ub.append(rhs)
         # stock capacity: S_{s+1,j} <= cap_years * (A @ (delta K_{s+1}))_j
         for j in range(n):
@@ -221,8 +235,9 @@ def _aggregate_step(p: Params, K: np.ndarray, m_direct: np.ndarray,
         rows.append(r); rhs.append(supply[i])
     r = np.zeros(nv)
     r[swv] = 1.0
-    r[su:su + n] = p.scrap_recovery
-    rows.append(r); rhs.append(p.scrap_recovery * float(np.sum(p.delta * K)))
+    r[su:su + n] = p.scrap_recovery * p.salvage_factors["wear"]
+    rows.append(r)
+    rhs.append(p.scrap_recovery * recoverable_retirement(p, K))
     bounds = [(0, None)] * nv
     for i in range(n):
         bounds[sd + i] = (0, float(stock_avail[i]) if p.stockable[i] else 0.0)
@@ -239,16 +254,19 @@ def run_policy(p: Params, policy: str = "myopic", K0: np.ndarray | None = None,
                cutoff_year: float | None = None,
                cutoff_sectors: list[str] | None = None,
                rng: np.random.Generator | None = None) -> RunResult:
-    """model.run with a pluggable allocation policy; g and the limiting sector
-    are REALIZED quantities (min_j dK_j / K_j and its argmin), identical across
-    policies."""
+    """model.run with a pluggable allocation policy. g is the REALIZED
+    worst-case growth min_j dK_j / K_j (identical across policies); the
+    binding sector is the model's one-percent response diagnostic evaluated at the current
+    state via allocate_step — the same definition as model.run, so binding
+    histograms are comparable across the baseline and every policy."""
     n = p.n
     K = np.full(n, 1.0) if K0 is None else K0.astype(float).copy()
+    K_init = K.copy()
     cutoff_idx = (None if cutoff_sectors is None
                   else np.array([p.idx(s) for s in cutoff_sectors], int))
     S = np.where(p.stockable, p.stock_initial_years * replacement_demand(p, K), 0.0)
     steps = int(round(years / dt))
-    T, KK, GG, BB, SS = [], [], [], [], []
+    T, KK, GG, GA, BB, CB, SS = [], [], [], [], [], [], []
     shock_log: list[tuple[float, str, float]] = []
     next_pulse = 0.0
     for s_i in range(steps):
@@ -269,26 +287,37 @@ def run_policy(p: Params, policy: str = "myopic", K0: np.ndarray | None = None,
             a = _horizon_step(p, K, S, t, dt, horizon_steps, cutoff_year, cutoff_idx)
         elif policy == "aggregate":
             a = _aggregate_step(p, K, m_direct, S / dt)
+        elif policy != "myopic":
+            raise ValueError(f"unknown allocation policy {policy!r}")
+        # binding diagnostic: always the maximin LP's one-percent responses at this
+        # state (same definition as model.run), regardless of acting policy
+        diag = allocate_step(p, K, m_direct, S / dt)
         if a is None:                       # fallback / 'myopic'
-            a = allocate_step(p, K, m_direct, S / dt)
+            a = diag
+        binding = diag["binding"]
 
+        K_prev = K.copy()
         dK = a["x"] + a["u"] - p.delta * K
-        g_real = float(np.min(dK / K))
-        binding = int(np.argmin(dK / K))
+        g_alloc = float(np.min(dK / K))
         K = np.maximum(K + dt * dK, 1e-9)
         S = S + inflow - a["d"] * dt - S * dt / p.shelf_life
-        cap = p.stock_capacity_years * replacement_demand(p, K)
-        S = np.clip(S, 0.0, np.where(p.stockable, np.maximum(cap, 1e-9), 0.0))
         if rng is not None:
             for sh in p.shocks:
                 for _ in range(rng.poisson(sh.rate_per_year * dt)):
                     frac = rng.uniform(*sh.fraction_lost)
                     K[sh.sector_idx] *= 1.0 - frac
-                    shock_log.append((t, sh.name, frac))
-        T.append(t); KK.append(K.copy()); GG.append(g_real)
-        BB.append(binding); SS.append(S.copy())
-    return RunResult(np.array(T), np.array(KK), np.array(GG), np.array(BB),
-                     np.array(SS), shock_log, p)
+                    shock_log.append((t + dt, sh.name, frac))
+        cap = p.stock_capacity_years * replacement_demand(p, K)
+        S = np.clip(S, 0.0, np.where(p.stockable, np.maximum(cap, 1e-9), 0.0))
+        g_real = float(np.min((K - K_prev) / (dt * np.maximum(K_prev, 1e-30))))
+        T.append(t + dt); KK.append(K.copy()); GG.append(g_real); GA.append(g_alloc)
+        BB.append(binding); CB.append(diag["binding_mask"].copy()); SS.append(S.copy())
+    return RunResult(
+        np.array(T), np.array(KK), np.array(GG), np.array(BB),
+        np.array(SS), shock_log,
+        g_alloc=np.array(GA), co_binding=np.array(CB),
+        params=p, K0=K_init,
+    )
 
 
 @dataclass
@@ -311,7 +340,8 @@ def compare_policies(set_name: str, env: str,
     out: dict[str, tuple[int, float, str, float]] = {}
     for pol in policies:
         rng = np.random.default_rng(seed)   # reset: identical draws per policy
-        expanding, bindings = 0, []
+        expanding = 0
+        binding_counts = None
         base = None
         for _ in range(n_runs):
             p = sample_params(set_name, env, rng, q_spread)
@@ -320,8 +350,14 @@ def compare_policies(set_name: str, env: str,
                            horizon_steps=horizon_steps)
             if r.self_expanding_at(horizon):
                 expanding += 1
-            bindings.extend(r.binding.tolist())
-        counts = np.bincount(np.array(bindings, int), minlength=base.n)
+            co = np.asarray(r.co_binding, float)
+            credits = np.sum(
+                co / np.maximum(co.sum(axis=1, keepdims=True), 1.0), axis=0
+            )
+            binding_counts = (
+                credits if binding_counts is None else binding_counts + credits
+            )
+        counts = binding_counts
         top = int(np.argmax(counts))
         out[pol] = (expanding, expanding / n_runs,
                     base.sectors[top], counts[top] / counts.sum())

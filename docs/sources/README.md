@@ -16,6 +16,31 @@ source_class under the epistemic rules.
   non-saturation branch and capital-mobilization reference classes in
   `docs/PART_IV_SPECULATIVE.md`.
 
+- **orbital-compute-calibration-2026-07-27.md** — structured extraction from
+  the post-IPO orbital-data-center studies cited as [S39–S44]. Source_class:
+  mixed, recorded per source (technical preprint, peer-reviewed conference
+  paper, NASA technical memorandum, and policy report). Used for: the
+  architecture-specific mass envelopes, full thermal-system cross-check,
+  launch-plus-build inequality, platform-life qualification, and
+  inference-versus-training boundary in Part II. It records evidence and
+  arithmetic but does not change the r3.5 model inputs.
+
+- **starmind-ai1-2026-07-27.md** and
+  **spacex-ai-aspirations-2026-06.md** — direct SpaceX product specifications
+  and the separately quarantined company-target best case. Source_class:
+  `company_statement` for disclosed values and targets, `ASSUMPTION` for
+  derived or favorable unpublished values. Used for: the current AI1 scenario,
+  the deterministic $185/kg + 100 kW/t aspiration case, and the accompanying
+  launch-cadence feasibility audit in Part II.
+
+- **lunar-surface-orbit-architecture-2026-07-27.md** — evidence boundary for
+  endogenous orbital-debris feedback, low-lunar-orbit breakup behavior,
+  lunar-surface resources and hazards, NRHO as a service/gateway geometry,
+  and Sun-synchronous versus heliocentric terminology. Source_class: mixed
+  peer-reviewed and NASA technical material. Used for: the qualitative
+  lunar surface–orbit partition and the Fourth Edition model requirements;
+  it adds no r3.5 numerical inputs.
+
 See also `../transcripts/` for podcast/interview transcripts with per-file
 provenance headers.
 

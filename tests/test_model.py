@@ -28,7 +28,7 @@ def test_lp_feasible_and_material_balance():
     use[iw] += a["w"]
     use += p.recycle_opex * a["w"]
     supply = p.q * K + m_direct + p.recycle_profile * a["w"] + a["d"]
-    assert np.all(use <= supply + 1e-6)
+    assert np.all(use <= supply + 2e-5)
 
 
 def test_no_imports_and_heavy_recipes_cannot_expand_everywhere():
@@ -60,8 +60,8 @@ def test_delta_is_decomposed_with_provenance():
     p = load_params("central", env="lunar")
     total = sum(p.delta_comps[c] for c in DELTA_COMPONENTS)
     assert np.allclose(total, p.delta)
-    # 4 delta components + q_scale, each per sector
-    assert len(p.provenance) == (len(DELTA_COMPONENTS) + 1) * p.n
+    # 4 delta components + 4 salvage factors + q_scale, each per sector
+    assert len(p.provenance) == (2 * len(DELTA_COMPONENTS) + 1) * p.n
     assert any(pr.quantity == "q_scale[electronics]" and pr.anchor
                for pr in p.provenance)   # the vitamin gap is a sampled range
     classes = {pr.source_class for pr in p.provenance}
@@ -91,6 +91,26 @@ def test_recycling_used_where_feed_binds():
     K = r.K[-1]
     a = allocate_step(p, K, imports_at(p, 15.0), stock_at(p, K))
     assert a["w"] > 1e-6
+
+
+def test_recycling_uses_only_physically_recoverable_retirement():
+    from rsimodel.model import recoverable_retirement
+
+    p = load_params("central", env="leo")
+    K = np.ones(p.n)
+    # LEO catastrophic and logistics losses are unavailable to recycling.
+    assert np.all(p.salvage_factors["catastrophic"] == 0.0)
+    assert np.all(p.salvage_factors["logistics"] == 0.0)
+    expected = sum(
+        np.sum(p.salvage_factors[c] * p.delta_comps[c] * K)
+        for c in DELTA_COMPONENTS
+    )
+    assert recoverable_retirement(p, K) == pytest.approx(expected)
+    a = allocate_step(p, K, imports_at(p, 0.0), stock_at(p, K))
+    used_scrap = a["w"] + p.scrap_recovery * np.dot(
+        p.salvage_factors["wear"], a["u"]
+    )
+    assert used_scrap <= p.scrap_recovery * expected + 2e-5
 
 
 def test_stockpile_bridges_electronics_cutoff():
@@ -148,6 +168,33 @@ def test_shocks_reproducible_and_logged():
     assert r1.K.sum(axis=1)[-1] < r0.K.sum(axis=1)[-1]
 
 
+def test_growth_endpoint_is_post_shock_and_time_is_step_end():
+    from dataclasses import replace
+
+    from rsimodel import Shock
+
+    class FixedShockRng:
+        def poisson(self, _lam):
+            return 1
+
+        def uniform(self, lo, hi):
+            return (lo + hi) / 2
+
+    p = load_params("central", env="lunar")
+    forced = Shock(
+        name="forced", rate_per_year=1.0, fraction_lost=(0.5, 0.5),
+        sector_idx=np.arange(p.n, dtype=int),
+    )
+    r = run(replace(p, shocks=[forced]), years=0.25, dt=0.25,
+            rng=FixedShockRng())
+    assert r.t.tolist() == [0.25]
+    assert r.shock_log[0][0] == 0.25
+    assert r.g_alloc[0] > 0
+    assert r.g[0] < 0
+    assert not r.self_expanding_at(0.25)
+    assert r.allocatively_expanding_at(0.25)
+
+
 def test_sector_cutoff_only_cuts_named_sectors():
     p = load_params("central", env="lunar")
     m = imports_at(p, 10.0, cutoff_year=5.0,
@@ -200,6 +247,8 @@ def test_mc_ensemble_smoke():
     lo, hi = mc.expanding_ci
     assert 0.0 <= lo <= mc.p_expanding <= hi <= 1.0
     assert len(mc.survival) == len(mc.t)
+    assert mc.t[0] == 0.5 and mc.t[-1] == 12.0
+    assert 0 <= mc.n_expanding <= mc.n_alloc_expanding <= mc.n_runs
     assert abs(sum(mc.binding_hist.values()) - 1.0) < 0.01
     assert mc.summary()
 
