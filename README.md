@@ -3,7 +3,7 @@
 Public repository: https://github.com/fperegrinvs/rsi-model — release `r3.4`.
 Canonical manuscript: `docs/Recursive_Industrial_Intelligence_3rd_Ed_r3.4.md`
 (Appendix C: reproducibility; Appendix D: full model specification).
-License: MIT (code) + CC BY 4.0 (docs). DOI: minted per release via Zenodo.
+License: MIT (code) + CC BY 4.0 (docs). DOI: [10.5281/zenodo.21619447](https://doi.org/10.5281/zenodo.21619447).
 
 Simulation companion to *Recursive Industrial Intelligence* (Second Edition, current rev r2.10 — see `docs/`).
 Third Edition Parts I–II: multisector closure feasibility + Earth–space cost crossover.

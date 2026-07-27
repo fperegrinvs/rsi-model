@@ -5,6 +5,7 @@ version: r3.4.1
 date-released: 2026-07-27
 license: MIT
 repository-code: "https://github.com/fperegrinvs/rsi-model"
+doi: 10.5281/zenodo.21619447
 authors:
   - family-names: Stern
     given-names: Leonardo

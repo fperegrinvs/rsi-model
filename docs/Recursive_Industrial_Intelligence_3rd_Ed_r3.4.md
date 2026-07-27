@@ -1288,9 +1288,9 @@ live only inside named assumption sets.
 1.16.0 [HiGHS via scipy.optimize.linprog], PyYAML 6.0.3, matplotlib
 3.10.3, pytest 9.0.2; Python 3.12.7, macOS/arm64). Citation metadata:
 `CITATION.cff`. License: MIT for code (`/LICENSE`), CC BY 4.0 for the
-manuscript and documents (`docs/LICENSE`). DOI: minted per release via the
-Zenodo–GitHub integration (see the repository page for the concept DOI
-badge). The 35 tests establish that the implementation matches its
+manuscript and documents (`docs/LICENSE`). DOI: concept
+**10.5281/zenodo.21619447** (all versions); this release
+10.5281/zenodo.21619448. The 35 tests establish that the implementation matches its
 specification — not that the specification adequately represents
 industrial reality.
 
@@ -1462,7 +1462,7 @@ Models," 2024.
 free-writing prospectus, SEC accession 0001628280-26-040610 (the source of
 the initiative-list quotations in E6; page-level cites to be pinned at
 archival): Terafab as unsettled framework; orbital data-center plans; chip
-shortfall; ~1,000 automated collision-avoidance maneuvers/day. [S28] Companion simulation program — this edition's model repository: https://github.com/fperegrinvs/rsi-model (release `r3.4`; Appendix C). Listed for reproducibility, not as evidence: it computes the consequences of stated assumptions and supports no claim on its own authority. [S29] Terafab official site (accessed Jul 2026):
+shortfall; ~1,000 automated collision-avoidance maneuvers/day. [S28] Companion simulation program — this edition's model repository: https://github.com/fperegrinvs/rsi-model (release `r3.4.1`; DOI 10.5281/zenodo.21619447; Appendix C). Listed for reproducibility, not as evidence: it computes the consequences of stated assumptions and supports no claim on its own authority. [S29] Terafab official site (accessed Jul 2026):
 Kardashev framing, scaling figures, AI5/AI6/D3, Earth-vs-space cost
 decomposition, lunar mass drivers — declared intent, not commitment.
 [S30] Waymo safety disclosures, 2026. [S31] Heavy-lift flight-test
