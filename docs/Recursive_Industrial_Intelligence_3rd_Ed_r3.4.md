@@ -1287,9 +1287,10 @@ live only inside named assumption sets.
 `main`. Dependency lockfile: `requirements.lock` (numpy 2.1.3, scipy
 1.16.0 [HiGHS via scipy.optimize.linprog], PyYAML 6.0.3, matplotlib
 3.10.3, pytest 9.0.2; Python 3.12.7, macOS/arm64). Citation metadata:
-`CITATION.cff`. Still pending: a license (the repository is currently
-all-rights-reserved by default) and an archived DOI snapshot
-(Zenodo/OSF). The 35 tests establish that the implementation matches its
+`CITATION.cff`. License: MIT for code (`/LICENSE`), CC BY 4.0 for the
+manuscript and documents (`docs/LICENSE`). DOI: minted per release via the
+Zenodo–GitHub integration (see the repository page for the concept DOI
+badge). The 35 tests establish that the implementation matches its
 specification — not that the specification adequately represents
 industrial reality.
 

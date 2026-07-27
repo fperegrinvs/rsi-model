@@ -1,8 +1,10 @@
 cff-version: 1.2.0
 message: "If you use this model or cite its results, please cite it as below."
 title: "Recursive Industrial Intelligence — Third Edition companion model"
-version: r3.4
+version: r3.4.1
 date-released: 2026-07-27
+license: MIT
+repository-code: "https://github.com/fperegrinvs/rsi-model"
 authors:
   - family-names: Stern
     given-names: Leonardo
