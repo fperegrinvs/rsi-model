@@ -88,7 +88,7 @@ class RetoolingResult:
     knocked system's worst-case growth has not returned positive within the
     tested horizon while the counterfactual's stays positive. It is NOT a
     proof of permanent impossibility — a longer horizon, different import
-    policy, plant design, or initial surplus could change the outcome (r3.5).
+    policy, plant design, or initial surplus could change the outcome.
     Deterministic dynamics (no shocks) for clean measurement; the import ramp
     is time-shifted exactly via its memoryless exponential (Mars pulse phase
     is approximated by restarting the synodic clock at the knockout)."""

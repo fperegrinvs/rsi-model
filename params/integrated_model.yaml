@@ -1,0 +1,1237 @@
+version: integrated-model-1
+status: scenario_model
+source_class: ASSUMPTION
+note: >
+  Integrated-model coefficients are transparent scenario assumptions unless a
+  source_ref is named. Source references constrain occurrence or composition,
+  not recoverable yield, plant performance, reserve status, or economics.
+
+elements:
+  - O
+  - Si
+  - Al
+  - Fe
+  - Mg
+  - Ca
+  - Ti
+  - H
+  - C
+  - N
+  - Cu
+  - Ni
+  - Co
+  - Cr
+  - Li
+  - rare_earths
+  - dopants
+
+source_yields:
+  lunar_regolith:
+    source_ref: S51-S55
+    note: >
+      Recoverable tonnes per tonne of processed regolith. These are
+      ASSUMPTION-class recovery yields, deliberately below bulk occurrence
+      where occurrence is known. They are not reserve estimates.
+    yield_t_per_t_feed:
+      O: 0.250
+      Si: 0.100
+      Al: 0.050
+      Fe: 0.020
+      Mg: 0.020
+      Ca: 0.020
+      Ti: 0.003
+      H: 0.000050
+      C: 0.000050
+      N: 0.000020
+      Cu: 0.000010
+      Ni: 0.000010
+      Co: 0.000001
+      Cr: 0.001000
+      Li: 0.000010
+      rare_earths: 0.000050
+      dopants: 0.000001
+  diverse_asteroid_portfolio:
+    source_ref: S56
+    note: >
+      Composite follow-on source representing multiple carbonaceous and
+      metal-rich bodies, not Bennu alone. The source record supports material
+      diversity; every numerical yield here is ASSUMPTION-class.
+    yield_t_per_t_feed:
+      O: 0.120
+      Si: 0.080
+      Al: 0.010
+      Fe: 0.250
+      Mg: 0.080
+      Ca: 0.010
+      Ti: 0.001
+      H: 0.030
+      C: 0.050
+      N: 0.005
+      Cu: 0.050
+      Ni: 0.100
+      Co: 0.010
+      Cr: 0.010
+      Li: 0.002000
+      rare_earths: 0.005000
+      dopants: 0.000050
+
+processing:
+  lunar_feed_t_per_mining_capacity_year: 2500.0
+  lunar_feed_t_per_refining_capacity_year: 1800.0
+  asteroid_feed_t_per_mining_capacity_year: 450.0
+  asteroid_feed_t_per_transport_capacity_year: 300.0
+  process_energy_mwh_per_power_capacity_year: 12000.0
+  lunar_energy_mwh_per_t_feed: 2.0
+  asteroid_energy_mwh_per_t_feed: 7.0
+
+environment:
+  lunar_gravity_g: 0.165
+  centrifuge_structural_mass_fraction_at_full_g: 0.16
+  centrifuge_parasitic_power_fraction_at_full_g: 0.05
+  centrifuge_overhead_composition:
+    Fe: 0.60
+    Al: 0.35
+    Cu: 0.05
+
+process_environment_profiles:
+  centrifuge_only:
+    source_class: ASSUMPTION
+    note: >
+      Identity profile used by the published central baseline so the new
+      environment diagnostics do not silently recalibrate it.
+    effects: {}
+  lunar_nominal:
+    source_class: ASSUMPTION
+    note: >
+      Bounded diagnostic for dust, vacuum, reduced convection, traction,
+      radiation, and thermal cycling. Multipliers are not measured plant
+      performance and require process-specific tests.
+    effects:
+      power:
+        mechanism: radiation and thermal-cycle degradation
+        throughput_multiplier: 0.95
+        yield_multiplier: 0.98
+        depreciation_multiplier: 1.15
+        power_demand_multiplier: 1.05
+      mining:
+        mechanism: abrasive dust and reduced traction
+        throughput_multiplier: 0.82
+        yield_multiplier: 0.95
+        depreciation_multiplier: 1.30
+        power_demand_multiplier: 1.10
+      refining:
+        mechanism: reduced convection and volatile containment
+        throughput_multiplier: 0.90
+        yield_multiplier: 0.92
+        depreciation_multiplier: 1.15
+        power_demand_multiplier: 1.12
+      robotics:
+        mechanism: abrasive dust, vacuum lubrication, and thermal cycling
+        throughput_multiplier: 0.88
+        yield_multiplier: 0.97
+        depreciation_multiplier: 1.25
+        power_demand_multiplier: 1.08
+      machine_tools:
+        mechanism: vacuum welding, seals, lubrication, and calibration drift
+        throughput_multiplier: 0.90
+        yield_multiplier: 0.94
+        depreciation_multiplier: 1.20
+        power_demand_multiplier: 1.08
+      construction:
+        mechanism: low-gravity traction and granular mechanics
+        throughput_multiplier: 0.80
+        yield_multiplier: 0.95
+        depreciation_multiplier: 1.20
+        power_demand_multiplier: 1.10
+      thermal:
+        mechanism: dust fouling and thermal-cycle fatigue
+        throughput_multiplier: 0.92
+        yield_multiplier: 0.98
+        depreciation_multiplier: 1.18
+        power_demand_multiplier: 1.08
+      process_equipment_metrology:
+        mechanism: contamination and calibration drift
+        throughput_multiplier: 0.90
+        yield_multiplier: 0.90
+        depreciation_multiplier: 1.20
+        power_demand_multiplier: 1.10
+  lunar_adverse:
+    source_class: ASSUMPTION
+    note: >
+      Stress boundary obtained by compounding the nominal mechanisms; not a
+      probability distribution or a forecast.
+    effects:
+      power:
+        mechanism: severe radiation and thermal-cycle degradation
+        throughput_multiplier: 0.85
+        yield_multiplier: 0.92
+        depreciation_multiplier: 1.40
+        power_demand_multiplier: 1.15
+      mining:
+        mechanism: severe abrasive dust and traction loss
+        throughput_multiplier: 0.60
+        yield_multiplier: 0.80
+        depreciation_multiplier: 1.80
+        power_demand_multiplier: 1.30
+      refining:
+        mechanism: severe volatile loss and melt-control penalty
+        throughput_multiplier: 0.70
+        yield_multiplier: 0.75
+        depreciation_multiplier: 1.50
+        power_demand_multiplier: 1.30
+      robotics:
+        mechanism: severe dust ingress and vacuum-lubrication failure
+        throughput_multiplier: 0.70
+        yield_multiplier: 0.85
+        depreciation_multiplier: 1.60
+        power_demand_multiplier: 1.20
+      machine_tools:
+        mechanism: vacuum welding and metrology drift
+        throughput_multiplier: 0.72
+        yield_multiplier: 0.80
+        depreciation_multiplier: 1.55
+        power_demand_multiplier: 1.20
+      construction:
+        mechanism: severe low-gravity traction and granular instability
+        throughput_multiplier: 0.58
+        yield_multiplier: 0.82
+        depreciation_multiplier: 1.50
+        power_demand_multiplier: 1.25
+      thermal:
+        mechanism: severe dust fouling and thermal fatigue
+        throughput_multiplier: 0.72
+        yield_multiplier: 0.90
+        depreciation_multiplier: 1.50
+        power_demand_multiplier: 1.25
+      process_equipment_metrology:
+        mechanism: severe contamination and calibration loss
+        throughput_multiplier: 0.65
+        yield_multiplier: 0.70
+        depreciation_multiplier: 1.60
+        power_demand_multiplier: 1.30
+
+base_service_recipe:
+  power: 0.050
+  robotics: 0.035
+  machine_tools: 0.040
+  construction: 0.050
+  repair: 0.020
+  interconnects_boards: 0.004
+  passives_power: 0.004
+  sensors_control: 0.003
+
+sectors:
+  - name: power
+    q_per_capacity_year: 2.40
+    depreciation_per_year: 0.035
+    min_seed_capacity: 0.40
+    commissioning_lag_years: 1.5
+    yield_ramp_years: 1.0
+    gravity_required_g: 0.05
+    centrifuge_radius_m: 2.0
+    base_task_coverage: 0.90
+    autonomy_ceiling: 0.995
+    autonomy_response: 0.25
+    intervention_hours_per_capacity_year: 160.0
+    bom_t:
+      O: 30.0
+      Si: 20.0
+      Al: 20.0
+      Fe: 10.0
+      Mg: 3.0
+      Ca: 4.0
+      Ti: 1.0
+      C: 2.0
+      Cu: 5.0
+      Ni: 1.0
+      Cr: 1.0
+      Li: 2.0
+      rare_earths: 0.50
+      dopants: 0.01
+    recipe_additions:
+      power: 0.10
+      refining: 0.08
+      thermal: 0.05
+
+  - name: mining
+    q_per_capacity_year: 2.00
+    depreciation_per_year: 0.080
+    min_seed_capacity: 0.35
+    commissioning_lag_years: 1.0
+    yield_ramp_years: 0.8
+    gravity_required_g: 0.10
+    centrifuge_radius_m: 2.0
+    base_task_coverage: 0.76
+    autonomy_ceiling: 0.990
+    autonomy_response: 0.50
+    intervention_hours_per_capacity_year: 420.0
+    bom_t:
+      O: 5.0
+      Si: 4.0
+      Al: 12.0
+      Fe: 40.0
+      Mg: 2.0
+      Ti: 2.0
+      C: 3.0
+      Cu: 3.0
+      Ni: 5.0
+      Co: 1.0
+      Cr: 3.0
+      rare_earths: 0.30
+      dopants: 0.01
+    recipe_additions:
+      mining: 0.08
+      refining: 0.05
+      transport: 0.08
+
+  - name: refining
+    q_per_capacity_year: 1.80
+    depreciation_per_year: 0.055
+    min_seed_capacity: 0.30
+    commissioning_lag_years: 2.0
+    yield_ramp_years: 1.5
+    gravity_required_g: 0.25
+    centrifuge_radius_m: 3.0
+    base_task_coverage: 0.80
+    autonomy_ceiling: 0.992
+    autonomy_response: 0.45
+    intervention_hours_per_capacity_year: 360.0
+    bom_t:
+      O: 10.0
+      Si: 8.0
+      Al: 20.0
+      Fe: 45.0
+      Mg: 4.0
+      Ca: 2.0
+      Ti: 2.0
+      C: 5.0
+      Cu: 5.0
+      Ni: 8.0
+      Co: 2.0
+      Cr: 7.0
+      rare_earths: 1.0
+      dopants: 0.02
+    recipe_additions:
+      power: 0.15
+      mining: 0.08
+      refining: 0.10
+      thermal: 0.08
+
+  - name: robotics
+    q_per_capacity_year: 3.20
+    depreciation_per_year: 0.090
+    min_seed_capacity: 0.20
+    commissioning_lag_years: 0.8
+    yield_ramp_years: 0.5
+    gravity_required_g: 0.10
+    centrifuge_radius_m: 1.5
+    base_task_coverage: 0.74
+    autonomy_ceiling: 0.995
+    autonomy_response: 0.55
+    intervention_hours_per_capacity_year: 500.0
+    bom_t:
+      O: 0.50
+      Si: 0.50
+      Al: 2.00
+      Fe: 4.00
+      H: 0.10
+      C: 1.00
+      N: 0.05
+      Cu: 1.00
+      Ni: 1.00
+      Co: 0.20
+      Cr: 0.80
+      rare_earths: 0.40
+      dopants: 0.02
+    recipe_additions:
+      robotics: 0.10
+      machine_tools: 0.08
+      sensors_control: 0.04
+      mature_logic: 0.02
+
+  - name: machine_tools
+    q_per_capacity_year: 2.20
+    depreciation_per_year: 0.060
+    min_seed_capacity: 0.20
+    commissioning_lag_years: 1.5
+    yield_ramp_years: 1.0
+    gravity_required_g: 0.50
+    centrifuge_radius_m: 2.0
+    base_task_coverage: 0.78
+    autonomy_ceiling: 0.995
+    autonomy_response: 0.48
+    intervention_hours_per_capacity_year: 400.0
+    bom_t:
+      O: 1.0
+      Si: 1.0
+      Al: 4.0
+      Fe: 15.0
+      C: 2.0
+      Cu: 1.0
+      Ni: 2.0
+      Co: 0.5
+      Cr: 3.0
+      rare_earths: 0.5
+      dopants: 0.01
+    recipe_additions:
+      refining: 0.08
+      machine_tools: 0.12
+      process_equipment_metrology: 0.04
+
+  - name: construction
+    q_per_capacity_year: 2.60
+    depreciation_per_year: 0.050
+    min_seed_capacity: 0.18
+    commissioning_lag_years: 1.0
+    yield_ramp_years: 0.8
+    gravity_required_g: 0.05
+    centrifuge_radius_m: 2.0
+    base_task_coverage: 0.75
+    autonomy_ceiling: 0.992
+    autonomy_response: 0.52
+    intervention_hours_per_capacity_year: 480.0
+    bom_t:
+      O: 5.0
+      Si: 3.0
+      Al: 10.0
+      Fe: 25.0
+      Mg: 1.0
+      Ca: 2.0
+      C: 1.0
+      Cu: 1.0
+      Ni: 1.0
+      Cr: 1.0
+    recipe_additions:
+      mining: 0.05
+      refining: 0.05
+      construction: 0.12
+      transport: 0.05
+
+  - name: thermal
+    q_per_capacity_year: 2.50
+    depreciation_per_year: 0.055
+    min_seed_capacity: 0.16
+    commissioning_lag_years: 1.0
+    yield_ramp_years: 0.7
+    gravity_required_g: 0.10
+    centrifuge_radius_m: 1.5
+    base_task_coverage: 0.88
+    autonomy_ceiling: 0.997
+    autonomy_response: 0.28
+    intervention_hours_per_capacity_year: 180.0
+    bom_t:
+      O: 5.0
+      Si: 3.0
+      Al: 15.0
+      Fe: 5.0
+      H: 0.20
+      C: 2.0
+      Cu: 4.0
+      Ni: 3.0
+      Cr: 2.0
+      Li: 0.50
+    recipe_additions:
+      power: 0.05
+      refining: 0.05
+      thermal: 0.10
+
+  - name: transport
+    q_per_capacity_year: 1.70
+    depreciation_per_year: 0.080
+    min_seed_capacity: 0.18
+    commissioning_lag_years: 2.0
+    yield_ramp_years: 1.2
+    gravity_required_g: 0.10
+    centrifuge_radius_m: 2.0
+    base_task_coverage: 0.82
+    autonomy_ceiling: 0.995
+    autonomy_response: 0.38
+    intervention_hours_per_capacity_year: 300.0
+    bom_t:
+      O: 8.0
+      Si: 5.0
+      Al: 15.0
+      Fe: 10.0
+      Mg: 3.0
+      Ti: 3.0
+      H: 1.0
+      C: 5.0
+      N: 0.10
+      Cu: 3.0
+      Ni: 3.0
+      Co: 0.50
+      Cr: 2.0
+      Li: 1.0
+      rare_earths: 0.40
+      dopants: 0.01
+    recipe_additions:
+      power: 0.08
+      transport: 0.15
+      mature_logic: 0.01
+
+  - name: repair
+    q_per_capacity_year: 3.00
+    depreciation_per_year: 0.050
+    min_seed_capacity: 0.16
+    commissioning_lag_years: 0.5
+    yield_ramp_years: 0.4
+    gravity_required_g: 0.10
+    centrifuge_radius_m: 1.0
+    base_task_coverage: 0.72
+    autonomy_ceiling: 0.995
+    autonomy_response: 0.58
+    intervention_hours_per_capacity_year: 550.0
+    bom_t:
+      O: 1.0
+      Si: 1.0
+      Al: 2.0
+      Fe: 5.0
+      C: 1.0
+      Cu: 1.0
+      Ni: 1.0
+      Co: 0.20
+      Cr: 1.0
+      rare_earths: 0.30
+      dopants: 0.01
+    recipe_additions:
+      robotics: 0.08
+      machine_tools: 0.05
+      repair: 0.12
+      sensors_control: 0.02
+
+  - name: recycling
+    q_per_capacity_year: 2.30
+    depreciation_per_year: 0.050
+    min_seed_capacity: 0.16
+    commissioning_lag_years: 1.2
+    yield_ramp_years: 0.8
+    gravity_required_g: 0.30
+    centrifuge_radius_m: 2.0
+    base_task_coverage: 0.80
+    autonomy_ceiling: 0.995
+    autonomy_response: 0.45
+    intervention_hours_per_capacity_year: 320.0
+    bom_t:
+      O: 4.0
+      Si: 2.0
+      Al: 8.0
+      Fe: 15.0
+      Mg: 1.0
+      Ca: 1.0
+      C: 2.0
+      Cu: 2.0
+      Ni: 3.0
+      Co: 0.50
+      Cr: 2.0
+      rare_earths: 0.20
+      dopants: 0.01
+    recipe_additions:
+      power: 0.08
+      refining: 0.08
+      recycling: 0.12
+      thermal: 0.04
+
+  - name: interconnects_boards
+    q_per_capacity_year: 4.00
+    depreciation_per_year: 0.070
+    min_seed_capacity: 0.06
+    commissioning_lag_years: 1.0
+    yield_ramp_years: 0.6
+    gravity_required_g: 0.60
+    centrifuge_radius_m: 1.0
+    base_task_coverage: 0.88
+    autonomy_ceiling: 0.998
+    autonomy_response: 0.30
+    intervention_hours_per_capacity_year: 220.0
+    bom_t:
+      O: 0.50
+      Si: 0.50
+      Al: 0.30
+      Fe: 0.20
+      H: 0.20
+      C: 1.00
+      N: 0.10
+      Cu: 2.00
+      Ni: 0.10
+      dopants: 0.005
+    recipe_additions:
+      refining: 0.04
+      interconnects_boards: 0.10
+      packaging_test: 0.03
+
+  - name: passives_power
+    q_per_capacity_year: 3.60
+    depreciation_per_year: 0.075
+    min_seed_capacity: 0.06
+    commissioning_lag_years: 1.2
+    yield_ramp_years: 0.8
+    gravity_required_g: 0.70
+    centrifuge_radius_m: 1.0
+    base_task_coverage: 0.86
+    autonomy_ceiling: 0.998
+    autonomy_response: 0.32
+    intervention_hours_per_capacity_year: 240.0
+    bom_t:
+      O: 0.80
+      Si: 0.80
+      Al: 0.80
+      Fe: 0.50
+      C: 0.40
+      Cu: 1.50
+      Ni: 0.50
+      Co: 0.10
+      rare_earths: 0.20
+      dopants: 0.010
+    recipe_additions:
+      refining: 0.05
+      passives_power: 0.10
+      packaging_test: 0.03
+
+  - name: sensors_control
+    q_per_capacity_year: 3.20
+    depreciation_per_year: 0.080
+    min_seed_capacity: 0.06
+    commissioning_lag_years: 1.5
+    yield_ramp_years: 0.9
+    gravity_required_g: 0.80
+    centrifuge_radius_m: 1.5
+    base_task_coverage: 0.84
+    autonomy_ceiling: 0.998
+    autonomy_response: 0.34
+    intervention_hours_per_capacity_year: 260.0
+    bom_t:
+      O: 0.50
+      Si: 0.80
+      Al: 0.50
+      Fe: 0.30
+      H: 0.05
+      C: 0.30
+      N: 0.05
+      Cu: 0.60
+      Ni: 0.30
+      Co: 0.10
+      Li: 0.05
+      rare_earths: 0.40
+      dopants: 0.020
+    recipe_additions:
+      machine_tools: 0.04
+      sensors_control: 0.10
+      mature_logic: 0.03
+      packaging_test: 0.03
+
+  - name: packaging_test
+    q_per_capacity_year: 3.00
+    depreciation_per_year: 0.065
+    min_seed_capacity: 0.06
+    commissioning_lag_years: 1.5
+    yield_ramp_years: 1.0
+    gravity_required_g: 0.90
+    centrifuge_radius_m: 1.5
+    base_task_coverage: 0.86
+    autonomy_ceiling: 0.998
+    autonomy_response: 0.32
+    intervention_hours_per_capacity_year: 250.0
+    bom_t:
+      O: 0.80
+      Si: 1.00
+      Al: 1.20
+      Fe: 0.80
+      H: 0.10
+      C: 0.80
+      N: 0.10
+      Cu: 1.20
+      Ni: 0.80
+      Co: 0.20
+      Cr: 0.40
+      rare_earths: 0.20
+      dopants: 0.020
+    recipe_additions:
+      machine_tools: 0.05
+      packaging_test: 0.12
+      process_equipment_metrology: 0.04
+
+  - name: mature_logic
+    q_per_capacity_year: 2.00
+    depreciation_per_year: 0.100
+    min_seed_capacity: 0.05
+    commissioning_lag_years: 3.0
+    yield_ramp_years: 2.0
+    gravity_required_g: 1.00
+    centrifuge_radius_m: 2.0
+    base_task_coverage: 0.90
+    autonomy_ceiling: 0.999
+    autonomy_response: 0.25
+    intervention_hours_per_capacity_year: 220.0
+    bom_t:
+      O: 0.50
+      Si: 0.80
+      Al: 0.20
+      H: 0.05
+      C: 0.20
+      N: 0.05
+      Cu: 0.30
+      Ni: 0.10
+      Co: 0.05
+      rare_earths: 0.10
+      dopants: 0.030
+    recipe_additions:
+      power: 0.08
+      thermal: 0.06
+      packaging_test: 0.05
+      mature_logic: 0.12
+      process_equipment_metrology: 0.08
+
+  - name: advanced_logic_memory
+    q_per_capacity_year: 1.20
+    depreciation_per_year: 0.140
+    min_seed_capacity: 0.04
+    commissioning_lag_years: 4.0
+    yield_ramp_years: 3.0
+    gravity_required_g: 1.00
+    centrifuge_radius_m: 3.0
+    base_task_coverage: 0.92
+    autonomy_ceiling: 0.999
+    autonomy_response: 0.22
+    intervention_hours_per_capacity_year: 200.0
+    bom_t:
+      O: 0.30
+      Si: 0.50
+      Al: 0.10
+      H: 0.05
+      C: 0.10
+      N: 0.05
+      Cu: 0.20
+      Ni: 0.05
+      Co: 0.05
+      rare_earths: 0.10
+      dopants: 0.050
+    recipe_additions:
+      power: 0.10
+      thermal: 0.08
+      packaging_test: 0.06
+      mature_logic: 0.04
+      advanced_logic_memory: 0.15
+      process_equipment_metrology: 0.12
+
+  - name: process_equipment_metrology
+    q_per_capacity_year: 1.35
+    depreciation_per_year: 0.070
+    min_seed_capacity: 0.10
+    commissioning_lag_years: 3.0
+    yield_ramp_years: 2.0
+    gravity_required_g: 1.00
+    centrifuge_radius_m: 3.0
+    base_task_coverage: 0.82
+    autonomy_ceiling: 0.997
+    autonomy_response: 0.40
+    intervention_hours_per_capacity_year: 340.0
+    bom_t:
+      O: 3.0
+      Si: 3.0
+      Al: 5.0
+      Fe: 10.0
+      H: 0.20
+      C: 2.0
+      N: 0.20
+      Cu: 3.0
+      Ni: 3.0
+      Co: 0.50
+      Cr: 3.0
+      Li: 0.20
+      rare_earths: 1.0
+      dopants: 0.10
+    recipe_additions:
+      power: 0.08
+      refining: 0.08
+      machine_tools: 0.10
+      sensors_control: 0.04
+      mature_logic: 0.03
+      process_equipment_metrology: 0.15
+
+  - name: compute
+    q_per_capacity_year: 2.00
+    depreciation_per_year: 0.160
+    min_seed_capacity: 0.08
+    commissioning_lag_years: 1.5
+    yield_ramp_years: 0.8
+    gravity_required_g: 0.05
+    centrifuge_radius_m: 1.0
+    base_task_coverage: 0.94
+    autonomy_ceiling: 0.999
+    autonomy_response: 0.18
+    intervention_hours_per_capacity_year: 120.0
+    bom_t:
+      O: 0.50
+      Si: 0.70
+      Al: 1.00
+      Fe: 0.30
+      H: 0.05
+      C: 0.30
+      N: 0.05
+      Cu: 0.80
+      Ni: 0.20
+      Co: 0.10
+      Li: 0.20
+      rare_earths: 0.30
+      dopants: 0.050
+    recipe_additions:
+      power: 0.10
+      thermal: 0.10
+      interconnects_boards: 0.04
+      passives_power: 0.04
+      packaging_test: 0.05
+      mature_logic: 0.04
+      advanced_logic_memory: 0.10
+
+scenarios:
+  terrestrial_rehearsal:
+    description: >
+      Stage 0 on Earth using the lunar material/process palette and simulated
+      lunar gravity constraints; initial strategic-material stocks allowed.
+    horizon_years: 12.0
+    asteroid_enabled: false
+    asteroid_commission_year: 999.0
+    ai_level: 1.00
+    minimum_task_coverage: 0.70
+    remote_intervention_budget_hours_per_year: 3000.0
+    viable_floor_multiplier: 0.50
+    environment_profile: centrifuge_only
+    earth_import_cutoff_year: 8.0
+    earth_import_caps_t:
+      H: 8.0
+      C: 12.0
+      N: 4.0
+      Cu: 16.0
+      Ni: 16.0
+      Co: 3.0
+      Cr: 8.0
+      Li: 3.0
+      rare_earths: 2.0
+      dopants: 0.8
+
+  lunar_strategic_material_bridge:
+    description: >
+      Lunar bulk-material backbone with a finite Earth strategic-material
+      import stock; no asteroid source within the first capacity-doubling
+      horizon.
+    horizon_years: 20.0
+    asteroid_enabled: false
+    asteroid_commission_year: 999.0
+    ai_level: 1.15
+    minimum_task_coverage: 0.76
+    remote_intervention_budget_hours_per_year: 2200.0
+    viable_floor_multiplier: 0.65
+    environment_profile: centrifuge_only
+    earth_import_cutoff_year: 12.0
+    earth_import_caps_t:
+      H: 10.0
+      C: 20.0
+      N: 5.0
+      Cu: 20.0
+      Ni: 20.0
+      Co: 4.0
+      Cr: 10.0
+      Li: 4.0
+      rare_earths: 3.0
+      dopants: 1.0
+
+  lunar_strict:
+    description: >
+      No Earth material stock beyond the physical seed and no asteroid
+      source. Trace lunar yields must support every element.
+    horizon_years: 25.0
+    asteroid_enabled: false
+    asteroid_commission_year: 999.0
+    ai_level: 1.30
+    minimum_task_coverage: 0.82
+    remote_intervention_budget_hours_per_year: 1600.0
+    viable_floor_multiplier: 0.75
+    environment_profile: centrifuge_only
+    earth_import_cutoff_year: 0.0
+    earth_import_caps_t: {}
+
+  moon_asteroid_network:
+    description: >
+      Lunar bulk industry plus a diverse asteroid-source portfolio entering
+      after cislunar transport and mining commissioning; no Earth material
+      imports after deployment.
+    horizon_years: 30.0
+    asteroid_enabled: true
+    asteroid_commission_year: 12.0
+    ai_level: 1.40
+    minimum_task_coverage: 0.86
+    remote_intervention_budget_hours_per_year: 1200.0
+    viable_floor_multiplier: 0.75
+    environment_profile: centrifuge_only
+    earth_import_cutoff_year: 0.0
+    earth_import_caps_t: {}
+
+seed:
+  fixed_digital_seed_mass_t: 5.0
+  maximum_gross_cell_orders_per_operating_cell_year: 0.45
+  minimum_viable_cell_equivalents: 0.25
+  recycling_recovery_fraction: 0.82
+  repairable_failure_fraction: 0.45
+  repair_parts_fraction_of_bom: 0.08
+  repair_service_per_capacity: 0.20
+  repair_intervention_hours_per_capacity: 40.0
+  repair_lag_years: 0.50
+
+deployment:
+  source_class: ASSUMPTION
+  bounding_argument: >
+    This is a transparent logistics stress model, not a calibrated lunar
+    deployment forecast. Packaging and initial-spares fractions are swept in
+    the release diagnostics; fixed unloading, site-work, and calibration
+    masses prevent the installed seed from being relabeled as delivered mass.
+    Rates are deliberately slower than terrestrial heavy-industrial handling
+    and must be replaced by a mission design before use as an architecture
+    estimate.
+  transport_packaging_fraction: 0.12
+  initial_spares_fraction: 0.08
+  unloading_equipment_mass_t: 8.0
+  site_work_equipment_mass_t: 12.0
+  calibration_standards_mass_t: 1.5
+  startup_energy_mwh_per_seed_t: 0.50
+  startup_storage_t_per_mwh: 0.20
+  unloading_rate_t_per_year: 90.0
+  site_ready_year: 1.0
+  initial_power_ready_year: 1.25
+  installation_rate_t_per_year: 70.0
+  commissioning_rate_t_per_year: 50.0
+  startup_failure_fraction: 0.08
+  recovery_rate_t_per_year: 10.0
+  recovery_spares_t_per_failed_t: 0.20
+
+intelligence:
+  initial_level: 1.0
+  verification_factor: 0.85
+  learning_rate_per_year: 0.025
+  productivity_elasticity: 0.25
+  autonomy_learning_multiplier: 0.20
+  maximum_level: 3.0
+  compute_units_per_compute_capacity: 50.0
+
+knowledge_autonomy:
+  source_class: ASSUMPTION
+  bounding_argument: >
+    Observable gates replace interpretation of one scalar AI level as evidence
+    of capability. The formulas below translate declared task coverage into
+    named task completion, diagnosis, verification, process-yield, repair, and
+    recovery observables. They are diagnostic bounds pending Stage-0 logs, not
+    empirical autonomy measurements.
+  knowledge_package_t:
+    storage_and_compute: 1.20
+    software_and_toolchains: 0.30
+    calibration_references: 1.00
+    laboratory_equipment: 1.20
+    consumables_and_process_recipes: 0.80
+    test_articles: 0.50
+  fault_diagnosis_scale: 0.95
+  verification_throughput_per_service_unit: 0.80
+  verification_units_per_new_capacity: 0.60
+  engineering_cycle_base_years: 1.00
+  engineering_cycle_response: 0.50
+  process_yield_floor: 0.70
+  repair_success_scale: 0.90
+  mttr_days_at_zero_coverage: 30.0
+  mttr_days_floor: 2.0
+  stop_line_threshold_below_declared_coverage: 0.02
+  compute_units_per_cell_order_year: 4.0
+
+electronics_closure:
+  source_class: ASSUMPTION
+  bounding_argument: >
+    Tier coefficients are explicit architecture bounds pending measured
+    bills of process, shelf-life tests, repair logs, and demonstrated local
+    production. They replace use of the inherited scalar electronics
+    productivity anchor in integrated-layer conclusions but do not establish
+    fab closure.
+  tiers:
+    interconnects_boards:
+      local_producibility_fraction: 0.75
+      shelf_life_years: 12.0
+      obsolescence_per_year: 0.03
+      substitution_route: locally patterned boards and wiring
+      measurement_priority: qualified local-board yield and repair life
+    passives_power:
+      local_producibility_fraction: 0.65
+      shelf_life_years: 15.0
+      obsolescence_per_year: 0.02
+      substitution_route: oversized discrete and power components
+      measurement_priority: dielectric and magnetic-material process yield
+    sensors_control:
+      local_producibility_fraction: 0.45
+      shelf_life_years: 10.0
+      obsolescence_per_year: 0.05
+      substitution_route: redundant mature-node controllers and simple sensors
+      measurement_priority: locally repairable control-family coverage
+    packaging_test:
+      local_producibility_fraction: 0.40
+      shelf_life_years: 8.0
+      obsolescence_per_year: 0.06
+      substitution_route: ceramic packages and reduced-density interposers
+      measurement_priority: packaging yield with lunar-compatible consumables
+    mature_logic:
+      local_producibility_fraction: 0.25
+      shelf_life_years: 8.0
+      obsolescence_per_year: 0.08
+      substitution_route: older-node, larger-area, repairable logic
+      measurement_priority: demonstrated mature-node wafer yield
+    advanced_logic_memory:
+      local_producibility_fraction: 0.05
+      shelf_life_years: 5.0
+      obsolescence_per_year: 0.16
+      substitution_route: mature-node substitution at an energy/performance penalty
+      measurement_priority: useful life and permanent-import mass per service-year
+    process_equipment_metrology:
+      local_producibility_fraction: 0.12
+      shelf_life_years: 10.0
+      obsolescence_per_year: 0.08
+      substitution_route: modular tools, calibration exchange, and part harvesting
+      measurement_priority: parent-tool and calibration-reference replacement demand
+  architectures:
+    frontier_local:
+      annual_import_fraction_of_initial_capacity: 0.00
+      initial_import_inventory_fraction: 0.50
+      local_producibility_multiplier: 1.00
+      cannibalization_fraction: 0.10
+      mature_substitution_credit_fraction: 0.00
+    permanent_import:
+      annual_import_fraction_of_initial_capacity: 0.50
+      initial_import_inventory_fraction: 2.00
+      local_producibility_multiplier: 0.60
+      cannibalization_fraction: 0.15
+      mature_substitution_credit_fraction: 0.00
+    mature_repairable:
+      annual_import_fraction_of_initial_capacity: 0.05
+      initial_import_inventory_fraction: 0.75
+      local_producibility_multiplier: 1.20
+      cannibalization_fraction: 0.45
+      mature_substitution_credit_fraction: 0.35
+    cannibalization_based:
+      annual_import_fraction_of_initial_capacity: 0.00
+      initial_import_inventory_fraction: 1.25
+      local_producibility_multiplier: 0.80
+      cannibalization_fraction: 0.70
+      mature_substitution_credit_fraction: 0.15
+
+dynamic_economics:
+  source_class: ASSUMPTION
+  bounding_argument: >
+    Monetary coefficients define symmetric scenario mechanics, not a forecast
+    or investment recommendation. Both Earth and space reinvest cash, borrow
+    against revenue, learn with cumulative construction, depreciate, face
+    regulatory delay, and stop at physical/resource limits. Calibration
+    requires project finance, build-cost, market-demand, and operating data.
+  markets:
+    commodity_compute:
+      revenue_musd_per_compute_unit_year: 1.00
+      demand_growth_per_year: 0.12
+      demand_ceiling_units: 80.0
+      space_price_multiplier: 1.00
+    space_native_services:
+      revenue_musd_per_compute_unit_year: 1.80
+      demand_growth_per_year: 0.10
+      demand_ceiling_units: 30.0
+      space_price_multiplier: 1.60
+  space:
+    initial_equity_musd: 30.0
+    bridge_financing_musd: 20.0
+    capex_musd_per_compute_unit: 18.0
+    operating_cost_musd_per_compute_unit_year: 0.45
+    material_transfer_cost_musd_per_t: 0.004
+    intervention_cost_musd_per_hour: 0.00020
+    learning_rate: 0.12
+    regulatory_delay_years: 2.0
+    max_debt_to_annual_revenue: 2.0
+    wacc: 0.18
+    depreciation_per_year: 0.16
+  earth:
+    initial_equity_musd: 30.0
+    bridge_financing_musd: 20.0
+    capex_musd_per_compute_unit: 8.0
+    operating_cost_musd_per_compute_unit_year: 0.30
+    learning_rate: 0.15
+    regulatory_delay_years: 1.0
+    max_debt_to_annual_revenue: 3.0
+    wacc: 0.10
+    depreciation_per_year: 0.16
+    initial_resource_ceiling_units: 8.0
+    induced_resource_ceiling_units_per_year: 3.0
+
+robust_seed_design_space:
+  source_class: ASSUMPTION
+  bounding_argument: >
+    These discrete design alternatives exist to expose composition-changing
+    Pareto tradeoffs. They are engineering scenario choices, not calibrated
+    technology forecasts. Each modified recipe remains subject to the same
+    mass, service, commissioning, shock, and source-outage accounting.
+  routes:
+    baseline: {}
+    mature_node:
+      advanced_logic_memory_bom_multiplier: 1.30
+      advanced_logic_memory_dopants_multiplier: 0.50
+      advanced_logic_memory_q_multiplier: 0.85
+      advanced_logic_memory_depreciation_multiplier: 0.75
+    modular_tools:
+      process_equipment_bom_multiplier: 1.20
+      process_equipment_q_multiplier: 1.15
+      process_equipment_depreciation_multiplier: 0.70
+      repair_q_multiplier: 1.20
+  redundancy:
+    minimum: {}
+    electronics_30pct:
+      sectors:
+        interconnects_boards: 1.30
+        passives_power: 1.30
+        sensors_control: 1.30
+        packaging_test: 1.30
+        mature_logic: 1.30
+        advanced_logic_memory: 1.30
+        process_equipment_metrology: 1.30
+    repair_50pct:
+      sectors:
+        machine_tools: 1.50
+        repair: 1.50
+        recycling: 1.50
+    balanced_25pct:
+      all_sector_multiplier: 1.25
+  source_portfolios:
+    baseline:
+      lunar_feed_multiplier: 1.00
+      asteroid_feed_multiplier: 1.00
+      capacity_sectors: {}
+    lunar_reserve:
+      lunar_feed_multiplier: 1.25
+      asteroid_feed_multiplier: 0.80
+      capacity_sectors:
+        power: 1.20
+        mining: 1.25
+        refining: 1.25
+    asteroid_reserve:
+      lunar_feed_multiplier: 1.00
+      asteroid_feed_multiplier: 1.25
+      capacity_sectors:
+        power: 1.15
+        mining: 1.25
+        refining: 1.20
+        transport: 1.30
+
+transfer_arcs:
+  earth_to_moon_strategic_materials:
+    cargo_class: initial_stock_only
+    lag_years: 0.0
+  asteroid_to_moon_feed:
+    cargo_class: raw_and_beneficiated_material
+    lag_years: 2.0
+  moon_to_orbit_compute:
+    cargo_class: finished_compute_and_serviceable_modules
+    lag_years: 0.5
+    share_of_new_endogenous_compute: 0.35
+    normalized_compute_units_per_transport_capacity_year: 1.5
+
+earth_compute_counterfactuals:
+  tight:
+    terrestrial_build_units_per_year: 0.80
+    earth_to_orbit_build_units_per_year: 0.25
+    launch_units_per_year: 0.25
+    terrestrial_site_ceiling_units: 35.0
+  base:
+    terrestrial_build_units_per_year: 1.50
+    earth_to_orbit_build_units_per_year: 0.50
+    launch_units_per_year: 0.45
+    terrestrial_site_ceiling_units: 60.0
+  responsive:
+    terrestrial_build_units_per_year: 3.00
+    earth_to_orbit_build_units_per_year: 0.90
+    launch_units_per_year: 0.80
+    terrestrial_site_ceiling_units: 120.0
+  depreciation_per_year: 0.16
+
+debris:
+  initial_active_units: 1.0
+  initial_derelict_units: 0.08
+  initial_fragment_index: 0.10
+  asset_failure_per_year: 0.04
+  collision_kernel: 0.0020
+  fragment_hazard_multiplier: 0.35
+  fragments_per_collision_index: 18.0
+  natural_fragment_clearance_per_year: 0.05
+  derelict_collision_clearance_fraction: 0.20
+  scenarios:
+    weak_mitigation:
+      controlled_disposal_fraction: 0.35
+      active_removal_fragment_index_per_year: 0.002
+      retrieval_fraction_per_year: 0.01
+    strong_mitigation:
+      controlled_disposal_fraction: 0.95
+      active_removal_fragment_index_per_year: 0.040
+      retrieval_fraction_per_year: 0.15
+    distributed_heliocentric:
+      controlled_disposal_fraction: 0.95
+      active_removal_fragment_index_per_year: 0.020
+      retrieval_fraction_per_year: 0.10
+      collision_kernel_multiplier: 0.01
+
+orbital_mass_and_shell_debris:
+  source_class: ASSUMPTION
+  bounding_argument: >
+    The finite reservoir and shell coefficients are stress-test quantities,
+    not a catalog-derived orbital safety case. The model is included to
+    enforce mass conservation, shell/class separation, avoidance saturation,
+    cross-shell transport, and capacity/cost feedback. Candidate-orbit use
+    requires catalog-calibrated kernels, fragment spectra, area-to-mass
+    distributions, and disposal performance.
+  initial_uncaptured_reservoir_t: 600.0
+  initial_feed_inventory_t: 40.0
+  earth_import_t_per_year: 12.0
+  earth_import_cutoff_year: 10.0
+  capture_fraction_of_reservoir_per_year: 0.025
+  mass_t_per_capacity_unit: 35.0
+  recovery_fraction_of_controlled_retirement: 0.70
+  replacement_delivery_cost_per_kg: 2500.0
+  asset_failure_per_year: 0.04
+  controlled_disposal_fraction: 0.85
+  retrieval_fraction_per_year: 0.08
+  trackable_fragments_per_collision: 6.0
+  untrackable_fragments_per_collision: 45.0
+  fragment_hazard_weight_trackable: 0.04
+  fragment_hazard_weight_untrackable: 0.015
+  avoidance_saturation_threshold: 2.0
+  avoidance_saturation_slope: 0.08
+  shells:
+    - name: leo_400
+      deployment_share: 0.25
+      volume_index: 1.8
+      collision_kernel: 0.0012
+      natural_trackable_clearance_per_year: 0.22
+      natural_untrackable_clearance_per_year: 0.32
+      active_removal_trackable_per_year: 0.05
+    - name: leo_650
+      deployment_share: 0.65
+      volume_index: 1.0
+      collision_kernel: 0.0024
+      natural_trackable_clearance_per_year: 0.025
+      natural_untrackable_clearance_per_year: 0.06
+      active_removal_trackable_per_year: 0.08
+    - name: cislunar
+      deployment_share: 0.10
+      volume_index: 8.0
+      collision_kernel: 0.0003
+      natural_trackable_clearance_per_year: 0.005
+      natural_untrackable_clearance_per_year: 0.010
+      active_removal_trackable_per_year: 0.02
+  cross_shell_transfer:
+    - [0.94, 0.05, 0.01]
+    - [0.08, 0.90, 0.02]
+    - [0.01, 0.02, 0.97]
+
+uncertainty:
+  service_productivity_multiplier: [0.75, 1.30]
+  bom_multiplier: [0.80, 1.25]
+  lunar_yield_multiplier: [0.50, 1.50]
+  asteroid_yield_multiplier: [0.50, 1.50]
+  depreciation_multiplier: [0.80, 1.25]
+  lag_multiplier: [0.75, 1.50]
+  autonomy_gap_multiplier: [0.70, 1.40]

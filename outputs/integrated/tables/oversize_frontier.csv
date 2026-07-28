@@ -1,0 +1,13 @@
+scenario,oversize_factor,installed_mass_t,time_to_one_additional_cell_year,additional_cells_at_horizon,retained_plus_one_at_horizon
+terrestrial_rehearsal,1.00,206.672999,,-0.531578,0
+terrestrial_rehearsal,1.25,257.091249,,-0.664472,0
+terrestrial_rehearsal,1.50,307.509498,,-0.797366,0
+terrestrial_rehearsal,2.00,408.345998,,-1.063155,0
+lunar_strategic_material_bridge,1.00,216.741833,,-0.463977,0
+lunar_strategic_material_bridge,1.25,269.677291,,-0.579971,0
+lunar_strategic_material_bridge,1.50,322.612749,,-0.695965,0
+lunar_strategic_material_bridge,2.00,428.483665,,-0.927953,0
+moon_asteroid_network,1.00,185.500731,34.750000,2.605013,1
+moon_asteroid_network,1.25,230.625913,33.750000,3.256267,1
+moon_asteroid_network,1.50,275.751096,33.000000,3.907520,1
+moon_asteroid_network,2.00,366.001461,32.000000,5.210027,1

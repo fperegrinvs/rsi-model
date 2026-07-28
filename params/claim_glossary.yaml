@@ -1,0 +1,60 @@
+version: r4.0
+status: normative_claim_vocabulary
+
+scenarios:
+  terrestrial_rehearsal:
+    label: terrestrial rehearsal
+    meaning: Earth-based test constrained to the declared off-world material and autonomy palette.
+  lunar_strategic_material_bridge:
+    label: lunar strategic-material bridge
+    meaning: Lunar production with a finite initial stock of substantial imported strategic materials.
+  strict_lunar_only:
+    label: strict lunar-only
+    meaning: Configured lunar source with no initial Earth strategic-material stock.
+  moon_asteroid_network:
+    label: synthetic Moon–asteroid source network
+    meaning: Conditional composite source vector, not a named or validated accessible portfolio.
+
+metrics:
+  aggregate_operating_capacity_doubling:
+    preferred: aggregate operating-capacity doubling
+    meaning: Every indispensable sector reaches twice its seed-normalized operating capacity.
+    not_equivalent_to: audited completion of a discrete second factory
+    deprecated:
+      - second_cell_year
+      - second-cell reproduction
+  terminal_window_expanding:
+    preferred: terminal-window expanding
+    meaning: Aggregate operating capacity has positive net change over the declared final window.
+    not_equivalent_to: indefinite or probabilistically durable growth
+    deprecated:
+      - durable_final5
+      - durably expanding
+  design_space_occupancy:
+    preferred: design-space occupancy
+    meaning: Share of enumerated assumption draws meeting a condition.
+    not_equivalent_to: empirical success probability or calibrated engineering confidence
+    deprecated:
+      - model-feasible draws
+      - success probability
+
+material_terms:
+  strategic_import_stock:
+    preferred: strategic-material import stock
+    meaning: Finite, potentially high-mass imported feedstocks such as nickel, copper, or carbon.
+    deprecated:
+      - vitamin_stock_mass_t
+      - lunar vitamin bridge
+  vitamin_parts:
+    preferred: vitamin parts and materials
+    meaning: Low-mass, high-criticality parts or materials such as chips, dopants, catalysts, sensors, or precision bearings.
+
+evidence_qualifiers:
+  computed:
+    required_scope: Result follows from the declared model and coefficients.
+  assumption_conditioned:
+    required_scope: Numerical result depends on an explicit scenario assumption or bound.
+  requirement_unvalidated:
+    required_scope: Requirement or control has not been demonstrated empirically.
+  source_requirement:
+    required_scope: Result specifies a needed source vector and does not establish that an accessible source exists.

@@ -1,0 +1,39 @@
+record_type,id,requirement,required_evidence_or_fields,readiness
+graph_node_type,source_lot,versioned node with complete typed fields,source_record_id; body_or_site; mineral_form; grade_distribution; accessibility; recoverable_reserve; uncertainty; depletion_state,evidence_pending
+graph_node_type,process_unit,versioned node with complete typed fields,equipment_family; operating_envelope; batch_or_continuous; throughput; energy; consumables; tool_life,evidence_pending
+graph_node_type,material_or_species,versioned node with complete typed fields,chemical_identity; material_grade; grade_id; assay; contamination_limits; physical_form,evidence_pending
+graph_node_type,part_family,versioned node with complete typed fields,requirement_id; specification; acceptable_substitutes; service_life; failure_modes; inspection,evidence_pending
+graph_node_type,production_equipment,versioned node with complete typed fields,bom; parent_tool; calibration_artifacts; software_and_controls; maintenance_inputs,evidence_pending
+graph_node_type,transport_leg,versioned node with complete typed fields,fleet_record_id; origin; destination; delta_v; transfer_window; transit_time; payload; propellant; cycle_time; loss_rate,evidence_pending
+graph_node_type,waste_or_recycle_stream,versioned node with complete typed fields,species_and_grade; quantity; recoverable_fraction; treatment_route; disposal_route,evidence_pending
+material_grade,raw_mineral,mineral phases and assay distribution are explicit,assay; specification; uncertainty; upstream and downstream edges,evidence_pending
+material_grade,concentrate,beneficiation output and impurity envelope are explicit,assay; specification; uncertainty; upstream and downstream edges,evidence_pending
+material_grade,bulk,commodity material meets a named use specification,assay; specification; uncertainty; upstream and downstream edges,evidence_pending
+material_grade,structural_alloy,"alloy chemistry, heat treatment, and mechanical properties pass",assay; specification; uncertainty; upstream and downstream edges,evidence_pending
+material_grade,electronic_grade,purity and contaminant limits meet a named electronic process,assay; specification; uncertainty; upstream and downstream edges,evidence_pending
+material_grade,semiconductor_grade,wafer or precursor purity and defect limits pass,assay; specification; uncertainty; upstream and downstream edges,evidence_pending
+material_grade,ultra_pure_process_input,"gas, chemical, water, or reagent specification and delivery form pass",assay; specification; uncertainty; upstream and downstream edges,evidence_pending
+critical_part_family,process_gases,supply route,BOM; process route; parent tools; calibration; life; substitutes,evidence_pending
+critical_part_family,process_chemicals,synthesis or import,BOM; process route; parent tools; calibration; life; substitutes,evidence_pending
+critical_part_family,masks_and_reticles,design,BOM; process route; parent tools; calibration; life; substitutes,evidence_pending
+critical_part_family,resists_and_photochemicals,formulation,BOM; process route; parent tools; calibration; life; substitutes,evidence_pending
+critical_part_family,filters_and_membranes,media production,BOM; process route; parent tools; calibration; life; substitutes,evidence_pending
+critical_part_family,optics_and_laser_sources,substrates,BOM; process route; parent tools; calibration; life; substitutes,evidence_pending
+critical_part_family,coatings_and_surface_treatments,feed chemicals,BOM; process route; parent tools; calibration; life; substitutes,evidence_pending
+critical_part_family,seals_and_flexible_elements,material formulation,BOM; process route; parent tools; calibration; life; substitutes,evidence_pending
+critical_part_family,lubricants_and_working_fluids,formulation,BOM; process route; parent tools; calibration; life; substitutes,evidence_pending
+critical_part_family,bearings_and_precision_motion,materials,BOM; process route; parent tools; calibration; life; substitutes,evidence_pending
+critical_part_family,calibration_artifacts,traceability,BOM; process route; parent tools; calibration; life; substitutes,evidence_pending
+critical_part_family,metrology_and_test,sensors,BOM; process route; parent tools; calibration; life; substitutes,evidence_pending
+critical_part_family,controls_and_power_electronics,logic,BOM; process route; parent tools; calibration; life; substitutes,evidence_pending
+critical_part_family,parent_tools,each production tool has a reproducible ancestry and no circular unsupported edge,BOM; process route; parent tools; calibration; life; substitutes,evidence_pending
+source_register,source_register,"at least one complete, versioned record linked from the graph",source_id; named_body_or_defensible_source_class; mineral_form; composition_distribution; grade_distribution; accessible_and_recoverable_reserve; spatial_variability; uncertainty_and_detection_limit; depletion_and_failed_source_rule,evidence_pending
+fleet_register,fleet_register,"at least one complete, versioned record linked from the graph",fleet_id; delta_v_and_transfer_windows; transit_and_turnaround_time; vehicle_payload_and_dry_mass; propellant_and_consumables; excavation_and_processing_rate; fleet_manufacture_and_replacement_bom; reliability_and_failed_missions; reserve_and_inventory_accounting,evidence_pending
+acceptance_gate,C01_species_mass_balance,Every process conserves chemical species within measured uncertainty and routes waste explicitly.,source_lot; material_or_species; process_unit; waste_or_recycle_stream,evidence_pending
+acceptance_gate,C02_energy_and_capacity,"Metered energy, peak power, throughput, cycle time, and capacity reconcile for each process edge.",process_unit; transport_leg,evidence_pending
+acceptance_gate,C03_grade_progression,"Every BOM input is reachable from an allowed source through grade-qualified, contamination-aware edges.",source_lot; material_or_species; process_unit,evidence_pending
+acceptance_gate,C04_part_and_parent_tool_ancestry,Every critical part and production tool has an acyclic supported ancestry or an explicit external import.,part_family; production_equipment; material_or_species,evidence_pending
+acceptance_gate,C05_source_transport_fleet,"Named sources, windows, vehicles, depletion, failures, and fleet reproduction support the claimed delivered flows.",source_lot; transport_leg; production_equipment,evidence_pending
+acceptance_gate,C06_failure_and_substitution,"Single-source, failed-source, part-loss, contamination, and substitute-route cases preserve or visibly break closure.",source_lot; part_family; process_unit; transport_leg,evidence_pending
+acceptance_gate,C07_empirical_calibration,"Terrestrial measurements support yields, energy, contamination, rework, consumables, tool life, and uncertainty.",process_unit; material_or_species; production_equipment,evidence_pending
+acceptance_gate,C08_minimum_external_vector,The minimum external source vector is recomputed on the calibrated graph with every import and cut set named.,source_lot; part_family; production_equipment; transport_leg,evidence_pending

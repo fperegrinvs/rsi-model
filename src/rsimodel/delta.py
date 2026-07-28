@@ -10,7 +10,7 @@ Anchored ranges resolve to their geometric mid deterministically; under Monte
 Carlo each anchor is drawn once per run (loguniform over [low, high]) and shared
 by every entry referencing it — parameter-level common-cause correlation.
 
-Draw-stream stability (r3.5): each anchor's draw is derived from a per-run
+Draw-stream stability: each anchor's draw is derived from a per-run
 entropy integer mixed with crc32 of the anchor's NAME, not from one sequential
 stream over the anchor list. Consequence: adding an anchor to anchors.yaml
 never changes any other anchor's draw or the caller's RNG stream — MC results
@@ -65,10 +65,20 @@ def load_anchors(path: Path | None = None) -> dict[str, dict]:
 
 
 def anchor_value(entry: dict, rng: np.random.Generator | None = None) -> float:
-    """Central value (geometric mid of range) or a loguniform draw."""
+    """Central value or one bounded draw.
+
+    Positive ranges use the established geometric-mid/log-uniform convention.
+    Ranges that include zero use an arithmetic midpoint/uniform draw because a
+    logarithmic distribution is undefined there (for example, zero residual
+    value for an unrecoverable disposable spacecraft).
+    """
     if "value" in entry:
         return float(entry["value"])
     lo, hi = float(entry["low"]), float(entry["high"])
+    if lo <= 0:
+        if rng is None:
+            return 0.5 * (lo + hi)
+        return float(rng.uniform(lo, hi))
     if rng is None:
         return float(np.sqrt(lo * hi))
     return float(np.exp(rng.uniform(np.log(lo), np.log(hi))))
@@ -77,7 +87,7 @@ def anchor_value(entry: dict, rng: np.random.Generator | None = None) -> float:
 def anchor_child_rng(entropy: int, name: str) -> np.random.Generator:
     """Per-anchor generator keyed by (run entropy, anchor NAME) — the draw for
     one anchor depends only on these two values, never on which other anchors
-    exist or the order they appear in (r3.5 draw-stream stability)."""
+    exist or the order they appear in."""
     return np.random.default_rng([entropy, zlib.crc32(name.encode())])
 
 

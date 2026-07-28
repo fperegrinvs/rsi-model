@@ -1,0 +1,267 @@
+version: r4.0
+protocol_id: symmetric-compute-economics-calibration
+status: data_contract_ready_empirical_calibration_pending
+source_class: ASSUMPTION
+epistemic_status: >
+  Preregistered evidence, workload, correlation, and cash-flow contract. It
+  contains no empirical fit and does not promote any model coefficient out of
+  ASSUMPTION.
+
+objective: >
+  Calibrate the completed Part II cost boundary and the symmetric dynamic P3b
+  comparison with architecture-specific engineering, operations, market, and
+  financing records while preserving failed projects, censoring, and
+  correlated uncertainty.
+
+architecture_cases:
+  earth_reference:
+    description: Terrestrial AI data center with the same declared workload.
+    model_cases: [earth_base, earth_tight, earth_responsive]
+    required_evidence: [E01_workload_benchmark, E05_earth_resource_buildout, E06_cash_flows_and_financing]
+  serviceable_space_platform:
+    description: Replaceable compute payload on longer-lived serviceable infrastructure.
+    model_cases: [leo_inference, cislunar, lunar]
+    required_evidence: [E01_workload_benchmark, E02_space_asset_reliability, E03_link_and_ground_network, E04_thermal_mass_power, E06_cash_flows_and_financing]
+  integrated_disposable_ai1:
+    description: Compute, power, thermal, bus, and launch spend retire together.
+    model_cases: [starmind_ai1, starmind_ai1_aspirational]
+    required_evidence: [E01_workload_benchmark, E02_space_asset_reliability, E03_link_and_ground_network, E04_thermal_mass_power, E06_cash_flows_and_financing]
+
+evidence_packages:
+  E01_workload_benchmark:
+    purpose: Normalize Earth and space to equal useful inference or training service.
+    required_fields:
+      - benchmark_id
+      - model_and_version
+      - precision_and_quantization
+      - batch_and_sequence_shape
+      - memory_capacity_and_bandwidth
+      - measured_energy_kwh
+      - useful_completed_work
+      - latency_distribution
+      - accuracy_or_quality_gate
+      - availability_and_service_level
+      - failed_or_retried_work
+      - topology_and_synchronization
+      - fault_and_checkpoint_policy
+    model_bindings:
+      - workloads.inference_requests_per_kwh
+      - workloads.inference_latency_availability_fraction
+      - workloads.training_network_efficiency_space
+      - workloads.training_network_efficiency_earth
+    readiness: data_pending
+  E02_space_asset_reliability:
+    purpose: Jointly estimate qualification, usable life, availability, repair, and retirement.
+    required_fields:
+      - asset_and_configuration
+      - radiation_and_orbit_exposure
+      - qualification_campaign
+      - launch_and_commissioning_date
+      - scheduled_and_unscheduled_downtime
+      - component_and_system_failures
+      - repair_or_replacement_action
+      - right_censoring
+      - retirement_reason
+      - residual_value
+    model_bindings:
+      - compute.space_qual_multiplier
+      - compute.life_years_space
+      - compute.utilization_leo
+      - space_cost_completion.insurance_fraction_per_year
+      - space_cost_completion.residual_value_fraction_serviceable
+      - space_cost_completion.residual_value_fraction_disposable
+    readiness: data_pending
+  E03_link_and_ground_network:
+    purpose: Resolve useful delivered service and recurring network cost from an architecture-specific link budget.
+    required_fields:
+      - orbit_and_constellation_geometry
+      - spectrum_and_regulatory_case
+      - payload_and_gateway_capex
+      - transmit_power_and_link_margin
+      - weather_and_coverage_outages
+      - latency_distribution
+      - delivered_throughput
+      - retransmission_and_routing_overhead
+      - operations_and_ground_cost
+    model_bindings:
+      - compute.ops_fraction_per_year
+      - space_cost_completion.communications_capex_per_kw
+      - space_cost_completion.ground_network_capex_per_kw
+      - space_cost_completion.spectrum_regulatory_per_kw_year
+      - workloads.inference_latency_availability_fraction
+      - workloads.training_network_efficiency_space
+    readiness: data_pending
+  E04_thermal_mass_power:
+    purpose: Reconcile launched mass, delivered IT power, heat rejection, shielding, redundancy, and degradation.
+    required_fields:
+      - configuration_and_bom
+      - measured_it_and_total_power
+      - beginning_and_end_of_life_mass
+      - heat_load_and_rejection_temperature
+      - view_factor_and_environment
+      - radiator_area_and_mass
+      - pumping_power
+      - shielding_and_redundancy
+      - degradation_and_failure_history
+    model_bindings:
+      - compute.hw_mass_kg_per_kw
+      - compute.power_overhead_space
+      - power_systems.pv_specific_power_w_per_kg
+      - power_systems.radiator_kg_per_kw
+      - power_systems.structure_overhead_fraction
+      - space_cost_completion.radiator_rejection_temperature_k
+      - space_cost_completion.chip_to_radiator_temperature_drop_k
+      - space_cost_completion.environmental_view_factor
+      - space_cost_completion.thermal_reliability_mass_margin
+      - space_cost_completion.pumping_power_fraction
+    readiness: data_pending
+  E05_earth_resource_buildout:
+    purpose: Estimate the terrestrial response boundary with the same geographic and temporal resolution as the space case.
+    required_fields:
+      - site_and_grid_region
+      - queue_and_permitting_dates
+      - land_and_water_commitments
+      - construction_and_equipment_cost
+      - power_contract_and_grid_charges
+      - labor_and_operations_cost
+      - achieved_pue_and_availability
+      - build_delay_and_cancellation
+      - capacity_addition_and_retirement
+    model_bindings:
+      - earth.power_price_kwh
+      - earth.dc_capex_per_kw_it
+      - earth.pue
+      - earth.wacc
+      - dynamic_economics.earth.regulatory_delay_years
+      - dynamic_economics.earth.initial_resource_ceiling_units
+      - dynamic_economics.earth.induced_resource_ceiling_units_per_year
+    readiness: data_pending
+  E06_cash_flows_and_financing:
+    purpose: Reconstruct dated project cash flows rather than infer them from technical capacity.
+    required_fields:
+      - event_id
+      - project_and_architecture
+      - event_time
+      - nominal_currency_and_base_date
+      - cash_flow_category
+      - committed_and_paid_amount
+      - counterparty_class
+      - financing_instrument
+      - interest_and_fees
+      - insured_value_and_claims
+      - revenue_quantity_price_and_collection
+      - disposal_or_residual_proceeds
+    model_bindings:
+      - space_cost_completion.wacc
+      - earth.wacc
+      - dynamic_economics.space.initial_equity_musd
+      - dynamic_economics.space.bridge_financing_musd
+      - dynamic_economics.space.max_debt_to_annual_revenue
+      - dynamic_economics.space.wacc
+      - dynamic_economics.earth.initial_equity_musd
+      - dynamic_economics.earth.bridge_financing_musd
+      - dynamic_economics.earth.max_debt_to_annual_revenue
+      - dynamic_economics.earth.wacc
+    readiness: data_pending
+
+correlation_groups:
+  qualification_life_availability_finance:
+    rationale: Qualification intensity, system reliability, insurance, and cost of capital share architecture risk.
+    members:
+      - compute.space_qual_multiplier
+      - compute.life_years_space
+      - compute.utilization_leo
+      - space_cost_completion.insurance_fraction_per_year
+      - space_cost_completion.wacc
+  link_latency_throughput:
+    rationale: Link geometry and outages jointly determine latency-qualified useful work and network cost.
+    members:
+      - space_cost_completion.communications_capex_per_kw
+      - space_cost_completion.ground_network_capex_per_kw
+      - workloads.inference_latency_availability_fraction
+      - workloads.training_network_efficiency_space
+  mass_thermal_power:
+    rationale: Power density, radiator design, thermal margin, and launched mass cannot be sampled independently.
+    members:
+      - compute.hw_mass_kg_per_kw
+      - compute.power_overhead_space
+      - power_systems.pv_specific_power_w_per_kg
+      - power_systems.radiator_kg_per_kw
+      - space_cost_completion.radiator_rejection_temperature_k
+      - space_cost_completion.thermal_reliability_mass_margin
+  earth_grid_land_water_labor:
+    rationale: Terrestrial expansion cost and delay share site, grid, resource, and permitting conditions.
+    members:
+      - earth.power_price_kwh
+      - earth.dc_capex_per_kw_it
+      - earth.pue
+      - dynamic_economics.earth.regulatory_delay_years
+      - dynamic_economics.earth.induced_resource_ceiling_units_per_year
+  demand_price_financing:
+    rationale: Revenue, leverage capacity, and investment timing are jointly conditioned on the market path.
+    members:
+      - dynamic_economics.markets.commodity_compute.revenue_musd_per_compute_unit_year
+      - dynamic_economics.markets.commodity_compute.demand_growth_per_year
+      - dynamic_economics.markets.space_native_services.revenue_musd_per_compute_unit_year
+      - dynamic_economics.markets.space_native_services.demand_growth_per_year
+      - dynamic_economics.space.max_debt_to_annual_revenue
+      - dynamic_economics.earth.max_debt_to_annual_revenue
+
+cash_flow_event_schema:
+  common_required_fields:
+    - event_id
+    - project_id
+    - architecture_case
+    - event_time
+    - source_document_hash
+    - nominal_currency
+    - price_base_date
+    - amount
+    - quantity_and_units
+  event_types:
+    capex_commitment: [asset_or_work_package, committed_amount, payment_schedule]
+    construction_payment: [asset_or_work_package, milestone, amount_paid]
+    launch_or_transfer: [manifest, delivered_mass, destination, price]
+    commissioning: [asset_id, commissioned_capacity, acceptance_result]
+    operation: [service_quantity, revenue, operating_cost, availability]
+    failure_and_repair: [asset_id, failure_mode, downtime, repair_cost, lost_service]
+    insurance: [insured_value, premium, claim, recovery]
+    financing: [instrument, principal, interest, fees, maturity]
+    regulatory: [jurisdiction, filing_or_license, fee, delay]
+    retirement_disposal: [asset_id, retirement_reason, disposal_cost, residual_proceeds]
+    earth_resource: [site, grid_region, land, water, labor, capacity_effect]
+
+calibration_plan:
+  unit_of_observation: project-architecture-period with immutable event drill-down
+  calibration_split: chronological predeclared projects or periods only
+  validation_split: later projects or periods held out before fitting
+  external_validation: at least one independent operator, jurisdiction, or architecture
+  missingness: report field-level completeness and model missingness explicitly
+  censoring: retain active assets, failed projects, delays, cancellations, and zero-revenue periods
+  estimation: joint or hierarchical fit within each declared correlation group
+  sensitivity: publish results with and without confidential or selectively disclosed records
+
+promotion_rule:
+  required:
+    - immutable_source_or_event_archive
+    - exact_extraction_and_transformation
+    - denominator_and_units
+    - uncertainty_or_sampling_model
+    - correlation_group_fit
+    - failed_and_censored_observations
+    - held_out_validation_result
+    - architecture_scope
+  decision: >
+    A coefficient remains ASSUMPTION unless every required item passes an
+    independent audit. Partial records may narrow a scenario bound but may not
+    be labeled calibrated or empirical.
+
+execution_outputs_required:
+  - immutable_evidence_index
+  - normalized_workload_benchmarks
+  - architecture_case_register
+  - correlation_fit_diagnostics
+  - audited_cash_flow_ledger
+  - calibration_and_holdout_results
+  - assumption_promotion_table
+  - independent_review_record

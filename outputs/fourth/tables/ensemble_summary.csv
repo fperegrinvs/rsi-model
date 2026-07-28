@@ -1,5 +1,0 @@
-scenario,n_runs,n_feasible,feasible_share,n_survived,survived_share,seed_p10_t,seed_p50_t,seed_p90_t,second_cell_p10_year,second_cell_p50_year,second_cell_p90_year
-terrestrial_rehearsal,200,83,0.415000,83,0.415000,171.262504,200.508339,228.133378,9.000000,10.000000,11.000000
-lunar_vitamin_bridge,200,126,0.630000,126,0.630000,180.774101,212.213425,247.240490,10.500000,12.000000,13.000000
-lunar_strict,200,0,0.000000,0,0.000000,,,,,,
-moon_asteroid_network,200,187,0.935000,187,0.935000,155.243301,203.799012,309.765405,22.500000,23.000000,24.000000

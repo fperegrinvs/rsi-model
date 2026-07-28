@@ -1,6 +1,0 @@
-case,reproduction_ratio_last5y,subcritical,active_year40,derelict_year40,fragment_index_year40
-Earth-fed orbit / weak mitigation,0.608734572,1,0.573009612,1.049160562,1.601585468
-Earth-fed orbit / strong mitigation,0.347454583,1,0.615062945,0.008752753,0.284229059
-dense endogenous / weak mitigation,5.534234837,0,8.183960602,1.838659083,16.497349099
-dense endogenous / strong mitigation,5.576001604,0,8.374151601,0.000000000,12.631908342
-distributed endogenous / sparse topology,1.000000000,1,1.371290899,0.018325773,0.000000000

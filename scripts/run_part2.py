@@ -82,7 +82,7 @@ panels = {
                                 crossover_grid("lunar_surface", lp, "closure_fraction",
                                                np.linspace(0, 0.95, 40), e_base),
                                 "non-hw mass closed locally"),
-    # r2.10 §16: off Earth, chip efficiency is a MASS multiplier (launch tax
+    # the paper's efficiency boundary: off Earth, chip efficiency is a MASS multiplier (launch tax
     # vs Nvidia tax — the two enter the crossover multiplicatively)
     "LEO: chip efficiency": (lp, np.linspace(0.5, 4.0, 40),
                              crossover_grid("leo_inference", lp,
@@ -125,6 +125,10 @@ ai1_fav_be = breakeven_launch_price(
     "starmind_ai1", e_base, a=AnchorSet(overrides=FAVORABLE), life_years=7.0)
 ai1_mass_entry = AnchorSet().anchors["starmind.vehicle_mass_kg_per_average_kw"]
 ai1_asp = spaces["starmind_ai1_aspirational"]
+ai1_asp_incomplete = lco_space(
+    "starmind_ai1_aspirational",
+    complete_costs=False,
+)
 # Isolate what the explicit company targets do before supplying the three
 # unpublished favorable bounds that make the named best case optimistic.
 central_unknowns = AnchorSet()
@@ -162,8 +166,13 @@ ai1_be_text = (
     f"its fixed non-launch costs still exceed Earth base "
     f"(break-even {ai1_be:,.0f} $/kg)"
 )
+ai1_fav_be_text = (
+    f"breaks even at {ai1_fav_be:,.0f} $/kg"
+    if ai1_fav_be >= 0 else
+    f"has no positive break-even launch price ({ai1_fav_be:,.0f} $/kg)"
+)
 # chip-efficiency vs launch-price channel comparison, computed (no hardcoded
-# ratios: they went stale when the cost structure changed — r3.5)
+# ratios: they went stale when the cost structure changed — current)
 r_3000 = lco_space("leo_inference", launch_per_kg_leo=3000.0).lco / e_base
 r_eff2 = lco_space("leo_inference", launch_per_kg_leo=3000.0,
                    chip_efficiency_advantage=2.0).lco / e_base
@@ -198,11 +207,10 @@ notes = (
     "hardware-cost, lifetime, or availability gates. With the remaining anchors "
     "simultaneously favorable (qualification x1.2, seven-year life, 0.95 "
     f"utilization), AI1 becomes {ai1_fav.lco / e_base:.2f}x at central launch, "
-    f"breaks even at {ai1_fav_be:,.0f} $/kg (just below the published "
-    f"$1,400-4,000/kg band), and reaches {ai1_fav_250.lco / e_base:.2f}x at "
-    "$250/kg. The disclosure thus moves the favorable-corner crossover from "
-    "target-class launch prices to near the bottom of today's published band, "
-    "but only conditionally on performance values SpaceX has not published. "
+    f"{ai1_fav_be_text}, and reaches {ai1_fav_250.lco / e_base:.2f}x at "
+    "$250/kg. Completing communications, bus, NRE, insurance, spectrum, "
+    "disposal, thermal-margin, and financing terms removes the formerly "
+    "reported favorable-corner crossover. "
     "Radiator area, dimensions, "
     "redundant loops, debris shielding, and laser links are recorded but do not "
     "receive invented costs where the page supplies none.\n\n"
@@ -217,10 +225,11 @@ notes = (
     f"best case additionally selects the favorable, NON-COMPANY bounds of 1.2x "
     f"qualification, seven-year hardware life, and 0.95 utilization; it yields "
     f"{ai1_asp.lco:,.0f} $/kW-yr or {ai1_asp.lco / e_base:.2f}x Earth base. "
-    "This is the first scenario here in which orbital AI is cheaper than the "
-    "central Earth counterfactual, but the model assigns it no success "
-    "probability: targets and favorable analyst assumptions are point values, "
-    "not empirical distributions.\n\n"
+    f"The earlier incomplete-cost form would have produced "
+    f"{ai1_asp_incomplete.lco / e_base:.2f}x; the completed boundary is "
+    "therefore a direct reversal, not a small adjustment. The model assigns "
+    "the aspirational case no success probability: targets and favorable "
+    "analyst assumptions are point values, not empirical distributions.\n\n"
     "**Feasibility audit of that best case** — the latest AI1 page's 70 kW/t "
     "is 30% below the older 100 kW/t scale assumption (reaching the target "
     "requires 43% more kW/t than AI1). At 100 GW deployed per year, 100 kW/t "
@@ -236,32 +245,30 @@ notes = (
     f"${asp_launch_bill/1e9:,.0f} billion/year of launch cost before spacecraft "
     "manufacture. Full rapid reuse and this cadence are therefore load-bearing; "
     "so are seven-year whole-system reliability and 95% compute utilization, "
-    "neither of which SpaceX publishes for AI1. Regulatory approvals, spectrum, "
-    "collision avoidance/debris mitigation, constellation replenishment, "
-    "networking, insurance, program NRE, and landing/turnaround infrastructure "
+    "neither of which SpaceX publishes for AI1. Communications/downlink, ground "
+    "network, spacecraft-bus functions, program NRE, insurance, spectrum and "
+    "regulatory cost, disposal, residual value, thermal margins, and separate "
+    "space financing are now explicit wide-bound terms. Collision externalities, "
+    "constellation replenishment logistics, and landing/turnaround infrastructure "
     "remain outside the LCO, while the Earth alternative can also improve. The "
     "case is useful as a boundary: it shows what must all go right, not what is "
     "likely to happen.\n\n"
     "**Sensitivity probe** — everything favorable *within* the anchored ranges at once "
     "(qual x1.2, utilization 0.95, radiator 3 kg/kW, life 7 yr): LEO space LCO becomes "
     f"{s_best.lco:,.0f} $/kW-yr at central launch prices, and the break-even launch price "
-    f"becomes {be_best:,.0f} $/kg — above the defined Starship "
-    f"aspiration/sensitivity band ($30-185/kg) but {below}. The generic LEO reference "
-    "therefore still requires the UNANCHORED qual/life/util corner plus launch "
-    f"below roughly ${be_best:,.0f}/kg; the target band would clear that threshold "
-    "but is more aggressive than necessary. The separate disclosed-mass AI1 "
-    "scenario above moves the threshold materially closer to published prices.\n\n"
+    f"becomes {be_best:,.0f} $/kg — {below}. The completed fixed-cost boundary "
+    "therefore prevents parity even at zero launch price in this favorable "
+    "single-axis corner; further architectural changes, not launch alone, are "
+    "required.\n\n"
     "**External claim check** — a Google/Planet study (reported by Will Marshall, "
     "Moonshots #266, June 2026; recorded as `claims.google_planet_crossover_launch_per_kg`, "
     "company_statement, never a model input) puts the crossover at $200-300/kg to LEO. "
     f"In our model, $250/kg at central anchors gives space/Earth = {s250.lco / e_base:.2f} "
     f"(no crossover); with the favorable corner above it gives {s250_fav.lco / e_base:.2f}. "
-    "The claim is therefore reproducible here only under COTS-class qualification (~1.2x), "
-    "~7-yr life, and ~0.95 utilization SIMULTANEOUSLY — assumptions consistent with "
-    "Planet's own practice of flying unmodified Nvidia GPUs at LEO "
-    "(docs/transcripts/moonshots-266-2026-06-26.md). The disagreement between the claim "
-    "and our central result is not about launch price at all; it is about the "
-    "qualification premium, equipment life, and utilization.\n\n"
+    "The claim is not reproduced after the omitted-cost boundary is completed, "
+    "even with COTS-class qualification (~1.2x), ~7-yr life, and ~0.95 "
+    "utilization simultaneously. The disagreement is therefore architectural "
+    "and accounting-wide, not a launch-price threshold alone.\n\n"
     "The published Suncatcher design study (arXiv:2511.19468v2, 2026-06-17; "
     "`claims.suncatcher_launch_feasibility_per_kg`, technical_report) is a "
     "LAUNCH-COST FEASIBILITY MARKER, not a crossover claim — its own text says "
@@ -276,7 +283,7 @@ notes = (
     "not establish is 7-yr SYSTEM reliability — SEE-induced corruption (core "
     "logic/SRAM most sensitive), training-workload impact (reserved by the "
     "authors), thermal, and whole-spacecraft failure remain unresolved. Note also "
-    "the chip-efficiency panel of the crossover figure (r2.10 §16: efficiency is a "
+    "the chip-efficiency panel of the crossover figure (the paper's efficiency boundary: efficiency is a "
     "mass multiplier off Earth — the 'launch tax vs Nvidia tax' argument made "
     "quantitative). Our refinement of that argument: at anchored values a 2x FLOPS/W "
     f"advantage buys ~{eff_frac:.0%} of the benefit of halving launch price (ratio "

@@ -1,0 +1,5 @@
+scenario,aggregate_doubling_year,operating_at_horizon,retained_at_horizon,net_capacity_change_final5y,terminal_window_expanding,import_pools_exhausted_year,ensemble_n_feasible,ensemble_n_retained,ensemble_n_terminal_window_expanding
+terrestrial_rehearsal,,0.468422,0,-0.021578,0,,83,0,0
+lunar_strategic_material_bridge,,0.536023,0,-0.026878,0,,126,0,0
+lunar_strict,,,,,,,0,0,0
+moon_asteroid_network,34.750000,3.605013,1,1.529511,1,,187,150,187

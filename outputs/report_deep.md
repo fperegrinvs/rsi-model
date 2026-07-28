@@ -1,11 +1,11 @@
-# RSI model run report — 2026-07-27
+# RSI model run report — 2026-07-28
 
 All replication/doubling times below are MODEL OUTPUTS. No single trajectory is
 "the" answer: results span assumption sets (conservative/central/optimistic,
 `params/assumptions.yaml`) and Monte Carlo over anchored ranges
 (`params/anchors.yaml`). Structural coefficients are ASSUMPTION-class.
 
-Metric definitions (r3.5):
+Metric definitions:
 - **balanced doubling** — first t with λ(t) = min_j K_j(t)/K_j(0) ≥ 2: every
   modelled sector has at least twice its initial abstract capacity.
   Unit-invariant; it is a balanced-capacity event, not a commissioned second
@@ -229,9 +229,9 @@ central/lunar, n=300, null band ~ +/-0.11 (wider under multiplicity):
 
 - `closure.space_electronics_q_scale`: rho_g30 = +0.80, rho_expand = +0.52
 - `delta.logistics_penalty_space`: rho_g30 = -0.48, rho_expand = -0.50
+- `space_cost_completion.spectrum_regulatory_per_kw_year`: rho_g30 = +0.15, rho_expand = +0.12
 - `closure.vitamin_import_fraction`: rho_g30 = -0.09, rho_expand = -0.11
 - `earth.older_node_hw_per_kw`: rho_g30 = -0.09, rho_expand = -0.03
 - `compute.life_years_space`: rho_g30 = -0.09, rho_expand = -0.10
 - `power_systems.radiator_cost_per_kw`: rho_g30 = -0.08, rho_expand = -0.04
-- `power_systems.lunar_storage_kg_per_kwh`: rho_g30 = +0.07, rho_expand = +0.06
-- `compute.utilization_leo`: rho_g30 = -0.07, rho_expand = +0.00
+- `space_cost_completion.insurance_fraction_per_year`: rho_g30 = +0.07, rho_expand = +0.06

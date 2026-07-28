@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this model or cite its results, please cite it as below."
-title: "Recursive Industrial Intelligence — Fourth Edition companion model"
+title: "Recursive Industrial Intelligence companion model"
 version: r4.0
 license: MIT
 repository-code: "https://github.com/fperegrinvs/rsi-model"
@@ -14,10 +14,11 @@ authors:
 abstract: >-
   Multisector industrial-reproduction and Earth-space compute
   cost-crossover models, plus an 18-sector, 17-material autonomous-bootstrap
-  model with seed sizing, task-resolved autonomy, gravity overhead,
-  construction and commissioning, source-transfer arcs, coupled
-  compute-intelligence growth, and debris-state stress tests, companion to
-  "Recursive Industrial Intelligence, Fourth Edition" (r4.0, docs/). All
+  model with delivered-seed states, sector-resolved commissioning and repair,
+  observable autonomy gates, source-transfer arcs, coupled
+  compute-intelligence growth, finite shell debris, and symmetric dynamic
+  economics, companion to
+  "Recursive Industrial Intelligence" (r4.0, docs/). All
   structural coefficients are ASSUMPTION-class; optimized masses and
   assumption-ensemble frequencies are scenario implications, not
   measurements, probabilities, or forecasts.

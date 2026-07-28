@@ -1,0 +1,13 @@
+scenario,objective,feasible,installed_seed_mass_t,earth_import_mass_t,intervention_hours_per_year,capacity_l1_distance_from_mass_optimum,sector_balanced_equivalents_year40,aggregate_doubling_year_80y_extension
+terrestrial_rehearsal,installed_mass,1,206.672998810,48.061838570,193.168000000,0.000000000,0.468422399,
+terrestrial_rehearsal,earth_import_mass,1,206.672998810,48.061838570,193.168000000,0.000000000,0.468422399,
+terrestrial_rehearsal,intervention_hours,1,206.672998810,48.061838570,193.168000000,0.000000000,0.468422399,
+lunar_strategic_material_bridge,installed_mass,1,216.741832516,58.130672276,130.527700000,0.000000000,0.536023318,
+lunar_strategic_material_bridge,earth_import_mass,1,216.741832516,58.130672276,130.527700000,0.000000000,0.536023318,
+lunar_strategic_material_bridge,intervention_hours,1,216.741832516,58.130672276,130.527700000,0.000000000,0.536023318,
+lunar_strict,installed_mass,0,,,,,,
+lunar_strict,earth_import_mass,0,,,,,,
+lunar_strict,intervention_hours,0,,,,,,
+moon_asteroid_network,installed_mass,1,185.500730665,0.000000000,30.647193574,0.000000000,3.605013391,34.750000
+moon_asteroid_network,earth_import_mass,1,185.500730665,0.000000000,30.647193574,0.000000000,3.605013391,34.750000
+moon_asteroid_network,intervention_hours,1,185.500730665,0.000000000,30.647193574,0.000000000,3.605013391,34.750000

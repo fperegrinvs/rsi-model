@@ -90,7 +90,7 @@ body {
   letter-spacing: 0.015em;
 }
 
-.edition {
+.version {
   color: var(--muted);
   font-size: 0.82rem;
 }

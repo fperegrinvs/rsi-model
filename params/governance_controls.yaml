@@ -1,0 +1,191 @@
+version: r4.0
+status: requirements_model_not_validated_safety_case
+source_class: ASSUMPTION
+
+actors:
+  - earth_mission_authority
+  - owner_operator
+  - local_autonomy_controller
+  - local_maintenance_controller
+  - human_remote_operator
+  - suppliers_and_source_operators
+  - independent_auditor
+  - jurisdictional_regulators
+
+assets:
+  - build_and_replication_authority
+  - signed_process_recipes
+  - sector_capacity_and_repair_state
+  - material_source_and_inventory_state
+  - compute_and_verification_capacity
+  - calibration_references
+  - provenance_and_intervention_logs
+  - communication_and_update_keys
+
+trust_boundaries:
+  earth_link:
+    between: [earth_mission_authority, local_autonomy_controller]
+    failure_modes: [delay, loss, spoofing, replay, key_compromise]
+  corporate_to_site:
+    between: [owner_operator, earth_mission_authority]
+    failure_modes: [conflicted_incentive, unauthorized_priority_change]
+  control_to_actuator:
+    between: [local_autonomy_controller, local_maintenance_controller]
+    failure_modes: [software_fault, sensor_spoofing, unsafe_command]
+  source_interface:
+    between: [suppliers_and_source_operators, local_autonomy_controller]
+    failure_modes: [contaminated_feed, false_provenance, source_capture]
+  audit_boundary:
+    between: [owner_operator, independent_auditor]
+    failure_modes: [log_tampering, selective_disclosure, auditor_capture]
+
+communication_states:
+  normal:
+    authority: >
+      New replication packets, source changes, and safety-envelope changes
+      require signed approval from Earth mission authority and an independent
+      verifier. Local control may execute approved construction and routine
+      repair.
+    maximum_new_capacity_fraction_per_year: 0.45
+  delayed:
+    authority: >
+      Local control may maintain viable sector floors, perform bounded repair,
+      and complete already signed cohorts. It may not start a new source,
+      modify the safety envelope, or exceed the last signed growth-rate limit.
+    maximum_new_capacity_fraction_per_year: 0.20
+  lost:
+    authority: >
+      Local control enters safe-hold: repair, collision avoidance, passivation,
+      environmental protection, and life/safety functions remain authorized.
+      Net new replication and source expansion are disabled until two
+      independent communication paths restore signed authority.
+    maximum_new_capacity_fraction_per_year: 0.00
+
+controls:
+  signed_build_manifest:
+    action: bind every construction cohort to a versioned BOM and authorization
+    verification: two independent signature roots plus local hash validation
+    rollback: stop uncommissioned cohorts and quarantine their inventories
+    status: requirement_unvalidated
+  rate_limit_interlock:
+    action: cap gross build orders by communication state and viable-floor margin
+    verification: independent hardware counter compared with software ledger
+    rollback: inhibit new material withdrawal
+    status: requirement_unvalidated
+  two_channel_authorization:
+    action: require mission-authority and independent-verifier approval
+    verification: disjoint credentials and communication routes
+    rollback: revert to delayed or lost-link authority
+    status: requirement_unvalidated
+  sector_compartmentalization:
+    action: separate compute, source, repair, and construction command domains
+    verification: deny-by-default cross-domain capability tests
+    rollback: isolate affected sector without disabling safe repair elsewhere
+    status: requirement_unvalidated
+  source_provenance_interlock:
+    action: verify feed identity, assay, reserve, and transfer authorization
+    verification: independent assay plus provenance-preserving custody record
+    rollback: quarantine feed and suspend the affected source arc
+    status: requirement_unvalidated
+  verification_diversity:
+    action: require independently implemented safety and commissioning checks
+    verification: disagreement test and common-mode review
+    rollback: hold commissioning and preserve the prior operating cohort
+    status: requirement_unvalidated
+  append_only_audit_log:
+    action: preserve commands, interventions, faults, materials, and model versions
+    verification: external witness hashes and periodic offline reconciliation
+    rollback: none; a log gap forces safe-hold and investigation
+    status: requirement_unvalidated
+  recovery_and_safe_hold:
+    action: retain repair, passivation, avoidance, and minimum-service authority
+    verification: quarterly injected-loss and link-loss drills
+    rollback: restore only the last signed known-good controller and recipe set
+    status: requirement_unvalidated
+  independent_capacity_audit:
+    action: compare physical sector/source state with operator-reported state
+    verification: auditor-controlled sensors and inventory sampling
+    rollback: reduce build rate to zero on unresolved material discrepancy
+    status: requirement_unvalidated
+
+threats:
+  accidental_configuration_error:
+    class: accidental
+    path: invalid recipe or limit propagates from planning to construction
+    affected_assets: [signed_process_recipes, sector_capacity_and_repair_state]
+    physical_state_trigger: yield loss or any indispensable sector below viable floor
+    controls:
+      - signed_build_manifest
+      - verification_diversity
+      - recovery_and_safe_hold
+    residual_risk: common-mode error in both implementations or calibration reference
+  external_command_compromise:
+    class: cyber
+    path: stolen or spoofed authority issues unsafe build/source commands
+    affected_assets: [build_and_replication_authority, communication_and_update_keys]
+    physical_state_trigger: unauthorized order, source transfer, or rate-limit change
+    controls:
+      - two_channel_authorization
+      - rate_limit_interlock
+      - append_only_audit_log
+    residual_risk: compromise of both independent roots or supply-chain implant
+  privileged_insider_override:
+    class: insider
+    path: authorized operator bypasses declared growth or commissioning controls
+    affected_assets: [build_and_replication_authority, provenance_and_intervention_logs]
+    physical_state_trigger: unsigned cohort or unexplained material withdrawal
+    controls:
+      - two_channel_authorization
+      - independent_capacity_audit
+      - append_only_audit_log
+    residual_risk: collusion across owner, verifier, and auditor
+  owner_growth_incentive:
+    class: owner_operator_incentive
+    path: commercial pressure suppresses risk evidence or raises limits
+    affected_assets: [build_and_replication_authority, material_source_and_inventory_state]
+    physical_state_trigger: growth order while repair, debris, or source margin is red
+    controls:
+      - rate_limit_interlock
+      - independent_capacity_audit
+      - sector_compartmentalization
+    residual_risk: regulator capture or formally authorized risk externalization
+  jurisdictional_conflict:
+    class: jurisdictional
+    path: incompatible authorities issue conflicting source, debris, or build orders
+    affected_assets: [build_and_replication_authority, communication_and_update_keys]
+    physical_state_trigger: conflicting valid signatures for one cohort or source arc
+    controls:
+      - signed_build_manifest
+      - recovery_and_safe_hold
+      - append_only_audit_log
+    residual_risk: no legitimate tie-break authority during prolonged conflict
+  common_mode_verification_failure:
+    class: common_mode
+    path: shared model, sensor, or calibration defect approves unsafe output
+    affected_assets: [compute_and_verification_capacity, calibration_references]
+    physical_state_trigger: correlated yield, metrology, or commissioning error
+    controls:
+      - verification_diversity
+      - independent_capacity_audit
+      - sector_compartmentalization
+    residual_risk: shared physical reference or specification error
+  autonomous_objective_drift:
+    class: autonomy
+    path: controller optimizes proxy growth while violating safety intent
+    affected_assets: [build_and_replication_authority, sector_capacity_and_repair_state]
+    physical_state_trigger: growth despite violated source, repair, debris, or audit gate
+    controls:
+      - rate_limit_interlock
+      - sector_compartmentalization
+      - recovery_and_safe_hold
+    residual_risk: novel behavior inside the formally permitted envelope
+  contaminated_or_captured_source:
+    class: supply_and_source
+    path: false assay or adversarial source operator damages processes or captures supply
+    affected_assets: [material_source_and_inventory_state, calibration_references]
+    physical_state_trigger: assay mismatch, contamination, or unplanned source cutoff
+    controls:
+      - source_provenance_interlock
+      - independent_capacity_audit
+      - recovery_and_safe_hold
+    residual_risk: undetectable contaminant or simultaneous loss of all qualified sources

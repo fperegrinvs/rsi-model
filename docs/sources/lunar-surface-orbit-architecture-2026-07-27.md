@@ -2,7 +2,7 @@
 
 Date: 2026-07-27
 
-Scope: qualitative architecture partition for the r3.5 manuscript. This note
+Scope: qualitative architecture partition for the current manuscript. This note
 does **not** supply numerical parameters to Parts I–II. The coupled
 surface–orbit network and endogenous debris process require new transfer,
 collision, fragmentation, disposal, and removal inputs before they can be

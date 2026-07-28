@@ -1,20 +1,23 @@
-# Anchored parameters — traceable to the paper's Appendix A (Second Edition r2.8).
+# Anchored parameters — traceable to the paper's Appendix A.
 # Ranges are sampled by Monte Carlo. source_class ∈ {peer_reviewed, technical_report,
-# company_statement, reporting, ASSUMPTION}.  Units noted per entry.
+# company_statement, reporting, ASSUMPTION}. Every non-ASSUMPTION entry must have
+# a verified record in claim_provenance.yaml; contextual reporting is not enough
+# to promote an analyst-constructed range out of ASSUMPTION. Units noted per entry.
 
 delta:  # fractional capacity loss per year, decomposed
   wear_space_solar:        {low: 0.004, high: 0.017, source_class: peer_reviewed,     note: "GEO telemetry, 11 sats (2018); GaAs low, Si high"}
   wear_terrestrial_pv:     {low: 0.005, high: 0.006, source_class: peer_reviewed,     note: "Jordan et al. 2016 median"}
-  catastrophic_leo:        {low: 0.001, high: 0.03,  source_class: reporting,         note: "COHORT-DEPENDENT fleet fractions, not hazard rates (r2.11 correction):
+  catastrophic_leo:        {low: 0.001, high: 0.03,  source_class: ASSUMPTION,        note: "COHORT-DEPENDENT analyst range, not a measured hazard rate (r4.0 provenance audit):
     ~3% for early Starlink generations, <0.5% for later ones; tracker mixes early
     deorbit, uncontrolled decay, retirement, disposal. Band spans later-generation
-    (~0.5%/5yr) through early-generation annualized"}
+    (~0.5%/5yr) through early-generation annualized. Reporting bounds the context
+    but does not support this conversion to an annual capacity-loss distribution."}
   logistics_penalty_space: {low: 0.01,  high: 0.05,  source_class: ASSUMPTION,        note: "internal repair-chain overhead as capacity tax; UNANCHORED"}
-  obsolescence_earth_adv:  {low: 0.15,  high: 0.35,  source_class: technical_report,  note: "2-5yr fab tool schedules; 3-6yr accelerator lives"}
+  obsolescence_earth_adv:  {low: 0.15,  high: 0.35,  source_class: ASSUMPTION,        note: "Analyst conversion of 2-5yr fab-tool accounting schedules and 3-6yr accelerator replacement practice into frontier-equivalent annual capacity loss; no source directly measures this quantity"}
 
 design_life_years:
-  geo: {value: 15, source_class: technical_report}
-  leo: {value: 5,  source_class: reporting}
+  geo: {value: 15, source_class: ASSUMPTION, note: "Representative communications-satellite design convention; mission- and architecture-specific, not a measured lifetime distribution"}
+  leo: {value: 5,  source_class: ASSUMPTION, note: "Representative LEO constellation design convention; mission- and architecture-specific, not a measured lifetime distribution"}
 
 energy:
   pv_epbt_years:           {low: 0.9, high: 4.1, source_class: peer_reviewed,  note: "Fraunhofer 2026 Europe low end; Bhandari 2015 harmonized high end. Measures ENERGY payback only — NOT industrial replication."}
@@ -33,7 +36,7 @@ closure:
     THE single most results-driving number in Part I — see ROADMAP."}
 
 buildout:
-  gigafactory_months: {value: 10, source_class: reporting, note: "Shanghai; PROJECT EXECUTION, not replication"}
+  gigafactory_months: {value: 10, source_class: ASSUMPTION, note: "Analyst-selected project-execution reference inspired by Shanghai reporting; not an independently sourced replication-time measurement"}
 
 # ---------------------------------------------------------------------------
 # Part II anchors: levelized-cost mass/power budgets (space vs Earth compute).
@@ -42,26 +45,26 @@ buildout:
 # deterministic sensitivity below; they never enter the probabilistic baseline.
 
 launch:
-  leo_per_kg:           {low: 1400, high: 4000, source_class: company_statement, note: "published price sheets 2024-26: F9 ~$70M/22.8t ≈ $3.0k/kg; FH reusable ~$97M/~63t ≈ $1.4-1.5k/kg. List prices, not costs"}
+  leo_per_kg:           {low: 1400, high: 4000, source_class: ASSUMPTION, note: "Analyst-expanded band around published SpaceX price/performance sheets: F9 ~$69.75M/22t ≈ $3.17k/kg; FH price/performance produces a lower reference near $1.5k/kg. The rounded 1.4-4.0k endpoints are deliberately wider than the disclosed arithmetic; list prices, not costs"}
   cislunar_multiplier:  {low: 2.0,  high: 4.0,  source_class: ASSUMPTION,        note: "$/kg to high orbit / TLI vs LEO; staging + kick stages"}
   lunar_surface_multiplier: {low: 4.0, high: 20.0, source_class: ASSUMPTION,     note: "landed $/kg vs LEO AT SCALE. Today's CLPS missions are ~$1M/kg (100x LEO); range assumes maturing landers. Wide on purpose"}
 
 power_systems:
-  pv_specific_power_w_per_kg: {low: 80, high: 150, source_class: technical_report, note: "flexible blanket arrays; ROSA ~150 W/kg BOL at 1 AU, rigid panels low end"}
-  pv_cost_per_kw:       {low: 500,  high: 2000, source_class: reporting,          note: "space-qualified array $/kW at volume; terrestrial is ~10x cheaper"}
-  radiator_kg_per_kw:   {low: 3.0,  high: 12.0, source_class: technical_report,   note: "deployable radiators at electronics-friendly reject temps; ISS EATCS practice ~6 kg/kW_rejected; advanced concepts 1-3"}
+  pv_specific_power_w_per_kg: {low: 80, high: 150, source_class: ASSUMPTION, note: "Analyst architecture band spanning rigid and flexible blanket arrays; no single technical record supports both endpoints on a common BOL/system-mass basis"}
+  pv_cost_per_kw:       {low: 500,  high: 2000, source_class: ASSUMPTION,        note: "Analyst volume-manufacturing bound for space-qualified arrays; no exact claim-level source supports both endpoints"}
+  radiator_kg_per_kw:   {low: 3.0,  high: 12.0, source_class: ASSUMPTION,        note: "Analyst architecture band. NASA/TM-2005-213442 supports roughly 7-12 kg/kW for complete systems at one reject temperature; the 3 kg/kW advanced-concept endpoint is not comparably demonstrated"}
   radiator_cost_per_kw: {low: 200,  high: 1000, source_class: ASSUMPTION,         note: "manufactured cost at volume; UNANCHORED"}
   structure_overhead_fraction: {low: 0.20, high: 0.50, source_class: ASSUMPTION,  note: "bus/harness/avionics/shielding mass as fraction of (hw+pv+radiator) mass"}
-  lunar_storage_kg_per_kwh: {low: 4.0, high: 10.0, source_class: technical_report, note: "Li-ion pack-level 100-250 Wh/kg; night-survival storage for lunar surface"}
+  lunar_storage_kg_per_kwh: {low: 4.0, high: 10.0, source_class: ASSUMPTION, note: "Reciprocal of an analyst-selected 100-250 Wh/kg pack-level range; lunar night survival, thermal control, degradation, redundancy, and packaging are architecture-specific"}
   infrastructure_life_years: {low: 10.0, high: 25.0, source_class: ASSUMPTION,     note: "amortization life for PV/radiator/storage/structure and the launch spend
-    that emplaced them, DISTINCT from the compute refresh cycle (r3.5 review fix:
+    that emplaced them, DISTINCT from the compute refresh cycle (review correction:
     a single short compute life over-annualized long-lived infrastructure).
     Bounding: GEO comsat buses design to ~15 yr and ISS EATCS radiators exceed
     20 yr service (upper); LEO debris/UV/thermal-cycling and lunar dust +
     300-K-swing degradation argue the lower end. UNANCHORED within the range"}
 
 compute:
-  hw_per_kw_it:         {low: 25000, high: 45000, source_class: reporting,        note: "accelerator+system $ per kW of IT load, 2024-26 (H100 ~0.7 kW ~$25-30k; B200 ~1 kW ~$30-40k incl. system share)"}
+  hw_per_kw_it:         {low: 25000, high: 45000, source_class: ASSUMPTION,       note: "Analyst-normalized 2024-26 accelerator-plus-system price band per kW IT; product prices, board power, and host allocation do not form a stable common-denominator source"}
   hw_mass_kg_per_kw:    {low: 10,   high: 30,   source_class: ASSUMPTION,         note: "server mass per kW IT stripped of air-cooling chassis; UNANCHORED"}
   space_qual_multiplier: {low: 1.2, high: 3.0,  source_class: ASSUMPTION,         note: "rad-tolerant COTS screening/derating cost factor on hw. Low end has
     reporting-class support: Planet flies unmodified Nvidia GPUs on Pelican imaging
@@ -76,15 +79,38 @@ compute:
     reserved. What remains unresolved is SYSTEM reliability (SEE, training
     workloads, thermal, whole-spacecraft). High end (hardened, long-life,
     training-class) remains UNANCHORED"}
-  life_years_space:     {low: 3.0,  high: 7.0,  source_class: reporting,          note: "LEO design lives ~5 yr; radiation + obsolescence for compute payloads"}
-  life_years_earth:     {low: 3.0,  high: 6.0,  source_class: technical_report,   note: "accelerator refresh cycles (Appendix A: obsolescence-driven)"}
+  life_years_space:     {low: 3.0,  high: 7.0,  source_class: ASSUMPTION,         note: "Analyst compute-payload service-life band around a ~5-year LEO convention; radiation, replacement, and obsolescence are architecture-specific"}
+  life_years_earth:     {low: 3.0,  high: 6.0,  source_class: ASSUMPTION,         note: "Analyst accelerator economic-retirement band; refresh practice is not a physical lifetime distribution"}
   utilization_leo:      {low: 0.65, high: 0.95, source_class: ASSUMPTION,         note: "eclipse fraction (orbit-dependent; dawn-dusk SSO near 1.0) x availability.
     High end supported by the Suncatcher reference design (81-sat cluster in
-    dawn-dusk sun-synchronous orbit, near-continuous sunlight; r2.10 [S32])"}
+    dawn-dusk sun-synchronous orbit, near-continuous sunlight; [S32])"}
   utilization_cislunar: {low: 0.90, high: 0.99, source_class: ASSUMPTION,         note: "near-continuous sunlight at high orbit"}
   utilization_lunar:    {low: 0.45, high: 0.85, source_class: ASSUMPTION,         note: "14-day night: low end = solar+partial storage; high end = polar site / oversized storage"}
   ops_fraction_per_year: {low: 0.02, high: 0.06, source_class: ASSUMPTION,        note: "ground segment, downlink, ops as fraction of space capex per year"}
   power_overhead_space: {low: 1.10, high: 1.25, source_class: ASSUMPTION,         note: "conversion + pumping losses; the space analogue of PUE"}
+
+space_cost_completion:
+  communications_capex_per_kw: {low: 500, high: 5000, source_class: ASSUMPTION, note: "Payload and gateway communications capex per delivered kW; explicit wide bound pending architecture-specific link budgets"}
+  ground_network_capex_per_kw: {low: 200, high: 1500, source_class: ASSUMPTION, note: "Ground terminals, routing, and control-network capex per delivered kW; wide boundary"}
+  spacecraft_bus_capex_per_kw: {low: 1000, high: 6000, source_class: ASSUMPTION, note: "Avionics, attitude control, propulsion, shielding, harness, and integration not already in generic power/thermal budgets"}
+  program_nre_fraction: {low: 0.05, high: 0.25, source_class: ASSUMPTION, note: "Program non-recurring engineering as a fraction of recurring non-launch capex"}
+  insurance_fraction_per_year: {low: 0.01, high: 0.08, source_class: ASSUMPTION, note: "Annual insurance and risk-transfer cost as a fraction of deployed capex"}
+  spectrum_regulatory_per_kw_year: {low: 50, high: 500, source_class: ASSUMPTION, note: "Spectrum, licensing, compliance, and regulatory program cost per delivered kW-year"}
+  disposal_capex_per_kw: {low: 100, high: 1200, source_class: ASSUMPTION, note: "End-of-life passivation, deorbit, transfer, or retrieval provision per delivered kW"}
+  residual_value_fraction_serviceable: {low: 0.05, high: 0.30, source_class: ASSUMPTION, note: "Recoverable infrastructure value at the end of serviceable-platform life"}
+  residual_value_fraction_disposable: {low: 0.00, high: 0.05, source_class: ASSUMPTION, note: "Residual value at the end of integrated disposable life"}
+  wacc: {low: 0.10, high: 0.22, source_class: ASSUMPTION, note: "Space-project financing bound, separated from Earth WACC"}
+  radiator_rejection_temperature_k: {low: 330, high: 390, source_class: ASSUMPTION, note: "Radiator surface rejection temperature boundary; workload/hardware qualification must support the selected value"}
+  chip_to_radiator_temperature_drop_k: {low: 20, high: 60, source_class: ASSUMPTION, note: "Chip/coolant/transport-to-emitter temperature drop"}
+  environmental_view_factor: {low: 0.60, high: 0.95, source_class: ASSUMPTION, note: "Net cold-space radiative view after solar and planetary geometry"}
+  thermal_reliability_mass_margin: {low: 1.10, high: 1.50, source_class: ASSUMPTION, note: "Redundancy, micrometeoroid isolation, degradation, and pumping hardware mass multiplier"}
+  pumping_power_fraction: {low: 0.02, high: 0.10, source_class: ASSUMPTION, note: "Thermal-loop pumping fraction of IT power"}
+
+workloads:
+  inference_requests_per_kwh: {low: 200, high: 2000, source_class: ASSUMPTION, note: "Defined-workload inference throughput boundary; requires declared model, latency, accuracy, batch, memory, and precision"}
+  inference_latency_availability_fraction: {low: 0.70, high: 0.98, source_class: ASSUMPTION, note: "Share of nominal inference throughput delivered inside the declared latency and availability envelope"}
+  training_network_efficiency_space: {low: 0.05, high: 0.50, source_class: ASSUMPTION, note: "Useful frontier-training work after orbital interconnect, synchronization, and fault overhead"}
+  training_network_efficiency_earth: {low: 0.70, high: 0.95, source_class: ASSUMPTION, note: "Useful frontier-training work after terrestrial interconnect and synchronization overhead"}
 
 # Starmind AI1 disclosed architecture, SpaceX company page accessed 2026-07-27:
 # https://www.spacex.com/spacexai/starmind
@@ -118,20 +144,19 @@ aspirations:
   starmind_utilization: {value: 0.95, source_class: ASSUMPTION, note: "FAVORABLE MODEL BOUND, not achieved AI1 availability: high end of compute.utilization_leo. Starlink's reported network uptime is not evidence of AI1 spacecraft compute availability. USED only in the aspirational deterministic sensitivity"}
 
 earth:
-  power_price_kwh:      {low: 0.05, high: 0.12, source_class: reporting,          note: "industrial/DC contracted power 2024-26; tight markets high end"}
-  nuclear_ppa_kwh:      {low: 0.09, high: 0.13, source_class: reporting,          note: "restart PPAs (e.g. TMI ~$100-115/MWh reported 2024); long-run firm clean floor"}
-  gas_power_price_floor_kwh: {low: 0.04, high: 0.06, source_class: reporting,     note: "firm CCGT power at shale-gas fuel cost + capex + O&M (Situational
+  power_price_kwh:      {low: 0.05, high: 0.12, source_class: ASSUMPTION,        note: "Analyst industrial/data-center contracted-power scenario band; geography, term, load shape, and grid charges are not held constant"}
+  nuclear_ppa_kwh:      {low: 0.09, high: 0.13, source_class: ASSUMPTION,        note: "Analyst firm-clean-power scenario band informed by reported restart PPAs; not a general long-run nuclear cost distribution"}
+  gas_power_price_floor_kwh: {low: 0.04, high: 0.06, source_class: ASSUMPTION,   note: "Analyst CCGT floor derived from shale-gas fuel, capex, and O&M rather than quoted by the contextual source (Situational
     Awareness ch. IIIa, 2024, docs/sources/: <$1000/kW plant capex, ~2yr
     combined-cycle build, Marcellus alone could feed ~150-250 GW). POLITICALLY
     CONDITIONAL: assumes permitting/climate commitments yield — the responsive
     scenario's premise; the tight scenario is the politics-binds branch"}
-  gas_power_capex_per_kw: {low: 700, high: 1200, source_class: reporting,         note: "CCGT plant capex basis for the floor above (Situational Awareness
-    ch. IIIa: ~$100B per 100 GW). Documentation anchor; not directly consumed"}
-  dc_capex_per_kw_it:   {low: 11000, high: 20000, source_class: reporting,        note: "AI-optimized facility $/kW IT 2025-26 ($11-20M/MW); excludes IT hw"}
-  pue:                  {low: 1.10, high: 1.40, source_class: reporting,          note: "hyperscale AI facilities"}
+  gas_power_capex_per_kw: {low: 700, high: 1200, source_class: ASSUMPTION,       note: "Analyst band around the Situational Awareness ch. IIIa contextual estimate of <$1000/kW (~$100B per 100 GW); not directly consumed"}
+  dc_capex_per_kw_it:   {low: 11000, high: 20000, source_class: ASSUMPTION,      note: "Analyst-normalized AI-optimized facility capex band excluding IT hardware; project scope and denominator vary"}
+  pue:                  {low: 1.10, high: 1.40, source_class: ASSUMPTION,        note: "Analyst scenario band spanning efficient hyperscale and less favorable AI facilities; climate, load, and boundary vary"}
   wacc:                 {low: 0.08, high: 0.15, source_class: ASSUMPTION,         note: "capital recovery rate, both sides"}
-  older_node_hw_per_kw: {low: 8000, high: 15000, source_class: reporting,         note: "prior-gen accelerators $/kW IT on secondary/extended supply"}
-  older_node_energy_penalty: {low: 1.5, high: 3.0, source_class: technical_report, note: "J/FLOP penalty vs frontier node (~2-3x per 2 process generations)"}
+  older_node_hw_per_kw: {low: 8000, high: 15000, source_class: ASSUMPTION,       note: "Analyst prior-generation accelerator price-per-kW scenario; secondary-market price and useful workload equivalence are not stable"}
+  older_node_energy_penalty: {low: 1.5, high: 3.0, source_class: ASSUMPTION,     note: "Analyst workload-level energy-efficiency penalty for older nodes; no single technical record supports this cross-generation range at equal service quality"}
 
 # External CLAIMS recorded for comparison against model outputs. NEVER model
 # inputs (rule 3: company statements are evidence of intent, not feasibility).
@@ -144,7 +169,7 @@ claims:
     under COTS qualification (~1.2x) + ~7yr life + ~0.95 utilization simultaneously"}
   suncatcher_launch_feasibility_per_kg: {value: 200, source_class: technical_report, note: "Google Research
     Project Suncatcher (arXiv:2511.19468v2, 2026-06-17). LAUNCH-COST FEASIBILITY
-    MARKER, NOT A CROSSOVER (r2.11 correction — the study says twice it is not a
+    MARKER, NOT A CROSSOVER (review correction — the study says twice it is not a
     full economic analysis): at $200/kg it compares amortized LAUNCH cost per
     kW-yr ($810 Starlink-v2-class; $810-7,500 across classes) against terrestrial
     ELECTRICITY spend ($570-3,000/kW-yr), explicitly excluding infrastructure,

@@ -56,7 +56,7 @@ class MCResult:
     # ever-doubled minus survivor counts = runs that doubled early, then lost
     # viability — a distinct outcome class, reported separately.
     doubling_times_survivors: list[float] = None
-    # r3.5 endpoint hierarchy additions:
+    # endpoint hierarchy:
     # balanced (λ = min_j K_j/K_j(0) ≥ 2) doubling — the unit-invariant
     # replication metric; the sum-K lists above are aggregate-abstract-capacity
     # doubling and are NOT unit-invariant.

@@ -1,0 +1,181 @@
+version: r4.0
+contract_id: process-feasible-industrial-closure
+status: acceptance_contract_ready_process_graph_and_calibration_pending
+source_class: ASSUMPTION
+epistemic_status: >
+  Schema and acceptance criteria for replacing the aggregate 17-category
+  material model. This file is not a process graph, resource estimate,
+  industrial recipe, or closure demonstration.
+
+current_aggregate_categories:
+  - O
+  - Si
+  - Al
+  - Fe
+  - Mg
+  - Ca
+  - Ti
+  - H
+  - C
+  - N
+  - Cu
+  - Ni
+  - Co
+  - Cr
+  - Li
+  - rare_earths
+  - dopants
+
+graph_schema:
+  node_types:
+    source_lot:
+      required_fields: [source_record_id, body_or_site, mineral_form, grade_distribution, accessibility, recoverable_reserve, uncertainty, depletion_state]
+    process_unit:
+      required_fields: [equipment_family, operating_envelope, batch_or_continuous, throughput, energy, consumables, tool_life]
+    material_or_species:
+      required_fields: [chemical_identity, material_grade, grade_id, assay, contamination_limits, physical_form]
+    part_family:
+      required_fields: [requirement_id, specification, acceptable_substitutes, service_life, failure_modes, inspection]
+    production_equipment:
+      required_fields: [bom, parent_tool, calibration_artifacts, software_and_controls, maintenance_inputs]
+    transport_leg:
+      required_fields: [fleet_record_id, origin, destination, delta_v, transfer_window, transit_time, payload, propellant, cycle_time, loss_rate]
+    waste_or_recycle_stream:
+      required_fields: [species_and_grade, quantity, recoverable_fraction, treatment_route, disposal_route]
+  edge_required_fields:
+    - input_node
+    - output_node
+    - process_stage
+    - stoichiometry_or_bom
+    - quantity_and_units
+    - yield_distribution
+    - energy_distribution
+    - contamination_and_rework
+    - consumables_and_tool_wear
+    - capacity_and_cycle_time
+    - evidence_record
+
+required_material_grades:
+  raw_mineral:
+    acceptance: mineral phases and assay distribution are explicit
+  concentrate:
+    acceptance: beneficiation output and impurity envelope are explicit
+  bulk:
+    acceptance: commodity material meets a named use specification
+  structural_alloy:
+    acceptance: alloy chemistry, heat treatment, and mechanical properties pass
+  electronic_grade:
+    acceptance: purity and contaminant limits meet a named electronic process
+  semiconductor_grade:
+    acceptance: wafer or precursor purity and defect limits pass
+  ultra_pure_process_input:
+    acceptance: gas, chemical, water, or reagent specification and delivery form pass
+
+required_process_stages:
+  - excavation_and_size_reduction
+  - beneficiation_and_separation
+  - refining_and_species_conversion
+  - purification_and_contamination_control
+  - alloying_and_heat_treatment
+  - forming_machining_and_joining
+  - electronics_materials_and_wafer_process
+  - component_fabrication_and_packaging
+  - assembly_calibration_and_acceptance
+  - maintenance_repair_and_recycling
+  - waste_treatment_and_disposal
+
+critical_part_families:
+  process_gases: {acceptance: supply route, purity, storage, recycling, and leak loss close}
+  process_chemicals: {acceptance: synthesis or import, purity, shelf life, recovery, and waste close}
+  masks_and_reticles: {acceptance: design, fabrication, inspection, cleaning, repair, and replacement close}
+  resists_and_photochemicals: {acceptance: formulation, delivery, contamination control, and shelf life close}
+  filters_and_membranes: {acceptance: media production, rating, inspection, replacement, and disposal close}
+  optics_and_laser_sources: {acceptance: substrates, coatings, emitters, alignment, metrology, and replacement close}
+  coatings_and_surface_treatments: {acceptance: feed chemicals, deposition equipment, quality, and rework close}
+  seals_and_flexible_elements: {acceptance: material formulation, forming, compatibility, life, and replacement close}
+  lubricants_and_working_fluids: {acceptance: formulation, contamination, recovery, degradation, and replenishment close}
+  bearings_and_precision_motion: {acceptance: materials, finishing, preload, lubrication, inspection, and life close}
+  calibration_artifacts: {acceptance: traceability, drift detection, reproduction, comparison, and custody close}
+  metrology_and_test: {acceptance: sensors, references, fixtures, software, uncertainty, and maintenance close}
+  controls_and_power_electronics: {acceptance: logic, sensing, actuation, firmware, qualification, and repair close}
+  parent_tools: {acceptance: each production tool has a reproducible ancestry and no circular unsupported edge}
+
+source_and_fleet_requirements:
+  source_fields:
+    - source_id
+    - named_body_or_defensible_source_class
+    - mineral_form
+    - composition_distribution
+    - grade_distribution
+    - accessible_and_recoverable_reserve
+    - spatial_variability
+    - uncertainty_and_detection_limit
+    - depletion_and_failed_source_rule
+  fleet_fields:
+    - fleet_id
+    - delta_v_and_transfer_windows
+    - transit_and_turnaround_time
+    - vehicle_payload_and_dry_mass
+    - propellant_and_consumables
+    - excavation_and_processing_rate
+    - fleet_manufacture_and_replacement_bom
+    - reliability_and_failed_missions
+    - reserve_and_inventory_accounting
+
+acceptance_gates:
+  C01_species_mass_balance:
+    test: Every process conserves chemical species within measured uncertainty and routes waste explicitly.
+    evidence: [source_lot, material_or_species, process_unit, waste_or_recycle_stream]
+  C02_energy_and_capacity:
+    test: Metered energy, peak power, throughput, cycle time, and capacity reconcile for each process edge.
+    evidence: [process_unit, transport_leg]
+  C03_grade_progression:
+    test: Every BOM input is reachable from an allowed source through grade-qualified, contamination-aware edges.
+    evidence: [source_lot, material_or_species, process_unit]
+  C04_part_and_parent_tool_ancestry:
+    test: Every critical part and production tool has an acyclic supported ancestry or an explicit external import.
+    evidence: [part_family, production_equipment, material_or_species]
+  C05_source_transport_fleet:
+    test: Named sources, windows, vehicles, depletion, failures, and fleet reproduction support the claimed delivered flows.
+    evidence: [source_lot, transport_leg, production_equipment]
+  C06_failure_and_substitution:
+    test: Single-source, failed-source, part-loss, contamination, and substitute-route cases preserve or visibly break closure.
+    evidence: [source_lot, part_family, process_unit, transport_leg]
+  C07_empirical_calibration:
+    test: Terrestrial measurements support yields, energy, contamination, rework, consumables, tool life, and uncertainty.
+    evidence: [process_unit, material_or_species, production_equipment]
+  C08_minimum_external_vector:
+    test: The minimum external source vector is recomputed on the calibrated graph with every import and cut set named.
+    evidence: [source_lot, part_family, production_equipment, transport_leg]
+
+evidence_record_required_fields:
+  - record_id
+  - source_or_experiment
+  - organization_or_authors
+  - title_or_protocol
+  - date
+  - exact_locator
+  - persistent_identifier_or_archive_hash
+  - extracted_value_and_units
+  - denominator_and_boundary
+  - transformation
+  - uncertainty_and_detection_limit
+  - source_class
+  - independent_review_status
+
+promotion_rule: >
+  The current aggregate closure matrix remains an internal-consistency
+  certificate until every acceptance gate passes for a versioned graph and
+  named source portfolio. Missing or import-only nodes remain visible and
+  cannot be erased by high aggregate mass closure.
+
+execution_outputs_required:
+  - versioned_node_and_edge_graph
+  - species_and_energy_balance
+  - grade_transition_matrix
+  - critical_part_and_parent_tool_ancestry
+  - named_source_and_transport_register
+  - failure_and_substitution_campaign
+  - terrestrial_calibration_dataset
+  - minimum_external_source_vector
+  - independent_audit_report

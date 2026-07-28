@@ -1,0 +1,91 @@
+# Current artifact manifest
+
+- generated: 2026-07-28
+- python: 3.13.0
+- numpy: 2.1.3
+- scipy: 1.16.0
+- PyYAML: 6.0.3
+- generator: `scripts/run_integrated.py`
+
+| artifact/input | sha256 |
+|---|---|
+| `docs/ECONOMIC_CALIBRATION_PROTOCOL.md` | `8ee1faa3a92e622025f687de925979a750591a8c80fbe34d0ec701877dc82146` |
+| `docs/GOVERNANCE_THREAT_MODEL.md` | `f30b47003053d2d304087b01264d25ca62de1b7209a2346eed3cbd07548c222f` |
+| `docs/PROCESS_CLOSURE_ACCEPTANCE_CONTRACT.md` | `b05cd9dcdf8aaddc207e281c571b674ed75b514e8131043a4458dde82479b984` |
+| `docs/RELEASE_RUNBOOK.md` | `e7d227bae5d92b017d35e677a2023b2d2a05752eb97d9ceed29dcdf1541df731` |
+| `docs/TERRESTRIAL_REHEARSAL_PROTOCOL.md` | `1e555dbe390f48eb548a45bfa76400123db354f6011fb0c1ec804fa44d89ef7b` |
+| `docs/VENUE_SELECTION_AND_CONFORMANCE.md` | `a146dfff5cc549b808cb133dae14ab568078de71248d339c6b0ebfd340420a4d` |
+| `outputs/integrated/figures/compute_growth_regimes.png` | `8e0c4e947c2ad7f7d1ea3a9fd7ee29116a1670e72e5374f9c248bf5c2ba315aa` |
+| `outputs/integrated/figures/debris_regimes.png` | `a7476adef23d352d969d4775d33b5a4d126402634deea3f1159b6ea21ce13339` |
+| `outputs/integrated/figures/operating_capacity.png` | `03eafeb59ebaa7643f6b76e983b42447379df8ea824779ca7e5ff5307dfd158a` |
+| `outputs/integrated/figures/oversize_frontier.png` | `7217422aa0b1bb7b72e03f518c97b996041ebf93ce3aae8238e6af64245e81e9` |
+| `outputs/integrated/figures/seed_mass_ensemble.png` | `260deca755c808a85895403125079daf4725e4abbb559a5d2c189fe8d3f4d7be` |
+| `outputs/integrated/report.md` | `defde8a118f1dc179b65a16cf6a24844a46ea967ad46261c7b6473c722c5a9f2` |
+| `outputs/integrated/tables/ablations.csv` | `cc67f7798bb94e80d5857230169a3ad967eb00076c146d48306fe8c862037761` |
+| `outputs/integrated/tables/allocation_repair_comparison.csv` | `2ffe44d608c9936d9ab753dfb86ef97d4b2f7c9a8987b35561b4633ef0ab05d6` |
+| `outputs/integrated/tables/compute_curves.csv` | `842e5b24c93945d9155820a4cfba7362955ce6f29f08609003faa8a88eb5d160` |
+| `outputs/integrated/tables/debris_summary.csv` | `740a07fd01171e25840052a48f5ef0470f8a767d4bbf4a1ebcafd900e2baeddd` |
+| `outputs/integrated/tables/diagnostics_histograms.csv` | `e2d4b06551199e40eb6147dd763003b2e127ab9ebdfb74fda8f191bfe6fc92ac` |
+| `outputs/integrated/tables/dynamic_regime_summary.csv` | `c03e206b83335b353aa22a35af4ac02a17d42b11e7847833da349406fd4c6c27` |
+| `outputs/integrated/tables/economic_calibration_readiness.csv` | `34a6ab3eb4bf111f9a3c3c98390e340920a728ad7fc6dba2a940908d596fc837` |
+| `outputs/integrated/tables/electronics_architecture_comparison.csv` | `118a2c6b0e43b171453d585b4520031be534e88b85edce0dc768414256883a54` |
+| `outputs/integrated/tables/element_flows.csv` | `17960829cd732e1d49e7c288fd0a643f5282af9847e66df40b44bbc8e9eb065f` |
+| `outputs/integrated/tables/ensemble_sensitivity.csv` | `d9e3b631840a16791e4a0c7092454bbd402499c8f60253ec3d30b8e55bc983f5` |
+| `outputs/integrated/tables/ensemble_summary.csv` | `ed47da9828d6674cc5209b625121cd935a79d31e1a206e91b581cfa3a2d28a1d` |
+| `outputs/integrated/tables/environment_process_effects.csv` | `c03a8adbea65e3ceb13fedc8e25b9776a5cd7963a7d3e424c3cbdf1ce0bc9252` |
+| `outputs/integrated/tables/governance_threat_control_traceability.csv` | `4dc92cfe922ae93a4342868e94df06fc6ea5bc4ada9a4dbf30d0164d6e70d2d1` |
+| `outputs/integrated/tables/import_stock_composition.csv` | `a426d3fb0efc1a459532ac9c8da80ae157c46c90e6c3e518b89be57fefaa43d8` |
+| `outputs/integrated/tables/infeasibility_certificate.csv` | `cf0cd3ba59f38459285dfa0daee6b5a9b446939dde51e8825051f772d3ef95ec` |
+| `outputs/integrated/tables/knowledge_autonomy_observables.csv` | `ee3d832d7f42a0f431d53ba8109771f57727924e9a231d88c40748c00550c786` |
+| `outputs/integrated/tables/knowledge_regime_summary.csv` | `14499fff00186a58cc13ef36246600ad2f5e024ba619de133467bda6b9a1d948` |
+| `outputs/integrated/tables/long_horizon_endpoints.csv` | `790950aa094a0220816408e9b5fc9c96c90c40dd71c88f997027fcea30e82eae` |
+| `outputs/integrated/tables/orbital_mass_balance.csv` | `0e736a0f8579fb75f957b37ec010c12abf7fda8647a63df832d9e387b979cd5a` |
+| `outputs/integrated/tables/oversize_frontier.csv` | `35cbf7a10e49150a18f62b96913b66ab88a2482c55c741e3a073749d14c47d3d` |
+| `outputs/integrated/tables/policy_robustness_sweep.csv` | `29870ff7a058f09d1803913ba30930839d40a2e7e898a27f2ae3cce625fe17f7` |
+| `outputs/integrated/tables/process_closure_gap_register.csv` | `b0f7e02efa65b96a08d090a6e2a23a517738bc32403b73cb7fabb8cf8a13da18` |
+| `outputs/integrated/tables/publication_readiness.csv` | `c1d7df45f33d3c8ff72e5bcf7cc1f54d0eafd6cd9bb80ebe47b51d196e86189a` |
+| `outputs/integrated/tables/rehearsal_acceptance_matrix.csv` | `1eed2e325db5cc28711ac6bfbb9c8c63ad3d030a202d4318c75dec4b438469d3` |
+| `outputs/integrated/tables/robust_seed_pareto.csv` | `788d332014ff8cc057f2008c568d82479a2940b47df912f60c49256c40966fa9` |
+| `outputs/integrated/tables/scenario_summary.csv` | `ee57c4e7f7461f964fca84aed3441069b252f262c3f1d491ffe95e70865fa37b` |
+| `outputs/integrated/tables/sector_capacity_trajectory.csv` | `f7c77cb21e39fb84d90aa6bb8a00b510575e96b2b7081a796b89bf8d23967330` |
+| `outputs/integrated/tables/seed_deployment_trajectory.csv` | `02b18ebb7aa8e5f8a29304cd6220ca615d95b6f35605cf64f6b4fe1aad6d346c` |
+| `outputs/integrated/tables/seed_objective_comparison.csv` | `8f56da032df15100dfe544149a12b85039a2eca7d6d7742b107987395d90a0a3` |
+| `outputs/integrated/tables/seed_sector_capacity.csv` | `bbabfbd20a8cb9803d5220d30811045b75c2c8b916b8dc005d407fe9a14d7d2b` |
+| `outputs/integrated/tables/shell_debris_trajectory.csv` | `cc2cca826808c79efc9995a28aa54d140d4b820f94482bc4308b2a4aeeb2fb56` |
+| `outputs/integrated/tables/symmetric_dynamic_economics.csv` | `3f5de184dbce3ec34b5d431a4cd6fe7bceb71a2dfd1ecf2c3741a4c2cb702925` |
+| `outputs/integrated/tables/terminal_endpoints.csv` | `d397d7d521925663bf28bfb19894e8a17d7477a0435cc773a62ceb99a63bbcf4` |
+| `papers/ORBITAL_COMPUTE_ECONOMICS_r4.0.md` | `bf4d0bdaddf3538dda7de8c5cb0c56cb54461e4ded96d1016976cf923336c8ed` |
+| `papers/README.md` | `8e88db1f19e3ed4e1d4d5e74d78b14d94847db859cb8ba679694ab134bcdbe44` |
+| `papers/STRATEGY_GOVERNANCE_CASE_STUDY_r4.0.md` | `efff7ac45655fc22fa17707d988aa5dfc7ca688c18305cbe7f44b74941c959f6` |
+| `papers/TECHNICAL_PAPER_r4.0.md` | `ac22da119e13d7109da89b83ffb0e8828bcc70d040dcaab27158e06d6cc99636` |
+| `papers/TECHNICAL_SUPPLEMENT_r4.0.md` | `a0b1b4eccae9345745654923b546f7fc7e7c266366324bbd5e2f82f5619f4da8` |
+| `params/claim_glossary.yaml` | `81a975cecd8596c744c855a2ed702de96606bc5eb9c05e77968ccf083f6f5d79` |
+| `params/economic_calibration.yaml` | `1e30516171037a94f95949cbcb13e06c8970075824acf08a6637ff493aedcbb1` |
+| `params/governance_controls.yaml` | `b314a4fc59fac130ba22c8e574ea447269e7c13f2879837bf51b0269acefb55c` |
+| `params/integrated_model.yaml` | `e24d3b90d3b70fa766816bdb0d0772285d5d9a82c0567ce90d43032cc17b2284` |
+| `params/process_closure_requirements.yaml` | `b39cfc382bbcb6f319684d4284cd9f84367779465c1f15fb7477b4876910c418` |
+| `params/publication_targets.yaml` | `e72505badb68ce62943fd134aabc74483a655e185a34de1aa735f7be8ab6badf` |
+| `params/rehearsal_protocol.yaml` | `07cb80bb81947f58a96684d99479d66ae525489d9ea55aca8d5edeb8f2b9733f` |
+| `scripts/evaluate_evidence_bundle.py` | `af04597523eea27b5e6d41a4dd6e216f13d245007522ed934fbf27e76aaef4df` |
+| `scripts/publication_preflight.py` | `636ede78eeaecafd7cae72ef2eec80dce86220b5e7fa04c37971f8374442e383` |
+| `scripts/release_preflight.py` | `908fdc6bfcfa0b73e619ded4c53f0f2d044f37b9244bf6054051d2252df7d4d2` |
+| `scripts/run_integrated.py` | `b9f4bcaefee15556c6865d04c0de606ff0609318b7de723ee0048b22d4091dae` |
+| `scripts/verify_manifests.py` | `5098db7ee88c7251fc73362e9db1f7debfce457137cc76479c191181cae4192e` |
+| `src/rsimodel/economic_calibration.py` | `0694f06f632b2315bf1420c039693ea7e08225e90b3ee7bb93b017d24cfdd246` |
+| `src/rsimodel/evidence.py` | `b3393fc44ff06bf795c6817e7c91afa9fc279e35bb48cc17b3ac59d5414f43ca` |
+| `src/rsimodel/integrated.py` | `15d73440d317d9a5ed6f8c09c743e8524393a79de68704dca15bc7e520ca2fbc` |
+| `src/rsimodel/integrated_analysis.py` | `86ce29c288141351634eb45d846b9d6468d7d2c9985195b6ac8d318834a6cd9f` |
+| `src/rsimodel/manifests.py` | `bc982a981db36ad32c5a13948a2723bc43d5f25d46df3fcc972ec14ff485a9c2` |
+| `src/rsimodel/process_closure.py` | `96c8c02581a0cc3bd17c3544725512259e15997279f5f85c6d0c488a5af35c9b` |
+| `src/rsimodel/publication.py` | `3b3f0e3a48218bd245a3dacbb020f7e111df603f8da78fa0dffae806addd38d6` |
+| `src/rsimodel/rehearsal.py` | `39d601ca2dec94f5f6ae86b6c10ceb1190aa91f86ed5a6cea2166bb9f43c1191` |
+| `src/rsimodel/release.py` | `d8fe9f6727d1323c23610093d43c10b60bcd6c49912a21e8672275c404a69821` |
+| `tests/test_economic_calibration.py` | `bfbb6979ca099a9db787b9e24cbc67ff8b3199389d0178feef11111a2d28095e` |
+| `tests/test_evidence_bundles.py` | `201c3478ca0a3bda652415aad6193d55f8cf3c3b4fbd030b003a4da23453d549` |
+| `tests/test_integrated.py` | `7f610c7bdb51ab5666ce1404ab064a831fa01fd7f83aec5afed728c06fcd5a7f` |
+| `tests/test_integrated_analysis.py` | `16c03a7b2c8e494a95b0c5231f51a8bd1e9c0e2f4f9586afa38a253890b51ef2` |
+| `tests/test_manifests.py` | `968cbdcdd0569c48bf60509dd39049f5e6c27b55ed7cd0202f95caccb8947eb5` |
+| `tests/test_process_closure.py` | `fab3355685a47eb0f49ff9c847bdcb842826e7509b696e9ee4f8611fd6adad39` |
+| `tests/test_publication.py` | `ef1dfe62751adb24540025be0dff7c8333b0bb43a9a234cbfdec39ef6224adcd` |
+| `tests/test_rehearsal.py` | `1b58a8da163c23bda3afa95f0dc2e38fde830c0f58b2c462773aab9035d313cf` |
+| `tests/test_release.py` | `7959f5993262186607c40eae79ad25af6291b98fbf7b6c562be84a6e9220d9cb` |

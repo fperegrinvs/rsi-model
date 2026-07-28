@@ -1,6 +1,6 @@
 """Multisector capacity dynamics with maximin LP allocation.
 
-Self-expansion criterion (per the paper, r2.8): feasible positive net growth in
+Self-expansion criterion (per the paper): feasible positive net growth in
 EVERY indispensable sector, not aggregate growth. The per-step LP implements
 exactly that: maximize the worst-case sector growth rate.
 
@@ -30,7 +30,7 @@ from .delta import (DELTA_COMPONENTS, Provenance, Shock, assemble_delta, draw_an
 
 PARAMS_DIR = Path(__file__).resolve().parents[2] / "params"
 
-# r3.5 fast path: a persistent warm-started HiGHS model via the highspy
+# Fast path: a persistent warm-started HiGHS model via the highspy
 # bindings that scipy bundles (pinned scipy==1.16.0 in requirements.lock;
 # the module is private to scipy, so guard the import and keep the
 # scipy.linprog path as fallback + reference implementation).
@@ -762,7 +762,7 @@ class RunResult:
 
         NOT unit-invariant — sector capacities are in arbitrary units, so this
         sum depends on unit conventions and can be reached by overbuilding easy
-        sectors while a hard sector lags (r3.5 review). Kept for continuity;
+        sectors while a hard sector lags (review correction). Kept for continuity;
         balanced_doubling_time() is the defensible replication metric.
         Compares against the SUPPLIED K0, not the first post-step record."""
         tot = self.K.sum(axis=1)

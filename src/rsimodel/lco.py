@@ -1,6 +1,6 @@
 """Part II: levelized cost of compute, space vs. a responding Earth.
 
-Three reference cases (paper r2.8 Section 9): LEO inference service,
+Three reference cases (paper Part II): LEO inference service,
 high-orbit/cislunar batch compute, and lunar-surface compute, plus separate
 Starmind AI1 current-disclosure and aspirational-best-case scenarios. Unit:
 $ per frontier-equivalent kW-year of delivered IT load (older-node hardware
@@ -122,7 +122,7 @@ MONTE_CARLO_CASES = tuple(
 # Display names for reports/manuscript. The central lunar reference case has
 # closure_fraction = 0: ALL non-hardware mass is launched from Earth, so it is
 # Earth-supplied lunar-surface compute, NOT "compute on locally manufactured
-# power" (r3.5 review fix). Local manufacture enters only via the
+# power" (review fix). Local manufacture enters only via the
 # closure-fraction sweep axis.
 CASE_LABELS = {
     "leo_inference": "leo_inference",
@@ -140,7 +140,7 @@ class AnchorSet:
     Each anchor is drawn ONCE per AnchorSet and cached: every subsequent
     request returns the same value. This is what makes the Monte Carlo's
     stated shared-draw correlation real — lco_space() and lco_earth() called
-    with the same AnchorSet see the same wacc, hardware cost, etc. (r3.5 fix:
+    with the same AnchorSet see the same wacc, hardware cost, etc. (review correction:
     previously every request re-sampled, so the correlation was documentation
     only). Overrides bypass the cache so a later scenario override still wins.
 
@@ -197,6 +197,9 @@ class SpaceLCO:
     architecture_specs: dict[str, float] = field(repr=False, default_factory=dict)
     detail: dict[str, float] = field(repr=False, default_factory=dict)
     provenance: list[Provenance] = field(repr=False, default_factory=list)
+    workload_costs: dict[str, float] = field(
+        repr=False, default_factory=dict
+    )
 
 
 def lco_space(case: str, a: AnchorSet | None = None,
@@ -204,7 +207,8 @@ def lco_space(case: str, a: AnchorSet | None = None,
               closure_fraction: float | None = None,
               life_years: float | None = None,
               architecture: str = "serviceable_platform",
-              chip_efficiency_advantage: float = 1.0) -> SpaceLCO:
+              chip_efficiency_advantage: float = 1.0,
+              complete_costs: bool = True) -> SpaceLCO:
     """Levelized cost for one space reference case.
 
     launch_per_kg_leo / closure_fraction / life_years override anchors for
@@ -215,7 +219,7 @@ def lco_space(case: str, a: AnchorSet | None = None,
     every component and its launch spend retire together on life_years.
 
     chip_efficiency_advantage: relative FLOPS/W vs the reference accelerator
-    (r2.10 §16: off Earth, efficiency is a MASS multiplier — every watt not
+    (the paper's efficiency boundary: off Earth, efficiency is a MASS multiplier — every watt not
     computed must be radiated, and radiator/PV/structure are launched mass, so
     efficiency and launch price enter the crossover multiplicatively). A value
     e scales the entire power side (PV, radiator, storage, their structure and
@@ -230,7 +234,7 @@ def lco_space(case: str, a: AnchorSet | None = None,
     launch = a(cfg.launch_price_anchor) if launch_per_kg_leo is None else launch_per_kg_leo
     mult = a(cfg.kg_multiplier_anchor) if cfg.kg_multiplier_anchor else 1.0
     closure = cfg.closure_fraction if closure_fraction is None else closure_fraction
-    # component-specific lives (r3.5 review fix): the compute refresh cycle
+    # component-specific lives (review fix): the compute refresh cycle
     # applies to the accelerators only; PV/radiator/storage/structure and the
     # launch spend that emplaced them amortize on the longer infrastructure
     # life. Replacement chips must be re-launched, so the hw-mass share of
@@ -253,9 +257,46 @@ def lco_space(case: str, a: AnchorSet | None = None,
     else:
         power_kw = a("compute.power_overhead_space")
     power_kw /= chip_efficiency_advantage
+    pumping_fraction = (
+        a("space_cost_completion.pumping_power_fraction")
+        if complete_costs else 0.0
+    )
+    # A disclosed array/load ratio already constrains total available power;
+    # adding pumping on top would contradict that specification. Generic
+    # cases expose pumping as an additional load.
+    if not cfg.power_ratio_anchors:
+        power_kw *= 1.0 + pumping_fraction
     pv_kw = power_kw * cfg.pv_oversize
     pv_mass = pv_kw * 1000.0 / a("power_systems.pv_specific_power_w_per_kg")
-    radiator_mass = a("power_systems.radiator_kg_per_kw") * power_kw
+    if complete_costs:
+        rejection_temperature = a(
+            "space_cost_completion.radiator_rejection_temperature_k"
+        )
+        temperature_drop = a(
+            "space_cost_completion.chip_to_radiator_temperature_drop_k"
+        )
+        view_factor = a(
+            "space_cost_completion.environmental_view_factor"
+        )
+        thermal_margin = a(
+            "space_cost_completion.thermal_reliability_mass_margin"
+        )
+        thermal_scale = (
+            (360.0 / rejection_temperature) ** 4
+            * thermal_margin
+            / view_factor
+        )
+    else:
+        rejection_temperature = 360.0
+        temperature_drop = 0.0
+        view_factor = 1.0
+        thermal_margin = 1.0
+        thermal_scale = 1.0
+    radiator_mass = (
+        a("power_systems.radiator_kg_per_kw")
+        * power_kw
+        * thermal_scale
+    )
     hw_mass = a("compute.hw_mass_kg_per_kw")
     storage_kwh = cfg.storage_hours * power_kw
     storage_mass = storage_kwh * a("power_systems.lunar_storage_kg_per_kwh") \
@@ -277,17 +318,81 @@ def lco_space(case: str, a: AnchorSet | None = None,
     capex = {
         "hardware": a("compute.hw_per_kw_it") * a(cfg.qualification_anchor),
         "pv": a("power_systems.pv_cost_per_kw") * pv_kw,
-        "radiator": a("power_systems.radiator_cost_per_kw") * power_kw,
+        "radiator": (
+            a("power_systems.radiator_cost_per_kw")
+            * power_kw
+            * thermal_scale
+        ),
         "storage": STORAGE_COST_PER_KWH * storage_kwh,
         "launch": launch * mult * launched,
     }
-    wacc = a("earth.wacc")
+    if complete_costs:
+        capex.update({
+            "communications": a(
+                "space_cost_completion.communications_capex_per_kw"
+            ),
+            "ground_network": a(
+                "space_cost_completion.ground_network_capex_per_kw"
+            ),
+            "spacecraft_bus": a(
+                "space_cost_completion.spacecraft_bus_capex_per_kw"
+            ),
+            "disposal": a(
+                "space_cost_completion.disposal_capex_per_kw"
+            ),
+        })
+        recurring_nonlaunch = sum(
+            value for key, value in capex.items() if key != "launch"
+        )
+        capex["program_nre"] = (
+            recurring_nonlaunch
+            * a("space_cost_completion.program_nre_fraction")
+        )
+        wacc = a("space_cost_completion.wacc")
+        insurance = a(
+            "space_cost_completion.insurance_fraction_per_year"
+        )
+        regulatory = a(
+            "space_cost_completion.spectrum_regulatory_per_kw_year"
+        )
+        residual = a(
+            "space_cost_completion.residual_value_fraction_serviceable"
+            if architecture == "serviceable_platform"
+            else "space_cost_completion.residual_value_fraction_disposable"
+        )
+    else:
+        wacc = a("earth.wacc")
+        insurance = 0.0
+        regulatory = 0.0
+        residual = 0.0
     util = a(cfg.utilization_anchor)
     ops = a("compute.ops_fraction_per_year")
-    ann_hw = crf(wacc, life_hw) + ops
-    ann_infra = crf(wacc, life_infra) + ops
-    infra_capex = capex["pv"] + capex["radiator"] + capex["storage"]
-    alpha = (capex["hardware"] * ann_hw + infra_capex * ann_infra) / util
+    salvage_hw = crf(wacc, life_hw) * (
+        1.0 - residual / (1.0 + wacc) ** life_hw
+    )
+    salvage_infra = crf(wacc, life_infra) * (
+        1.0 - residual / (1.0 + wacc) ** life_infra
+    )
+    ann_hw = salvage_hw + ops + insurance
+    ann_infra = salvage_infra + ops + insurance
+    infra_capex = sum(
+        capex.get(name, 0.0)
+        for name in (
+            "pv",
+            "radiator",
+            "storage",
+            "communications",
+            "ground_network",
+            "spacecraft_bus",
+            "disposal",
+            "program_nre",
+        )
+    )
+    alpha = (
+        capex["hardware"] * ann_hw
+        + infra_capex * ann_infra
+        + regulatory
+    ) / util
     # launch $ split by what the mass is for: hw-mass share recurs with the
     # chip refresh, infrastructure-mass share with the infrastructure life —
     # still exactly affine in launch $/kg, so break-evens stay exact.
@@ -307,10 +412,38 @@ def lco_space(case: str, a: AnchorSet | None = None,
         "launch_multiplier": mult,
         "infra_capex": infra_capex,
         "power_kw": power_kw,
+        "pumping_power_fraction": pumping_fraction,
+        "radiator_rejection_temperature_k": rejection_temperature,
+        "chip_temperature_k": rejection_temperature + temperature_drop,
+        "environmental_view_factor": view_factor,
+        "thermal_reliability_mass_margin": thermal_margin,
+        "residual_value_fraction": residual,
+        "insurance_fraction_per_year": insurance,
+        "spectrum_regulatory_per_kw_year": regulatory,
+        "complete_costs": float(complete_costs),
+    }
+    inference_throughput = (
+        a("workloads.inference_requests_per_kwh")
+        * 8760.0
+        * a("workloads.inference_latency_availability_fraction")
+    )
+    training_efficiency = a(
+        "workloads.training_network_efficiency_space"
+    )
+    lco = alpha + beta * launch
+    workload_costs = {
+        "cost_per_million_inferences": (
+            lco / max(inference_throughput, 1e-12) * 1_000_000.0
+        ),
+        "cost_per_network_effective_training_kw_year": (
+            lco / max(training_efficiency, 1e-12)
+        ),
+        "inference_requests_per_kw_year": inference_throughput,
+        "training_network_efficiency": training_efficiency,
     }
     return SpaceLCO(
-        case, architecture, alpha + beta * launch, launch, launched, capex,
-        alpha, beta, architecture_specs, detail, a.used,
+        case, architecture, lco, launch, launched, capex,
+        alpha, beta, architecture_specs, detail, a.used, workload_costs,
     )
 
 
@@ -321,6 +454,9 @@ class EarthLCO:
     node: str                      # "frontier" or "older"
     detail: dict[str, float]
     provenance: list[Provenance] = field(repr=False, default_factory=list)
+    workload_costs: dict[str, float] = field(
+        repr=False, default_factory=dict
+    )
 
 
 def lco_earth(scenario: str = "base", a: AnchorSet | None = None) -> EarthLCO:
@@ -368,8 +504,38 @@ def lco_earth(scenario: str = "base", a: AnchorSet | None = None) -> EarthLCO:
         variants["older"] = total(a("earth.older_node_hw_per_kw"),
                                   a("earth.older_node_energy_penalty"))
     node = min(variants, key=variants.get)
-    return EarthLCO(scenario, variants[node], node,
-                    {"energy_per_kwyr": energy_per_kwyr, **variants}, a.used)
+    lco = variants[node]
+    inference_throughput = (
+        a("workloads.inference_requests_per_kwh")
+        * 8760.0
+        * a("workloads.inference_latency_availability_fraction")
+    )
+    training_efficiency = a(
+        "workloads.training_network_efficiency_earth"
+    )
+    workload_costs = {
+        "cost_per_million_inferences": (
+            lco / max(inference_throughput, 1e-12) * 1_000_000.0
+        ),
+        "cost_per_network_effective_training_kw_year": (
+            lco / max(training_efficiency, 1e-12)
+        ),
+        "inference_requests_per_kw_year": inference_throughput,
+        "training_network_efficiency": training_efficiency,
+    }
+    return EarthLCO(
+        scenario,
+        lco,
+        node,
+        {
+            "energy_per_kwyr": energy_per_kwyr,
+            "wacc": wacc,
+            "pue": pue,
+            **variants,
+        },
+        a.used,
+        workload_costs,
+    )
 
 
 def breakeven_launch_price(case: str, earth_lco: float,
@@ -377,14 +543,16 @@ def breakeven_launch_price(case: str, earth_lco: float,
                            closure_fraction: float | None = None,
                            life_years: float | None = None,
                            architecture: str = "serviceable_platform",
-                           chip_efficiency_advantage: float = 1.0) -> float:
+                           chip_efficiency_advantage: float = 1.0,
+                           complete_costs: bool = True) -> float:
     """LEO launch $/kg at which the space case matches a given Earth LCO.
     Exact from the affine form; negative means never competitive (fixed costs
     alone exceed the Earth cost)."""
     s = lco_space(case, a=a, launch_per_kg_leo=0.0,
                   closure_fraction=closure_fraction, life_years=life_years,
                   architecture=architecture,
-                  chip_efficiency_advantage=chip_efficiency_advantage)
+                  chip_efficiency_advantage=chip_efficiency_advantage,
+                  complete_costs=complete_costs)
     return (earth_lco - s.alpha) / s.beta
 
 

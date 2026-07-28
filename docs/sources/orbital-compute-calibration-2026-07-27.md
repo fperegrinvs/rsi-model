@@ -1,9 +1,9 @@
 # Orbital-compute post-IPO calibration snapshot
 
 - Accessed: 2026-07-27
-- Manuscript use: Third Edition r3.5, Part II and Appendix A.6
+- Manuscript use: Part II and Appendix A.6
 - Epistemic role: independent engineering and economic cross-checks
-- Model role: **not inputs in r3.5**; architecture partition and roadmap evidence
+- Model role: **not inputs in current**; architecture partition and roadmap evidence
 
 This note records the values carried into the manuscript so later revisions
 can distinguish source statements, arithmetic derived from them, and proposed
@@ -30,7 +30,7 @@ Representative 1 MW high-sunlight case:
 - illustrative five-year lifetime penalties: 1.27× at 10% annual hazard and
   1.58× at 20%
 
-Model comparison: the generic r3.5 LEO case has a 46.1 kg/kW central value
+Model comparison: the generic current LEO case has a 46.1 kg/kW central value
 and approximately 25–91 kg/kW component-corner envelope. The central value is
 well bracketed; the current tail range spans both advanced integration and
 small-node overhead and should be partitioned by architecture in a later
@@ -152,7 +152,7 @@ https://nationalsecurity.virginia.edu/sites/default/files/files/2026-05/00036_20
 Use only as a joint-condition cross-check, not as a replacement for the
 companion model.
 
-## 7. Model changes implied, but not made in r3.5
+## 7. Model changes implied, but not made in current
 
 1. Partition total mass by architecture: conventional modular, AI1 company
    specification, and integrated/tether stretch.

@@ -2,15 +2,15 @@
 
 Writes outputs/report_deep.md AND outputs/tables/mc_deep.csv from the SAME
 objects in the same execution — this script is the only generator of both, so
-the r3.4 stale-artifact failure mode (CSV and report from different runs) is
+the stale-artifact failure mode (CSV and report from different runs) is
 structurally excluded. Use run_baseline.py for the fast smoke sweep.
 
-r3.5: the independent Monte Carlo stages fan out over a process pool, with
+current: the independent Monte Carlo stages fan out over a process pool, with
 each 400-run cell further split into 4 independently seeded 100-run chunks
 for load balancing. Every task carries its own stable crc32-derived seed and
 consumes its own RNG stream, so results are identical regardless of
 scheduling — parallelism buys wall-clock only (~3 min on a 10-core machine
-vs ~40 min for the serial r3.4 script). Per-anchor draws are keyed by anchor
+vs ~40 min for the serial serial script). Per-anchor draws are keyed by anchor
 NAME (delta.draw_anchors), so results are also stable under anchor-list
 growth.
 """
@@ -217,7 +217,7 @@ def main() -> None:
                                    fname="survival_deep_central.png"))
     figures.append(decay_sweep(curves, horizon=30, fname="import_decay_sweep_deep.png"))
 
-    # --- policy robustness + sensitivity (r3.3 review requirements) ---------
+    # --- policy robustness + sensitivity (review requirements) ---------
     extra = ["\n## Allocation-policy robustness (paired draws, shocks off)\n"]
     for env, pc in pol_results:
         extra.append(f"**central/{env}** (n={pc.n_runs}): "

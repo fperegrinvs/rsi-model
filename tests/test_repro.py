@@ -1,6 +1,6 @@
-"""r3.5 reproducibility and metric-identity tests.
+"""Reproducibility and metric-identity tests.
 
-Each test targets a defect class from the third external review: process-salted
+Each test targets a defect class found during external review: process-salted
 seeds, uncached shared draws, unit-dependent doubling, divergent binding-sector
 definitions, and committed artifacts that disagree with each other.
 """
@@ -23,7 +23,7 @@ OUTPUTS = Path(__file__).resolve().parents[1] / "outputs"
 HTML_MANUSCRIPT = (
     Path(__file__).resolve().parents[1]
     / "docs"
-    / "Recursive_Industrial_Intelligence_3rd_Ed_r3.5.html"
+    / "Recursive_Industrial_Intelligence_r4.0.html"
 )
 
 
@@ -37,14 +37,21 @@ def test_anchorset_caches_draws():
     assert sum(p.quantity == "earth.wacc" for p in a.used) == 1
 
 
-def test_space_and_earth_share_draws():
-    # the documented shared-draw correlation must actually hold: with one
-    # AnchorSet, the wacc used by lco_space and lco_earth is the same number
+def test_space_and_earth_share_physical_draws_but_not_financing():
+    # Common hardware properties remain correlated through one AnchorSet,
+    # while the completed r4.0 boundary deliberately separates financing.
     a = AnchorSet(np.random.default_rng(42))
     lco_space("leo_inference", a=a)
-    wacc_after_space = a._cache["earth.wacc"]
+    hw_after_space = a._cache["compute.hw_per_kw_it"]
+    assert "space_cost_completion.wacc" in a._cache
+    assert "earth.wacc" not in a._cache
     lco_earth("base", a=a)
-    assert a._cache["earth.wacc"] == wacc_after_space
+    assert a._cache["compute.hw_per_kw_it"] == hw_after_space
+    assert a._cache["space_cost_completion.wacc"] != a._cache["earth.wacc"]
+    assert sum(p.quantity == "compute.hw_per_kw_it" for p in a.used) == 1
+    assert sum(
+        p.quantity == "space_cost_completion.wacc" for p in a.used
+    ) == 1
     assert sum(p.quantity == "earth.wacc" for p in a.used) == 1
 
 
@@ -59,7 +66,7 @@ def test_override_wins_even_after_cached_draw():
 # --- draw-stream stability under anchor-list growth -------------------------
 
 def test_anchor_draws_stable_under_anchor_additions():
-    # adding an anchor must not change any other anchor's draw (r3.5: each
+    # Adding an anchor must not change any other anchor's draw: each
     # draw is keyed by anchor NAME + run entropy, not stream position)
     from rsimodel import draw_anchors, load_anchors
     anchors = load_anchors()
@@ -283,8 +290,7 @@ def test_fast_lp_matches_scipy():
                     or not (OUTPUTS / "report_deep.md").exists(),
                     reason="deep outputs not generated")
 def test_committed_csv_matches_committed_report():
-    """The r3.4 failure mode: mc_deep.csv and report_deep.md from different
-    runs. Cross-check every expanding count the report states against the CSV."""
+    """Reject mc_deep.csv and report_deep.md from different runs."""
     rows = {}
     with open(OUTPUTS / "tables" / "mc_deep.csv") as f:
         for row in csv.DictReader(f):
@@ -312,9 +318,8 @@ def test_html_manuscript_has_semantic_math_and_tables():
     assert len(re.findall(r"<table\b", text)) >= 10
     assert 'id="TOC"' in text
     assert '<meta name="citation_author" content="Leonardo Stern">' in text
-    assert '<link rel="canonical" href="https://github.com/fperegrinvs/' \
-           'rsi-model/blob/main/docs/' in text
-    assert '<meta name="citation_public_url"' in text
+    assert '<link rel="canonical"' not in text
+    assert '<meta name="citation_public_url"' not in text
     assert 'className = "source-marker"' in text
     assert '"source-s" + match[1]' in text
     assert "$$" not in text

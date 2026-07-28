@@ -1,7 +1,7 @@
 """Allocation-policy robustness: is the electronics/location story an artifact
 of the myopic one-step maximin LP?
 
-The concern (review, r3.2): a myopic maximin allocator may under-invest in
+The concern (external review): a myopic maximin allocator may under-invest in
 future capacity (power, machine tools, stockpiles) that a forward-looking
 operator would build. Because the dynamics K_{t+1} = K_t + dt(x_t + u_t -
 delta K_t) and all balances are linear, a multi-period lookahead is an exact
@@ -23,7 +23,7 @@ binding-sector diagnostic is the SAME unit-invariant one-percent finite
 response as model.run — evaluated at the current state
 (a state property, independent of which policy produced the state) — so the
 policy table tests whether the manuscript's binding-sector classification
-survives alternative policies, not a different statistic (r3.5 review fix:
+survives alternative policies, not a different statistic (review correction:
 this previously used argmin dK_j/K_j, which is a different concept).
 """
 from __future__ import annotations

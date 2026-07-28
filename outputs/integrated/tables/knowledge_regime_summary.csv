@@ -1,0 +1,16 @@
+scenario,variant,operating_at_horizon,aggregate_doubling_year,material_steps,autonomy_steps,verification_steps,repair_steps,compute_steps,service_steps,order_rate_steps
+terrestrial_rehearsal,declared,0.468422,,145,0,0,0,0,0,15
+terrestrial_rehearsal,communication_outage_years10_12,0.469077,,136,8,0,0,0,0,16
+terrestrial_rehearsal,verification_outage_years10_12,0.469077,,136,0,8,0,0,0,16
+terrestrial_rehearsal,compute_outage_years10_12,0.469077,,136,0,0,0,8,0,16
+terrestrial_rehearsal,repair_after_advanced_logic_90pct_loss_year5,1.714375,14.250000,139,0,0,3,0,0,18
+lunar_strategic_material_bridge,declared,0.536023,,146,0,0,0,0,0,14
+lunar_strategic_material_bridge,communication_outage_years10_12,0.536755,,137,8,0,0,0,0,15
+lunar_strategic_material_bridge,verification_outage_years10_12,0.536755,,137,0,8,0,0,0,15
+lunar_strategic_material_bridge,compute_outage_years10_12,0.536755,,137,0,0,0,8,0,15
+lunar_strategic_material_bridge,repair_after_advanced_logic_90pct_loss_year5,2.186270,18.500000,148,0,0,3,0,0,9
+moon_asteroid_network,declared,3.605013,34.750000,48,0,0,0,0,0,112
+moon_asteroid_network,communication_outage_years10_12,3.109352,36.000000,40,8,0,0,0,0,112
+moon_asteroid_network,verification_outage_years10_12,3.109352,36.000000,40,0,8,0,0,0,112
+moon_asteroid_network,compute_outage_years10_12,3.109352,36.000000,40,0,0,0,8,0,112
+moon_asteroid_network,repair_after_advanced_logic_90pct_loss_year5,4.597134,28.000000,105,0,0,54,0,0,1

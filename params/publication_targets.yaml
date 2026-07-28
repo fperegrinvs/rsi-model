@@ -1,0 +1,173 @@
+version: r4.0
+decision_date: "2026-07-28"
+status: venues_selected_conformance_in_progress
+source_class: publisher_instructions
+epistemic_status: >
+  Venue-selection and submission-conformance contract. Publisher requirements
+  can change and must be rechecked in the submission portal immediately
+  before submission.
+
+papers:
+  technical:
+    manuscript: papers/TECHNICAL_PAPER_r4.0.md
+    supplement: papers/TECHNICAL_SUPPLEMENT_r4.0.md
+    minimum_references: 6
+    selected_route: target
+    target:
+      venue: Acta Astronautica
+      article_type: Original research paper
+      official_url: https://www.sciencedirect.com/journal/acta-astronautica/publish/guide-for-authors
+      rationale: Direct fit for engineering analysis of space-borne and Earth-based systems.
+      review: single_anonymized
+      abstract_max_words:
+      keywords_min: 1
+      keywords_max: 6
+      highlights: {required: true, min_items: 3, max_items: 5, max_chars_each: 85}
+      numbered_sections: true
+      editable_source: true
+      reference_style: numbered_square_brackets_order_of_appearance
+      data_statement: encouraged
+      separate_title_page: false
+      word_count_min:
+      word_count_max:
+    fallback:
+      venue: New Space
+      article_type: Original Article
+      official_url: https://journals.sagepub.com/author-instructions/NSP
+      rationale: Commercial-space and space-innovation readership; suitable if expanded substantially.
+      review: publisher_current_policy_recheck_required
+      abstract_max_words: 350
+      keywords_min: 4
+      keywords_max:
+      highlights: {required: false, min_items: 0, max_items: 0, max_chars_each: 0}
+      numbered_sections: false
+      editable_source: true
+      reference_style: publisher_style_recheck_required
+      data_statement: required
+      separate_title_page: publisher_portal_recheck_required
+      word_count_min: 6000
+      word_count_max: 8000
+  economics:
+    manuscript: papers/ORBITAL_COMPUTE_ECONOMICS_r4.0.md
+    supplement: papers/TECHNICAL_SUPPLEMENT_r4.0.md
+    minimum_references: 8
+    selected_route: target
+    target:
+      venue: Space Policy
+      article_type: Full-length paper
+      official_url: https://www.sciencedirect.com/journal/space-policy/publish/guide-for-authors
+      rationale: Explicit scope includes economic and industrial analysis of space activities.
+      review: double_anonymized
+      abstract_max_words: 250
+      keywords_min: 1
+      keywords_max: 7
+      highlights: {required: false, min_items: 0, max_items: 0, max_chars_each: 0}
+      numbered_sections: true
+      editable_source: true
+      reference_style: publisher_flexible_at_initial_submission
+      data_statement: encouraged
+      separate_title_page: true
+      word_count_min:
+      word_count_max:
+    fallback:
+      venue: New Space
+      article_type: Perspective
+      official_url: https://journals.sagepub.com/author-instructions/NSP
+      rationale: Focused commercial-space perspective if framed as a boundary analysis.
+      review: publisher_current_policy_recheck_required
+      abstract_max_words: 350
+      keywords_min: 4
+      keywords_max:
+      highlights: {required: false, min_items: 0, max_items: 0, max_chars_each: 0}
+      numbered_sections: false
+      editable_source: true
+      reference_style: publisher_style_recheck_required
+      data_statement: required
+      separate_title_page: publisher_portal_recheck_required
+      word_count_min: 1500
+      word_count_max: 3000
+  strategy_governance:
+    manuscript: papers/STRATEGY_GOVERNANCE_CASE_STUDY_r4.0.md
+    supplement: papers/TECHNICAL_SUPPLEMENT_r4.0.md
+    minimum_references: 4
+    selected_route: target
+    target:
+      venue: Astropolitics
+      article_type: Research Article
+      official_url: https://www.tandfonline.com/journals/fast20/about-this-journal
+      rationale: Direct fit for interdisciplinary civil and commercial space policy and governance.
+      review: double_anonymous
+      abstract_max_words:
+      keywords_min:
+      keywords_max:
+      highlights: {required: false, min_items: 0, max_items: 0, max_chars_each: 0}
+      numbered_sections: false
+      editable_source: true
+      reference_style: publisher_portal_recheck_required
+      data_statement: required
+      separate_title_page: true
+      word_count_min:
+      word_count_max:
+      portal_confirmation_required:
+        - word_limit
+        - abstract_limit
+        - keyword_count
+        - reference_style
+        - accepted_source_format
+    fallback:
+      venue: Space Policy
+      article_type: Case study
+      official_url: https://www.sciencedirect.com/journal/space-policy/publish/guide-for-authors
+      rationale: The journal explicitly accepts case studies on political, industrial, legal, and social space contexts.
+      review: double_anonymized
+      abstract_max_words: 250
+      keywords_min: 1
+      keywords_max: 7
+      highlights: {required: false, min_items: 0, max_items: 0, max_chars_each: 0}
+      numbered_sections: true
+      editable_source: true
+      reference_style: publisher_flexible_at_initial_submission
+      data_statement: encouraged
+      separate_title_page: true
+      word_count_min:
+      word_count_max:
+
+common_submission_requirements:
+  machine_checkable:
+    - abstract
+    - keywords
+    - highlights_when_required
+    - numbered_sections_when_required
+    - references_and_in_text_citations
+    - data_and_code_availability
+    - proposition_boundary
+  author_confirmation_required:
+    - definitive_author_list_and_order
+    - affiliations_and_postal_addresses
+    - corresponding_author_email
+    - CRediT_contributions
+    - funding_and_sponsor_role
+    - competing_interests
+    - acknowledgements
+    - generative_AI_use_declaration
+    - permission_for_reused_material
+    - approval_of_final_submission
+  submission_actions:
+    - create_anonymized_review_file_when_required
+    - create_separate_title_page_when_required
+    - export_editable_docx_or_tex
+    - upload_separate_figures_and_captions
+    - attach_supplement_and_repository_archive
+    - recheck_live_portal_requirements
+  submission_action_applicability:
+    create_anonymized_review_file_when_required: when_anonymized_review
+    create_separate_title_page_when_required: when_separate_title_page
+    export_editable_docx_or_tex: always
+    upload_separate_figures_and_captions: always
+    attach_supplement_and_repository_archive: always
+    recheck_live_portal_requirements: always
+
+publication_boundary: >
+  Venue selection is a recommendation, not submission authority. No paper may
+  be marked submission_ready until machine-checkable requirements pass and
+  every author-confirmation field is explicitly supplied by the author.

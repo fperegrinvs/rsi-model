@@ -4,6 +4,16 @@ Primary/secondary sources kept locally for citation stability. Each entry:
 what it is, where it came from, what this project uses it for, and its
 source_class under the epistemic rules.
 
+- **`../../params/claim_provenance.yaml`** — authoritative claim-level
+  register for every non-`ASSUMPTION` anchor and the load-bearing [S27]
+  strategy claims. Each record carries the modeled endpoint, units, exact
+  author or organization, title, date, page/table/section or slide,
+  persistent URL/DOI or content-hashed repository snapshot, extracted value,
+  transformation, source class, and verification status. The deterministic
+  public rendering is `../../outputs/tables/claim_provenance.csv`; tests
+  reject missing records, source-class or endpoint drift, collective [S36]
+  support, and unpinned SEC claims.
+
 - **situational-awareness-aschenbrenner-2024-06.pdf** — Leopold Aschenbrenner,
   *Situational Awareness: The Decade Ahead* (June 2024, 165 pp.), retrieved
   2026-07-27 from https://situational-awareness.ai. Source_class: reporting /
@@ -23,7 +33,7 @@ source_class under the epistemic rules.
   architecture-specific mass envelopes, full thermal-system cross-check,
   launch-plus-build inequality, platform-life qualification, and
   inference-versus-training boundary in Part II. It records evidence and
-  arithmetic but does not change the r3.5 model inputs.
+  arithmetic but does not change the current model inputs.
 
 - **starmind-ai1-2026-07-27.md** and
   **spacex-ai-aspirations-2026-06.md** — direct SpaceX product specifications
@@ -33,13 +43,19 @@ source_class under the epistemic rules.
   the deterministic $185/kg + 100 kW/t aspiration case, and the accompanying
   launch-cadence feasibility audit in Part II.
 
+The r4.0 provenance audit deliberately reclassified reporting-derived model
+bands as `ASSUMPTION` when the cited material did not directly support both
+modeled endpoints and their transformation. Contextual reporting remains
+useful for bounding scenarios; it no longer confers a stronger source class
+on an analyst-constructed distribution.
+
 - **lunar-surface-orbit-architecture-2026-07-27.md** — evidence boundary for
   endogenous orbital-debris feedback, low-lunar-orbit breakup behavior,
   lunar-surface resources and hazards, NRHO as a service/gateway geometry,
   and Sun-synchronous versus heliocentric terminology. Source_class: mixed
   peer-reviewed and NASA technical material. Used for: the qualitative
-  lunar surface–orbit partition and the Fourth Edition model requirements;
-  it adds no r3.5 numerical inputs.
+  lunar surface–orbit partition and the integrated model requirements;
+  it adds no current numerical inputs.
 
 See also `../transcripts/` for podcast/interview transcripts with per-file
 provenance headers.

@@ -126,7 +126,7 @@ All replication/doubling times below are MODEL OUTPUTS. No single trajectory is
 `params/assumptions.yaml`) and Monte Carlo over anchored ranges
 (`params/anchors.yaml`). Structural coefficients are ASSUMPTION-class.
 
-Metric definitions (r3.5):
+Metric definitions:
 - **balanced doubling** — first t with λ(t) = min_j K_j(t)/K_j(0) ≥ 2: every
   modelled sector has at least twice its initial abstract capacity.
   Unit-invariant; it is a balanced-capacity event, not a commissioned second
@@ -188,21 +188,50 @@ def write_part2_report(spaces: dict[str, SpaceLCO], earths: dict[str, EarthLCO],
         "integrated_disposable": "integrated disposable satellite",
     }
     ctable = [
-        "| case | architecture | LCO $/kW-yr | launched kg/kW | hardware | pv | radiator | storage | launch |",
-        "|---|---|---:|---:|---:|---:|---:|---:|---:|",
+        "| case | architecture | LCO $/kW-yr | launched kg/kW | hardware | pv | radiator | storage | other infrastructure + NRE | launch |",
+        "|---|---|---:|---:|---:|---:|---:|---:|---:|---:|",
     ]
     for _, s in spaces.items():
         k = s.capex_per_kw
+        other = sum(
+            k.get(name, 0.0)
+            for name in (
+                "communications",
+                "ground_network",
+                "spacecraft_bus",
+                "disposal",
+                "program_nre",
+            )
+        )
         ctable.append(
             f"| {CASE_LABELS.get(s.case, s.case)} "
             f"| {arch_label[s.architecture]} | {s.lco:,.0f} "
             f"| {s.mass_kg_per_kw:,.0f} "
                       f"| {k['hardware']:,.0f} | {k['pv']:,.0f} | {k['radiator']:,.0f} "
-            f"| {k['storage']:,.0f} | {k['launch']:,.0f} |"
+            f"| {k['storage']:,.0f} | {other:,.0f} | {k['launch']:,.0f} |"
         )
     etable = ["| scenario | LCO $/kW-yr | node choice |", "|---|---|---|"]
     for scen, e in earths.items():
         etable.append(f"| {scen} | {e.lco:,.0f} | {e.node} |")
+    workload_table = [
+        "| case | cost / million defined inferences | cost / network-effective training kW-yr | training network efficiency |",
+        "|---|---:|---:|---:|",
+    ]
+    for _, s in spaces.items():
+        w = s.workload_costs
+        workload_table.append(
+            f"| {CASE_LABELS.get(s.case, s.case)} · {arch_label[s.architecture]} "
+            f"| ${w['cost_per_million_inferences']:,.0f} "
+            f"| ${w['cost_per_network_effective_training_kw_year']:,.0f} "
+            f"| {w['training_network_efficiency']:.3f} |"
+        )
+    for scen, e in earths.items():
+        w = e.workload_costs
+        workload_table.append(
+            f"| Earth · {scen} | ${w['cost_per_million_inferences']:,.0f} "
+            f"| ${w['cost_per_network_effective_training_kw_year']:,.0f} "
+            f"| {w['training_network_efficiency']:.3f} |"
+        )
     mtable = [
         "| case | architecture | vs Earth | ratio p10/p50/p90 | P(space cheaper) | break-even LEO $/kg p50 (p90) |",
         "|---|---|---|---|---|---|",
@@ -261,6 +290,7 @@ For the central LEO serviceable-platform case, the resolved values are
 L_s =
 \frac{{{k['hardware']:,.0f}({d['ann_hw']:.4f})
 +{d['infra_capex']:,.0f}({d['ann_infra']:.4f})
++{d['spectrum_regulatory_per_kw_year']:,.0f}
 +{leo.launch_per_kg_leo:,.0f}
 [{d['hw_mass']:.1f}({d['ann_hw']:.4f})
 +{d['non_hw_launched_mass']:.1f}({d['ann_infra']:.4f})]}}
@@ -271,24 +301,28 @@ L_s =
     formula_block = fr"""
 ## Complete levelized-cost specification
 
-For WACC \(r\), useful life \(T\), and annual operations fraction \(f_o\),
+For WACC \(r\), useful life \(T\), annual operations fraction \(f_o\),
+insurance fraction \(f_i\), and residual-value fraction \(s\),
 
 \[
 \operatorname{{CRF}}(r,T)=\frac{{r}}{{1-(1+r)^{{-T}}}},
 \qquad
-a(T)=\operatorname{{CRF}}(r,T)+f_o.
+a(T,s)=\operatorname{{CRF}}(r,T)
+\left[1-\frac{{s}}{{(1+r)^T}}\right]+f_o+f_i.
 \]
 
-Let \(C_h\) be qualified accelerator capex, \(C_I\) the sum of PV, radiator
-and storage capex, \(M_h\) accelerator mass, \(M_I\) launched non-hardware
+Let \(C_h\) be qualified accelerator capex, \(C_I\) the sum of PV, radiator,
+storage, communications, ground network, spacecraft bus, disposal, and NRE
+capex, \(R\) annual spectrum/regulatory cost, \(M_h\) accelerator mass,
+\(M_I\) launched non-hardware
 mass after local closure, \(\mu\) the destination launch multiplier,
 \(p_L\) the LEO launch price, and \(U_s\) delivered utilization. The complete
 space expression is
 
 \[
 L_s =
-\frac{{C_h a(T_h)+C_I a(T_I)
-+p_L\mu[M_h a(T_h)+M_I a(T_I)]}}{{U_s}}
+\frac{{C_h a(T_h,s)+C_I a(T_I,s)+R
++p_L\mu[M_h a(T_h,s)+M_I a(T_I,s)]}}{{U_s}}
 =\alpha+\beta p_L.
 \]
 
@@ -312,8 +346,9 @@ C_{{h,e}}\operatorname{{CRF}}(r,T_{{h,e}})
 
 The responsive Earth case evaluates both frontier and older-node hardware,
 including the older node's energy/computational penalty, and selects the
-lower \(L_E\). Communications and ground systems are excluded unless an
-explicit anchor enters \(C_I\); the current cases do not invent such costs.
+lower \(L_E\). Space and Earth WACC are sampled separately. Thermal mass
+also responds to rejection temperature, chip-to-emitter drop, environmental
+view, pumping power, and reliability margin.
 The exact affine break-even launch price is
 
 \[
@@ -344,8 +379,9 @@ supply at the nuclear-PPA floor and may deploy older-node hardware.
 Aspirational launch targets appear as sweep axes and in one explicitly labeled,
 deterministic best-case sensitivity (rule 3); that case is excluded from Monte
 Carlo and is not assigned a probability.
-Shared draws both sides: each MC iteration resolves every anchor once per
-draw-cached AnchorSet, so Earth and space see the same wacc and hardware cost.
+Shared draws both sides: each MC iteration resolves every common anchor once
+per draw-cached AnchorSet, so Earth and space see the same hardware-cost draw;
+their financing anchors are intentionally separate.
 
 {formula_block}
 
@@ -358,6 +394,12 @@ Space cases (capex $/kW before annualization):
 Earth scenarios:
 
 {chr(10).join(etable)}
+
+Workload-normalized boundaries (the inference unit requires a declared model,
+latency, accuracy, batch, memory, and precision; the training unit applies an
+explicit network-efficiency gate):
+
+{chr(10).join(workload_table)}
 
 A calibration check: the Earth base LCO corresponds to ≈ ${earths.get("base", next(iter(earths.values()))).lco / 8760:,.2f}/kW-hr,
 consistent with published accelerator rental rates — the model is anchored at

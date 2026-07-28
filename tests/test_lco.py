@@ -65,7 +65,7 @@ def test_starmind_total_mass_constraint_survives_component_uncertainty():
     assert light.mass_kg_per_kw == pytest.approx(heavy.mass_kg_per_kw)
 
 
-def test_starmind_mass_moves_favorable_corner_near_published_launch_band():
+def test_completed_costs_remove_starmind_favorable_corner_crossover():
     favorable = {
         "compute.space_qual_multiplier": 1.2,
         "compute.utilization_leo": 0.95,
@@ -75,10 +75,13 @@ def test_starmind_mass_moves_favorable_corner_near_published_launch_band():
     s = lco_space("starmind_ai1", a=AnchorSet(overrides=favorable),
                   launch_per_kg_leo=0.0, life_years=7.0)
     breakeven = (earth - s.alpha) / s.beta
-    assert 500.0 < breakeven < 1400.0
+    # Once communications, bus, NRE, insurance, regulatory, disposal, and
+    # separate space financing are explicit, fixed costs exceed Earth even
+    # at zero launch price in this favorable hardware corner.
+    assert breakeven < 0.0
     at_250 = lco_space("starmind_ai1", a=AnchorSet(overrides=favorable),
                        launch_per_kg_leo=250.0, life_years=7.0)
-    assert at_250.lco < earth
+    assert at_250.lco > earth
 
 
 def test_starmind_aspirational_case_is_cheaper_but_quarantined_from_mc():
@@ -88,7 +91,11 @@ def test_starmind_aspirational_case_is_cheaper_but_quarantined_from_mc():
     assert s.mass_kg_per_kw == pytest.approx(10.0)
     assert s.architecture_specs[
         "aspirations.starmind_vehicle_efficiency_kw_per_tonne"] == 100.0
-    assert s.lco / earth == pytest.approx(0.7605, abs=5e-4)
+    assert s.lco / earth == pytest.approx(1.0878, abs=5e-4)
+    assert (
+        lco_space("starmind_ai1_aspirational", complete_costs=False).lco
+        / earth
+    ) == pytest.approx(0.7605, abs=5e-4)
     assert "starmind_ai1_aspirational" in CASES
     assert "starmind_ai1_aspirational" not in MONTE_CARLO_CASES
 
@@ -106,7 +113,32 @@ def test_company_targets_alone_do_not_make_starmind_cheaper():
                 central("compute.utilization_leo"),
         }),
     )
-    assert s.lco / lco_earth("base").lco == pytest.approx(1.8501, abs=5e-4)
+    assert s.lco / lco_earth("base").lco == pytest.approx(2.3327, abs=5e-4)
+
+
+def test_completed_cost_boundary_and_workload_units_are_explicit():
+    complete = lco_space("leo_inference")
+    omitted = lco_space("leo_inference", complete_costs=False)
+    for component in (
+        "communications",
+        "ground_network",
+        "spacecraft_bus",
+        "program_nre",
+        "disposal",
+    ):
+        assert complete.capex_per_kw[component] > 0.0
+    assert complete.lco > omitted.lco
+    assert complete.detail["wacc"] != lco_earth("base").detail.get("wacc")
+    earth = lco_earth("base")
+    assert complete.workload_costs["cost_per_million_inferences"] > 0.0
+    assert (
+        complete.workload_costs[
+            "cost_per_network_effective_training_kw_year"
+        ]
+        > earth.workload_costs[
+            "cost_per_network_effective_training_kw_year"
+        ]
+    )
 
 
 def test_orbital_ai_scale_exposes_cadence_requirement():
@@ -188,17 +220,20 @@ def test_crossover_anchor_axis():
     assert g[0, 0] < g[1, 0]   # cheaper qualification -> lower ratio
 
 
-def test_provenance_recorded_with_source_classes():
+def test_lco_provenance_records_audited_assumption_classes():
     s = lco_space("leo_inference")
     classes = {p.source_class for p in s.provenance}
-    assert "ASSUMPTION" in classes and classes & {"reporting", "technical_report",
-                                                  "company_statement"}
+    # Claim-level audit found that contextual reports did not support the
+    # exact generic-LEO endpoints and transformations. The generic case must
+    # therefore remain entirely ASSUMPTION-class; directly disclosed company
+    # specifications live in separately named conditional cases.
+    assert classes == {"ASSUMPTION"}
     names = {p.quantity for p in s.provenance}
     assert "launch.leo_per_kg" in names and "compute.hw_per_kw_it" in names
 
 
 def test_chip_efficiency_is_a_mass_multiplier():
-    # r2.10 §16: efficiency scales the power side of launched mass, not the chips
+    # the paper's efficiency boundary: efficiency scales the power side of launched mass, not the chips
     base = lco_space("leo_inference", launch_per_kg_leo=1000.0)
     eff2 = lco_space("leo_inference", launch_per_kg_leo=1000.0,
                      chip_efficiency_advantage=2.0)

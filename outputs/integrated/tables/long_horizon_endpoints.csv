@@ -1,0 +1,10 @@
+scenario,year,aggregate_operating_cell_equivalents,net_capacity_change_prior5y,bottleneck_sector,bottleneck_sector_equivalents,aggregate_doubling_year
+terrestrial_rehearsal,40.0,0.468422399,-0.021578247,compute,0.468422399,
+terrestrial_rehearsal,60.0,0.413862469,-0.011390769,compute,0.413862469,
+terrestrial_rehearsal,80.0,0.374109332,-0.009307515,compute,0.374109332,
+lunar_strategic_material_bridge,40.0,0.536023318,-0.026877770,compute,0.536023318,
+lunar_strategic_material_bridge,60.0,0.471592275,-0.013169157,compute,0.471592275,
+lunar_strategic_material_bridge,80.0,0.426034570,-0.010634523,compute,0.426034570,
+moon_asteroid_network,40.0,3.605013391,1.529510831,advanced_logic_memory,3.605013391,34.750000
+moon_asteroid_network,60.0,31.236274771,12.788576714,advanced_logic_memory,31.236274771,34.750000
+moon_asteroid_network,80.0,257.283323022,105.421215881,advanced_logic_memory,257.283323022,34.750000

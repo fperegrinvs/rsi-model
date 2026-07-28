@@ -7,16 +7,8 @@
   <meta name="generator" content="pandoc">
   <meta name="author" content="Leonardo Stern">
   <meta name="description" content="A reproducible multisector feasibility and comparative-economics analysis of recursively expanding space industry.">
-$if(legacythird)$
-  <meta name="citation_title" content="Recursive Industrial Intelligence — Third Edition, revision 3.5">
-$else$
   <meta name="citation_title" content="$if(citationtitle)$$citationtitle$$else$Recursive Industrial Intelligence$endif$">
-$endif$
   <meta name="citation_author" content="Leonardo Stern">
-$if(legacythird)$
-  <meta name="citation_publication_date" content="2026-07-27">
-  <meta name="citation_doi" content="10.5281/zenodo.21619447">
-$else$
 $if(releasedate)$
   <meta name="citation_publication_date" content="$releasedate$">
 $endif$
@@ -24,7 +16,6 @@ $if(versiondoi)$
   <meta name="citation_doi" content="$versiondoi$">
 $endif$
   <meta name="dc.relation.isversionof" content="https://doi.org/10.5281/zenodo.21619447">
-$endif$
   <!-- CANONICAL_LINK -->
   <title>$if(pagetitle)$$pagetitle$$else$Recursive Industrial Intelligence$endif$</title>
 $for(css)$
@@ -39,7 +30,7 @@ $endfor$
   <div class="reading-progress" aria-hidden="true"><span></span></div>
   <header class="masthead">
     <span class="brand">Recursive Industrial Intelligence</span>
-    <span class="edition">$if(editionlabel)$$editionlabel$$else$Third Edition · r3.5$endif$</span>
+    <span class="version">$if(versionlabel)$$versionlabel$$else$r4.0$endif$</span>
     <button class="toc-toggle" type="button" aria-controls="TOC"
       aria-expanded="false">Contents</button>
   </header>
@@ -55,7 +46,7 @@ $body$
     </main>
   </div>
   <footer class="publication-footer">
-    $if(footerlabel)$$footerlabel$$else$Third Edition, revision 3.5 · generated from the canonical Markdown source$endif$
+    $if(footerlabel)$$footerlabel$$else$r4.0 · generated from the canonical Markdown source$endif$
   </footer>
   <script>
   (() => {

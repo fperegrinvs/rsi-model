@@ -1,0 +1,388 @@
+# Claim-level provenance for every non-ASSUMPTION anchor and each load-bearing
+# [S27] strategy claim. This register records source statements, not truth
+# guarantees: company targets and interview recollections retain their stated
+# source class and are never promoted to demonstrated performance.
+#
+# `model_value` must match params/anchors.yaml exactly. `status: verified`
+# means that the source record, locator, extraction, and transformation were
+# checked; it does not mean that a forecast, target, or recollection is true.
+
+anchors:
+  delta.wear_space_solar:
+    source_class: peer_reviewed
+    model_value: {low: 0.004, high: 0.017}
+    units: fractional_capacity_loss_per_year
+    source_ref: S19
+    organization_or_authors: "Whitney Q. Lohmeyer; Raichelle J. Aniceto; Kerri Cahoy; Ashley Carlton"
+    title: "Solar array degradation on geostationary communications satellites: the quantification of annual degradation and degradation over solar proton events"
+    date: "2018-03-20"
+    locator: "International Journal of Space Science and Engineering 5(1), pp. 61-81; abstract and annual-degradation results"
+    permanent_url_or_doi: "https://doi.org/10.1504/IJSPACESE.2018.090549"
+    extracted_value: "GaAs 0.44%-1.03%/yr; silicon 0.71%-1.69%/yr across telemetry from eleven GEO communications satellites"
+    transformation: "Take the union of the reported cell-technology ranges, divide percentages by 100, and round outward to 0.004-0.017 fractional loss/yr."
+    status: verified
+
+  delta.wear_terrestrial_pv:
+    source_class: peer_reviewed
+    model_value: {low: 0.005, high: 0.006}
+    units: fractional_capacity_loss_per_year
+    source_ref: S18
+    organization_or_authors: "Dirk C. Jordan; Sarah R. Kurtz; Kaitlyn VanSant; Jeff Newmiller"
+    title: "Compendium of Photovoltaic Degradation Rates"
+    date: "2016"
+    locator: "Progress in Photovoltaics 24(7), pp. 978-989; crystalline-silicon median results"
+    permanent_url_or_doi: "https://doi.org/10.1002/pip.2744"
+    extracted_value: "Median crystalline-silicon degradation approximately 0.5%-0.6%/yr"
+    transformation: "Divide the reported percentage medians by 100; retain the 0.005-0.006 interval without extrapolation."
+    status: verified
+
+  energy.pv_epbt_years:
+    source_class: peer_reviewed
+    model_value: {low: 0.9, high: 4.1}
+    units: years
+    source_ref: S20
+    organization_or_authors: "Fraunhofer ISE (Simon Philipps; Werner Warmuth); Bhandari et al."
+    title: "Photovoltaics Report (14 July 2026); Energy pay-back time and carbon footprint of commercial photovoltaic systems"
+    date: "2026-07-14; 2015"
+    locator: "Fraunhofer Photovoltaics Report p. 8; Renewable and Sustainable Energy Reviews 47, pp. 133-141"
+    permanent_url_or_doi: "https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/Photovoltaics-Report.pdf; https://doi.org/10.1016/j.rser.2015.02.057"
+    extracted_value: "0.9-1.1 years for European installations in the 2026 report; 1.0-4.1 years in the harmonized review"
+    transformation: "Take the union of the two reported EPBT intervals; do not reinterpret energy payback as industrial replication."
+    status: verified
+
+  closure.nasa1980_materials_closure:
+    source_class: technical_report
+    model_value: {low: 0.90, high: 0.96}
+    units: fraction_of_required_matter_supplied_internally
+    source_ref: S23
+    organization_or_authors: "NASA/ASEE 1980 Summer Study"
+    title: "Advanced Automation for Space Missions"
+    date: "1980"
+    locator: "NASA CP-2255, sec. 5.3.6, report p. 219 (PDF p. 225)"
+    permanent_url_or_doi: "https://ntrs.nasa.gov/citations/19830007077"
+    extracted_value: "Earlier studies of specific nonreplicating production applications were reported as concluding 90%-96% matter closure."
+    transformation: "Divide percentages by 100 and retain the interval; label as a theoretical/nonreplicating reference rather than demonstrated factory closure."
+    status: verified
+
+  closure.demonstrated_isru_o2_yield:
+    source_class: technical_report
+    model_value: {value: 0.20}
+    units: kg_oxygen_per_kg_bulk_lunar_simulant
+    source_ref: S21
+    organization_or_authors: "Diane L. Linne; Gerald B. Sanders; Karen M. Taminger (NASA)"
+    title: "Capability and Technology Performance Goals for the Next Step in Affordable Human Exploration of Space"
+    date: "2015-01-05"
+    locator: "AIAA 2015-1650, p. 9 and Table VI"
+    permanent_url_or_doi: "https://doi.org/10.2514/6.2015-1650; https://ntrs.nasa.gov/citations/20150011681"
+    extracted_value: "Recent experimental work achieved 15%-20% oxygen yield from lunar simulant; Table VI uses 20% for carbothermal reduction."
+    transformation: "Select the demonstrated upper endpoint 0.20 for this single-output yield anchor; do not treat it as system closure."
+    status: verified
+
+  closure.vitamin_import_fraction:
+    source_class: technical_report
+    model_value: {low: 0.04, high: 0.10}
+    units: fraction_of_required_matter_supplied_externally
+    source_ref: S23
+    organization_or_authors: "NASA/ASEE 1980 Summer Study"
+    title: "Advanced Automation for Space Missions"
+    date: "1980"
+    locator: "NASA CP-2255, sec. 5.3.6, report p. 219 (PDF p. 225)"
+    permanent_url_or_doi: "https://ntrs.nasa.gov/citations/19830007077"
+    extracted_value: "The 4%-10% outside supply complement to the cited 90%-96% matter-closure range was called vitamin parts."
+    transformation: "Use the report's stated residual interval directly as 0.04-0.10; do not generalize it to a demonstrated modern architecture."
+    status: verified
+
+  starmind.compute_payload_kw_peak:
+    source_class: company_statement
+    model_value: {value: 150}
+    units: kW_peak
+    source_ref: S38
+    organization_or_authors: "Space Exploration Technologies Corp."
+    title: "Starmind AI1 product page"
+    date: "accessed 2026-07-27"
+    locator: "Technical specifications: compute payload"
+    permanent_url_or_doi: "https://www.spacex.com/spacexai/starmind; repository snapshot sha256:96c032db335903a1de0f7f7b054ba50d80981ef5b06886d815a96ed5707ec96a"
+    extracted_value: "150 kW peak compute payload"
+    transformation: "Direct transcription; context only."
+    archive_path: "docs/sources/starmind-ai1-2026-07-27.md"
+    status: verified
+
+  starmind.compute_payload_kw_average:
+    source_class: company_statement
+    model_value: {value: 120}
+    units: kW_average
+    source_ref: S38
+    organization_or_authors: "Space Exploration Technologies Corp."
+    title: "Starmind AI1 product page"
+    date: "accessed 2026-07-27"
+    locator: "Technical specifications: compute payload"
+    permanent_url_or_doi: "https://www.spacex.com/spacexai/starmind; repository snapshot sha256:96c032db335903a1de0f7f7b054ba50d80981ef5b06886d815a96ed5707ec96a"
+    extracted_value: "120 kW average compute payload"
+    transformation: "Direct transcription; used as the delivered-load denominator."
+    archive_path: "docs/sources/starmind-ai1-2026-07-27.md"
+    status: verified
+
+  starmind.vehicle_efficiency_kw_per_tonne:
+    source_class: company_statement
+    model_value: {value: 70}
+    units: kW_per_metric_tonne
+    source_ref: S38
+    organization_or_authors: "Space Exploration Technologies Corp."
+    title: "Starmind AI1 product page"
+    date: "accessed 2026-07-27"
+    locator: "Technical specifications: vehicle efficiency"
+    permanent_url_or_doi: "https://www.spacex.com/spacexai/starmind; repository snapshot sha256:96c032db335903a1de0f7f7b054ba50d80981ef5b06886d815a96ed5707ec96a"
+    extracted_value: "70 kW/tonne vehicle efficiency; peak-versus-average denominator unspecified"
+    transformation: "Direct transcription. The separate mass-per-average-kW interpretation range is ASSUMPTION-class."
+    archive_path: "docs/sources/starmind-ai1-2026-07-27.md"
+    status: verified
+
+  starmind.solar_array_kw:
+    source_class: company_statement
+    model_value: {value: 150}
+    units: kW
+    source_ref: S38
+    organization_or_authors: "Space Exploration Technologies Corp."
+    title: "Starmind AI1 product page"
+    date: "accessed 2026-07-27"
+    locator: "Technical specifications: solar array"
+    permanent_url_or_doi: "https://www.spacex.com/spacexai/starmind; repository snapshot sha256:96c032db335903a1de0f7f7b054ba50d80981ef5b06886d815a96ed5707ec96a"
+    extracted_value: "150 kW solar-array rating"
+    transformation: "Direct transcription; divided by 120 kW average compute elsewhere to define a 1.25 design-power ratio."
+    archive_path: "docs/sources/starmind-ai1-2026-07-27.md"
+    status: verified
+
+  starmind.solar_power_density_w_per_m2:
+    source_class: company_statement
+    model_value: {value: 250}
+    units: W_per_square_metre
+    source_ref: S38
+    organization_or_authors: "Space Exploration Technologies Corp."
+    title: "Starmind AI1 product page"
+    date: "accessed 2026-07-27"
+    locator: "Technical specifications: solar power density"
+    permanent_url_or_doi: "https://www.spacex.com/spacexai/starmind; repository snapshot sha256:96c032db335903a1de0f7f7b054ba50d80981ef5b06886d815a96ed5707ec96a"
+    extracted_value: "250 W/m2 solar power density"
+    transformation: "Direct transcription; context only."
+    archive_path: "docs/sources/starmind-ai1-2026-07-27.md"
+    status: verified
+
+  starmind.radiator_area_m2:
+    source_class: company_statement
+    model_value: {value: 110}
+    units: square_metres
+    source_ref: S38
+    organization_or_authors: "Space Exploration Technologies Corp."
+    title: "Starmind AI1 product page"
+    date: "accessed 2026-07-27"
+    locator: "Technical specifications: deployable liquid radiator"
+    permanent_url_or_doi: "https://www.spacex.com/spacexai/starmind; repository snapshot sha256:96c032db335903a1de0f7f7b054ba50d80981ef5b06886d815a96ed5707ec96a"
+    extracted_value: "110 m2 deployable liquid-radiator area"
+    transformation: "Direct transcription; context only because areal mass and cost are not disclosed."
+    archive_path: "docs/sources/starmind-ai1-2026-07-27.md"
+    status: verified
+
+  starmind.deployed_height_m:
+    source_class: company_statement
+    model_value: {value: 20}
+    units: metres
+    source_ref: S38
+    organization_or_authors: "Space Exploration Technologies Corp."
+    title: "Starmind AI1 product page"
+    date: "accessed 2026-07-27"
+    locator: "Technical specifications: deployed height"
+    permanent_url_or_doi: "https://www.spacex.com/spacexai/starmind; repository snapshot sha256:96c032db335903a1de0f7f7b054ba50d80981ef5b06886d815a96ed5707ec96a"
+    extracted_value: "20 m deployed height"
+    transformation: "Direct transcription; context only."
+    archive_path: "docs/sources/starmind-ai1-2026-07-27.md"
+    status: verified
+
+  starmind.wingspan_m:
+    source_class: company_statement
+    model_value: {value: 70}
+    units: metres
+    source_ref: S38
+    organization_or_authors: "Space Exploration Technologies Corp."
+    title: "Starmind AI1 product page"
+    date: "accessed 2026-07-27"
+    locator: "Technical specifications: wingspan"
+    permanent_url_or_doi: "https://www.spacex.com/spacexai/starmind; repository snapshot sha256:96c032db335903a1de0f7f7b054ba50d80981ef5b06886d815a96ed5707ec96a"
+    extracted_value: "70 m wingspan"
+    transformation: "Direct transcription; context only."
+    archive_path: "docs/sources/starmind-ai1-2026-07-27.md"
+    status: verified
+
+  aspirations.starship_leo_cost_per_kg:
+    source_class: company_statement
+    model_value: {value: 185}
+    units: USD_per_kg_to_LEO
+    source_ref: S37
+    organization_or_authors: "Space Exploration Technologies Corp."
+    title: "European Union Prospectus"
+    date: "2026-06-05"
+    locator: "pp. 63, 70, and 137"
+    permanent_url_or_doi: "https://content.spacex.com/cms-assets/FINAL_Documents%20and%20Updates/SpaceX%20-%20EU%20Prospectus%20%28Approved%20by%20Bafin%29%20-%20June%205%2C%202026.pdf; repository extraction sha256:e3539b2526d9cef7be95b7520cc61e33afe356b19299f589c691ef6a948bbde0"
+    extracted_value: "Historical launch cost $18,500/kg and aim to reduce launch cost by 99% or more"
+    transformation: "Compute the exact 99%-reduction ceiling: 18,500 x 0.01 = 185 USD/kg. This is a target, not a price."
+    archive_path: "docs/sources/spacex-ai-aspirations-2026-06.md"
+    status: verified
+
+  aspirations.starmind_vehicle_efficiency_kw_per_tonne:
+    source_class: company_statement
+    model_value: {value: 100}
+    units: kW_per_metric_tonne
+    source_ref: S37
+    organization_or_authors: "Space Exploration Technologies Corp."
+    title: "European Union Prospectus"
+    date: "2026-06-05"
+    locator: "p. 82"
+    permanent_url_or_doi: "https://content.spacex.com/cms-assets/FINAL_Documents%20and%20Updates/SpaceX%20-%20EU%20Prospectus%20%28Approved%20by%20Bafin%29%20-%20June%205%2C%202026.pdf; repository extraction sha256:e3539b2526d9cef7be95b7520cc61e33afe356b19299f589c691ef6a948bbde0"
+    extracted_value: "Scale arithmetic targets approximately 100 kW of AI compute per deployed tonne."
+    transformation: "Direct target transcription; the derived 10 kg/kW mass anchor remains ASSUMPTION-class."
+    archive_path: "docs/sources/spacex-ai-aspirations-2026-06.md"
+    status: verified
+
+  aspirations.starship_v3_payload_tonnes:
+    source_class: company_statement
+    model_value: {value: 100}
+    units: metric_tonnes_to_orbit
+    source_ref: S37
+    organization_or_authors: "Space Exploration Technologies Corp."
+    title: "European Union Prospectus"
+    date: "2026-06-05"
+    locator: "pp. 71-72"
+    permanent_url_or_doi: "https://content.spacex.com/cms-assets/FINAL_Documents%20and%20Updates/SpaceX%20-%20EU%20Prospectus%20%28Approved%20by%20Bafin%29%20-%20June%205%2C%202026.pdf; repository extraction sha256:e3539b2526d9cef7be95b7520cc61e33afe356b19299f589c691ef6a948bbde0"
+    extracted_value: "Starship V3 reusable payload capacity to orbit: 100 tonnes"
+    transformation: "Direct transcription of a design target; context-only scale arithmetic."
+    archive_path: "docs/sources/spacex-ai-aspirations-2026-06.md"
+    status: verified
+
+  aspirations.starship_v4_payload_tonnes:
+    source_class: company_statement
+    model_value: {value: 200}
+    units: metric_tonnes_to_orbit
+    source_ref: S37
+    organization_or_authors: "Space Exploration Technologies Corp."
+    title: "European Union Prospectus"
+    date: "2026-06-05"
+    locator: "pp. 71-72"
+    permanent_url_or_doi: "https://content.spacex.com/cms-assets/FINAL_Documents%20and%20Updates/SpaceX%20-%20EU%20Prospectus%20%28Approved%20by%20Bafin%29%20-%20June%205%2C%202026.pdf; repository extraction sha256:e3539b2526d9cef7be95b7520cc61e33afe356b19299f589c691ef6a948bbde0"
+    extracted_value: "Possible future Starship V4 reusable payload capacity to orbit: 200 tonnes"
+    transformation: "Direct transcription of a future target; context-only scale arithmetic."
+    archive_path: "docs/sources/spacex-ai-aspirations-2026-06.md"
+    status: verified
+
+  aspirations.orbital_compute_gw_per_year:
+    source_class: company_statement
+    model_value: {value: 100}
+    units: GW_AI_compute_deployed_per_year
+    source_ref: S37
+    organization_or_authors: "Space Exploration Technologies Corp."
+    title: "European Union Prospectus"
+    date: "2026-06-05"
+    locator: "pp. 82 and 97"
+    permanent_url_or_doi: "https://content.spacex.com/cms-assets/FINAL_Documents%20and%20Updates/SpaceX%20-%20EU%20Prospectus%20%28Approved%20by%20Bafin%29%20-%20June%205%2C%202026.pdf; repository extraction sha256:e3539b2526d9cef7be95b7520cc61e33afe356b19299f589c691ef6a948bbde0"
+    extracted_value: "Long-term target of up to 100 GW of AI-compute power deployed to orbit annually"
+    transformation: "Direct target transcription; used only for scale arithmetic, not as an achieved cadence."
+    archive_path: "docs/sources/spacex-ai-aspirations-2026-06.md"
+    status: verified
+
+  claims.google_planet_crossover_launch_per_kg:
+    source_class: company_statement
+    model_value: {low: 200, high: 300}
+    units: USD_per_kg_to_LEO
+    source_ref: S34
+    organization_or_authors: "Will Marshall (Planet Labs), interviewed on Moonshots episode 266"
+    title: "Moonshots #266 interview transcript"
+    date: "2026-06-26"
+    locator: "timestamp 00:52:07"
+    permanent_url_or_doi: "https://www.youtube.com/watch?v=kPSLLeccrik; repository transcript sha256:efeee12b1d11fb95115050df90d465a562df1af6f93ba3fef0d94e4b12fb0e79"
+    extracted_value: "Recollection that a Google/Planet study found pure-cost orbital-compute crossover at $200-$300/kg to LEO"
+    transformation: "Direct transcription of the recollected interval. Comparison target only; the underlying study is unavailable and the recollection remains unverified."
+    archive_path: "docs/transcripts/moonshots-266-2026-06-26.md"
+    status: verified
+
+  claims.suncatcher_launch_feasibility_per_kg:
+    source_class: technical_report
+    model_value: {value: 200}
+    units: USD_per_kg_to_LEO
+    source_ref: S32
+    organization_or_authors: "Blaise Agüera y Arcas et al. (Google)"
+    title: "Towards a future space-based, highly scalable AI infrastructure system design"
+    date: "2026-06-17"
+    locator: "arXiv v2, sec. 2.4 pp. 6-7 and sec. 4.4/Table 1 pp. 10-12"
+    permanent_url_or_doi: "https://arxiv.org/abs/2511.19468v2"
+    extracted_value: "A $200/kg launch-price marker is used for launch-cost feasibility; the paper states this is not a full economic analysis."
+    transformation: "Directly record 200 USD/kg as a quarantined external marker; do not reinterpret launch-versus-electricity arithmetic as system parity."
+    status: verified
+
+strategy_claims:
+  s27_declared_portfolio:
+    source_class: company_statement
+    units: qualitative_claim
+    source_ref: S27
+    organization_or_authors: "Space Exploration Technologies Corp."
+    title: "Form S-1 registration statement and Rule 433 free-writing prospectus"
+    date: "2026-05-20; 2026-06-04"
+    locator: "Form S-1 pp. 164 and 171; Rule 433 roadshow slides 42-44"
+    permanent_url_or_doi: "https://www.sec.gov/Archives/edgar/data/1181412/000162828026036936/spaceexplorationtechnologi.htm; https://www.sec.gov/Archives/edgar/data/1181412/000162828026040610/spacexfwp.htm"
+    extracted_value: "Declared future-market portfolio includes orbital AI compute, lunar manufacturing and energy, in-orbit manufacturing, Moon/Mars manufacturing, and asteroid mining."
+    transformation: "Classify only as documented declared direction; do not infer one integrated closure program."
+    claim_text: "SpaceX has declared an off-world industrial portfolio spanning orbital compute, lunar industry, in-orbit manufacturing, and asteroid mining."
+    status: verified
+
+  s27_lunar_ai_factories:
+    source_class: company_statement
+    units: qualitative_claim
+    source_ref: S27
+    organization_or_authors: "Space Exploration Technologies Corp."
+    title: "Rule 433 free-writing prospectus"
+    date: "2026-06-04"
+    locator: "roadshow slide 43"
+    permanent_url_or_doi: "https://www.sec.gov/Archives/edgar/data/1181412/000162828026040610/spacexfwp.htm"
+    extracted_value: "The slide says SpaceX aims to establish lunar factories to manufacture AI satellites, harness solar power and a lunar mass driver, and grow AI compute to terawatts annually."
+    transformation: "Treat as a forward-looking company initiative, not demonstrated technical feasibility."
+    claim_text: "The offering materials explicitly describe lunar factories for AI satellites and lunar mass-driver deployment."
+    status: verified
+
+  s27_early_stage_warning:
+    source_class: company_statement
+    units: qualitative_claim
+    source_ref: S27
+    organization_or_authors: "Space Exploration Technologies Corp."
+    title: "Form S-1 registration statement"
+    date: "2026-05-20"
+    locator: "pp. 12 and 24-25, Risk Factors"
+    permanent_url_or_doi: "https://www.sec.gov/Archives/edgar/data/1181412/000162828026036936/spaceexplorationtechnologi.htm"
+    extracted_value: "Orbital AI, lunar, and interplanetary initiatives are early-stage, unproven, technically complex, and may never become commercially viable."
+    transformation: "Use as the controlling qualification on portfolio-direction evidence."
+    claim_text: "The same filing characterizes the relevant initiatives as early-stage and potentially unsuccessful."
+    status: verified
+
+  s27_terafab_framework:
+    source_class: company_statement
+    units: qualitative_claim
+    source_ref: S27
+    organization_or_authors: "Space Exploration Technologies Corp."
+    title: "Form S-1 registration statement"
+    date: "2026-05-20"
+    locator: "pp. 7, 10, and 154"
+    permanent_url_or_doi: "https://www.sec.gov/Archives/edgar/data/1181412/000162828026036936/spaceexplorationtechnologi.htm"
+    extracted_value: "Tesla and SpaceX agreed on a general Terafab framework; specific projects, timelines, milestones, and capital expenditures require separate agreements and had not been determined."
+    transformation: "Classify as a declared framework, not a demonstrated fab or binding integrated-program milestone."
+    claim_text: "Terafab is disclosed as a general framework whose specific projects and commitments remained undetermined."
+    status: verified
+
+  s27_collision_avoidance:
+    source_class: company_statement
+    units: maneuvers_per_day
+    source_ref: S27
+    organization_or_authors: "Space Exploration Technologies Corp."
+    title: "Form S-1 registration statement"
+    date: "2026-05-20"
+    locator: "pp. 9 and 153"
+    permanent_url_or_doi: "https://www.sec.gov/Archives/edgar/data/1181412/000162828026036936/spaceexplorationtechnologi.htm"
+    extracted_value: "In 2025, Starlink satellites proactively performed over 1,000 automated collision-avoidance maneuvers per day."
+    transformation: "Direct company-statement transcription; use only to establish that avoidance operations are material, not as an independent debris-hazard estimate."
+    claim_text: "SpaceX reports more than 1,000 automated Starlink collision-avoidance maneuvers per day in 2025."
+    status: verified

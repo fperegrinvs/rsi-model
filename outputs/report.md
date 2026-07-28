@@ -1,11 +1,11 @@
-# RSI model run report — 2026-07-27
+# RSI model run report — 2026-07-28
 
 All replication/doubling times below are MODEL OUTPUTS. No single trajectory is
 "the" answer: results span assumption sets (conservative/central/optimistic,
 `params/assumptions.yaml`) and Monte Carlo over anchored ranges
 (`params/anchors.yaml`). Structural coefficients are ASSUMPTION-class.
 
-Metric definitions (r3.5):
+Metric definitions:
 - **balanced doubling** — first t with λ(t) = min_j K_j(t)/K_j(0) ≥ 2: every
   modelled sector has at least twice its initial abstract capacity.
   Unit-invariant; it is a balanced-capacity event, not a commissioned second

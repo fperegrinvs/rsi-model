@@ -20,17 +20,17 @@ environments:
 
   leo:
     note: "IMPORT-SUPPORTED ORBITAL RECYCLING NETWORK — not an independently
-      self-expanding ecology (r3.4 mass-accounting caveat). Feed sources: imports;
+      self-expanding ecology (mass-accounting boundary). Feed sources: imports;
       recycling capped at scrap_recovery(0.40) x retiring capacity (yield < 1,
       so recycling alone cannot fund net expansion); and mining q_scale 0.05 =
       capture of debris/delivered mass from a FINITE orbital reservoir that this
       model does NOT track as a depleting state. LEO expansion results are
       therefore conditional on continued feed availability; an explicit
-      embodied-mass reservoir + conservation constraint is Fourth Edition work
+      embodied-mass reservoir + conservation constraint is integrated work
       (see ROADMAP). electronics q_scale << 1: advanced-node fabrication is NOT
       locally closable in this scenario class (the vitamin gap, CP-2255
       residual); local output is power electronics / boards only. ASSUMPTION-class.
-      Scope (r2.10 §4): these delta components describe the INDUSTRIAL complex
+      Scope (the paper's scope): these delta components describe the INDUSTRIAL complex
       (decades-life equipment with internal repair chains). For short-lived compute
       payloads at 400-500 km the paper concedes catastrophic+logistics partly
       collapse into obsolescence (drag-limited life ~ refresh interval, free

@@ -1,55 +1,81 @@
-"""Write outputs/MANIFEST.md: sha256 of every inherited release artifact.
+"""Write the canonical release manifest after all generators and HTML build."""
+from __future__ import annotations
 
-Run AFTER the three run scripts and HTML build. The
-manuscript cites this manifest; CI (or a reviewer) regenerates the artifacts
-from a clean checkout and diffs the checksums (r3.5 reproducibility freeze).
-The manifest deliberately omits a Git commit/dirty flag: embedding the commit
-that contains the manifest creates a circular release artifact.
-"""
 import hashlib
-import sys
-from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "outputs"
+MANIFEST = OUT / "MANIFEST.md"
 
 
 def sha256(path: Path) -> str:
-    h = hashlib.sha256()
-    h.update(path.read_bytes())
-    return h.hexdigest()
+    return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-release_docs = [
-    ROOT / "docs" / "Recursive_Industrial_Intelligence_3rd_Ed_r3.5.md",
-    ROOT / "docs" / "Recursive_Industrial_Intelligence_3rd_Ed_r3.5.html",
-]
-artifacts = sorted(
-    list(OUT.glob("*.md")) + list((OUT / "tables").glob("*.csv"))
-    + list((OUT / "figures").glob("*.png")) + release_docs)
-artifacts = [p for p in artifacts if p.name != "MANIFEST.md"]
-missing = [p for p in artifacts if not p.exists()]
-if missing:
-    raise SystemExit(
-        "Build release artifacts before the manifest; missing: "
-        + ", ".join(str(p.relative_to(ROOT)) for p in missing)
+def _files(directory: Path, pattern: str) -> set[Path]:
+    return {path for path in directory.glob(pattern) if path.is_file()}
+
+
+def release_artifacts() -> list[Path]:
+    """Return the exact non-circular set covered by the release manifest."""
+    paths = {
+        ROOT / "CHANGELOG.md",
+        ROOT / "CITATION.cff",
+        ROOT / "CLAUDE.md",
+        ROOT / "LICENSE",
+        ROOT / "README.md",
+        ROOT / "ROADMAP.md",
+        ROOT / "package.json",
+        ROOT / "requirements.lock",
+        ROOT / "requirements.txt",
+        ROOT / "docs" / "LICENSE",
+        ROOT / "docs" / "Recursive_Industrial_Intelligence_r4.0.md",
+        ROOT / "docs" / "Recursive_Industrial_Intelligence_r4.0.html",
+    }
+    for directory, pattern in (
+        (ROOT / ".github" / "workflows", "*.yml"),
+        (ROOT / "docs", "*.md"),
+        (ROOT / "docs" / "assets", "*"),
+        (ROOT / "papers", "*.md"),
+        (ROOT / "params", "*.yaml"),
+        (ROOT / "scripts", "*.py"),
+        (ROOT / "scripts", "*.cjs"),
+        (ROOT / "src" / "rsimodel", "*.py"),
+        (ROOT / "tests", "*.py"),
+        (OUT, "**/*"),
+    ):
+        paths.update(_files(directory, pattern))
+    paths.discard(MANIFEST)
+    return sorted(paths)
+
+
+def main() -> None:
+    artifacts = release_artifacts()
+    missing = [path for path in artifacts if not path.is_file()]
+    if missing:
+        raise SystemExit(
+            "Build release artifacts before the manifest; missing: "
+            + ", ".join(str(path.relative_to(ROOT)) for path in missing)
+        )
+
+    lines = [
+        "# Release manifest",
+        "",
+        "- scope: canonical manuscript, release inputs, tests, and generated artifacts",
+        "- generator: `scripts/write_manifest.py` (run after every model generator and `npm run build:manuscript`)",
+        "- note: this manifest omits itself to avoid a circular digest",
+        "",
+        "| artifact | sha256 |",
+        "|---|---|",
+    ]
+    lines.extend(
+        f"| {path.relative_to(ROOT)} | {sha256(path)} |"
+        for path in artifacts
     )
+    MANIFEST.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    print(f"wrote {MANIFEST} ({len(artifacts)} artifacts)")
 
-import numpy, osqp, scipy, yaml  # noqa: E402
-lines = [
-    "# Output manifest",
-    "",
-    f"- generated: {date.today().isoformat()}",
-    f"- python: {sys.version.split()[0]}, numpy {numpy.__version__}, "
-    f"scipy {scipy.__version__}, osqp {osqp.__version__}",
-    "- generators: scripts/run_baseline.py, scripts/run_part2.py, "
-    "scripts/run_deep.py, npm run build:manuscript "
-    "(in that order), then this script",
-    "",
-    "| artifact | sha256 |",
-    "|---|---|",
-]
-lines += [f"| {p.relative_to(ROOT)} | {sha256(p)} |" for p in artifacts]
-(OUT / "MANIFEST.md").write_text("\n".join(lines) + "\n")
-print(f"wrote {OUT / 'MANIFEST.md'} ({len(artifacts)} artifacts)")
+
+if __name__ == "__main__":
+    main()
