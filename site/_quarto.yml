@@ -1,0 +1,109 @@
+project:
+  type: book
+  output-dir: ../_site
+  render:
+    - index.qmd
+    - part-i/index.qmd
+    - part-i/depreciation-closure.qmd
+    - part-i/model-results.qmd
+    - part-ii/index.qmd
+    - part-iii/index.qmd
+    - part-iv/index.qmd
+    - appendices/index.qmd
+    - appendix-c/index.qmd
+    - appendix-d/index.qmd
+    - notation/index.qmd
+    - glossary/index.qmd
+    - sources/index.qmd
+    - data/index.qmd
+    - 404.qmd
+
+book:
+  title: "Recursive Industrial Intelligence"
+  subtitle: "Fourth Edition · r4.0"
+  author: "Leonardo Stern"
+  favicon: favicon.svg
+  description: >-
+    A reproducible multisector feasibility and comparative-economics analysis
+    of recursively expanding space industry.
+  site-url: "https://fperegrinvs.github.io/rsi-model/"
+  repo-url: "https://github.com/fperegrinvs/rsi-model"
+  repo-actions: [source, issue]
+  page-navigation: true
+  reader-mode: true
+  search: true
+  open-graph: true
+  twitter-card: true
+  chapters:
+    - href: index.qmd
+      text: "Complete contents"
+    - part: "Part I — Technical Feasibility"
+      chapters:
+        - href: part-i/index.qmd
+          text: "I.1–I.3 — Recursive loops and cost structure"
+        - href: part-i/depreciation-closure.qmd
+          text: "I.4–I.6 — Depreciation, closure, and coordination"
+        - href: part-i/model-results.qmd
+          text: "I.7–I.10 — Model, results, and development path"
+    - href: part-ii/index.qmd
+      text: "Part II — Comparative Economics"
+    - href: part-iii/index.qmd
+      text: "Part III — Strategy and Governance"
+    - href: part-iv/index.qmd
+      text: "Part IV — Conclusion and Limitations"
+  appendices:
+    - href: appendices/index.qmd
+      text: "Appendices A–B"
+    - href: appendix-c/index.qmd
+      text: "Appendix C — Reproducibility"
+    - href: appendix-d/index.qmd
+      text: "Appendix D — Model specification"
+    - href: notation/index.qmd
+      text: "Notation register"
+    - href: glossary/index.qmd
+      text: "Glossary"
+    - href: sources/index.qmd
+      text: "Sources"
+    - href: data/index.qmd
+      text: "Data catalog"
+  sidebar:
+    style: docked
+    collapse-level: 1
+  page-footer:
+    left: "Recursive Industrial Intelligence · r4.0"
+    right:
+      - text: "Repository"
+        href: "https://github.com/fperegrinvs/rsi-model"
+      - text: "Standalone HTML"
+        href: "download/Recursive_Industrial_Intelligence_r4.0.html"
+
+format:
+  html:
+    theme: cosmo
+    css: quarto.css
+    toc: true
+    toc-depth: 3
+    number-sections: false
+    html-math-method: mathml
+    canonical-url: true
+    link-external-newwindow: false
+    code-copy: false
+    reference-location: document
+
+filters:
+  - ../scripts/site_adjustments.lua
+  - ../scripts/equation_numbering.lua
+  - ../scripts/equation_explanations.lua
+  - ../scripts/figure_numbering.lua
+  - ../scripts/table_numbering.lua
+  - ../scripts/proposition_links.lua
+
+lang: en
+google-scholar: true
+citation:
+  type: book
+  title: "Recursive Industrial Intelligence — Fourth Edition"
+  author:
+    - family: Stern
+      given: Leonardo
+  url: "https://fperegrinvs.github.io/rsi-model/"

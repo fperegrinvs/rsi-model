@@ -1,0 +1,11 @@
+kind,name,value,threshold_or_budget,crossed,actions,source_class
+common_cause,plane_a_breakup,0.100000000,0.100000000,0,,ASSUMPTION
+shell_trigger,creation_clearance_ratio,4.397027085,1.000000000,1,pause_deployment;dispatch_active_removal,ASSUMPTION
+shell_trigger,expected_hazardous_descendants,0.022193406,1.000000000,0,,ASSUMPTION
+shell_trigger,derelict_mass,0.039232101,12.000000000,0,,ASSUMPTION
+shell_trigger,conjunction_probability,0.000000000,0.001000000,0,,ASSUMPTION
+shell_trigger,maneuver_workload,0.000000000,0.800000000,0,,ASSUMPTION
+shell_trigger,avoidance_propellant_fraction_used,0.000000000,0.700000000,0,,ASSUMPTION
+shell_trigger,tracking_uncertainty,0.000000000,0.300000000,0,,ASSUMPTION
+shell_trigger,communications_outage_fraction,0.000000000,0.100000000,0,,ASSUMPTION
+shell_trigger,disposal_failure_fraction,0.150000000,0.100000000,1,tighten_disposal_reliability;retire_shell,ASSUMPTION

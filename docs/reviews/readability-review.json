@@ -1,0 +1,2103 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-07-28",
+  "reviewedBy": "LLM-assisted editorial review",
+  "mainTextReview": "PASS: with every note collapsed, the propositions, assumptions, limitations, countercases, safety boundaries, and headline-result interpretations remain in the main text.",
+  "reviews": [
+    {
+      "file": "docs/manuscript/00-front-matter.md",
+      "section": "abstract",
+      "opening": "This paper develops and tests a conditional thesis advanced AI reusable launch",
+      "wordCount": 538,
+      "signals": [
+        "long paragraph (538 words)",
+        "long sentence (89 words)"
+      ],
+      "id": "9dc96cce3d2e3287",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/00-front-matter.md",
+      "section": "executive-summary",
+      "opening": "Here I t is the intelligence-capability index c t is the vector",
+      "wordCount": 116,
+      "signals": [
+        "long paragraph (116 words)"
+      ],
+      "id": "485363c2c1c065ce",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it defines or interprets a central model mechanism used by the next inference."
+    },
+    {
+      "file": "docs/manuscript/00-front-matter.md",
+      "section": "executive-summary",
+      "opening": "The economic argument compresses to two walls and two escapes The capital",
+      "wordCount": 106,
+      "signals": [
+        "long paragraph (106 words)"
+      ],
+      "id": "28fb11fb21ca65b7",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/00-front-matter.md",
+      "section": "executive-summary",
+      "opening": "1 The active bottleneck is architecture-specific A unit-invariant finite-response diagnostic relaxes each",
+      "wordCount": 776,
+      "signals": [
+        "long paragraph (776 words)"
+      ],
+      "id": "cf166d0d36915fdd",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/00-front-matter.md",
+      "section": "executive-summary",
+      "opening": "The integrated layer also makes one architecture boundary stateful industrial closure does",
+      "wordCount": 159,
+      "signals": [
+        "long paragraph (159 words)",
+        "long sentence (59 words)"
+      ],
+      "id": "f3b50f91e0c6e923",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it carries a result boundary or countercase needed for correct interpretation."
+    },
+    {
+      "file": "docs/manuscript/00-front-matter.md",
+      "section": "executive-summary",
+      "opening": "The strategic assessment Part III the evidence documents an integrated off-world portfolio",
+      "wordCount": 115,
+      "signals": [
+        "long paragraph (115 words)",
+        "nested parentheses (depth 2)"
+      ],
+      "id": "5df4ef7e2b6f4046",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/10-part-i-foundations.md",
+      "section": "i.1-recursive-self-improvement-the-digital-loop",
+      "opening": "Recursive self-improvement RSI occurs when an intelligent system contributes to the process",
+      "wordCount": 135,
+      "signals": [
+        "long paragraph (135 words)"
+      ],
+      "id": "b718d6c6b93e1ac3",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/10-part-i-foundations.md",
+      "section": "i.1-recursive-self-improvement-the-digital-loop",
+      "opening": "These are observed bounded precursors not evidence that verified AI-R D closure",
+      "wordCount": 130,
+      "signals": [
+        "long paragraph (130 words)",
+        "long sentence (61 words)"
+      ],
+      "id": "ccbeda7e223b0df3",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it carries a result boundary or countercase needed for correct interpretation."
+    },
+    {
+      "file": "docs/manuscript/10-part-i-foundations.md",
+      "section": "i.1-recursive-self-improvement-the-digital-loop",
+      "opening": "The comparison is intentionally not a score ranking Anthropic supplies an operational",
+      "wordCount": 85,
+      "signals": [
+        "long sentence (58 words)"
+      ],
+      "id": "16cfcd0205e70b08",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it carries a result boundary or countercase needed for correct interpretation."
+    },
+    {
+      "file": "docs/manuscript/10-part-i-foundations.md",
+      "section": "i.1-recursive-self-improvement-the-digital-loop",
+      "opening": "OpenAI's High threshold is comparable to giving every OpenAI researcher a strong",
+      "wordCount": 108,
+      "signals": [
+        "long paragraph (108 words)"
+      ],
+      "id": "5927ff98baea6f8a",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/10-part-i-foundations.md",
+      "section": "i.1-recursive-self-improvement-the-digital-loop",
+      "opening": "The July 9 2026 GPT-5 6 card decomposes OpenAI's current evaluation suite",
+      "wordCount": 120,
+      "signals": [
+        "long paragraph (120 words)",
+        "long sentence (65 words)"
+      ],
+      "id": "f00e75b20efe5c7d",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/10-part-i-foundations.md",
+      "section": "i.1-recursive-self-improvement-the-digital-loop",
+      "opening": "DeepMind's technical safety analysis supplies conceptual support for the positive-feedback mechanism while",
+      "wordCount": 131,
+      "signals": [
+        "long paragraph (131 words)"
+      ],
+      "id": "c3b873b76bf1ab57",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/10-part-i-foundations.md",
+      "section": "i.1-recursive-self-improvement-the-digital-loop",
+      "opening": "The Anthropic figures remain company statement selection attribution counterfactual and same-family evaluator",
+      "wordCount": 104,
+      "signals": [
+        "long paragraph (104 words)"
+      ],
+      "id": "733af59f4c796e70",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/10-part-i-foundations.md",
+      "section": "i.1-recursive-self-improvement-the-digital-loop",
+      "opening": "Here I n and I r are vectors of internally available and",
+      "wordCount": 169,
+      "signals": [
+        "long paragraph (169 words)"
+      ],
+      "id": "091366846d0edf9b",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/10-part-i-foundations.md",
+      "section": "i.1-recursive-self-improvement-the-digital-loop",
+      "opening": "In Eq eq digital-saturating-frontier I m is held-out performance on capability component",
+      "wordCount": 152,
+      "signals": [
+        "long paragraph (152 words)",
+        "long sentence (55 words)"
+      ],
+      "id": "df83675c4657b851",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it defines or interprets a central model mechanism used by the next inference."
+    },
+    {
+      "file": "docs/manuscript/10-part-i-foundations.md",
+      "section": "i.1-recursive-self-improvement-the-digital-loop",
+      "opening": "C is realized training compute in FLOP N is the mean number",
+      "wordCount": 107,
+      "signals": [
+        "long paragraph (107 words)"
+      ],
+      "id": "44ab15b7f2c2a8c1",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/10-part-i-foundations.md",
+      "section": "i.1-recursive-self-improvement-the-digital-loop",
+      "opening": "S C is the six-use partition C is the conserved physical accelerator-hour",
+      "wordCount": 98,
+      "signals": [
+        "long sentence (60 words)"
+      ],
+      "id": "8dee28f903be40e1",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/10-part-i-foundations.md",
+      "section": "i.1-recursive-self-improvement-the-digital-loop",
+      "opening": "At the central efficiency setting the 5 grid raw-capability optimizer allocates 25",
+      "wordCount": 130,
+      "signals": [
+        "long paragraph (130 words)"
+      ],
+      "id": "3ceecff063263c14",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it defines or interprets a central model mechanism used by the next inference."
+    },
+    {
+      "file": "docs/manuscript/10-part-i-foundations.md",
+      "section": "i.1-recursive-self-improvement-the-digital-loop",
+      "opening": "Empirical language-model scaling laws show diminishing loss improvements with model size data",
+      "wordCount": 130,
+      "signals": [
+        "long paragraph (130 words)",
+        "reference cluster (5)"
+      ],
+      "id": "8bb095ec1ed386ef",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it defines or interprets a central model mechanism used by the next inference."
+    },
+    {
+      "file": "docs/manuscript/10-part-i-foundations.md",
+      "section": "i.1-recursive-self-improvement-the-digital-loop",
+      "opening": "The implemented attribution screen therefore avoids fitting one historical headline rate It",
+      "wordCount": 123,
+      "signals": [
+        "long paragraph (123 words)"
+      ],
+      "id": "bca48a7621b1eeca",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/10-part-i-foundations.md",
+      "section": "i.1-recursive-self-improvement-the-digital-loop",
+      "opening": "A chronological release backtest provides a deliberately narrow external screen The split",
+      "wordCount": 70,
+      "signals": [
+        "reference cluster (5)"
+      ],
+      "id": "4232d2f38cde2850",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path as a compact evidence synthesis; source markers remain ordinary links."
+    },
+    {
+      "file": "docs/manuscript/10-part-i-foundations.md",
+      "section": "i.1-recursive-self-improvement-the-digital-loop",
+      "opening": "Here M i is release i s five-shot MMLU accuracy in percentage",
+      "wordCount": 78,
+      "signals": [
+        "long sentence (72 words)"
+      ],
+      "id": "7fd9e57cadf753a0",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/10-part-i-foundations.md",
+      "section": "i.1-recursive-self-improvement-the-digital-loop",
+      "opening": "The compute-only relation has 6 64 percentage-point mean absolute error on the",
+      "wordCount": 121,
+      "signals": [
+        "long paragraph (121 words)"
+      ],
+      "id": "fc8d5dfa9bcdb065",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/10-part-i-foundations.md",
+      "section": "i.1-recursive-self-improvement-the-digital-loop",
+      "opening": "Operational experience closes the loop only if it survives deployment and is",
+      "wordCount": 151,
+      "signals": [
+        "long paragraph (151 words)"
+      ],
+      "id": "a1bc233bd881986c",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/10-part-i-foundations.md",
+      "section": "i.1-recursive-self-improvement-the-digital-loop",
+      "opening": "The synthetic intergenerational rehearsal makes that condition executable without pretending that the",
+      "wordCount": 114,
+      "signals": [
+        "long paragraph (114 words)"
+      ],
+      "id": "9fa67934702d77e6",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/10-part-i-foundations.md",
+      "section": "i.1-recursive-self-improvement-the-digital-loop",
+      "opening": "Those observed synthetic metrics feed the digital loop rather than remaining a",
+      "wordCount": 149,
+      "signals": [
+        "long paragraph (149 words)"
+      ],
+      "id": "e726aea8c9cd54ef",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/10-part-i-foundations.md",
+      "section": "i.1-recursive-self-improvement-the-digital-loop",
+      "opening": "S g is accepted training-signal units V g is generated synthetic records",
+      "wordCount": 75,
+      "signals": [
+        "long sentence (60 words)"
+      ],
+      "id": "9b65df9eeb35973e",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/10-part-i-foundations.md",
+      "section": "i.1-recursive-self-improvement-the-digital-loop",
+      "opening": "The volume-maximizing branch expands from 1 000 to 2 187 million synthetic",
+      "wordCount": 110,
+      "signals": [
+        "long paragraph (110 words)"
+      ],
+      "id": "bf9e192b0f67da75",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/10-part-i-foundations.md",
+      "section": "i.1-recursive-self-improvement-the-digital-loop",
+      "opening": "Public releases are lagging indicators benchmarks open weights products and launches observe",
+      "wordCount": 133,
+      "signals": [
+        "long paragraph (133 words)"
+      ],
+      "id": "28926e6c4260d995",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/10-part-i-foundations.md",
+      "section": "i.1-recursive-self-improvement-the-digital-loop",
+      "opening": "The internal frontier is only partially observable Relevant indirect observations include internal",
+      "wordCount": 148,
+      "signals": [
+        "long paragraph (148 words)"
+      ],
+      "id": "7e5a9bd28bf16911",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/10-part-i-foundations.md",
+      "section": "i.1-recursive-self-improvement-the-digital-loop",
+      "opening": "K K and K are gross authorized and unauthorized capacity K is",
+      "wordCount": 83,
+      "signals": [
+        "long sentence (64 words)"
+      ],
+      "id": "72c1aa33600e930a",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/10-part-i-foundations.md",
+      "section": "i.1-recursive-self-improvement-the-digital-loop",
+      "opening": "Five ASSUMPTION-class stress cases make the distinction executable In the balanced case",
+      "wordCount": 121,
+      "signals": [
+        "long paragraph (121 words)"
+      ],
+      "id": "ee2311ecd5854f30",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it carries a result boundary or countercase needed for correct interpretation."
+    },
+    {
+      "file": "docs/manuscript/10-part-i-foundations.md",
+      "section": "i.2-recursive-industrial-improvement-the-physical-loop",
+      "opening": "Trammell and Korinek provide the closest formal economic lineage for that split",
+      "wordCount": 127,
+      "signals": [
+        "long paragraph (127 words)"
+      ],
+      "id": "4a12d827daa4dc10",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/10-part-i-foundations.md",
+      "section": "i.2-recursive-industrial-improvement-the-physical-loop",
+      "opening": "Energy hardware is not energy with solar energy equals hardware expresses a",
+      "wordCount": 157,
+      "signals": [
+        "long paragraph (157 words)",
+        "long sentence (78 words)"
+      ],
+      "id": "07c81c1642e83050",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it carries a result boundary or countercase needed for correct interpretation."
+    },
+    {
+      "file": "docs/manuscript/10-part-i-foundations.md",
+      "section": "i.2-recursive-industrial-improvement-the-physical-loop",
+      "opening": "Let the embodiment vector E record degrees of freedom workspace reach payload",
+      "wordCount": 80,
+      "signals": [
+        "long sentence (63 words)"
+      ],
+      "id": "18e5955c342b6ddb",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/10-part-i-foundations.md",
+      "section": "i.2-recursive-industrial-improvement-the-physical-loop",
+      "opening": "In the limiting hypothesis sufficiently capable intelligence can learn to operate unfamiliar",
+      "wordCount": 118,
+      "signals": [
+        "long paragraph (118 words)"
+      ],
+      "id": "c79710575e2212b9",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/10-part-i-foundations.md",
+      "section": "i.2-recursive-industrial-improvement-the-physical-loop",
+      "opening": "The validation outputs test both causal directions independently For every declared industrial",
+      "wordCount": 108,
+      "signals": [
+        "long paragraph (108 words)"
+      ],
+      "id": "255515db802b39b9",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/10-part-i-foundations.md",
+      "section": "i.2-recursive-industrial-improvement-the-physical-loop",
+      "opening": "The limiting cases prevent a benchmark score from becoming a deployment claim",
+      "wordCount": 122,
+      "signals": [
+        "long paragraph (122 words)"
+      ],
+      "id": "aa8ef64bf465efac",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/10-part-i-foundations.md",
+      "section": "i.2-recursive-industrial-improvement-the-physical-loop",
+      "opening": "The loops couple through a second channel data as the exhaust of",
+      "wordCount": 225,
+      "signals": [
+        "long paragraph (225 words)",
+        "long sentence (138 words)"
+      ],
+      "id": "f28e1277df51d8e4",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/10-part-i-foundations.md",
+      "section": "i.2-recursive-industrial-improvement-the-physical-loop",
+      "opening": "Generation alone is insufficient Telemetry creates an advantage only after the industrial-memory",
+      "wordCount": 118,
+      "signals": [
+        "long paragraph (118 words)"
+      ],
+      "id": "4453403e83728f5e",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/10-part-i-foundations.md",
+      "section": "i.2-recursive-industrial-improvement-the-physical-loop",
+      "opening": "Scale proxies require disciplined interpretation By mid-2026 the vehicle fleet had accumulated",
+      "wordCount": 107,
+      "signals": [
+        "long paragraph (107 words)",
+        "reference cluster (4)"
+      ],
+      "id": "f6ad4ef589fbb1a1",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path as a compact evidence synthesis; source markers remain ordinary links."
+    },
+    {
+      "file": "docs/manuscript/10-part-i-foundations.md",
+      "section": "i.3-why-space-changes-the-cost-structure",
+      "opening": "In Equation eq matched-lifecycle-cost C e u T is discounted lifecycle cost",
+      "wordCount": 123,
+      "signals": [
+        "long paragraph (123 words)",
+        "long sentence (69 words)"
+      ],
+      "id": "6b093cf8be88abf2",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it defines or interprets a central model mechanism used by the next inference."
+    },
+    {
+      "file": "docs/manuscript/10-part-i-foundations.md",
+      "section": "i.3-why-space-changes-the-cost-structure",
+      "opening": "Gravity is a process variable not a system prerequisite Industrial operations divide",
+      "wordCount": 96,
+      "signals": [
+        "long sentence (55 words)"
+      ],
+      "id": "d0bb7dfc3e8198ca",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it carries a result boundary or countercase needed for correct interpretation."
+    },
+    {
+      "file": "docs/manuscript/10-part-i-foundations.md",
+      "section": "i.3-why-space-changes-the-cost-structure",
+      "opening": "One terrestrial g requires about 30 rpm at a one-meter radius or",
+      "wordCount": 163,
+      "signals": [
+        "long paragraph (163 words)"
+      ],
+      "id": "816f503dbb514f09",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/11-part-i-depreciation-closure.md",
+      "section": "i.4-depreciation-the-harsh-term",
+      "opening": "The compute-cohort sensitivity keeps age and generation explicit Physical failure removes hardware",
+      "wordCount": 121,
+      "signals": [
+        "long paragraph (121 words)"
+      ],
+      "id": "6bb4ad44bc02d5c9",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/11-part-i-depreciation-closure.md",
+      "section": "i.4-depreciation-the-harsh-term",
+      "opening": "Here t is elapsed years t is the simulation step in years",
+      "wordCount": 119,
+      "signals": [
+        "long paragraph (119 words)",
+        "long sentence (74 words)"
+      ],
+      "id": "0d5c55ed8f782a8c",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/11-part-i-depreciation-closure.md",
+      "section": "i.4-depreciation-the-harsh-term",
+      "opening": "This extension is a bounded scenario model not a claim that orbital",
+      "wordCount": 139,
+      "signals": [
+        "long paragraph (139 words)"
+      ],
+      "id": "0706384a55c53f1e",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it carries a result boundary or countercase needed for correct interpretation."
+    },
+    {
+      "file": "docs/manuscript/11-part-i-depreciation-closure.md",
+      "section": "i.4-depreciation-the-harsh-term",
+      "opening": "The strategy comparison exposes design-for-service rather than treating it as a hidden",
+      "wordCount": 118,
+      "signals": [
+        "long paragraph (118 words)"
+      ],
+      "id": "89994225c4c5399b",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/11-part-i-depreciation-closure.md",
+      "section": "i.4-depreciation-the-harsh-term",
+      "opening": "The transport comparison is directional and origin-specific A historical NASA propulsion review",
+      "wordCount": 125,
+      "signals": [
+        "long paragraph (125 words)"
+      ],
+      "id": "8630b5fd355d5d40",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/11-part-i-depreciation-closure.md",
+      "section": "i.4-depreciation-the-harsh-term",
+      "opening": "The transport service-network sensitivity therefore compares four explicit routes Earth-launched service in",
+      "wordCount": 151,
+      "signals": [
+        "long paragraph (151 words)"
+      ],
+      "id": "1648eed480c58445",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/11-part-i-depreciation-closure.md",
+      "section": "i.4-depreciation-the-harsh-term",
+      "opening": "This economic test is deliberately not a mission-permission test A row is",
+      "wordCount": 116,
+      "signals": [
+        "long paragraph (116 words)"
+      ],
+      "id": "4d8e333e209b392d",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it carries a result boundary or countercase needed for correct interpretation."
+    },
+    {
+      "file": "docs/manuscript/11-part-i-depreciation-closure.md",
+      "section": "i.4-depreciation-the-harsh-term",
+      "opening": "orbital service decision comparison records all 324 combinations orbital regime assumptions prevents",
+      "wordCount": 138,
+      "signals": [
+        "long paragraph (138 words)"
+      ],
+      "id": "d0cc42fcd88cf15c",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/11-part-i-depreciation-closure.md",
+      "section": "i.4-depreciation-the-harsh-term",
+      "opening": "Collision-cascade control boundary Kessler risk is not an unusually large independent shock",
+      "wordCount": 250,
+      "signals": [
+        "long paragraph (250 words)"
+      ],
+      "id": "13b92a5e2654a884",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it carries a result boundary or countercase needed for correct interpretation."
+    },
+    {
+      "file": "docs/manuscript/11-part-i-depreciation-closure.md",
+      "section": "i.4-depreciation-the-harsh-term",
+      "opening": "K i t is node i s declared service capacity K is",
+      "wordCount": 111,
+      "signals": [
+        "long paragraph (111 words)"
+      ],
+      "id": "567fa4a5dad0e6aa",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/11-part-i-depreciation-closure.md",
+      "section": "i.4-depreciation-the-harsh-term",
+      "opening": "Shell-resolved triggers monitor active and derelict mass conjunction forecast and uncertainty maneuver",
+      "wordCount": 140,
+      "signals": [
+        "long paragraph (140 words)"
+      ],
+      "id": "0b2ee9f56fd6b407",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/11-part-i-depreciation-closure.md",
+      "section": "i.4-depreciation-the-harsh-term",
+      "opening": "The architecture search makes the failure domains concrete Five declared 120-node layouts",
+      "wordCount": 107,
+      "signals": [
+        "long paragraph (107 words)"
+      ],
+      "id": "dd7962c322dbc254",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/11-part-i-depreciation-closure.md",
+      "section": "i.4-depreciation-the-harsh-term",
+      "opening": "The breakup diagnostic propagates a cloud through twelve individually specified nodes with",
+      "wordCount": 133,
+      "signals": [
+        "long paragraph (133 words)"
+      ],
+      "id": "fd49b2fe7da5a96b",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/11-part-i-depreciation-closure.md",
+      "section": "i.4-depreciation-the-harsh-term",
+      "opening": "The mitigation comparison crosses low high deployment cadence disposal reliability removal shielding",
+      "wordCount": 92,
+      "signals": [
+        "long sentence (68 words)"
+      ],
+      "id": "6d57ee0257da3550",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/11-part-i-depreciation-closure.md",
+      "section": "i.4-depreciation-the-harsh-term",
+      "opening": "One environment-specific case partly cuts the other way For short-lived compute payloads",
+      "wordCount": 217,
+      "signals": [
+        "long paragraph (217 words)",
+        "long sentence (59 words)"
+      ],
+      "id": "ed97580363a6a081",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/11-part-i-depreciation-closure.md",
+      "section": "i.5-industrial-closure-the-decisive-threshold",
+      "opening": "Here J is the set of inputs whose absence stops verified production",
+      "wordCount": 86,
+      "signals": [
+        "long sentence (63 words)"
+      ],
+      "id": "fec69a0a2cc42c1b",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/11-part-i-depreciation-closure.md",
+      "section": "i.5-industrial-closure-the-decisive-threshold",
+      "opening": "The large cumulative-loss entries are repeated waves of unsupported capacity including capacity",
+      "wordCount": 106,
+      "signals": [
+        "long paragraph (106 words)"
+      ],
+      "id": "98a92de2c310839c",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/11-part-i-depreciation-closure.md",
+      "section": "i.5-industrial-closure-the-decisive-threshold",
+      "opening": "The disrupted case also charges 15 of otherwise available expansion effort to",
+      "wordCount": 154,
+      "signals": [
+        "long paragraph (154 words)",
+        "long sentence (65 words)"
+      ],
+      "id": "6ed5963ae3e649ad",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/11-part-i-depreciation-closure.md",
+      "section": "i.5-industrial-closure-the-decisive-threshold",
+      "opening": "K t is the vector of commissioned sector capacities at elapsed year",
+      "wordCount": 106,
+      "signals": [
+        "long paragraph (106 words)"
+      ],
+      "id": "a7605bbbcab1212c",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/11-part-i-depreciation-closure.md",
+      "section": "i.5-industrial-closure-the-decisive-threshold",
+      "opening": "The path to autonomy is a sequence of verified substitutions not an",
+      "wordCount": 141,
+      "signals": [
+        "long paragraph (141 words)"
+      ],
+      "id": "6f90abdcc71a38fd",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it carries a result boundary or countercase needed for correct interpretation."
+    },
+    {
+      "file": "docs/manuscript/11-part-i-depreciation-closure.md",
+      "section": "i.5-industrial-closure-the-decisive-threshold",
+      "opening": "The r and κ anchors read honestly Three quantities sometimes presented as",
+      "wordCount": 183,
+      "signals": [
+        "long paragraph (183 words)",
+        "long sentence (67 words)"
+      ],
+      "id": "7debf8a6c4823b56",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/11-part-i-depreciation-closure.md",
+      "section": "i.5-industrial-closure-the-decisive-threshold",
+      "opening": "The package is viable only if it grows its productive base before",
+      "wordCount": 164,
+      "signals": [
+        "long paragraph (164 words)"
+      ],
+      "id": "6beeccf60ac996b2",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/11-part-i-depreciation-closure.md",
+      "section": "i.6-intelligence-coordination-and-time",
+      "opening": "B is coordination work in agent-hours per unit of verified production B",
+      "wordCount": 113,
+      "signals": [
+        "long paragraph (113 words)",
+        "long sentence (98 words)"
+      ],
+      "id": "92de362c33a5923a",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/11-part-i-depreciation-closure.md",
+      "section": "i.6-intelligence-coordination-and-time",
+      "opening": "B p t is commissioned bottleneck-capacity increment at time t B p",
+      "wordCount": 98,
+      "signals": [
+        "long sentence (63 words)"
+      ],
+      "id": "21749102c9e76479",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/11-part-i-depreciation-closure.md",
+      "section": "i.6-intelligence-coordination-and-time",
+      "opening": "N is effective physical-agent capacity N counts model copies N is the",
+      "wordCount": 91,
+      "signals": [
+        "long sentence (70 words)"
+      ],
+      "id": "cd7b4605c3937285",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it defines or interprets a central model mechanism used by the next inference."
+    },
+    {
+      "file": "docs/manuscript/11-part-i-depreciation-closure.md",
+      "section": "i.6-intelligence-coordination-and-time",
+      "opening": "The limiting-case sweep makes the distinction visible With one million declared model",
+      "wordCount": 244,
+      "signals": [
+        "long paragraph (244 words)"
+      ],
+      "id": "1fa7baa75619c27d",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it defines or interprets a central model mechanism used by the next inference."
+    },
+    {
+      "file": "docs/manuscript/12-part-i-model-results.md",
+      "section": "i.7-the-multisector-model",
+      "opening": "The electronics strategic-material gap One structural parameter dominates the scoped scalar-anchor screen",
+      "wordCount": 82,
+      "signals": [
+        "long sentence (55 words)"
+      ],
+      "id": "5a9b38790b106121",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/12-part-i-model-results.md",
+      "section": "i.7-the-multisector-model",
+      "opening": "The dedicated sensitivity resolves eight tiers front-end logic fabrication memory fabrication advanced",
+      "wordCount": 102,
+      "signals": [
+        "long paragraph (102 words)"
+      ],
+      "id": "cc9b74e2a700d463",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/12-part-i-model-results.md",
+      "section": "i.8-results",
+      "opening": "The machine-readable outputs report two doubling denominators because they answer different questions",
+      "wordCount": 97,
+      "signals": [
+        "nested parentheses (depth 2)"
+      ],
+      "id": "ec74435ae74f12eb",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/12-part-i-model-results.md",
+      "section": "i.8-results",
+      "opening": "Reading the conservative ensemble mostly fails on the realized endpoint 3 of",
+      "wordCount": 124,
+      "signals": [
+        "long paragraph (124 words)"
+      ],
+      "id": "27d8a814018e547c",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it carries a result boundary or countercase needed for correct interpretation."
+    },
+    {
+      "file": "docs/manuscript/12-part-i-model-results.md",
+      "section": "i.8-results",
+      "opening": "Balanced doubling is faster on the Moon but the endpoint is more",
+      "wordCount": 142,
+      "signals": [
+        "long paragraph (142 words)"
+      ],
+      "id": "1a9a38bd5fbc7689",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/12-part-i-model-results.md",
+      "section": "i.8-results",
+      "opening": "Cut sets and the ensemble-frequent minimum cut At central anchor values no",
+      "wordCount": 225,
+      "signals": [
+        "long paragraph (225 words)",
+        "long sentence (55 words)"
+      ],
+      "id": "e8f2993a4e6763d6",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/12-part-i-model-results.md",
+      "section": "i.8-results",
+      "opening": "The clock-setting curve Expansion frequency against the e-folding time of Earth-supply withdrawal",
+      "wordCount": 113,
+      "signals": [
+        "long paragraph (113 words)",
+        "nested parentheses (depth 2)"
+      ],
+      "id": "9b729b43d374720b",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/12-part-i-model-results.md",
+      "section": "i.8-results",
+      "opening": "Allocation-policy robustness The results above could in principle be an artifact of",
+      "wordCount": 273,
+      "signals": [
+        "long paragraph (273 words)",
+        "long sentence (66 words)"
+      ],
+      "id": "ab6f4df78249aa77",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/12-part-i-model-results.md",
+      "section": "i.8-results",
+      "opening": "Scalar-anchor sensitivity screening with its scope stated The claim that the strategic-material",
+      "wordCount": 181,
+      "signals": [
+        "long paragraph (181 words)",
+        "long sentence (114 words)"
+      ],
+      "id": "ec665bdaa33dccf6",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/12-part-i-model-results.md",
+      "section": "i.8-results",
+      "opening": "Integrated seed and aggregate-capacity results The integrated layer is a second explicitly",
+      "wordCount": 169,
+      "signals": [
+        "long paragraph (169 words)"
+      ],
+      "id": "a68954fe5731b17b",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/12-part-i-model-results.md",
+      "section": "i.8-results",
+      "opening": "Minimum-mass installed seed is the LP's installed-equipment boundary not delivered cargo A",
+      "wordCount": 229,
+      "signals": [
+        "long paragraph (229 words)"
+      ],
+      "id": "eb87860c122bcd46",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it carries a result boundary or countercase needed for correct interpretation."
+    },
+    {
+      "file": "docs/manuscript/12-part-i-model-results.md",
+      "section": "i.8-results",
+      "opening": "The strict lunar-only case is a structural infeasibility not a sampled tail",
+      "wordCount": 171,
+      "signals": [
+        "long paragraph (171 words)"
+      ],
+      "id": "04fdd5f6d8dd8f27",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it carries a result boundary or countercase needed for correct interpretation."
+    },
+    {
+      "file": "docs/manuscript/12-part-i-model-results.md",
+      "section": "i.8-results",
+      "opening": "The coupled run distinguishes installed compute from the slowest-sector industrial aggregate Figure",
+      "wordCount": 110,
+      "signals": [
+        "long paragraph (110 words)"
+      ],
+      "id": "ed3858e20f5bb8b2",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/12-part-i-model-results.md",
+      "section": "i.8-results",
+      "opening": "A ratio above one means only that more fragments were created than",
+      "wordCount": 122,
+      "signals": [
+        "long paragraph (122 words)"
+      ],
+      "id": "e6e33c6ac5b144e5",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/12-part-i-model-results.md",
+      "section": "i.8-results",
+      "opening": "What Part I establishes and does not It establishes structure which sector",
+      "wordCount": 126,
+      "signals": [
+        "long paragraph (126 words)",
+        "long sentence (58 words)"
+      ],
+      "id": "aaec0947ae4f2df4",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it carries a result boundary or countercase needed for correct interpretation."
+    },
+    {
+      "file": "docs/manuscript/12-part-i-model-results.md",
+      "section": "i.9-development-path-annotated",
+      "opening": "0 Terrestrial autonomous-closure rehearsal Before launch operate an integrated seed factory on",
+      "wordCount": 334,
+      "signals": [
+        "long paragraph (334 words)"
+      ],
+      "id": "46362201194e1355",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it defines or interprets a central model mechanism used by the next inference."
+    },
+    {
+      "file": "docs/manuscript/12-part-i-model-results.md",
+      "section": "i.9-development-path-annotated",
+      "opening": "The bridge economy maps onto the ladder terrestrial products carry the early",
+      "wordCount": 129,
+      "signals": [
+        "long paragraph (129 words)"
+      ],
+      "id": "1ac64a7386046248",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/12-part-i-model-results.md",
+      "section": "i.9-development-path-annotated",
+      "opening": "1 LEO as a bridge not the terminal reservoir Communications observation early",
+      "wordCount": 213,
+      "signals": [
+        "long paragraph (213 words)"
+      ],
+      "id": "88a86978f129e3c0",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it carries a result boundary or countercase needed for correct interpretation."
+    },
+    {
+      "file": "docs/manuscript/12-part-i-model-results.md",
+      "section": "i.9-development-path-annotated",
+      "opening": "Material-source sequence The Moon is not chemically equivalent to Earth but neither",
+      "wordCount": 118,
+      "signals": [
+        "long paragraph (118 words)"
+      ],
+      "id": "663d1a5af3882513",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it carries a result boundary or countercase needed for correct interpretation."
+    },
+    {
+      "file": "docs/manuscript/12-part-i-model-results.md",
+      "section": "i.9-development-path-annotated",
+      "opening": "An order-of-magnitude inventory check prevents no iron from becoming a false premise",
+      "wordCount": 105,
+      "signals": [
+        "long paragraph (105 words)"
+      ],
+      "id": "a538754f0a390e86",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/12-part-i-model-results.md",
+      "section": "i.9-development-path-annotated",
+      "opening": "The harder question is diversity Lunar carbon and nitrogen occur at low",
+      "wordCount": 123,
+      "signals": [
+        "long paragraph (123 words)"
+      ],
+      "id": "89500be7ace6d2ed",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/12-part-i-model-results.md",
+      "section": "i.9-development-path-annotated",
+      "opening": "This ranks functions not prestige destinations Surface and orbit are complements orbit",
+      "wordCount": 115,
+      "signals": [
+        "long paragraph (115 words)"
+      ],
+      "id": "09699e0dcdd0ad18",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it carries a result boundary or countercase needed for correct interpretation."
+    },
+    {
+      "file": "docs/manuscript/20-part-ii-comparative-economics.md",
+      "section": "ii.1-the-bridge-economy",
+      "opening": "Each stage of the recursion must be independently profitable or deliberately financed",
+      "wordCount": 146,
+      "signals": [
+        "long paragraph (146 words)",
+        "long sentence (59 words)"
+      ],
+      "id": "d3acc8a666f5bdc3",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/20-part-ii-comparative-economics.md",
+      "section": "ii.2-the-crossover-model",
+      "opening": "Unit dollars per frontier-equivalent kilowatt-year of delivered IT load defined as one",
+      "wordCount": 238,
+      "signals": [
+        "long paragraph (238 words)"
+      ],
+      "id": "8c6d8fc41e3e5ff6",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/20-part-ii-comparative-economics.md",
+      "section": "ii.2-the-crossover-model",
+      "opening": "The engineering reference remains 2026 USD per frontier-equivalent kW-year it exposes spacecraft",
+      "wordCount": 140,
+      "signals": [
+        "long paragraph (140 words)"
+      ],
+      "id": "0702b6d816f57222",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/20-part-ii-comparative-economics.md",
+      "section": "ii.2-the-crossover-model",
+      "opening": "Ordinary WACC does not price the option value of earlier useful capacity",
+      "wordCount": 154,
+      "signals": [
+        "long paragraph (154 words)"
+      ],
+      "id": "1eb4197cf7fea5f3",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it carries a result boundary or countercase needed for correct interpretation."
+    },
+    {
+      "file": "docs/manuscript/20-part-ii-comparative-economics.md",
+      "section": "ii.2-the-crossover-model",
+      "opening": "No single launch-price mass utilization communication or goodput change in the registered",
+      "wordCount": 126,
+      "signals": [
+        "long paragraph (126 words)",
+        "long sentence (61 words)"
+      ],
+      "id": "88f5340c611b0bfe",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/20-part-ii-comparative-economics.md",
+      "section": "ii.2-the-crossover-model",
+      "opening": "A fourth explicitly conditional SpaceXAI AI1 disclosed design does not replace those",
+      "wordCount": 139,
+      "signals": [
+        "long paragraph (139 words)"
+      ],
+      "id": "b19a4a48ab0f91ad",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it carries a result boundary or countercase needed for correct interpretation."
+    },
+    {
+      "file": "docs/manuscript/20-part-ii-comparative-economics.md",
+      "section": "ii.2-the-crossover-model",
+      "opening": "The lifecycle split is explicit and assumption-class AI1 publishes only aggregate vehicle",
+      "wordCount": 142,
+      "signals": [
+        "long paragraph (142 words)"
+      ],
+      "id": "405492c82552a9de",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it carries a result boundary or countercase needed for correct interpretation."
+    },
+    {
+      "file": "docs/manuscript/20-part-ii-comparative-economics.md",
+      "section": "ii.2-the-crossover-model",
+      "opening": "A fifth case is a deliberately optimistic deterministic boundary rather than a",
+      "wordCount": 107,
+      "signals": [
+        "long paragraph (107 words)"
+      ],
+      "id": "d085cd01279720a7",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it carries a result boundary or countercase needed for correct interpretation."
+    },
+    {
+      "file": "docs/manuscript/20-part-ii-comparative-economics.md",
+      "section": "ii.2-the-crossover-model",
+      "opening": "Dated scenario policy The named line is retained for the specificity of",
+      "wordCount": 102,
+      "signals": [
+        "long paragraph (102 words)"
+      ],
+      "id": "6a2f594642667785",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/20-part-ii-comparative-economics.md",
+      "section": "ii.2-the-crossover-model",
+      "opening": "Every relevant model family therefore keeps the same ordered tracks generic reference",
+      "wordCount": 119,
+      "signals": [
+        "long paragraph (119 words)"
+      ],
+      "id": "c28bb8c04b0f9443",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it defines or interprets a central model mechanism used by the next inference."
+    },
+    {
+      "file": "docs/manuscript/20-part-ii-comparative-economics.md",
+      "section": "ii.2-the-crossover-model",
+      "opening": "Post-IPO architecture calibration The technical literature available by late July 2026 does",
+      "wordCount": 189,
+      "signals": [
+        "long paragraph (189 words)"
+      ],
+      "id": "5a77e8a7232a7ba5",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it carries a result boundary or countercase needed for correct interpretation."
+    },
+    {
+      "file": "docs/manuscript/20-part-ii-comparative-economics.md",
+      "section": "ii.2-the-crossover-model",
+      "opening": "Thermal closure is a system not a radiator-panel coefficient NASA's flight and",
+      "wordCount": 118,
+      "signals": [
+        "long paragraph (118 words)"
+      ],
+      "id": "2448b799d175d217",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it carries a result boundary or countercase needed for correct interpretation."
+    },
+    {
+      "file": "docs/manuscript/20-part-ii-comparative-economics.md",
+      "section": "ii.2-the-crossover-model",
+      "opening": "The terrestrial counterfactual responds the epistemic requirement the static comparison missed Three",
+      "wordCount": 93,
+      "signals": [
+        "long sentence (61 words)"
+      ],
+      "id": "44b8cd3e84d966ae",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/20-part-ii-comparative-economics.md",
+      "section": "ii.2-the-crossover-model",
+      "opening": "Cost accounting included and excluded Included IT hardware with qualification premium PV",
+      "wordCount": 206,
+      "signals": [
+        "long paragraph (206 words)",
+        "long sentence (94 words)"
+      ],
+      "id": "a5e018899ac59d24",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/20-part-ii-comparative-economics.md",
+      "section": "ii.3-results",
+      "opening": "AI1's aggregate mass disclosure is material but not sufficient at the retained",
+      "wordCount": 108,
+      "signals": [
+        "long paragraph (108 words)"
+      ],
+      "id": "0517041e8c2d6d1c",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it carries a result boundary or countercase needed for correct interpretation."
+    },
+    {
+      "file": "docs/manuscript/20-part-ii-comparative-economics.md",
+      "section": "ii.3-results",
+      "opening": "The company's own scale target exposes the feasibility burden At 100 GW",
+      "wordCount": 184,
+      "signals": [
+        "long paragraph (184 words)"
+      ],
+      "id": "9e0d3763440918c7",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/20-part-ii-comparative-economics.md",
+      "section": "ii.3-results",
+      "opening": "The lifetime interpretation is architecture-dependent The model's 10 25-year infrastructure life is",
+      "wordCount": 109,
+      "signals": [
+        "long paragraph (109 words)"
+      ],
+      "id": "7fa767b86fa163c1",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it defines or interprets a central model mechanism used by the next inference."
+    },
+    {
+      "file": "docs/manuscript/20-part-ii-comparative-economics.md",
+      "section": "ii.3-results",
+      "opening": "A negative break-even means fixed non-launch costs alone exceed the Earth cost",
+      "wordCount": 237,
+      "signals": [
+        "long paragraph (237 words)",
+        "long sentence (71 words)"
+      ],
+      "id": "240d2989673071eb",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/20-part-ii-comparative-economics.md",
+      "section": "ii.4-external-claim-and-independent-study-checks",
+      "opening": "The public crossover claims are recorded as comparison targets never inputs The",
+      "wordCount": 178,
+      "signals": [
+        "long paragraph (178 words)",
+        "long sentence (62 words)"
+      ],
+      "id": "cf31d706e41a5efd",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/20-part-ii-comparative-economics.md",
+      "section": "ii.4-external-claim-and-independent-study-checks",
+      "opening": "The broader policy cross-check reaches the same conditional result by a different",
+      "wordCount": 111,
+      "signals": [
+        "long paragraph (111 words)",
+        "long sentence (62 words)"
+      ],
+      "id": "fe23be24def4a02d",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/20-part-ii-comparative-economics.md",
+      "section": "ii.4-external-claim-and-independent-study-checks",
+      "opening": "Consequence for the staircase stated within the model's service definition the modeled",
+      "wordCount": 118,
+      "signals": [
+        "long paragraph (118 words)",
+        "long sentence (59 words)"
+      ],
+      "id": "1e0669533db73c3d",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it defines or interprets a central model mechanism used by the next inference."
+    },
+    {
+      "file": "docs/manuscript/20-part-ii-comparative-economics.md",
+      "section": "ii.5-competition-and-milestone-order",
+      "opening": "The fast-digital slow-physical branch is a stress test against AI 2027 not",
+      "wordCount": 147,
+      "signals": [
+        "long paragraph (147 words)"
+      ],
+      "id": "178af360335a9669",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it carries a result boundary or countercase needed for correct interpretation."
+    },
+    {
+      "file": "docs/manuscript/20-part-ii-comparative-economics.md",
+      "section": "ii.5-competition-and-milestone-order",
+      "opening": "Two corrections to the launch-chokepoint assumption both cutting against a durable launch",
+      "wordCount": 97,
+      "signals": [
+        "long sentence (97 words)"
+      ],
+      "id": "ae24e3d4696a73fb",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it carries a result boundary or countercase needed for correct interpretation."
+    },
+    {
+      "file": "docs/manuscript/20-part-ii-comparative-economics.md",
+      "section": "ii.5-competition-and-milestone-order",
+      "opening": "Externally induced supply versus internally controlled reproduction Expansion purchased through markets can",
+      "wordCount": 242,
+      "signals": [
+        "long paragraph (242 words)"
+      ],
+      "id": "ee6032189d606d01",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/20-part-ii-comparative-economics.md",
+      "section": "ii.5-competition-and-milestone-order",
+      "opening": "Integration versus modularity the Coasean resolution Markets scaled semiconductors a billionfold through",
+      "wordCount": 198,
+      "signals": [
+        "long paragraph (198 words)",
+        "long sentence (62 words)"
+      ],
+      "id": "1c4426b9b589edd1",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/20-part-ii-comparative-economics.md",
+      "section": "ii.5-competition-and-milestone-order",
+      "opening": "The operating wall Physics-priced inputs energy materials machine-hours fall with scale society-priced",
+      "wordCount": 259,
+      "signals": [
+        "long paragraph (259 words)",
+        "long sentence (62 words)"
+      ],
+      "id": "e1fc5e8ddabebee5",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/20-part-ii-comparative-economics.md",
+      "section": "ii.5-competition-and-milestone-order",
+      "opening": "The threshold-model argument If RSI capability is a threshold a base model",
+      "wordCount": 231,
+      "signals": [
+        "long paragraph (231 words)",
+        "long sentence (55 words)"
+      ],
+      "id": "a2c9f2a92037f31f",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it defines or interprets a central model mechanism used by the next inference."
+    },
+    {
+      "file": "docs/manuscript/30-part-iii-strategy-governance.md",
+      "section": "iii.1-a-musk-associated-technology-stack",
+      "opening": "The dated comparative claim As of July 28 2026 and within the",
+      "wordCount": 113,
+      "signals": [
+        "long paragraph (113 words)",
+        "reference cluster (4)"
+      ],
+      "id": "86d10e58cd762aab",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path as a compact evidence synthesis; source markers remain ordinary links."
+    },
+    {
+      "file": "docs/manuscript/30-part-iii-strategy-governance.md",
+      "section": "iii.1-a-musk-associated-technology-stack",
+      "opening": "The provenance-backed 18-layer closure-stack matrix compares that bounded ecosystem with Google Planet",
+      "wordCount": 139,
+      "signals": [
+        "long paragraph (139 words)"
+      ],
+      "id": "a41616e89abfde23",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it defines or interprets a central model mechanism used by the next inference."
+    },
+    {
+      "file": "docs/manuscript/30-part-iii-strategy-governance.md",
+      "section": "iii.2-terafab-and-the-fabrication-frontier",
+      "opening": "What was announced a Tesla SpaceX xAI chip fabrication initiative March 2026",
+      "wordCount": 177,
+      "signals": [
+        "long paragraph (177 words)",
+        "long sentence (55 words)"
+      ],
+      "id": "708af62eabe15ebf",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/30-part-iii-strategy-governance.md",
+      "section": "iii.2-terafab-and-the-fabrication-frontier",
+      "opening": "The implementation detail matters Reporting describes a roughly 3B research fab producing",
+      "wordCount": 103,
+      "signals": [
+        "long paragraph (103 words)"
+      ],
+      "id": "7e4c8c9549a8c8b6",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/30-part-iii-strategy-governance.md",
+      "section": "iii.2-terafab-and-the-fabrication-frontier",
+      "opening": "The lithography question for terrestrial operation purchased lithography is an acceptable permanent",
+      "wordCount": 100,
+      "signals": [
+        "long paragraph (100 words)"
+      ],
+      "id": "3906e163b5017a64",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/30-part-iii-strategy-governance.md",
+      "section": "iii.2-terafab-and-the-fabrication-frontier",
+      "opening": "Terafab-specific observables The milestones that would change this assessment are the first",
+      "wordCount": 71,
+      "signals": [
+        "long sentence (59 words)"
+      ],
+      "id": "130821a4c1f3ee12",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/30-part-iii-strategy-governance.md",
+      "section": "iii.3-competing-hypotheses-the-evidence-table",
+      "opening": "The hypotheses are nested rather than exclusive since a long-run off-world strategy",
+      "wordCount": 285,
+      "signals": [
+        "long paragraph (285 words)",
+        "long sentence (70 words)"
+      ],
+      "id": "e4a32d6ff48cdf2c",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/30-part-iii-strategy-governance.md",
+      "section": "iii.3-competing-hypotheses-the-evidence-table",
+      "opening": "What the models add to interpretation A rational H2 actor facing Part",
+      "wordCount": 168,
+      "signals": [
+        "long paragraph (168 words)",
+        "long sentence (67 words)"
+      ],
+      "id": "d04e943e08f2bb1c",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/30-part-iii-strategy-governance.md",
+      "section": "iii.3-competing-hypotheses-the-evidence-table",
+      "opening": "External cross-checks S35 the canonical AGI-buildout analysis resolves the power wall terrestrially",
+      "wordCount": 84,
+      "signals": [
+        "long sentence (60 words)"
+      ],
+      "id": "964c5323f4b0185d",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/30-part-iii-strategy-governance.md",
+      "section": "iii.3-competing-hypotheses-the-evidence-table",
+      "opening": "Cumulative assessment ordinal synthesis not multiplication the items are correlated and the",
+      "wordCount": 153,
+      "signals": [
+        "long paragraph (153 words)",
+        "long sentence (71 words)"
+      ],
+      "id": "81b87a1e16e0f1c2",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it carries a result boundary or countercase needed for correct interpretation."
+    },
+    {
+      "file": "docs/manuscript/30-part-iii-strategy-governance.md",
+      "section": "iii.4-control-and-governance-of-a-self-expanding-system",
+      "opening": "K K and K are total productive legitimately authorized and unauthorized capacity",
+      "wordCount": 88,
+      "signals": [
+        "long sentence (88 words)"
+      ],
+      "id": "5e6bf4724b25b82c",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/30-part-iii-strategy-governance.md",
+      "section": "iii.4-control-and-governance-of-a-self-expanding-system",
+      "opening": "The declared private-race stress case makes the distinction concrete It reaches 126",
+      "wordCount": 128,
+      "signals": [
+        "long paragraph (128 words)"
+      ],
+      "id": "8886cd249b7f4ed6",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/30-part-iii-strategy-governance.md",
+      "section": "iii.4-control-and-governance-of-a-self-expanding-system",
+      "opening": "The claim shares also expose a dynamic institutional risk Material governance leverage",
+      "wordCount": 153,
+      "signals": [
+        "long paragraph (153 words)"
+      ],
+      "id": "6fdc8870bf537b6f",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/30-part-iii-strategy-governance.md",
+      "section": "iii.4-control-and-governance-of-a-self-expanding-system",
+      "opening": "The framework resolves its own tension celebrating escape from society-priced costs while",
+      "wordCount": 240,
+      "signals": [
+        "long paragraph (240 words)",
+        "long sentence (90 words)"
+      ],
+      "id": "c62ece8c23d0b450",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/30-part-iii-strategy-governance.md",
+      "section": "iii.4-control-and-governance-of-a-self-expanding-system",
+      "opening": "A serious control architecture beyond this document's scope but within its obligation",
+      "wordCount": 96,
+      "signals": [
+        "long sentence (71 words)"
+      ],
+      "id": "80a5d9c4dd134432",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/30-part-iii-strategy-governance.md",
+      "section": "iii.5-falsifiable-indicators-model-ranked",
+      "opening": "1 A terrestrial autonomous-closure demonstrator that constructs and commissions a second production",
+      "wordCount": 222,
+      "signals": [
+        "long paragraph (222 words)"
+      ],
+      "id": "112fa279b381bda1",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it defines or interprets a central model mechanism used by the next inference."
+    },
+    {
+      "file": "docs/manuscript/30-part-iii-strategy-governance.md",
+      "section": "iii.5-falsifiable-indicators-model-ranked",
+      "opening": "Threshold observations that would move Appendix A a demonstrated ISRU plant above",
+      "wordCount": 126,
+      "signals": [
+        "long paragraph (126 words)",
+        "long sentence (76 words)"
+      ],
+      "id": "3b1ff1ad9d07057a",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/30-part-iii-strategy-governance.md",
+      "section": "iii.6-refined-complete-thesis",
+      "opening": "The precise formulation is conditional and model-separated The evidence documents deliberate integrated",
+      "wordCount": 160,
+      "signals": [
+        "long paragraph (160 words)",
+        "nested parentheses (depth 2)"
+      ],
+      "id": "3503e6eee48648ca",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it defines or interprets a central model mechanism used by the next inference."
+    },
+    {
+      "file": "docs/manuscript/30-part-iii-strategy-governance.md",
+      "section": "iii.6-refined-complete-thesis",
+      "opening": "Equation eq coupled-rsi-system is the article's compact causal system this section does",
+      "wordCount": 221,
+      "signals": [
+        "long paragraph (221 words)"
+      ],
+      "id": "fc2631dcafe1c0c5",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it carries a result boundary or countercase needed for correct interpretation."
+    },
+    {
+      "file": "docs/manuscript/40-part-iv-conclusion-limitations.md",
+      "section": "iv.1-the-defensible-core-restated-with-numbers-attached",
+      "opening": "Two constraints two rate comparisons one passage Externally induced supply expansion competes",
+      "wordCount": 230,
+      "signals": [
+        "long paragraph (230 words)",
+        "long sentence (79 words)"
+      ],
+      "id": "cd202fb7f5f836af",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/40-part-iv-conclusion-limitations.md",
+      "section": "iv.2-after-convergence-deployment-as-the-terminal-regime",
+      "opening": "At some point the marginal value of further design improvement falls below",
+      "wordCount": 195,
+      "signals": [
+        "long paragraph (195 words)"
+      ],
+      "id": "08bd486379011ab2",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/40-part-iv-conclusion-limitations.md",
+      "section": "iv.3-paradigm-shifts-delay-alteration-or-prevention",
+      "opening": "Model check The paradigm-sensitivity split maps onto the model's sector structure a",
+      "wordCount": 311,
+      "signals": [
+        "long paragraph (311 words)",
+        "long sentence (84 words)"
+      ],
+      "id": "2c21b2ab901cae3f",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it defines or interprets a central model mechanism used by the next inference."
+    },
+    {
+      "file": "docs/manuscript/40-part-iv-conclusion-limitations.md",
+      "section": "limitations-and-claim-boundary",
+      "opening": "The integrated layer adds a material-category-by-sector bill of materials source yields Earth",
+      "wordCount": 241,
+      "signals": [
+        "long paragraph (241 words)",
+        "long sentence (55 words)"
+      ],
+      "id": "e18e42902ba3a188",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/40-part-iv-conclusion-limitations.md",
+      "section": "limitations-and-claim-boundary",
+      "opening": "The terrestrial rehearsal in I 9 remains a proposed validation protocol not",
+      "wordCount": 142,
+      "signals": [
+        "long paragraph (142 words)"
+      ],
+      "id": "3daad94f573560d8",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it carries a result boundary or countercase needed for correct interpretation."
+    },
+    {
+      "file": "docs/manuscript/40-part-iv-conclusion-limitations.md",
+      "section": "limitations-and-claim-boundary",
+      "opening": "Part II includes communications and ground-network capex spacecraft-bus functions program NRE insurance",
+      "wordCount": 261,
+      "signals": [
+        "long paragraph (261 words)"
+      ],
+      "id": "bed7cd8990e842a3",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/50-appendices-a-b.md",
+      "section": "front-matter",
+      "opening": "Claim-level provenance contract params claim provenance yaml records author or organization title",
+      "wordCount": 97,
+      "signals": [
+        "reference cluster (4)"
+      ],
+      "id": "c0b823521da1f0e6",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path as a compact evidence synthesis; source markers remain ordinary links."
+    },
+    {
+      "file": "docs/manuscript/50-appendices-a-b.md",
+      "section": "a.7-provisional-hiring-sweep-note-not-an-evidence-table-item",
+      "opening": "A July 2026 search across 1 170 open OpenAI and Anthropic postings",
+      "wordCount": 104,
+      "signals": [
+        "long paragraph (104 words)"
+      ],
+      "id": "b2aa26ec648a3a32",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/51-appendix-c-reproducibility.md",
+      "section": "front-matter",
+      "opening": "uv sync locked all-groups pnpm install frozen-lockfile uv run locked rsi-run-baseline output-dir",
+      "wordCount": 115,
+      "signals": [
+        "long paragraph (115 words)",
+        "long sentence (115 words)"
+      ],
+      "id": "7d19070ee50e2912",
+      "disposition": "keep_appendix",
+      "rationale": "Reviewed as reproducibility or method detail already located in the appendix path."
+    },
+    {
+      "file": "docs/manuscript/51-appendix-c-reproducibility.md",
+      "section": "front-matter",
+      "opening": "Model src rsimodel py parameters params yaml generated reports with per-run provenance",
+      "wordCount": 208,
+      "signals": [
+        "long paragraph (208 words)",
+        "long sentence (75 words)",
+        "nested parentheses (depth 2)"
+      ],
+      "id": "62125530a6a31da5",
+      "disposition": "keep_appendix",
+      "rationale": "Reviewed as reproducibility or method detail already located in the appendix path."
+    },
+    {
+      "file": "docs/manuscript/51-appendix-c-reproducibility.md",
+      "section": "front-matter",
+      "opening": "The integrated model is src rsimodel integrated py with the analysis module",
+      "wordCount": 97,
+      "signals": [
+        "long sentence (67 words)"
+      ],
+      "id": "cd385cb99388f924",
+      "disposition": "keep_appendix",
+      "rationale": "Reviewed as reproducibility or method detail already located in the appendix path."
+    },
+    {
+      "file": "docs/manuscript/51-appendix-c-reproducibility.md",
+      "section": "front-matter",
+      "opening": "Archival status Public repository rsi-model repository r4 0 is assembled as a",
+      "wordCount": 211,
+      "signals": [
+        "long paragraph (211 words)"
+      ],
+      "id": "e763f2cb39c44744",
+      "disposition": "keep_appendix",
+      "rationale": "Reviewed as reproducibility or method detail already located in the appendix path."
+    },
+    {
+      "file": "docs/manuscript/52-appendix-d-model-specification.md",
+      "section": "front-matter",
+      "opening": "Everything a reader needs to reconstruct the Part I model without opening",
+      "wordCount": 122,
+      "signals": [
+        "long paragraph (122 words)",
+        "long sentence (92 words)"
+      ],
+      "id": "4b0b4df71b9fd441",
+      "disposition": "keep_appendix",
+      "rationale": "Reviewed as reproducibility or method detail already located in the appendix path."
+    },
+    {
+      "file": "docs/manuscript/52-appendix-d-model-specification.md",
+      "section": "d.1-integrated-bootstrap-layer",
+      "opening": "where B is the amount of material category e required per unit",
+      "wordCount": 101,
+      "signals": [
+        "long paragraph (101 words)"
+      ],
+      "id": "342b7b1fba9927ce",
+      "disposition": "keep_appendix",
+      "rationale": "Reviewed as reproducibility or method detail already located in the appendix path."
+    },
+    {
+      "file": "docs/manuscript/52-appendix-d-model-specification.md",
+      "section": "d.1-integrated-bootstrap-layer",
+      "opening": "Effective productivity is multiplied by 0 5 0 5c j a declared",
+      "wordCount": 110,
+      "signals": [
+        "long paragraph (110 words)"
+      ],
+      "id": "e1ee8c646b3306d4",
+      "disposition": "keep_appendix",
+      "rationale": "Reviewed as reproducibility or method detail already located in the appendix path."
+    },
+    {
+      "file": "docs/manuscript/52-appendix-d-model-specification.md",
+      "section": "d.1-integrated-bootstrap-layer",
+      "opening": "Dynamic sector-capacity growth A feasible seed begins as one installed and operating",
+      "wordCount": 190,
+      "signals": [
+        "long paragraph (190 words)"
+      ],
+      "id": "b4d02aec009c4cde",
+      "disposition": "keep_appendix",
+      "rationale": "Reviewed as reproducibility or method detail already located in the appendix path."
+    },
+    {
+      "file": "docs/manuscript/52-appendix-d-model-specification.md",
+      "section": "d.1-integrated-bootstrap-layer",
+      "opening": "where I t is the dimensionless capability index at elapsed year t",
+      "wordCount": 156,
+      "signals": [
+        "long paragraph (156 words)",
+        "long sentence (109 words)"
+      ],
+      "id": "ff8465b1d09614bc",
+      "disposition": "keep_appendix",
+      "rationale": "Reviewed as reproducibility or method detail already located in the appendix path."
+    },
+    {
+      "file": "docs/manuscript/52-appendix-d-model-specification.md",
+      "section": "d.1-integrated-bootstrap-layer",
+      "opening": "Orbital lifecycle and common-cause controls A separate capacity-equivalent mass-flow sensitivity implements Equation",
+      "wordCount": 101,
+      "signals": [
+        "long paragraph (101 words)"
+      ],
+      "id": "3d1c86b7e9d1377c",
+      "disposition": "keep_appendix",
+      "rationale": "Reviewed as reproducibility or method detail already located in the appendix path."
+    },
+    {
+      "file": "docs/manuscript/52-appendix-d-model-specification.md",
+      "section": "d.1-integrated-bootstrap-layer",
+      "opening": "The common-cause control sensitivity evaluates Equation eq orbital-common-cause-budget against explicit node capacities",
+      "wordCount": 90,
+      "signals": [
+        "long sentence (55 words)"
+      ],
+      "id": "f4a6259acdd5b3df",
+      "disposition": "keep_appendix",
+      "rationale": "Reviewed as reproducibility or method detail already located in the appendix path."
+    },
+    {
+      "file": "docs/manuscript/52-appendix-d-model-specification.md",
+      "section": "d.1-integrated-bootstrap-layer",
+      "opening": "Scenarios and uncertainty The four named cases are terrestrial rehearsal lunar strategic-material",
+      "wordCount": 110,
+      "signals": [
+        "long paragraph (110 words)"
+      ],
+      "id": "acf01c346e045368",
+      "disposition": "keep_appendix",
+      "rationale": "Reviewed as reproducibility or method detail already located in the appendix path."
+    },
+    {
+      "file": "docs/manuscript/52-appendix-d-model-specification.md",
+      "section": "d.1-integrated-bootstrap-layer",
+      "opening": "Analysis module src rsimodel integrated analysis py adds derived diagnostics over the",
+      "wordCount": 153,
+      "signals": [
+        "long paragraph (153 words)",
+        "long sentence (84 words)",
+        "nested parentheses (depth 2)"
+      ],
+      "id": "73dadf716921a427",
+      "disposition": "keep_appendix",
+      "rationale": "Reviewed as reproducibility or method detail already located in the appendix path."
+    },
+    {
+      "file": "docs/manuscript/52-appendix-d-model-specification.md",
+      "section": "d.2-ten-sector-model",
+      "opening": "Sectors and units n 10 sectors ordered power mining refining robotics machine",
+      "wordCount": 93,
+      "signals": [
+        "long sentence (55 words)",
+        "nested parentheses (depth 2)"
+      ],
+      "id": "9439fc4699fd7982",
+      "disposition": "keep_appendix",
+      "rationale": "Reviewed as reproducibility or method detail already located in the appendix path."
+    },
+    {
+      "file": "docs/manuscript/52-appendix-d-model-specification.md",
+      "section": "d.2-ten-sector-model",
+      "opening": "Outcome definitions Expanding at year 30 realized post-shock g 0 at the",
+      "wordCount": 204,
+      "signals": [
+        "long paragraph (204 words)"
+      ],
+      "id": "d3536ca1bcd12b6f",
+      "disposition": "keep_appendix",
+      "rationale": "Reviewed as reproducibility or method detail already located in the appendix path."
+    },
+    {
+      "file": "docs/manuscript/70-sources.md",
+      "section": "front-matter",
+      "opening": "Sources S1 S27 establish the core argument and S28 identifies the executed",
+      "wordCount": 156,
+      "signals": [
+        "long paragraph (156 words)",
+        "long sentence (156 words)"
+      ],
+      "id": "572f1c1bed0133a5",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/70-sources.md",
+      "section": "primary-regulatory-filing-and-model-provenance",
+      "opening": "This document's primary corporate source On Terafab it describes a general framework",
+      "wordCount": 139,
+      "signals": [
+        "long paragraph (139 words)"
+      ],
+      "id": "76548c7b3a64ba69",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/70-sources.md",
+      "section": "corporate-and-orbital-compute-record",
+      "opening": "Technical design study for satellite accelerator clusters 67 MeV proton-beam testing of",
+      "wordCount": 183,
+      "signals": [
+        "long paragraph (183 words)",
+        "long sentence (89 words)",
+        "nested parentheses (depth 2)"
+      ],
+      "id": "1b8f83c66190668e",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/70-sources.md",
+      "section": "corporate-and-orbital-compute-record",
+      "opening": "Cited for mechanisms rather than measurements launch tax versus compute tax 0",
+      "wordCount": 59,
+      "signals": [
+        "long sentence (59 words)"
+      ],
+      "id": "abf29b09a02e4ce7",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/70-sources.md",
+      "section": "contextual-engineering-and-reporting-sources",
+      "opening": "Covers evidence not carried by S18 S23 foundry equipment-depreciation schedules 2 5",
+      "wordCount": 130,
+      "signals": [
+        "long paragraph (130 words)",
+        "long sentence (86 words)"
+      ],
+      "id": "3bf839d5bc484c1f",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it carries a result boundary or countercase needed for correct interpretation."
+    },
+    {
+      "file": "docs/manuscript/70-sources.md",
+      "section": "contextual-engineering-and-reporting-sources",
+      "opening": "Primary company disclosure for the Starship aspiration normalization It states that fully",
+      "wordCount": 158,
+      "signals": [
+        "long paragraph (158 words)",
+        "long sentence (70 words)"
+      ],
+      "id": "ddd4121ab3097186",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/70-sources.md",
+      "section": "post-ipo-orbital-compute-calibration",
+      "opening": "Policy synthesis with a simplified public cost model Its representative five-year 1",
+      "wordCount": 85,
+      "signals": [
+        "long sentence (57 words)"
+      ],
+      "id": "ed6ccc6cd58527a5",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it defines or interprets a central model mechanism used by the next inference."
+    },
+    {
+      "file": "docs/manuscript/70-sources.md",
+      "section": "orbital-servicing-circularity-and-mitigation-record",
+      "opening": "Anthropic reports that Claude authored more than 80 of merged code by",
+      "wordCount": 105,
+      "signals": [
+        "long paragraph (105 words)"
+      ],
+      "id": "997a335fd801642b",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/70-sources.md",
+      "section": "orbital-servicing-circularity-and-mitigation-record",
+      "opening": "The review separates automating production so capital can substitute sufficiently for labor",
+      "wordCount": 100,
+      "signals": [
+        "long paragraph (100 words)"
+      ],
+      "id": "be75feb706d856b6",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    }
+  ]
+}

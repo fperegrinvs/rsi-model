@@ -1,5 +1,5 @@
 version: r4.0
-decision_date: "2026-07-28"
+decision_date: "2026-07-29"
 status: venues_selected_conformance_in_progress
 source_class: publisher_instructions
 epistemic_status: >
@@ -93,27 +93,24 @@ papers:
     selected_route: target
     target:
       venue: Astropolitics
-      article_type: Research Article
-      official_url: https://www.tandfonline.com/journals/fast20/about-this-journal
+      article_type: Article
+      official_url: https://www.tandfonline.com/action/authorSubmission?show=instructions&journalCode=fast20
       rationale: Direct fit for interdisciplinary civil and commercial space policy and governance.
-      review: double_anonymous
-      abstract_max_words:
-      keywords_min:
-      keywords_max:
+      review: first_party_conflict_single_vs_double_anonymous_portal_confirmation_required
+      abstract_max_words: 200
+      keywords_min: 3
+      keywords_max: 5
       highlights: {required: false, min_items: 0, max_items: 0, max_chars_each: 0}
       numbered_sections: false
       editable_source: true
-      reference_style: publisher_portal_recheck_required
+      reference_style: chicago_author_date
       data_statement: required
-      separate_title_page: true
-      word_count_min:
-      word_count_max:
+      separate_title_page: publisher_portal_recheck_required
+      word_count_min: 5000
+      word_count_max: 10000
       portal_confirmation_required:
-        - word_limit
-        - abstract_limit
-        - keyword_count
-        - reference_style
-        - accepted_source_format
+        - peer_review_anonymization
+        - title_page_packaging
     fallback:
       venue: Space Policy
       article_type: Case study

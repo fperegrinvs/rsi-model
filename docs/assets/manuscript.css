@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "STIX Two Math";
+  src: url("fonts/STIXTwoMath-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
 :root {
   --ink: #182229;
   --muted: #5d6b74;
@@ -14,6 +22,10 @@
   --sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
   --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
+math {
+  font-family: "STIX Two Math", math;
 }
 
 * {
@@ -180,6 +192,23 @@ p {
   margin: 0.9rem 0;
 }
 
+.economic-thesis {
+  margin: 1.6rem 0 1.8rem;
+  padding: 1rem 1.2rem;
+  border: 1px solid color-mix(in srgb, var(--accent) 32%, var(--rule));
+  border-left: 0.28rem solid var(--accent);
+  border-radius: 0.25rem;
+  background: color-mix(in srgb, var(--accent) 5%, var(--paper));
+}
+
+.economic-thesis > :first-child {
+  margin-top: 0;
+}
+
+.economic-thesis > :last-child {
+  margin-bottom: 0;
+}
+
 h1,
 h2,
 h3,
@@ -325,6 +354,208 @@ math[display="block"] {
   font-size: 1.08em;
 }
 
+.numbered-equation {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: 100%;
+  margin: 1.5rem 0;
+  scroll-margin-top: 5.5rem;
+}
+
+.equation-math-scroll {
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  overscroll-behavior-inline: contain;
+}
+
+.equation-math-scroll > p {
+  width: max-content;
+  min-width: 100%;
+  margin: 0;
+}
+
+.equation-math-scroll math[display="block"] {
+  width: max-content;
+  min-width: 100%;
+  max-width: none;
+  overflow: visible;
+  margin: 0;
+}
+
+.equation-math-scroll:focus-visible {
+  outline: 3px solid rgb(11 97 116 / 35%);
+  outline-offset: 0.2rem;
+}
+
+.equation-scroll-cue {
+  display: none;
+}
+
+.equation-label-container {
+  grid-column: 2;
+  grid-row: 1;
+  margin: 0;
+  font: 650 0.85rem/1 var(--sans);
+  white-space: nowrap;
+}
+
+.equation-label-container p {
+  margin: 0;
+}
+
+.equation-label,
+.equation-reference {
+  color: var(--accent-dark);
+  text-decoration: none;
+}
+
+.proposition-definition {
+  scroll-margin-top: 5.5rem;
+}
+
+.proposition-definition:target {
+  outline: 3px solid rgb(154 92 25 / 28%);
+  outline-offset: 0.35rem;
+}
+
+.proposition-ref {
+  padding: 0.05em 0.28em;
+  border-bottom: 1px solid rgb(154 92 25 / 55%);
+  border-radius: 0.2em;
+  color: #74400f;
+  background: rgb(154 92 25 / 8%);
+  font-family: var(--sans);
+  font-size: 0.92em;
+  font-weight: 650;
+  text-decoration: none;
+  box-decoration-break: clone;
+}
+
+a[role="doc-noteref"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.35rem;
+  min-height: 1.35rem;
+  margin: -0.18rem 0.04rem;
+  border-radius: 50%;
+  color: var(--accent-dark);
+  font: 700 0.72rem/1 var(--sans);
+  text-decoration: none;
+}
+
+a[role="doc-noteref"]:focus-visible,
+a[role="doc-backlink"]:focus-visible {
+  outline: 3px solid rgb(11 97 116 / 35%);
+  outline-offset: 0.12rem;
+}
+
+.footnotes li[id^="fn"] {
+  scroll-margin-top: 5.5rem;
+}
+
+.footnotes li[id^="fn"]:target {
+  background: var(--accent-soft);
+}
+
+a[role="doc-backlink"] {
+  padding: 0.25rem;
+  color: var(--accent-dark);
+}
+
+.numbered-equation:target {
+  outline: 3px solid rgb(11 97 116 / 35%);
+  outline-offset: 0.35rem;
+}
+
+.equation-explain-controls {
+  display: none;
+  grid-column: 1 / -1;
+  justify-content: end;
+  margin-top: -0.35rem;
+}
+
+.equation-explain-button {
+  min-height: 2.35rem;
+  padding: 0.42rem 0.72rem;
+  border: 1px solid rgb(11 97 116 / 35%);
+  border-radius: 0.35rem;
+  color: var(--accent-dark);
+  background: var(--paper);
+  font: 650 0.78rem/1.2 var(--sans);
+}
+
+.equation-explanation {
+  grid-column: 1 / -1;
+  max-width: 78ch;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--rule);
+  border-radius: 0.4rem;
+  background: color-mix(in srgb, var(--accent-soft) 38%, var(--paper));
+  font-size: 0.91rem;
+}
+
+.equation-explanation > summary {
+  min-height: 2rem;
+  color: var(--accent-dark);
+  font: 650 0.8rem/2rem var(--sans);
+  cursor: pointer;
+}
+
+.equation-explanation-body > :first-child {
+  margin-top: 0;
+}
+
+.equation-explanation-body > :last-child {
+  margin-bottom: 0;
+}
+
+.equation-explanation-title {
+  color: var(--accent-dark);
+  font-family: var(--sans);
+  font-size: 1rem;
+}
+
+.equation-explanation-body dl {
+  display: grid;
+  grid-template-columns: minmax(7rem, auto) minmax(0, 1fr);
+  gap: 0.35rem 0.8rem;
+}
+
+.equation-explanation-body dt {
+  font-weight: 700;
+}
+
+.equation-explanation-body dd {
+  margin: 0;
+}
+
+.equation-explanation-classification {
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--rule);
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 0.78rem;
+}
+
+.equation-explanation:target {
+  outline: 3px solid rgb(11 97 116 / 35%);
+  outline-offset: 0.25rem;
+}
+
+.source-entry-label {
+  scroll-margin-top: 5.5rem;
+}
+
+.source-entry-label:target {
+  padding: 0.25rem 0.4rem;
+  background: var(--accent-soft);
+  outline: 2px solid rgb(11 97 116 / 35%);
+}
+
 .table-wrap {
   max-width: 100%;
   margin: 1.5rem 0 2rem;
@@ -340,6 +571,29 @@ table {
   font-family: var(--sans);
   font-size: 0.79rem;
   line-height: 1.4;
+}
+
+caption {
+  caption-side: top;
+  padding: 0.7rem 0.75rem 0.8rem;
+  color: var(--muted);
+  font: 0.78rem/1.48 var(--sans);
+  text-align: left;
+}
+
+.table-number {
+  color: var(--accent-dark);
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.numbered-table {
+  scroll-margin-top: 5.5rem;
+}
+
+.numbered-table:target {
+  outline: 3px solid rgb(11 97 116 / 35%);
+  outline-offset: 0.2rem;
 }
 
 thead {
@@ -363,9 +617,86 @@ tbody tr:last-child td {
   border-bottom: 0;
 }
 
+figure {
+  width: fit-content;
+  max-width: 100%;
+  margin: 2.2rem auto 2.7rem;
+}
+
+figure img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  margin-inline: auto;
+  border: 1px solid rgb(24 34 41 / 10%);
+  border-radius: 0.35rem;
+  background: white;
+  box-shadow: 0 10px 32px rgb(24 34 41 / 8%);
+}
+
+figure.figure-compact {
+  width: min(100%, 42rem);
+}
+
+figure.figure-standard {
+  width: min(100%, 58rem);
+}
+
+figure.figure-wide {
+  width: 100%;
+}
+
+figcaption {
+  width: 100%;
+  max-width: 78ch;
+  margin-top: 0.65rem;
+  color: var(--muted);
+  font: 0.78rem/1.48 var(--sans);
+}
+
+.figure-number {
+  color: var(--accent-dark);
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.figure-full-resolution-link {
+  display: block;
+  border-radius: 0.4rem;
+}
+
+.figure-full-resolution-link:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 0.2rem;
+}
+
 ol,
 ul {
   padding-left: 1.35rem;
+}
+
+@media print {
+  a[role="doc-noteref"],
+  a[role="doc-backlink"] {
+    color: inherit;
+    background: transparent;
+  }
+
+  .footnotes li[id^="fn"] {
+    break-inside: avoid;
+  }
+
+  figure {
+    max-width: 100%;
+    break-inside: avoid;
+  }
+
+  figure img {
+    max-width: 100%;
+    max-height: 8.5in;
+    box-shadow: none;
+  }
 }
 
 li {
@@ -507,14 +838,55 @@ li {
     font-size: 0.95em;
   }
 
+  .equation-explain-controls {
+    display: none !important;
+  }
+
+  .equation-scroll-cue {
+    display: none !important;
+  }
+
+  .equation-math-scroll {
+    overflow: visible;
+  }
+
+  .equation-math-scroll > p,
+  .equation-math-scroll math[display="block"] {
+    width: auto;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .equation-explanation {
+    padding: 0;
+    border: 0;
+    background: transparent;
+  }
+
+  .equation-explanation:not([open]) > :not(summary) {
+    display: none !important;
+  }
+
   .table-wrap {
     overflow: visible;
     border: 0;
   }
 
   table {
+    width: 100%;
     min-width: 0;
+    table-layout: fixed;
     font-size: 7.4pt;
+  }
+
+  th,
+  td {
+    overflow-wrap: anywhere;
+  }
+
+  caption {
+    color: black;
+    break-after: avoid-page;
   }
 
   thead {

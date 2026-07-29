@@ -12,6 +12,7 @@ Two probes:
 - indispensable sectors: sectors whose near-total capacity knockout at t=0 the
   system cannot rebuild its way out of by the horizon.
 """
+
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -19,30 +20,41 @@ from itertools import combinations
 
 import numpy as np
 
+from .array_types import FloatArray
 from .model import Params, load_params, run
 
 
 @dataclass
 class CutSetResult:
     baseline_expanding: bool
-    minimal_cuts: list[tuple[str, ...]]   # minimal import cut sets, by name
-    indispensable: list[str]              # capacity-knockout failures
+    minimal_cuts: list[tuple[str, ...]]  # minimal import cut sets, by name
+    indispensable: list[str]  # capacity-knockout failures
     horizon: float
     n_sims: int
 
 
-def _expands(p: Params, horizon: float, dt: float,
-             cutoff_sectors: list[str] | None = None,
-             K0: np.ndarray | None = None) -> bool:
-    r = run(p, K0=K0, years=horizon + 2 * dt, dt=dt,
-            cutoff_year=(0.0 if cutoff_sectors is not None else None),
-            cutoff_sectors=cutoff_sectors)
+def _expands(
+    p: Params,
+    horizon: float,
+    dt: float,
+    cutoff_sectors: list[str] | None = None,
+    K0: FloatArray | None = None,
+) -> bool:
+    r = run(
+        p,
+        K0=K0,
+        years=horizon + 2 * dt,
+        dt=dt,
+        cutoff_year=(0.0 if cutoff_sectors is not None else None),
+        cutoff_sectors=cutoff_sectors,
+    )
     return r.self_expanding_at(horizon)
 
 
-def find_cut_sets(p: Params, horizon: float = 30.0, dt: float = 0.5,
-                  max_size: int | None = None) -> CutSetResult:
-    imported = [s for s, w in zip(p.sectors, p.import_profile) if w > 0]
+def find_cut_sets(
+    p: Params, horizon: float = 30.0, dt: float = 0.5, max_size: int | None = None
+) -> CutSetResult:
+    imported = [s for s, w in zip(p.sectors, p.import_profile, strict=True) if w > 0]
     n_sims = 1
     baseline = _expands(p, horizon, dt)
     minimal: list[tuple[str, ...]] = []
@@ -92,6 +104,7 @@ class RetoolingResult:
     Deterministic dynamics (no shocks) for clean measurement; the import ramp
     is time-shifted exactly via its memoryless exponential (Mars pulse phase
     is approximated by restarting the synodic clock at the knockout)."""
+
     set_name: str
     environment: str
     sector: str
@@ -99,14 +112,20 @@ class RetoolingResult:
     t0: float
     knocked_share: float
     stall_years: float
-    years_lost: float | None   # None = model-fatal: no rejoin within tested horizon
+    years_lost: float | None  # None = model-fatal: no rejoin within tested horizon
     policy: str = "myopic"
 
 
-def retooling_time(set_name: str = "central", env: str = "lunar",
-                   sector: str = "electronics", knock_fraction: float = 0.9,
-                   t0: float = 10.0, horizon: float = 20.0,
-                   dt: float = 0.25, policy: str = "myopic") -> RetoolingResult:
+def retooling_time(
+    set_name: str = "central",
+    env: str = "lunar",
+    sector: str = "electronics",
+    knock_fraction: float = 0.9,
+    t0: float = 10.0,
+    horizon: float = 20.0,
+    dt: float = 0.25,
+    policy: str = "myopic",
+) -> RetoolingResult:
     """policy='myopic' uses the model's one-step maximin; policy='horizon'
     uses the receding-horizon allocator (policies.py). Sector stranding is
     the one case where the two are expected to differ: restoring a destroyed
@@ -120,10 +139,9 @@ def retooling_time(set_name: str = "central", env: str = "lunar",
     K_pre = pre.K[-1].copy()
     j = p.idx(sector)
     K0 = K_pre.copy()
-    K0[j] *= (1.0 - knock_fraction)
+    K0[j] *= 1.0 - knock_fraction
     # exponential import ramp is memoryless: offsetting t0 = scaling budget0
-    p2 = dc_replace(p, import_budget0=p.import_budget0
-                    * float(np.exp(-t0 / p.import_decay_years)))
+    p2 = dc_replace(p, import_budget0=p.import_budget0 * float(np.exp(-t0 / p.import_decay_years)))
     r = run_policy(p2, policy=policy, K0=K0, years=horizon, dt=dt)
     cf = run_policy(p2, policy=policy, K0=K_pre.copy(), years=horizon, dt=dt)
     neg = r.g < 0
@@ -136,12 +154,13 @@ def retooling_time(set_name: str = "central", env: str = "lunar",
     if cf.g[-1] > 0 and r.g[-1] <= 0:
         years_lost = None
     else:
-        deficit = float(np.sum(cf.g - r.g) * dt)   # terminal log-gap, worst case
-        tail = max(1, int(round(2.0 / dt)))
-        g_ref = float(np.mean(cf.g[-tail:]))       # denominator: recent cf growth
+        deficit = float(np.sum(cf.g - r.g) * dt)  # terminal log-gap, worst case
+        tail = max(1, round(2.0 / dt))
+        g_ref = float(np.mean(cf.g[-tail:]))  # denominator: recent cf growth
         years_lost = max(0.0, deficit / g_ref) if g_ref > 1e-4 else None
-    return RetoolingResult(set_name, env, sector, knock_fraction, t0,
-                           knocked_share, stall, years_lost, policy)
+    return RetoolingResult(
+        set_name, env, sector, knock_fraction, t0, knocked_share, stall, years_lost, policy
+    )
 
 
 @dataclass
@@ -152,25 +171,32 @@ class CutProbability:
     answer ('no import line is load-bearing') understates dependency risk;
     this reports, per candidate cut, P(fatal | baseline would have expanded).
     """
+
     label: str
     environment: str
     n_runs: int
     horizon: float
-    p_baseline: float                       # P(expanding with imports on ramp)
-    p_fatal: dict[tuple[str, ...], float]   # candidate -> P(fatal | baseline ok)
+    p_baseline: float  # P(expanding with imports on ramp)
+    p_fatal: dict[tuple[str, ...], float]  # candidate -> P(fatal | baseline ok)
 
 
-def cut_probability(set_name: str = "central", env: str = "lunar",
-                    n_runs: int = 30, horizon: float = 30.0, dt: float = 0.5,
-                    candidates: list[tuple[str, ...]] | None = None,
-                    q_spread: float = 0.10, seed: int = 0) -> CutProbability:
+def cut_probability(
+    set_name: str = "central",
+    env: str = "lunar",
+    n_runs: int = 30,
+    horizon: float = 30.0,
+    dt: float = 0.5,
+    candidates: list[tuple[str, ...]] | None = None,
+    q_spread: float = 0.10,
+    seed: int = 0,
+) -> CutProbability:
     """Sampled-anchor cut analysis. Deterministic dynamics per draw (no shocks):
     this isolates the structural dependency question from event noise."""
     from .montecarlo import sample_params
 
     rng = np.random.default_rng(seed)
     p0 = load_params(set_name, env=env)
-    imported = tuple(s for s, w in zip(p0.sectors, p0.import_profile) if w > 0)
+    imported = tuple(s for s, w in zip(p0.sectors, p0.import_profile, strict=True) if w > 0)
     if candidates is None:
         candidates = [(s,) for s in imported] + [imported]
 
@@ -184,7 +210,5 @@ def cut_probability(set_name: str = "central", env: str = "lunar",
         for c in candidates:
             if not _expands(p, horizon, dt, cutoff_sectors=list(c)):
                 fatal[tuple(c)] += 1
-    p_fatal = {c: (k / n_base if n_base else float("nan"))
-               for c, k in fatal.items()}
-    return CutProbability(set_name, env, n_runs, horizon,
-                          n_base / n_runs, p_fatal)
+    p_fatal = {c: (k / n_base if n_base else float("nan")) for c, k in fatal.items()}
+    return CutProbability(set_name, env, n_runs, horizon, n_base / n_runs, p_fatal)

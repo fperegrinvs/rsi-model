@@ -1,0 +1,8 @@
+component,normalized_value,uncertainty_half_width,assumption_weight,hard_gate,gate_threshold,all_gates_passed,scalar_assumption,source_class
+unique,0.700000,0.150000,0.100000,0,,1,0.646459,ASSUMPTION
+causal,0.550000,0.200000,0.200000,1,0.400000,1,0.646459,ASSUMPTION
+coverage,0.620000,0.150000,0.100000,0,,1,0.646459,ASSUMPTION
+quality,0.750000,0.100000,0.100000,0,,1,0.646459,ASSUMPTION
+access,0.900000,0.050000,0.150000,1,0.500000,1,0.646459,ASSUMPTION
+integration,0.680000,0.150000,0.150000,0,,1,0.646459,ASSUMPTION
+verification,0.520000,0.200000,0.200000,1,0.400000,1,0.646459,ASSUMPTION

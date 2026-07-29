@@ -1,7 +1,5 @@
 # Conditional closure of an autonomous off-world industrial bootstrap
 
-r4.0 technical-paper draft
-
 ## Abstract
 
 We ask a conditional engineering question: what material, service, autonomy,
@@ -14,8 +12,8 @@ observable autonomy gates, repair queues, source outages, and minimum viable
 sector floors. The central terrestrial rehearsal and lunar
 strategic-material bridge contract to 0.47 and 0.54 sector-balanced
 cell-equivalents at year 40. Strict lunar closure is infeasible. A deliberately
-synthetic Moon–asteroid source portfolio reaches 3.61 equivalents and first
-crosses two at year 34.75, but this is an internal-consistency result for a
+synthetic Moon–asteroid source portfolio reaches 3.28 equivalents and first
+crosses two at year 35.25, but this is an internal-consistency result for a
 stipulated source vector, not evidence that an accessible portfolio exists.
 Independent allocation, repair, environment, shock, and Pareto diagnostics
 show that policy and seed composition materially change outcomes. The model
@@ -30,9 +28,9 @@ industrial ecology; systems engineering
 
 ## Highlights
 
-- Sector-resolved dynamics overturn the former scalar doubling result.
+- Sector-resolved dynamics show why a scalar doubling proxy is insufficient.
 - Strict lunar closure is infeasible in the declared source graph.
-- The synthetic Moon–asteroid case doubles only after 34.75 years.
+- The synthetic Moon–asteroid case doubles only after 35.25 years.
 - Every mass and frequency is an assumption-conditioned implication.
 
 ## 1. Question and claims
@@ -97,7 +95,7 @@ intelligence state is not treated as independent evidence of any capability.
 ## 3. Central results
 
 The minimum installed seed is approximately 207 t for the terrestrial
-rehearsal, 217 t for the lunar strategic-material bridge, and 186 t for the
+rehearsal, 217 t for the lunar strategic-material bridge, and 188 t for the
 Moon–asteroid network. The bridge contains approximately 58 t of initial
 Earth strategic material—27% of installed mass—so it is not a trace “vitamin”
 case. Nickel, copper, and carbon dominate that stock.
@@ -109,7 +107,7 @@ With balanced construction and the identity environment profile:
 | terrestrial rehearsal | feasible | 0.47 | none | contracting |
 | lunar strategic-material bridge | feasible | 0.54 | none | contracting |
 | strict lunar | infeasible | — | — | — |
-| synthetic Moon–asteroid network | feasible | 3.61 | 34.75 yr | expanding |
+| synthetic Moon–asteroid network | feasible | 3.28 | 35.25 yr | expanding |
 
 The strict-lunar elastic relaxation identifies category-specific shortages in
 nickel, copper, carbon, cobalt, chromium, rare earths, lithium, hydrogen, and

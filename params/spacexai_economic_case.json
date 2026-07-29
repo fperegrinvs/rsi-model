@@ -1,0 +1,275 @@
+{
+  "schemaVersion": 1,
+  "asOf": "2026-07-29",
+  "currencyYear": 2026,
+  "sourceSnapshot": "docs/sources/spacexai-economic-thesis-2026-07-29.md",
+  "snapshotSha256": "731309190f4980b17ceb0e6ffb85d443509b7af11943057763df8687acad4fca",
+  "forecast": {
+    "statementDate": "2026-01-22",
+    "earliestBoundary": "2028-01-22",
+    "latestBoundary": "2029-01-22",
+    "wording": "the lowest cost place to put AI will be space, and that will be true within two years, maybe three, three at the latest",
+    "comparisonAmbiguity": "The statement does not identify marginal energy, installed compute, inference service, accepted output, or full lifecycle cost as its denominator.",
+    "sourceRef": "S103"
+  },
+  "workload": {
+    "workloadId": "fixed_reference_inference_v1",
+    "modelBoundary": "One fixed reference inference model; no training or model-quality improvement is credited.",
+    "precision": "FP8",
+    "batchSize": 64,
+    "inputTokensPerRequest": 1024,
+    "outputTokensPerRequest": 256,
+    "rawRequestsPerDeliveredKwh": 632.455532,
+    "qualityAcceptanceFraction": 0.9,
+    "acceptanceRule": "A response counts only when it passes the frozen held-out quality rubric and the scenario service boundary.",
+    "earthServiceGoodputFraction": 0.95,
+    "genericSpaceServiceGoodputFraction": 0.75,
+    "independentSpaceServiceGoodputFraction": 0.8,
+    "hybridSpaceServiceGoodputFraction": 0.85,
+    "sourceClass": "ASSUMPTION"
+  },
+  "schedule": {
+    "discountRate": 0.1,
+    "comparisonCapacityKw": 1.0,
+    "earth": {
+      "delayYears": 2.0,
+      "rampYears": 0.5,
+      "sourceClass": "ASSUMPTION",
+      "note": "Matched construction, interconnection, commissioning, and ramp scenario; not a universal terrestrial project duration."
+    },
+    "genericSpace": {
+      "delayYears": 2.5,
+      "rampYears": 1.0,
+      "sourceClass": "ASSUMPTION",
+      "note": "Generic orbital production, launch, commissioning, and constellation-ramp scenario."
+    },
+    "independentSpace": {
+      "delayYears": 2.5,
+      "rampYears": 1.0,
+      "sourceClass": "ASSUMPTION",
+      "note": "Uses the same maturity date and schedule boundary as the generic orbital case."
+    },
+    "companyOnly": {
+      "delayYears": 2.0,
+      "rampYears": null,
+      "sourceClass": "company_statement",
+      "note": "Possible deployment as early as 2028; commissioning duration and useful-capacity ramp are not disclosed."
+    },
+    "proponentHybrid": {
+      "delayYears": 2.0,
+      "rampYears": 0.75,
+      "sourceClass": "mixed",
+      "note": "The 2028 deployment marker is a company target; the nine-month useful-capacity ramp is an explicit ASSUMPTION."
+    }
+  },
+  "independentReference": {
+    "massKgPerKw": 46.5,
+    "massRangeKgPerKw": [34.0, 59.0],
+    "sourceRef": "S39",
+    "sourceClass": "technical_report",
+    "sourceSnapshot": "docs/sources/orbital-compute-calibration-2026-07-27.md",
+    "snapshotSha256": "422b31f46c48428dbce138869726336607b7bce4382342763fdd9b46416d4e27",
+    "boundary": "The study constrains conventional system mass; every other lifecycle and workload term is held at the generic model boundary."
+  },
+  "companyQuantities": [
+    {
+      "quantityId": "cost_per_token",
+      "value": null,
+      "unit": "2026 USD per token",
+      "status": "not_disclosed",
+      "evidenceClass": "company_statement",
+      "sourceRef": "S102",
+      "note": "SpaceX explicitly says it does not disclose a specific comparable figure."
+    },
+    {
+      "quantityId": "cost_per_token_model_component",
+      "value": null,
+      "unit": "dimensionless model-efficiency adjustment",
+      "status": "not_disclosed",
+      "evidenceClass": "company_statement",
+      "sourceRef": "S102",
+      "note": "Model architecture is named as one of three components but is not quantified."
+    },
+    {
+      "quantityId": "compute_hardware_capex",
+      "value": null,
+      "unit": "2026 USD per delivered kW",
+      "status": "not_disclosed",
+      "evidenceClass": "company_statement",
+      "sourceRef": "S102",
+      "note": "Vertical integration is a stated pathway; a comparable capex value is absent."
+    },
+    {
+      "quantityId": "compute_depreciation",
+      "value": null,
+      "unit": "2026 USD per accepted million output tokens",
+      "status": "not_disclosed",
+      "evidenceClass": "company_statement",
+      "sourceRef": "S102",
+      "note": "SpaceX identifies compute depreciation as the largest current component but gives no value."
+    },
+    {
+      "quantityId": "solar_array_power",
+      "value": 150.0,
+      "unit": "kW nameplate per AI1",
+      "status": "disclosed_design",
+      "evidenceClass": "company_statement",
+      "sourceRef": "S38",
+      "note": "Nameplate solar power is not marginal energy cost or delivered IT load."
+    },
+    {
+      "quantityId": "average_compute_payload",
+      "value": 120.0,
+      "unit": "kW average per AI1",
+      "status": "disclosed_design",
+      "evidenceClass": "company_statement",
+      "sourceRef": "S38",
+      "note": "Used only as the delivered-power denominator."
+    },
+    {
+      "quantityId": "vehicle_efficiency",
+      "value": 70.0,
+      "unit": "kW per metric tonne",
+      "status": "disclosed_design",
+      "evidenceClass": "company_statement",
+      "sourceRef": "S38",
+      "note": "The page does not specify whether the numerator is peak or average compute."
+    },
+    {
+      "quantityId": "long_run_vehicle_efficiency",
+      "value": 100.0,
+      "unit": "kW per metric tonne",
+      "status": "stated_target",
+      "evidenceClass": "company_statement",
+      "sourceRef": "S37",
+      "note": "Long-run scaling assumption, not AI1 demonstrated performance."
+    },
+    {
+      "quantityId": "launch_cost_ceiling",
+      "value": 185.0,
+      "unit": "2026 USD per kg to LEO",
+      "status": "derived_target",
+      "evidenceClass": "company_statement",
+      "sourceRef": "S37",
+      "note": "Exact 99% reduction ceiling from the cited historical $18,500/kg benchmark; not a quote or achieved cost."
+    },
+    {
+      "quantityId": "orbital_compute_deployment",
+      "value": 100.0,
+      "unit": "GW per year",
+      "status": "stated_target",
+      "evidenceClass": "company_statement",
+      "sourceRef": "S37",
+      "note": "Long-run ambition, not commissioned capacity."
+    },
+    {
+      "quantityId": "satellite_manufacturing_cost",
+      "value": null,
+      "unit": "2026 USD per delivered kW",
+      "status": "not_disclosed",
+      "evidenceClass": "company_statement",
+      "sourceRef": "S37",
+      "note": "Scaled manufacturing is asserted; unit cost is absent."
+    },
+    {
+      "quantityId": "useful_life",
+      "value": null,
+      "unit": "years",
+      "status": "not_disclosed",
+      "evidenceClass": "company_statement",
+      "sourceRef": "S38",
+      "note": "No achieved AI1 service life is disclosed."
+    },
+    {
+      "quantityId": "compute_availability",
+      "value": null,
+      "unit": "fraction",
+      "status": "not_disclosed",
+      "evidenceClass": "company_statement",
+      "sourceRef": "S38",
+      "note": "Continuous illumination is not achieved compute availability."
+    },
+    {
+      "quantityId": "communications_goodput",
+      "value": null,
+      "unit": "accepted output fraction inside service boundary",
+      "status": "not_disclosed",
+      "evidenceClass": "company_statement",
+      "sourceRef": "S38",
+      "note": "Laser links are described without delivered goodput, contention, latency, or availability."
+    },
+    {
+      "quantityId": "replacement_cost",
+      "value": null,
+      "unit": "2026 USD per delivered kW",
+      "status": "not_disclosed",
+      "evidenceClass": "company_statement",
+      "sourceRef": "S102",
+      "note": "No AI1 replacement or in-orbit repair record is disclosed."
+    },
+    {
+      "quantityId": "first_possible_deployment",
+      "value": 2028.0,
+      "unit": "calendar year",
+      "status": "stated_target",
+      "evidenceClass": "company_statement",
+      "sourceRef": "S37",
+      "note": "Possible initial deployment as early as 2028; not useful-capacity commissioning."
+    },
+    {
+      "quantityId": "useful_capacity_ramp",
+      "value": null,
+      "unit": "years",
+      "status": "not_disclosed",
+      "evidenceClass": "company_statement",
+      "sourceRef": "S37",
+      "note": "Production, launch, commissioning, and accepted-output ramp are not jointly quantified."
+    },
+    {
+      "quantityId": "terrestrial_power_escalation",
+      "value": null,
+      "unit": "fraction per year",
+      "status": "not_disclosed",
+      "evidenceClass": "company_statement",
+      "sourceRef": "S37",
+      "note": "The filing recognizes terrestrial improvements as a risk but supplies no matched trajectory."
+    }
+  ],
+  "hybridCompletions": [
+    {
+      "quantityId": "space_qualification_multiplier",
+      "value": 1.2,
+      "unit": "multiple of terrestrial hardware capex",
+      "evidenceClass": "ASSUMPTION",
+      "source": "favorable bound of compute.space_qual_multiplier"
+    },
+    {
+      "quantityId": "useful_life",
+      "value": 7.0,
+      "unit": "years",
+      "evidenceClass": "ASSUMPTION",
+      "source": "favorable bound of compute.life_years_space"
+    },
+    {
+      "quantityId": "compute_utilization",
+      "value": 0.95,
+      "unit": "fraction",
+      "evidenceClass": "ASSUMPTION",
+      "source": "favorable bound of compute.utilization_leo"
+    },
+    {
+      "quantityId": "service_goodput",
+      "value": 0.85,
+      "unit": "fraction inside latency/network boundary",
+      "evidenceClass": "ASSUMPTION",
+      "source": "fixed inference comparison boundary"
+    },
+    {
+      "quantityId": "useful_capacity_ramp",
+      "value": 0.75,
+      "unit": "years",
+      "evidenceClass": "ASSUMPTION",
+      "source": "schedule scenario"
+    }
+  ]
+}

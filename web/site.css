@@ -1,0 +1,56 @@
+@import "./artifact-viewer.css";
+
+.artifact-catalog {
+  display: grid;
+  gap: 1rem;
+}
+
+.artifact-card {
+  padding: 1rem 1.1rem;
+  border: 1px solid color-mix(in srgb, currentcolor 18%, transparent);
+  border-radius: 0.55rem;
+  background: color-mix(in srgb, Canvas 96%, currentcolor 4%);
+}
+
+.artifact-card h2 {
+  margin-top: 0;
+  font-size: 1.05rem;
+}
+
+.artifact-card dl,
+.artifact-viewer-metadata {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: 0.45rem 1rem;
+  margin: 0.75rem 0;
+}
+
+.artifact-card dl div,
+.artifact-viewer-metadata div {
+  min-width: 0;
+}
+
+.artifact-card dt,
+.artifact-viewer-metadata dt {
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.artifact-card dd,
+.artifact-viewer-metadata dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.artifact-card-path {
+  margin-bottom: 0;
+  overflow-wrap: anywhere;
+}
+
+@media (forced-colors: active) {
+  .artifact-card {
+    border: 1px solid CanvasText;
+  }
+}

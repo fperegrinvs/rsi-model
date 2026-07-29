@@ -1,12 +1,11 @@
 """Empirical evidence ingestion must fail closed."""
+
 import hashlib
+from collections.abc import Callable
 from pathlib import Path
-import sys
+from typing import Any
 
 import pytest
-
-ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "src"))
 
 from rsimodel.economic_calibration import (
     economic_calibration_bundle_template,
@@ -21,8 +20,12 @@ from rsimodel.rehearsal import (
     rehearsal_evidence_bundle_template,
 )
 
+EvidenceBundle = dict[str, Any]
+TemplateBuilder = Callable[[], EvidenceBundle]
+BundleEvaluator = Callable[..., dict[str, Any]]
 
-def _backed_template(template, tmp_path: Path):
+
+def _backed_template(template: EvidenceBundle, tmp_path: Path) -> EvidenceBundle:
     artifact = tmp_path / "evidence.bin"
     artifact.write_bytes(b"independent evidence fixture")
     digest = hashlib.sha256(artifact.read_bytes()).hexdigest()
@@ -65,7 +68,7 @@ def _backed_template(template, tmp_path: Path):
         "capacity_and_cycle_time",
     }
 
-    def fill(value, key=""):
+    def fill(value: Any, key: str = "") -> Any:
         if isinstance(value, dict):
             return {child_key: fill(child, child_key) for child_key, child in value.items()}
         if isinstance(value, list):
@@ -87,56 +90,56 @@ def _backed_template(template, tmp_path: Path):
         return "evidence"
 
     completed = fill(template)
-    completed["artifact_files"] = {
-        "fixture": {"path": artifact.name, "sha256": digest}
-    }
+    completed["artifact_files"] = {"fixture": {"path": artifact.name, "sha256": digest}}
     return completed
 
 
-def test_absent_bundles_remain_explicitly_pending():
-    assert evaluate_rehearsal_evidence_bundle(None)["overall_status"] == (
-        "execution_pending"
-    )
-    assert evaluate_process_closure_bundle(None)["overall_status"] == (
-        "graph_and_evidence_pending"
-    )
+def test_absent_bundles_remain_explicitly_pending() -> None:
+    assert evaluate_rehearsal_evidence_bundle(None)["overall_status"] == ("execution_pending")
+    assert evaluate_process_closure_bundle(None)["overall_status"] == ("graph_and_evidence_pending")
     assert evaluate_economic_calibration_bundle(None)["overall_status"] == (
         "empirical_calibration_pending"
     )
 
 
-def test_rehearsal_rejects_claimed_results_without_raw_evidence():
+def test_rehearsal_rejects_claimed_results_without_raw_evidence() -> None:
     with pytest.raises(ValueError, match="raw_archive_sha256"):
-        evaluate_rehearsal_evidence_bundle({
-            "protocol_id": "stage0-terrestrial-autonomous-closure",
-            "gate_results": {},
-            "fault_results": {},
-            "parameter_replacements": {},
-            "events": [],
-        })
+        evaluate_rehearsal_evidence_bundle(
+            {
+                "protocol_id": "stage0-terrestrial-autonomous-closure",
+                "gate_results": {},
+                "fault_results": {},
+                "parameter_replacements": {},
+                "events": [],
+            }
+        )
 
 
-def test_process_closure_rejects_empty_graph_claim():
+def test_process_closure_rejects_empty_graph_claim() -> None:
     with pytest.raises(ValueError, match="archive_sha256"):
-        evaluate_process_closure_bundle({
-            "contract_id": "process-feasible-industrial-closure",
-            "graph_version": "claimed-v1",
-            "nodes": [],
-            "edges": [],
-            "evidence_records": [],
-            "gate_results": {},
-        })
+        evaluate_process_closure_bundle(
+            {
+                "contract_id": "process-feasible-industrial-closure",
+                "graph_version": "claimed-v1",
+                "nodes": [],
+                "edges": [],
+                "evidence_records": [],
+                "gate_results": {},
+            }
+        )
 
 
-def test_economics_rejects_calibration_without_records_and_holdout_fits():
+def test_economics_rejects_calibration_without_records_and_holdout_fits() -> None:
     with pytest.raises(ValueError, match="archive_sha256"):
-        evaluate_economic_calibration_bundle({
-            "protocol_id": "symmetric-compute-economics-calibration",
-            "evidence_packages": {},
-            "correlation_fits": {},
-            "cash_flow_events": [],
-            "promotion_decisions": {},
-        })
+        evaluate_economic_calibration_bundle(
+            {
+                "protocol_id": "symmetric-compute-economics-calibration",
+                "evidence_packages": {},
+                "correlation_fits": {},
+                "cash_flow_events": [],
+                "promotion_decisions": {},
+            }
+        )
 
 
 @pytest.mark.parametrize(
@@ -157,9 +160,9 @@ def test_economics_rejects_calibration_without_records_and_holdout_fits():
     ),
 )
 def test_generated_templates_are_deterministic_and_cannot_fake_evidence(
-    builder,
-    evaluator,
-):
+    builder: TemplateBuilder,
+    evaluator: BundleEvaluator,
+) -> None:
     template = builder()
     assert template == builder()
     assert template["template_status"] == "incomplete_do_not_submit"
@@ -167,7 +170,7 @@ def test_generated_templates_are_deterministic_and_cannot_fake_evidence(
         evaluator(template)
 
 
-def test_rehearsal_rejects_gate_pass_when_fault_cases_fail(tmp_path):
+def test_rehearsal_rejects_gate_pass_when_fault_cases_fail(tmp_path: Path) -> None:
     bundle = _backed_template(rehearsal_evidence_bundle_template(), tmp_path)
     for result in bundle["gate_results"].values():
         result["status"] = "pass"
@@ -182,7 +185,7 @@ def test_rehearsal_rejects_gate_pass_when_fault_cases_fail(tmp_path):
         )
 
 
-def test_economics_rejects_promotions_without_holdout_and_review(tmp_path):
+def test_economics_rejects_promotions_without_holdout_and_review(tmp_path: Path) -> None:
     bundle = _backed_template(
         economic_calibration_bundle_template(),
         tmp_path,
@@ -190,11 +193,13 @@ def test_economics_rejects_promotions_without_holdout_and_review(tmp_path):
     for fit in bundle["correlation_fits"].values():
         fit["holdout_status"] = "pass"
     for decision in bundle["promotion_decisions"].values():
-        decision.update({
-            "decision": "promote_empirical",
-            "holdout_result": "fail",
-            "independent_review_status": "rejected",
-        })
+        decision.update(
+            {
+                "decision": "promote_empirical",
+                "holdout_result": "fail",
+                "independent_review_status": "rejected",
+            }
+        )
     with pytest.raises(ValueError, match="empirical promotion requires"):
         evaluate_economic_calibration_bundle(
             bundle,
@@ -202,7 +207,7 @@ def test_economics_rejects_promotions_without_holdout_and_review(tmp_path):
         )
 
 
-def test_process_graph_rejects_disconnected_declared_success(tmp_path):
+def test_process_graph_rejects_disconnected_declared_success(tmp_path: Path) -> None:
     bundle = _backed_template(process_closure_bundle_template(), tmp_path)
     bundle["graph_version"] = "fixture-v1"
     for result in bundle["gate_results"].values():
@@ -214,7 +219,7 @@ def test_process_graph_rejects_disconnected_declared_success(tmp_path):
         )
 
 
-def test_evidence_evaluators_reject_malformed_containers():
+def test_evidence_evaluators_reject_malformed_containers() -> None:
     with pytest.raises(ValueError, match="must be an array"):
         evaluate_rehearsal_evidence_bundle(
             {

@@ -7,15 +7,19 @@ from the three submission papers. The canonical archival object remains
 ## Reproducibility
 
 ```bash
-python scripts/run_baseline.py
-python scripts/run_part2.py
-python scripts/run_deep.py
-python scripts/run_integrated.py
-python scripts/write_claim_provenance.py
-npm run build:manuscript
-python scripts/write_manifest.py
-python scripts/verify_manifests.py
-pytest tests/ -q
+uv sync --locked --all-groups
+pnpm install --frozen-lockfile
+pnpm run generate:baseline
+pnpm run generate:part2
+pnpm run generate:deep
+pnpm run generate:integrated
+uv run --locked rsi-write-provenance --project-root .
+pnpm run build:manuscript
+pnpm run build:site
+uv run --locked rsi-write-manifest --project-root .
+uv run --locked rsi-verify-manifests --project-root .
+pnpm run test:coverage
+pnpm run test:typescript
 ```
 
 Generated artifacts are hash-listed in `outputs/MANIFEST.md` and
@@ -24,8 +28,8 @@ papers round assumption-conditioned outputs.
 
 ## Model specification
 
-- inherited ten-sector baseline: `src/rsimodel/model.py`,
-  `src/rsimodel/allocator.py`, and `params/environments.yaml`;
+- ten-sector baseline: `src/rsimodel/model.py` and
+  `params/environments.yaml`;
 - Part II cost model: `src/rsimodel/lco.py` and `params/anchors.yaml`;
 - Integrated bootstrap: `src/rsimodel/integrated.py` and
   `params/integrated_model.yaml`;
@@ -88,9 +92,8 @@ contextual sources do not promote them back to empirical inputs.
 - **Claim status:** documented, announced, technically grounded, computed,
   inferred, or speculative status of a statement.
 
-## Revision history and auxiliary material
+## Auxiliary material
 
-The full revision record stays in the canonical manuscript, `CHANGELOG.md`,
-and `docs/IMPLEMENTATION_PLAN.md`. Provisional hiring and observability
-material remains repository context rather than evidence. Extended debris and
-governance discussions remain here and in their machine-readable artifacts.
+Provisional hiring and observability material remains repository context
+rather than evidence. Extended debris and governance discussions remain here
+and in their machine-readable artifacts.

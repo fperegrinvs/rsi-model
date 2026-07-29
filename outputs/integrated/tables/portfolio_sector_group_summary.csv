@@ -1,0 +1,6 @@
+as_of,sector_group,sector_count,documented_operating,demonstrated_but_not_scaled,announced_or_under_development,adjacent_capability_only,no_evidence,demonstrated_off_world,off_world_reproductively_closed,dependency_aware_group_closure,open_sectors
+2026-07-28,bulk_material,4,3,0,1,0,0,1,0,false,power;mining;refining;recycling
+2026-07-28,industrial_equipment,5,3,0,1,0,1,1,0,false,robotics;machine_tools;construction;thermal;process_equipment_metrology
+2026-07-28,electronics,6,3,0,3,0,0,3,0,false,interconnects_boards;passives_power;sensors_control;packaging_test;mature_logic;advanced_logic_memory
+2026-07-28,operations_maintenance,2,2,0,0,0,0,1,0,false,transport;repair
+2026-07-28,intelligence_compute,1,1,0,0,0,0,0,0,false,compute

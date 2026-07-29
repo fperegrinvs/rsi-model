@@ -1,0 +1,5 @@
+shell,operator_scenario,planned_nodes,carrying_capacity_nodes,coordinated_fraction,predicted_conjunction_workload,uncoordinated_workload,capacity_compliant,governance_compliant,admissible,source_class
+leo_650,coordinated_authorized,5200,10954,0.947884615,270.348000000,14.089290000,1,1,1,ASSUMPTION
+leo_650,uncoordinated_growth,15000,10954,0.708666667,2249.850000000,655.456300000,0,0,0,ASSUMPTION
+low_lunar_orbit,coordinated_authorized,5200,8660,0.947884615,108.139200000,5.635716000,1,1,1,ASSUMPTION
+low_lunar_orbit,uncoordinated_growth,15000,8660,0.708666667,899.940000000,262.182520000,0,0,0,ASSUMPTION

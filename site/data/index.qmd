@@ -1,0 +1,11 @@
+---
+title: "Data catalog"
+description: "Machine-readable tables referenced by Recursive Industrial Intelligence."
+---
+
+Every table below is copied byte-for-byte from the repository output, checked
+against its publication manifest, and available as an ordinary CSV download.
+On this site, opening a table also provides a searchable, sortable, paginated
+view without changing the authoritative file.
+
+<!-- ARTIFACT_CATALOG -->

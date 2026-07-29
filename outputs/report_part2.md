@@ -1,11 +1,11 @@
-# Part II report: levelized cost of compute, space vs Earth — 2026-07-28
+# Part II report: levelized cost of compute, space vs Earth — 2026-07-29
 
 Unit: **$ per frontier-equivalent kW-year of delivered IT load** (older-node
 hardware is compute-normalized by its J/FLOP penalty). Three reference cases
 (paper Section 9): LEO inference, cislunar batch, and **Earth-supplied**
 lunar-surface compute (central closure fraction is zero — local manufacture
 enters only through the closure sweep axis), plus separate Starmind AI1
-current-disclosure and aspirational-best-case scenarios.
+disclosed-design and stated-aspiration scenarios.
 Two architectures are reported explicitly. In the integrated-disposable
 satellite, compute, PV, radiator, storage, structure, and original launch
 retire together. In the serviceable/reusable platform, compute refreshes
@@ -112,12 +112,12 @@ Space cases (capex $/kW before annualization):
 | leo_inference | serviceable/reusable platform | 77,559 | 54 | 63,640 | 1,225 | 945 | 0 | 12,833 | 128,281 |
 | cislunar_batch | serviceable/reusable platform | 131,524 | 54 | 63,640 | 1,225 | 945 | 0 | 12,833 | 362,833 |
 | lunar_surface (Earth-supplied) | serviceable/reusable platform | 3,864,754 | 480 | 63,640 | 2,695 | 945 | 12,250 | 14,367 | 10,155,238 |
-| starmind_ai1 (company-statement scenario) | serviceable/reusable platform | 46,523 | 16 | 63,640 | 1,250 | 964 | 0 | 12,838 | 37,796 |
-| starmind_ai1 aspirational best case (targets + favorable assumptions) | serviceable/reusable platform | 15,957 | 10 | 40,249 | 1,250 | 964 | 0 | 10,223 | 1,850 |
+| SpaceXAI — AI1 disclosed design | serviceable/reusable platform | 46,523 | 16 | 63,640 | 1,250 | 964 | 0 | 12,838 | 37,796 |
+| SpaceXAI — long-term targets plus favorable model assumptions | serviceable/reusable platform | 15,957 | 10 | 40,249 | 1,250 | 964 | 0 | 10,223 | 1,850 |
 | leo_inference | integrated disposable satellite | 98,871 | 54 | 63,640 | 1,225 | 945 | 0 | 12,833 | 128,281 |
 | cislunar_batch | integrated disposable satellite | 175,418 | 54 | 63,640 | 1,225 | 945 | 0 | 12,833 | 362,833 |
 | lunar_surface (Earth-supplied) | integrated disposable satellite | 6,209,841 | 480 | 63,640 | 2,695 | 945 | 12,250 | 14,367 | 10,155,238 |
-| starmind_ai1 (company-statement scenario) | integrated disposable satellite | 55,748 | 16 | 63,640 | 1,250 | 964 | 0 | 12,838 | 37,796 |
+| SpaceXAI — AI1 disclosed design | integrated disposable satellite | 55,748 | 16 | 63,640 | 1,250 | 964 | 0 | 12,838 | 37,796 |
 
 Earth scenarios:
 
@@ -136,17 +136,18 @@ explicit network-efficiency gate):
 | leo_inference · serviceable/reusable platform | $16,902 | $490,528 | 0.158 |
 | cislunar_batch · serviceable/reusable platform | $28,662 | $831,829 | 0.158 |
 | lunar_surface (Earth-supplied) · serviceable/reusable platform | $842,220 | $24,442,853 | 0.158 |
-| starmind_ai1 (company-statement scenario) · serviceable/reusable platform | $10,138 | $294,235 | 0.158 |
-| starmind_ai1 aspirational best case (targets + favorable assumptions) · serviceable/reusable platform | $3,477 | $100,921 | 0.158 |
+| SpaceXAI — AI1 disclosed design · serviceable/reusable platform | $10,138 | $294,235 | 0.158 |
+| SpaceXAI — long-term targets plus favorable model assumptions · serviceable/reusable platform | $3,477 | $100,921 | 0.158 |
 | leo_inference · integrated disposable satellite | $21,546 | $625,314 | 0.158 |
 | cislunar_batch · integrated disposable satellite | $38,228 | $1,109,441 | 0.158 |
 | lunar_surface (Earth-supplied) · integrated disposable satellite | $1,353,270 | $39,274,483 | 0.158 |
-| starmind_ai1 (company-statement scenario) · integrated disposable satellite | $12,149 | $352,579 | 0.158 |
+| SpaceXAI — AI1 disclosed design · integrated disposable satellite | $12,149 | $352,579 | 0.158 |
 | Earth · tight | $3,482 | $19,596 | 0.815 |
 | Earth · base | $3,197 | $17,989 | 0.815 |
 | Earth · responsive | $2,786 | $15,675 | 0.815 |
 
-A calibration check: the Earth base LCO corresponds to ≈ $1.67/kW-hr,
+A calibration check: the Earth base LCO corresponds to
+≈ $1.67/kW-hr,
 consistent with published accelerator rental rates — the model is anchored at
 the right order of magnitude.
 
@@ -157,31 +158,31 @@ These company statements and separately source-classed model assumptions define 
 
 | case | disclosed/derived quantity | central value | source_class | model role |
 |---|---|---:|---|---|
-| starmind_ai1 (company-statement scenario) | `starmind.compute_payload_kw_peak` | 150 | company_statement | AI1 disclosed compute payload peak, kW. CONTEXT: not used as delivered-average model denominator; official Starmind page, accessed 2026-07-27 |
-| starmind_ai1 (company-statement scenario) | `starmind.compute_payload_kw_average` | 120 | company_statement | AI1 disclosed average compute payload, kW. USED with solar_array_kw to set the scenario's 1.25 array-power/average-compute ratio; official Starmind page, accessed 2026-07-27 |
-| starmind_ai1 (company-statement scenario) | `starmind.vehicle_efficiency_kw_per_tonne` | 70 | company_statement | AI1 disclosed vehicle efficiency, kW/tonne. The page does not state whether kW means peak or average; official Starmind page, accessed 2026-07-27 |
-| starmind_ai1 (company-statement scenario) | `starmind.vehicle_mass_kg_per_average_kw` | 15.97 | ASSUMPTION | DERIVED interpretation range from the disclosed 70 kW/tonne and 120 average / 150 peak kW: low assumes the efficiency numerator is average power (1000/70); high assumes it is peak power and converts total vehicle mass to an average-kW denominator ((150/70 t)/120 kW). USED as aggregate launched vehicle mass; the generic component budget supplies only the lifecycle split |
-| starmind_ai1 (company-statement scenario) | `starmind.solar_array_kw` | 150 | company_statement | AI1 disclosed solar-array rating, kW. USED with average compute payload to set the 1.25 design power ratio; official Starmind page, accessed 2026-07-27 |
-| starmind_ai1 (company-statement scenario) | `starmind.solar_power_density_w_per_m2` | 250 | company_statement | AI1 disclosed solar power density, W/m^2. CONTEXT ONLY: the cost model prices PV per kW and the aggregate vehicle mass constraint already captures array mass; official Starmind page, accessed 2026-07-27 |
-| starmind_ai1 (company-statement scenario) | `starmind.radiator_area_m2` | 110 | company_statement | AI1 disclosed deployable liquid-radiator area, m^2. CONTEXT ONLY: no radiator areal mass or cost is disclosed, so the scenario retains the generic radiator cost and uses the aggregate vehicle mass constraint; official Starmind page, accessed 2026-07-27 |
-| starmind_ai1 (company-statement scenario) | `starmind.deployed_height_m` | 20 | company_statement | AI1 disclosed deployed height, m. CONTEXT ONLY; official Starmind page, accessed 2026-07-27 |
-| starmind_ai1 (company-statement scenario) | `starmind.wingspan_m` | 70 | company_statement | AI1 disclosed wingspan, m. CONTEXT ONLY; official Starmind page, accessed 2026-07-27 |
-| starmind_ai1 aspirational best case (targets + favorable assumptions) | `starmind.compute_payload_kw_peak` | 150 | company_statement | AI1 disclosed compute payload peak, kW. CONTEXT: not used as delivered-average model denominator; official Starmind page, accessed 2026-07-27 |
-| starmind_ai1 aspirational best case (targets + favorable assumptions) | `starmind.compute_payload_kw_average` | 120 | company_statement | AI1 disclosed average compute payload, kW. USED with solar_array_kw to set the scenario's 1.25 array-power/average-compute ratio; official Starmind page, accessed 2026-07-27 |
-| starmind_ai1 aspirational best case (targets + favorable assumptions) | `starmind.solar_array_kw` | 150 | company_statement | AI1 disclosed solar-array rating, kW. USED with average compute payload to set the 1.25 design power ratio; official Starmind page, accessed 2026-07-27 |
-| starmind_ai1 aspirational best case (targets + favorable assumptions) | `aspirations.starmind_vehicle_efficiency_kw_per_tonne` | 100 | company_statement | LONG-TERM TARGET/ASSUMPTION in SpaceX scale arithmetic: 100 kW of AI compute per deployed tonne. The later AI1 product page discloses only 70 kW/t, 30% below this target. USED only in the aspirational deterministic sensitivity; EU Prospectus 2026-06-05, p. 82 |
-| starmind_ai1 aspirational best case (targets + favorable assumptions) | `aspirations.starmind_vehicle_mass_kg_per_average_kw` | 10 | ASSUMPTION | DERIVED exactly as 1000 kg/t divided by the company-target 100 kW/t. USED as aggregate launched mass only in the aspirational deterministic sensitivity |
-| starmind_ai1 aspirational best case (targets + favorable assumptions) | `aspirations.starship_leo_cost_per_kg` | 185 | company_statement | TARGET, not achieved price: exact arithmetic ceiling from SpaceX's aim to reduce its stated historical $18,500/kg launch cost by 99% or more (0.01 x $18,500 = $185/kg). USED only in the aspirational deterministic sensitivity; EU Prospectus 2026-06-05, pp. 63, 70, 137 |
-| starmind_ai1 aspirational best case (targets + favorable assumptions) | `aspirations.starship_v3_payload_tonnes` | 100 | company_statement | DESIGN TARGET: Starship V3 reusable payload capacity to orbit. CONTEXT ONLY for scale arithmetic; EU Prospectus 2026-06-05, pp. 71-72 |
-| starmind_ai1 aspirational best case (targets + favorable assumptions) | `aspirations.starship_v4_payload_tonnes` | 200 | company_statement | FUTURE TARGET: possible Starship V4 reusable payload capacity to orbit. CONTEXT ONLY for scale arithmetic; EU Prospectus 2026-06-05, pp. 71-72 |
-| starmind_ai1 aspirational best case (targets + favorable assumptions) | `aspirations.orbital_compute_gw_per_year` | 100 | company_statement | LONG-TERM TARGET: up to 100 GW of AI-compute power deployed to orbit annually. CONTEXT ONLY for scale arithmetic; EU Prospectus 2026-06-05, pp. 82, 97 |
-| starmind_ai1 aspirational best case (targets + favorable assumptions) | `aspirations.starmind_qualification_multiplier` | 1.2 | ASSUMPTION | FAVORABLE MODEL BOUND, not published by SpaceX: low end of compute.space_qual_multiplier. USED only in the aspirational deterministic sensitivity |
-| starmind_ai1 aspirational best case (targets + favorable assumptions) | `aspirations.starmind_life_years` | 7 | ASSUMPTION | FAVORABLE MODEL BOUND, not published by SpaceX: high end of compute.life_years_space. USED only in the aspirational deterministic sensitivity |
-| starmind_ai1 aspirational best case (targets + favorable assumptions) | `aspirations.starmind_utilization` | 0.95 | ASSUMPTION | FAVORABLE MODEL BOUND, not achieved AI1 availability: high end of compute.utilization_leo. Starlink's reported network uptime is not evidence of AI1 spacecraft compute availability. USED only in the aspirational deterministic sensitivity |
+| SpaceXAI — AI1 disclosed design | `starmind.compute_payload_kw_peak` | 150 | company_statement | Context only; peak power is not the delivered-average model denominator. Source S38; accessed 2026-07-27; AI1 technical specifications: compute payload. |
+| SpaceXAI — AI1 disclosed design | `starmind.compute_payload_kw_average` | 120 | company_statement | Used as the delivered-load denominator and with solar-array power to set the 1.25 design power ratio. Source S38; accessed 2026-07-27; AI1 technical specifications: compute payload. |
+| SpaceXAI — AI1 disclosed design | `starmind.vehicle_efficiency_kw_per_tonne` | 70 | company_statement | The source does not say whether kW is peak or average; the derived mass range preserves both interpretations. Source S38; accessed 2026-07-27; AI1 technical specifications: vehicle efficiency. |
+| SpaceXAI — AI1 disclosed design | `starmind.vehicle_mass_kg_per_average_kw` | 15.97 | ASSUMPTION | Interpretation range, not a direct company value; generic component weights supply only the lifecycle split. Source S38; derived 2026-07-27; 1000/70 and (150/70 tonnes)/120 kW. |
+| SpaceXAI — AI1 disclosed design | `starmind.solar_array_kw` | 150 | company_statement | Nameplate solar power is not delivered IT load. Source S38; accessed 2026-07-27; AI1 technical specifications: solar array. |
+| SpaceXAI — AI1 disclosed design | `starmind.solar_power_density_w_per_m2` | 250 | company_statement | Context only; the aggregate mass constraint already captures array mass. Source S38; accessed 2026-07-27; AI1 technical specifications: solar power density. |
+| SpaceXAI — AI1 disclosed design | `starmind.radiator_area_m2` | 110 | company_statement | No radiator areal mass, thermal duty, temperature, or cost is disclosed. Source S38; accessed 2026-07-27; AI1 technical specifications: radiator. |
+| SpaceXAI — AI1 disclosed design | `starmind.deployed_height_m` | 20 | company_statement | Geometry marker only; it does not determine a complete collision cross-section or topology. Source S38; accessed 2026-07-27; AI1 technical specifications: deployed envelope. |
+| SpaceXAI — AI1 disclosed design | `starmind.wingspan_m` | 70 | company_statement | Geometry marker only; attitude, spacing, shell, maneuver, and failure behavior remain undisclosed. Source S38; accessed 2026-07-27; AI1 technical specifications: deployed envelope. |
+| SpaceXAI — long-term targets plus favorable model assumptions | `starmind.compute_payload_kw_peak` | 150 | company_statement | Context only; peak power is not the delivered-average model denominator. Source S38; accessed 2026-07-27; AI1 technical specifications: compute payload. |
+| SpaceXAI — long-term targets plus favorable model assumptions | `starmind.compute_payload_kw_average` | 120 | company_statement | Used as the delivered-load denominator and with solar-array power to set the 1.25 design power ratio. Source S38; accessed 2026-07-27; AI1 technical specifications: compute payload. |
+| SpaceXAI — long-term targets plus favorable model assumptions | `starmind.solar_array_kw` | 150 | company_statement | Nameplate solar power is not delivered IT load. Source S38; accessed 2026-07-27; AI1 technical specifications: solar array. |
+| SpaceXAI — long-term targets plus favorable model assumptions | `aspirations.starmind_vehicle_efficiency_kw_per_tonne` | 100 | company_statement | Long-run target; the later AI1 disclosed design is 70 kW/t. Source S37; 2026-06-05; EU Prospectus p. 82. |
+| SpaceXAI — long-term targets plus favorable model assumptions | `aspirations.starmind_vehicle_mass_kg_per_average_kw` | 10 | ASSUMPTION | Derived assumption; not a direct vehicle specification. Source S37; derived 2026-06-05; 1000 kg/t divided by 100 kW/t. |
+| SpaceXAI — long-term targets plus favorable model assumptions | `aspirations.starship_leo_cost_per_kg` | 185 | company_statement | Target arithmetic ceiling, not achieved launch price or customer quote. Source S37; 2026-06-05; EU Prospectus pp. 63, 70, and 137; exact 99% reduction ceiling from USD 18,500/kg. |
+| SpaceXAI — long-term targets plus favorable model assumptions | `aspirations.starship_v3_payload_tonnes` | 100 | company_statement | Design target, not demonstrated reusable payload. Source S37; 2026-06-05; EU Prospectus pp. 71-72. |
+| SpaceXAI — long-term targets plus favorable model assumptions | `aspirations.starship_v4_payload_tonnes` | 200 | company_statement | Future target, not demonstrated reusable payload. Source S37; 2026-06-05; EU Prospectus pp. 71-72. |
+| SpaceXAI — long-term targets plus favorable model assumptions | `aspirations.orbital_compute_gw_per_year` | 100 | company_statement | Annual flow target, not cumulative operating stock or achieved cadence. Source S37; 2026-06-05; EU Prospectus pp. 82 and 97. |
+| SpaceXAI — long-term targets plus favorable model assumptions | `aspirations.starmind_qualification_multiplier` | 1.2 | ASSUMPTION | Favorable model assumption, not published by SpaceX. Source S37; selected 2026-07-27; favorable lower bound of compute.space_qual_multiplier. |
+| SpaceXAI — long-term targets plus favorable model assumptions | `aspirations.starmind_life_years` | 7 | ASSUMPTION | Favorable model assumption, not achieved AI1 service life. Source S37; selected 2026-07-27; favorable upper bound of compute.life_years_space. |
+| SpaceXAI — long-term targets plus favorable model assumptions | `aspirations.starmind_utilization` | 0.95 | ASSUMPTION | Favorable model assumption; Starlink network uptime is not AI1 compute availability. Source S37; selected 2026-07-27; favorable upper bound of compute.utilization_leo. |
 
 ## Monte Carlo over anchored ranges (shared draws both sides)
 
-The aspirational best case is excluded: company targets and deliberately
+The stated-aspiration case is excluded: company targets and deliberately
 favorable unpublished assumptions are point sensitivities, not probability
 distributions.
 
@@ -199,10 +200,10 @@ distributions.
 | lunar_surface (Earth-supplied) | serviceable/reusable platform | responsive | 138.5 / 343.8 / 821.2 | 0.000 | -22 (-10) |
 | lunar_surface (Earth-supplied) | integrated disposable satellite | base | 183.3 / 449.4 / 1092.7 | 0.000 | -16 (-7) |
 | lunar_surface (Earth-supplied) | integrated disposable satellite | responsive | 232.4 / 562.4 / 1313.0 | 0.000 | -17 (-8) |
-| starmind_ai1 (company-statement scenario) | serviceable/reusable platform | base | 2.3 / 3.3 / 4.9 | 0.000 | -3,567 (-1,624) |
-| starmind_ai1 (company-statement scenario) | serviceable/reusable platform | responsive | 2.7 / 4.2 / 6.4 | 0.000 | -4,087 (-1,964) |
-| starmind_ai1 (company-statement scenario) | integrated disposable satellite | base | 2.7 / 4.0 / 5.9 | 0.000 | -3,097 (-1,590) |
-| starmind_ai1 (company-statement scenario) | integrated disposable satellite | responsive | 3.3 / 4.9 / 8.0 | 0.000 | -3,579 (-1,924) |
+| SpaceXAI — AI1 disclosed design | serviceable/reusable platform | base | 2.3 / 3.3 / 4.9 | 0.000 | -3,567 (-1,624) |
+| SpaceXAI — AI1 disclosed design | serviceable/reusable platform | responsive | 2.7 / 4.2 / 6.4 | 0.000 | -4,087 (-1,964) |
+| SpaceXAI — AI1 disclosed design | integrated disposable satellite | base | 2.7 / 4.0 / 5.9 | 0.000 | -3,097 (-1,590) |
+| SpaceXAI — AI1 disclosed design | integrated disposable satellite | responsive | 3.3 / 4.9 / 8.0 | 0.000 | -3,579 (-1,924) |
 
 Break-even prices are the LEO $/kg at which the space case matches Earth;
 **negative means fixed (non-launch) costs alone exceed the Earth cost** — at
@@ -210,9 +211,9 @@ those draws no launch price, even zero, closes the gap.
 
 **Architecture split** — the serviceable/reusable-platform baseline is 5.29x Earth base for generic LEO and 3.17x for the AI1 disclosure scenario. The integrated disposable-satellite baseline, in which infrastructure and compute retire together, is 6.74x and 3.80x, respectively. Modularity supports standardisation but does not establish in-orbit replacement; neither architecture is silently treated as demonstrated.
 
-**Starmind AI1 disclosure scenario** — SpaceX publishes 150 kW peak / 120 kW average compute, a 150 kW array, and 70 kW/tonne vehicle efficiency (official Starmind page, accessed 2026-07-27; provenance snapshot in `docs/sources/starmind-ai1-2026-07-27.md`). The model uses the 1.25 array/average-load ratio and, because SpaceX does not say whether the efficiency numerator is peak or average, samples 14.3-17.9 kg per average kW (central 16.0, versus 54.2 kg/kW generic LEO). At current central launch and retained cost/life/availability anchors, the serviceable-platform AI1 case is 3.17x Earth base; at $250/kg it is 2.38x, and its fixed non-launch costs still exceed Earth base (break-even -3,460 $/kg). The mass disclosure therefore materially lowers the launch term but does not resolve the qualification, hardware-cost, lifetime, or availability gates. With the remaining anchors simultaneously favorable (qualification x1.2, seven-year life, 0.95 utilization), AI1 becomes 1.74x at central launch, has no positive break-even launch price (-191 $/kg), and reaches 1.13x at $250/kg. Completing communications, bus, NRE, insurance, spectrum, disposal, thermal-margin, and financing terms removes the formerly reported favorable-corner crossover. Radiator area, dimensions, redundant loops, debris shielding, and laser links are recorded but do not receive invented costs where the page supplies none.
+**SpaceXAI — AI1 disclosed design** — SpaceX publishes 150 kW peak / 120 kW average compute, a 150 kW array, and 70 kW/tonne vehicle efficiency (official Starmind page, accessed 2026-07-27; provenance snapshot in `docs/sources/starmind-ai1-2026-07-27.md`). The model uses the 1.25 array/average-load ratio and, because SpaceX does not say whether the efficiency numerator is peak or average, samples 14.3-17.9 kg per average kW (central 16.0, versus 54.2 kg/kW generic LEO). At current central launch and retained cost/life/availability anchors, the serviceable-platform AI1 case is 3.17x Earth base; at $250/kg it is 2.38x, and its fixed non-launch costs still exceed Earth base (break-even -3,460 $/kg). The mass disclosure therefore materially lowers the launch term but does not resolve the qualification, hardware-cost, lifetime, or availability gates. With the remaining anchors simultaneously favorable (qualification x1.2, seven-year life, 0.95 utilization), AI1 becomes 1.74x at central launch, has no positive break-even launch price (-191 $/kg), and reaches 1.13x at $250/kg. Completing communications, bus, NRE, insurance, spectrum, disposal, thermal-margin, and financing terms leaves no favorable-corner crossover at these assumptions. Radiator area, dimensions, redundant loops, debris shielding, and laser links are recorded but do not receive invented costs where the page supplies none.
 
-**Aspirational best case (deterministic; excluded from Monte Carlo)** — SpaceX's EU prospectus says it aims to cut its stated historical launch cost of $18,500/kg by 99% or more, so the model uses $185/kg as the exact 99%-reduction ceiling; it also uses the prospectus's long-term 100 kW/t deployment assumption (10 kg per average kW). Those two company targets alone, while leaving unpublished inputs at their central values, yield 34,219 $/kW-yr or 2.33x Earth base. The displayed best case additionally selects the favorable, NON-COMPANY bounds of 1.2x qualification, seven-year hardware life, and 0.95 utilization; it yields 15,957 $/kW-yr or 1.09x Earth base. The earlier incomplete-cost form would have produced 0.76x; the completed boundary is therefore a direct reversal, not a small adjustment. The model assigns the aspirational case no success probability: targets and favorable analyst assumptions are point values, not empirical distributions.
+**SpaceXAI long-term targets plus favorable model assumptions (deterministic; excluded from Monte Carlo)** — SpaceX's EU prospectus says it aims to cut its stated historical launch cost of $18,500/kg by 99% or more, so the model uses $185/kg as the exact 99%-reduction ceiling; it also uses the prospectus's long-term 100 kW/t deployment assumption (10 kg per average kW). Those two company targets alone, while leaving unpublished inputs at their central values, yield 34,219 $/kW-yr or 2.33x Earth base. The displayed best case additionally selects the favorable, NON-COMPANY bounds of 1.2x qualification, seven-year hardware life, and 0.95 utilization; it yields 15,957 $/kW-yr or 1.09x Earth base. The deliberately omitted-cost diagnostic is 0.76x, while the complete boundary is 1.09x. The model assigns the aspirational case no success probability: targets and favorable analyst assumptions are point values, not empirical distributions.
 
 **Feasibility audit of that best case** — the latest AI1 page's 70 kW/t is 30% below the older 100 kW/t scale assumption (reaching the target requires 43% more kW/t than AI1). At 100 GW deployed per year, 100 kW/t implies 1.00 million tonnes/year, about 10,000 full 100-t V3 launches/year (27.4/day) or 5,000 full 200-t V4 launches/year (13.7/day), plus roughly 833,333 120-kW spacecraft. At AI1's disclosed 70 kW/t the mass rises to 1.43 million tonnes and 14,286 V3 launches/year. Even at $185/kg, the 100-kW/t flow corresponds to $185 billion/year of launch cost before spacecraft manufacture. Full rapid reuse and this cadence are therefore load-bearing; so are seven-year whole-system reliability and 95% compute utilization, neither of which SpaceX publishes for AI1. Communications/downlink, ground network, spacecraft-bus functions, program NRE, insurance, spectrum and regulatory cost, disposal, residual value, thermal margins, and separate space financing are now explicit wide-bound terms. Collision externalities, constellation replenishment logistics, and landing/turnaround infrastructure remain outside the LCO, while the Earth alternative can also improve. The case is useful as a boundary: it shows what must all go right, not what is likely to happen.
 
@@ -234,15 +235,15 @@ The published Suncatcher design study (arXiv:2511.19468v2, 2026-06-17; `claims.s
 
 | anchor | central value | source_class | note |
 |---|---|---|---|
-| aspirations.orbital_compute_gw_per_year | 100 | company_statement | LONG-TERM TARGET: up to 100 GW of AI-compute power deployed to orbit annually. CONTEXT ONLY for scale arithmetic; EU Prospectus 2026-06-05, pp. 82, 97 |
-| aspirations.starmind_life_years | 7 | ASSUMPTION | FAVORABLE MODEL BOUND, not published by SpaceX: high end of compute.life_years_space. USED only in the aspirational deterministic sensitivity |
-| aspirations.starmind_qualification_multiplier | 1.2 | ASSUMPTION | FAVORABLE MODEL BOUND, not published by SpaceX: low end of compute.space_qual_multiplier. USED only in the aspirational deterministic sensitivity |
-| aspirations.starmind_utilization | 0.95 | ASSUMPTION | FAVORABLE MODEL BOUND, not achieved AI1 availability: high end of compute.utilization_leo. Starlink's reported network uptime is not evidence of AI1 spacecraft compute availability. USED only in the aspirational deterministic sensitivity |
-| aspirations.starmind_vehicle_efficiency_kw_per_tonne | 100 | company_statement | LONG-TERM TARGET/ASSUMPTION in SpaceX scale arithmetic: 100 kW of AI compute per deployed tonne. The later AI1 product page discloses only 70 kW/t, 30% below this target. USED only in the aspirational deterministic sensitivity; EU Prospectus 2026-06-05, p. 82 |
-| aspirations.starmind_vehicle_mass_kg_per_average_kw | 10 | ASSUMPTION | DERIVED exactly as 1000 kg/t divided by the company-target 100 kW/t. USED as aggregate launched mass only in the aspirational deterministic sensitivity |
-| aspirations.starship_leo_cost_per_kg | 185 | company_statement | TARGET, not achieved price: exact arithmetic ceiling from SpaceX's aim to reduce its stated historical $18,500/kg launch cost by 99% or more (0.01 x $18,500 = $185/kg). USED only in the aspirational deterministic sensitivity; EU Prospectus 2026-06-05, pp. 63, 70, 137 |
-| aspirations.starship_v3_payload_tonnes | 100 | company_statement | DESIGN TARGET: Starship V3 reusable payload capacity to orbit. CONTEXT ONLY for scale arithmetic; EU Prospectus 2026-06-05, pp. 71-72 |
-| aspirations.starship_v4_payload_tonnes | 200 | company_statement | FUTURE TARGET: possible Starship V4 reusable payload capacity to orbit. CONTEXT ONLY for scale arithmetic; EU Prospectus 2026-06-05, pp. 71-72 |
+| aspirations.orbital_compute_gw_per_year | 100 | company_statement | Annual flow target, not cumulative operating stock or achieved cadence. Source S37; 2026-06-05; EU Prospectus pp. 82 and 97. |
+| aspirations.starmind_life_years | 7 | ASSUMPTION | Favorable model assumption, not achieved AI1 service life. Source S37; selected 2026-07-27; favorable upper bound of compute.life_years_space. |
+| aspirations.starmind_qualification_multiplier | 1.2 | ASSUMPTION | Favorable model assumption, not published by SpaceX. Source S37; selected 2026-07-27; favorable lower bound of compute.space_qual_multiplier. |
+| aspirations.starmind_utilization | 0.95 | ASSUMPTION | Favorable model assumption; Starlink network uptime is not AI1 compute availability. Source S37; selected 2026-07-27; favorable upper bound of compute.utilization_leo. |
+| aspirations.starmind_vehicle_efficiency_kw_per_tonne | 100 | company_statement | Long-run target; the later AI1 disclosed design is 70 kW/t. Source S37; 2026-06-05; EU Prospectus p. 82. |
+| aspirations.starmind_vehicle_mass_kg_per_average_kw | 10 | ASSUMPTION | Derived assumption; not a direct vehicle specification. Source S37; derived 2026-06-05; 1000 kg/t divided by 100 kW/t. |
+| aspirations.starship_leo_cost_per_kg | 185 | company_statement | Target arithmetic ceiling, not achieved launch price or customer quote. Source S37; 2026-06-05; EU Prospectus pp. 63, 70, and 137; exact 99% reduction ceiling from USD 18,500/kg. |
+| aspirations.starship_v3_payload_tonnes | 100 | company_statement | Design target, not demonstrated reusable payload. Source S37; 2026-06-05; EU Prospectus pp. 71-72. |
+| aspirations.starship_v4_payload_tonnes | 200 | company_statement | Future target, not demonstrated reusable payload. Source S37; 2026-06-05; EU Prospectus pp. 71-72. |
 | compute.hw_mass_kg_per_kw | 17.32 | ASSUMPTION | server mass per kW IT stripped of air-cooling chassis; UNANCHORED |
 | compute.hw_per_kw_it | 3.354e+04 | ASSUMPTION | Analyst-normalized 2024-26 accelerator-plus-system price band per kW IT; product prices, board power, and host allocation do not form a stable common-denominator source |
 | compute.life_years_earth | 4.243 | ASSUMPTION | Analyst accelerator economic-retirement band; refresh practice is not a physical lifetime distribution |
@@ -286,15 +287,15 @@ The published Suncatcher design study (arXiv:2511.19468v2, 2026-06-17; `claims.s
 | space_cost_completion.spectrum_regulatory_per_kw_year | 158.1 | ASSUMPTION | Spectrum, licensing, compliance, and regulatory program cost per delivered kW-year |
 | space_cost_completion.thermal_reliability_mass_margin | 1.285 | ASSUMPTION | Redundancy, micrometeoroid isolation, degradation, and pumping hardware mass multiplier |
 | space_cost_completion.wacc | 0.1483 | ASSUMPTION | Space-project financing bound, separated from Earth WACC |
-| starmind.compute_payload_kw_average | 120 | company_statement | AI1 disclosed average compute payload, kW. USED with solar_array_kw to set the scenario's 1.25 array-power/average-compute ratio; official Starmind page, accessed 2026-07-27 |
-| starmind.compute_payload_kw_peak | 150 | company_statement | AI1 disclosed compute payload peak, kW. CONTEXT: not used as delivered-average model denominator; official Starmind page, accessed 2026-07-27 |
-| starmind.deployed_height_m | 20 | company_statement | AI1 disclosed deployed height, m. CONTEXT ONLY; official Starmind page, accessed 2026-07-27 |
-| starmind.radiator_area_m2 | 110 | company_statement | AI1 disclosed deployable liquid-radiator area, m^2. CONTEXT ONLY: no radiator areal mass or cost is disclosed, so the scenario retains the generic radiator cost and uses the aggregate vehicle mass constraint; official Starmind page, accessed 2026-07-27 |
-| starmind.solar_array_kw | 150 | company_statement | AI1 disclosed solar-array rating, kW. USED with average compute payload to set the 1.25 design power ratio; official Starmind page, accessed 2026-07-27 |
-| starmind.solar_power_density_w_per_m2 | 250 | company_statement | AI1 disclosed solar power density, W/m^2. CONTEXT ONLY: the cost model prices PV per kW and the aggregate vehicle mass constraint already captures array mass; official Starmind page, accessed 2026-07-27 |
-| starmind.vehicle_efficiency_kw_per_tonne | 70 | company_statement | AI1 disclosed vehicle efficiency, kW/tonne. The page does not state whether kW means peak or average; official Starmind page, accessed 2026-07-27 |
-| starmind.vehicle_mass_kg_per_average_kw | 15.97 | ASSUMPTION | DERIVED interpretation range from the disclosed 70 kW/tonne and 120 average / 150 peak kW: low assumes the efficiency numerator is average power (1000/70); high assumes it is peak power and converts total vehicle mass to an average-kW denominator ((150/70 t)/120 kW). USED as aggregate launched vehicle mass; the generic component budget supplies only the lifecycle split |
-| starmind.wingspan_m | 70 | company_statement | AI1 disclosed wingspan, m. CONTEXT ONLY; official Starmind page, accessed 2026-07-27 |
+| starmind.compute_payload_kw_average | 120 | company_statement | Used as the delivered-load denominator and with solar-array power to set the 1.25 design power ratio. Source S38; accessed 2026-07-27; AI1 technical specifications: compute payload. |
+| starmind.compute_payload_kw_peak | 150 | company_statement | Context only; peak power is not the delivered-average model denominator. Source S38; accessed 2026-07-27; AI1 technical specifications: compute payload. |
+| starmind.deployed_height_m | 20 | company_statement | Geometry marker only; it does not determine a complete collision cross-section or topology. Source S38; accessed 2026-07-27; AI1 technical specifications: deployed envelope. |
+| starmind.radiator_area_m2 | 110 | company_statement | No radiator areal mass, thermal duty, temperature, or cost is disclosed. Source S38; accessed 2026-07-27; AI1 technical specifications: radiator. |
+| starmind.solar_array_kw | 150 | company_statement | Nameplate solar power is not delivered IT load. Source S38; accessed 2026-07-27; AI1 technical specifications: solar array. |
+| starmind.solar_power_density_w_per_m2 | 250 | company_statement | Context only; the aggregate mass constraint already captures array mass. Source S38; accessed 2026-07-27; AI1 technical specifications: solar power density. |
+| starmind.vehicle_efficiency_kw_per_tonne | 70 | company_statement | The source does not say whether kW is peak or average; the derived mass range preserves both interpretations. Source S38; accessed 2026-07-27; AI1 technical specifications: vehicle efficiency. |
+| starmind.vehicle_mass_kg_per_average_kw | 15.97 | ASSUMPTION | Interpretation range, not a direct company value; generic component weights supply only the lifecycle split. Source S38; derived 2026-07-27; 1000/70 and (150/70 tonnes)/120 kW. |
+| starmind.wingspan_m | 70 | company_statement | Geometry marker only; attitude, spacing, shell, maneuver, and failure behavior remain undisclosed. Source S38; accessed 2026-07-27; AI1 technical specifications: deployed envelope. |
 | workloads.inference_latency_availability_fraction | 0.8283 | ASSUMPTION | Share of nominal inference throughput delivered inside the declared latency and availability envelope |
 | workloads.inference_requests_per_kwh | 632.5 | ASSUMPTION | Defined-workload inference throughput boundary; requires declared model, latency, accuracy, batch, memory, and precision |
 | workloads.training_network_efficiency_earth | 0.8155 | ASSUMPTION | Useful frontier-training work after terrestrial interconnect and synchronization overhead |

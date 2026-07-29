@@ -1,0 +1,47 @@
+{
+  "config": {
+    "default": true,
+    "MD013": false,
+    "MD025": false,
+    "MD024": {
+      "siblings_only": true
+    },
+    "MD034": false,
+    "MD036": false,
+    "MD033": {
+      "allowed_elements": [
+        "a",
+        "br",
+        "details",
+        "div",
+        "figcaption",
+        "figure",
+        "img",
+        "kbd",
+        "section",
+        "span",
+        "summary",
+        "table",
+        "tbody",
+        "td",
+        "th",
+        "thead",
+        "tr"
+      ]
+    },
+    "MD041": false,
+    "MD060": false
+  },
+  "globs": [
+    "*.md",
+    "docs/**/*.md",
+    "site/**/*.md",
+    "!docs/Recursive_Industrial_Intelligence_r4.0.md",
+    "!docs/transcripts/**",
+    "!outputs/**",
+    "!papers/**",
+    "!tmp/**",
+    "!TODO.md",
+    "!TODO2.md"
+  ]
+}

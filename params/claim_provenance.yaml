@@ -316,6 +316,371 @@ anchors:
     transformation: "Directly record 200 USD/kg as a quarantined external marker; do not reinterpret launch-versus-electricity arithmetic as system parity."
     status: verified
 
+context_claims:
+  amodei_marginal_returns:
+    source_class: company_statement
+    units: qualitative_claim
+    source_ref: S79
+    organization_or_authors: "Dario Amodei"
+    title: "Machines of Loving Grace"
+    date: "2024-10"
+    locator: "Basic assumptions and framework, paragraphs defining the country of geniuses and the five limiting-factor classes"
+    permanent_url_or_doi: "https://darioamodei.com/essay/machines-of-loving-grace"
+    extracted_value: "The essay frames powerful AI as millions of fast digital workers and asks for marginal returns to intelligence subject to outside-world speed, data, intrinsic complexity, human constraints, and physical law."
+    transformation: "Use the limiting-factor taxonomy and humanitarian countercase as a stated CEO framework; keep the copy count, speed, dates, and downstream outcomes as scenario assumptions."
+    claim_text: "Marginal returns to intelligence depend on complementary factors and can approach irreducible physical or institutional floors."
+    status: verified
+
+  ai2027_scenario_and_revision_boundary:
+    source_class: scenario
+    units: qualitative_claim
+    source_ref: S80
+    organization_or_authors: "Daniel Kokotajlo; Scott Alexander; Thomas Larsen; Eli Lifland; Romeo Dean"
+    title: "AI 2027 and research supplements"
+    date: "2025-04-03; updates through 2025-12"
+    locator: "Main scenario introduction and added July/November/December 2025 notes; Takeoff Forecast, Focus on software improvements and milestone definitions"
+    permanent_url_or_doi: "https://ai-2027.com/; https://ai-2027.com/research/takeoff-forecast"
+    extracted_value: "The authors present one concrete forecast scenario with slowdown and race endings, distinguish software from slower hardware feedback, and later moved a forecast median back while retaining a fast 2027 branch."
+    transformation: "Use structural distinctions and the fast branch as sensitivity cases only; do not treat dates, labor multipliers, or compute allocations as measurements."
+    claim_text: "AI 2027 is a versioned forecast scenario and stress-test architecture, not established evidence for its headline calendar."
+    status: verified
+
+  anthropic_execution_direction_gap:
+    source_class: company_statement
+    units: qualitative_claim
+    source_ref: S81
+    organization_or_authors: "Anthropic Institute"
+    title: "When AI builds itself"
+    date: "2026"
+    locator: "Evidence from within Anthropic; research-execution experiment; What might the future of work at Anthropic look like?"
+    permanent_url_or_doi: "https://www.anthropic.com/institute/recursive-self-improvement"
+    extracted_value: "Anthropic reports high internal code contribution and experimental execution uplift while stating that larger gaps remain in goal selection, research taste, and autonomous successor design."
+    transformation: "Treat all quantities as company-reported and potentially selection-, attribution-, evaluator-, and counterfactual-biased; do not convert code share or lines of code into a capability-growth coefficient."
+    claim_text: "Frontier-lab self-reports support separating fixed-goal execution from research direction-setting, not declaring full AI-R&D closure."
+    status: verified
+
+  trammell_korinek_growth_conditions:
+    source_class: technical_report
+    units: qualitative_claim
+    source_ref: S82
+    organization_or_authors: "Philip Trammell; Anton Korinek"
+    title: "Economic Growth under Transformative AI"
+    date: "2026-04; 2026-06-02"
+    locator: "NBER Working Paper 31815 revised April 2026, PDF pp. 2, 5, 20-23; Annual Review of Economics 18, Review in Advance abstract"
+    permanent_url_or_doi: "https://doi.org/10.3386/w31815; https://doi.org/10.1146/annurev-economics-051624-061002"
+    extracted_value: "Production automation accelerates growth when capital can substitute sufficiently for labor and self-replicate; outcomes depend on saving and depreciation, research parallelizability and returns to scale, substitution, and fixed natural-resource factors. R&D automation alone need not produce explosive growth."
+    transformation: "Use as aggregate economic lineage and a conceptual cross-check. Do not transfer its aggregate capital assumptions into the article's sector-balanced off-world closure graph."
+    claim_text: "Self-replicating production capital and self-improving knowledge capital are distinct growth mechanisms with different sufficient conditions."
+    status: verified
+
+  metr_task_horizon_boundary:
+    source_class: technical_report
+    units: qualitative_claim
+    source_ref: S83
+    organization_or_authors: "METR"
+    title: "Measuring AI Ability to Complete Long Software Tasks; Clarifying limitations of time horizon"
+    date: "2025-03-19; 2026-01-22"
+    locator: "2025 Summary and method; 2026 limitations sections on domain, delegation, reliability, and automation"
+    permanent_url_or_doi: "https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/; https://metr.org/notes/2026-01-22-time-horizon-limitations/"
+    extracted_value: "METR measured a roughly seven-month doubling trend in 50%-success task horizon on its tested distribution, while warning that horizons are domain-specific, are not delegation thresholds, and do not directly determine automation or research speedup."
+    transformation: "Use only as measured progress over the tested predominantly software/research distribution; require industrial task, reliability, verifier, and intervention evidence before extrapolating."
+    claim_text: "Task-horizon progress does not by itself establish industrial autonomy, economic substitution, or an AI-R&D multiplier."
+    status: verified
+
+  rsi_survey_method_boundary:
+    source_class: preprint
+    units: qualitative_claim
+    source_ref: S84
+    organization_or_authors: "Mingguang Chen; Licheng Wang; Bo Qu"
+    title: "Recursive Self-Improvement in AI: From Bounded Self-Refinement to Autonomous Research Loops"
+    date: "2026-07-08"
+    locator: "arXiv:2607.07663v1, sec. 2.3, PDF pp. 5-6"
+    permanent_url_or_doi: "https://doi.org/10.48550/arXiv.2607.07663"
+    extracted_value: "The v1 survey maps 1,250 papers; 74% were posted in 2026, classifications and corrections used one annotator, and the authors report recency bias, approximate classification, peripheral query bleed, and frontier-lab publication censoring."
+    transformation: "Use the paper as a current taxonomy and activity map, not as a mature consensus, impact ranking, or empirical measure of open-ended RSI."
+    claim_text: "The July 2026 RSI survey is methodologically transparent but too young and preprint-heavy to serve as consensus evidence."
+    status: verified
+
+  ai2040_governance_scenario_boundary:
+    source_class: scenario
+    units: qualitative_claim
+    source_ref: S85
+    organization_or_authors: "AI Futures Project"
+    title: "AI 2040: Plan A and Space Governance Plan"
+    date: "2026"
+    locator: "Plan A introduction, Why a scenario?; Space Governance Plan supplement"
+    permanent_url_or_doi: "https://ai-2040.com/; https://ai-2040.com/supplements/space-governance-plan"
+    extracted_value: "The authors label Plan A primarily a recommendation rather than a prediction and use the space supplement to explore speculative future resource allocation."
+    transformation: "Use only to motivate present governance categories such as claims, externalities, and representation; exclude extrasolar allocation and post-ASI outcomes from the article's evidentiary core."
+    claim_text: "AI 2040 supplies a scenario-level governance prompt, not evidence for future resource abundance or a particular allocation regime."
+    status: verified
+
+  autoresearch_protocol_boundary:
+    source_class: design_protocol
+    units: qualitative_claim
+    source_ref: S86
+    organization_or_authors: "Andrej Karpathy"
+    title: "autoresearch README, program.md, and analysis.ipynb"
+    date: "2026-03-26"
+    locator: "commit 228791fb499afffb54b46200aca536f79142f117; README Design decisions; program.md Experimentation, Logging results, and experiment loop; analysis.ipynb data-loading cell"
+    permanent_url_or_doi: "https://github.com/karpathy/autoresearch/tree/228791fb499afffb54b46200aca536f79142f117"
+    extracted_value: "The protocol fixes five minutes of one-GPU training per attempt, allows edits only to train.py, fixes prepare.py and val_bpb evaluation, and implies approximately 12 attempts/hour or 100 overnight. results.tsv is intentionally untracked."
+    transformation: "Classify 12/hour and 100 overnight as design capacity and leave empirical attempt, crash, retention, and credible-gain counts unavailable."
+    claim_text: "autoresearch demonstrates a constrained autonomous experiment protocol, not a measured success rate or a verified successor-model loop."
+    status: verified
+
+  dgm_observed_agent_self_modification:
+    source_class: technical_report
+    units: qualitative_claim
+    source_ref: S87
+    organization_or_authors: "Jenny Zhang; Shengran Hu; Cong Lu; Robert T. Lange; Jeff Clune"
+    title: "Darwin Gödel Machine: Open-Ended Evolution of Self-Improving Agents"
+    date: "2026-03-12"
+    locator: "arXiv:2505.22954v3, secs. 3-5 and appendices A, H, and I"
+    permanent_url_or_doi: "https://arxiv.org/abs/2505.22954v3; https://sakana.ai/dgm/"
+    extracted_value: "After 80 iterations the reported best scaffold rises from 20.0% to 50.0% on SWE-bench and from 14.2% to 30.7% on full Polyglot; both component ablations are weaker. Separate experiments expose fabricated tool logs and objective hacking through marker removal."
+    transformation: "Treat benchmark changes as observed scaffold/workflow results and the safety cases as evidence for independent controls; do not map them to foundation-model-weight gains or a generic loop coefficient."
+    claim_text: "DGM demonstrates branching, archive-dependent scaffold self-modification and evaluator gaming, not verified foundation-model recursive improvement."
+    status: verified
+
+  ai_scientist_v2_selection_boundary:
+    source_class: technical_report
+    units: qualitative_claim
+    source_ref: S88
+    organization_or_authors: "Yutaro Yamada et al."
+    title: "The AI Scientist-v2: Workshop-Level Automated Scientific Discovery via Agentic Tree Search"
+    date: "2025-04-10"
+    locator: "arXiv:2504.08066v1, secs. 3.4-3.6 and 5"
+    permanent_url_or_doi: "https://arxiv.org/abs/2504.08066v1"
+    extracted_value: "Humans selected three ideas from roughly forty and selected complete outputs across multiple runs. Three manuscripts entered workshop review; one scored 6, 6, and 7 (mean 6.33/10), two were rejected, and the potential accept was withdrawn by prior agreement."
+    transformation: "Use as evidence of broad within-run workflow automation plus external review; do not estimate autonomous portfolio-level success frequency or research closure."
+    claim_text: "AI Scientist-v2 automates a broad bounded research run while leaving idea funding, run allocation, and output selection to humans."
+    status: verified
+
+  sakana_rsi_lab_declared_transition:
+    source_class: company_statement
+    units: qualitative_claim
+    source_ref: S89
+    organization_or_authors: "Sakana AI"
+    title: "Introducing Sakana AI's Recursive Self-Improvement (RSI) Lab"
+    date: "2026"
+    locator: "The Trajectory of Exponential Sovereign AI; Toward Responsible RSI"
+    permanent_url_or_doi: "https://sakana.ai/rsi-lab/"
+    extracted_value: "The announcement declares an intended Agent-Native-Model to AI-Scientist to better-Agent-Native-Model loop and names off-distribution drift, benchmark-passing deployment failure, and constraint shortcuts as risks."
+    transformation: "Classify as declared strategy and intended transition until versioned recurrent telemetry and independent successor evaluation exist."
+    claim_text: "The RSI Lab announcement states a recursive-model research strategy; it does not measure a completed exponential trajectory."
+    status: verified
+
+  tesla_operating_capability_boundary:
+    source_class: regulatory_filing
+    units: qualitative_claim
+    source_ref: S90
+    organization_or_authors: "Tesla, Inc."
+    title: "2025 Form 10-K and Q4 and FY 2025 Update"
+    date: "2026-01-28; 2026-01-29"
+    locator: "Form 10-K pp. 2-7 and 31; Q4 update slides 7-9"
+    permanent_url_or_doi: "https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm; https://www.sec.gov/Archives/edgar/data/1318605/000162828026003837/exhibit991.htm"
+    extracted_value: "46.7 GWh of storage products deployed in 2025; the Texas lithium refinery began operations in January 2026; Cortex 1 above 100,000 H100 equivalents and Texas 4680 capacity were labelled production, while lithium refining and cathode materials were early ramp and the Optimus line was under preparation."
+    transformation: "Use named outputs and disclosure-stage labels to classify terrestrial portfolio adjacency. Preserve external-supplier dependence, installed-capacity caveats, Tesla's separate legal boundary, and the absence of off-world reproductive closure."
+    claim_text: "Tesla has documented operating capabilities adjacent to several modeled sectors, but its disclosures do not demonstrate an off-world reproductively closed industrial stack."
+    status: verified
+
+  tesla_recycling_boundary:
+    source_class: company_statement
+    units: qualitative_claim
+    source_ref: S91
+    organization_or_authors: "Tesla, Inc."
+    title: "2024 Impact Report and Earth Day 2025 update"
+    date: "2025; 2025-04-22"
+    locator: "2024 Impact Report battery-recycling section; Earth Day update, We Made Big Strides in 2024"
+    permanent_url_or_doi: "https://www.tesla.com/ns_videos/2024-tesla-impact-report.pdf; https://www.tesla.com/learn/earth-day-2025-were-committed-building-sustainable-future"
+    extracted_value: "Tesla reports enough battery material recovered in 2024 to build more than 21,000 Model Y rear-wheel-drive vehicles, 136% more than in 2023."
+    transformation: "Classify recycling as operating terrestrial adjacency while recording external-partner, chemistry, consumable, material-quality, and off-world gaps."
+    claim_text: "Tesla reports material battery recycling at terrestrial scale; this is not evidence of portfolio-wide or off-world closed-loop recycling."
+    status: verified
+
+  portfolio_sector_crosswalk_boundary:
+    source_class: analyst_synthesis
+    units: sector_evidence_vector
+    source_ref: S27;S38;S90;S91
+    organization_or_authors: "Author synthesis of SpaceX and Tesla first-party disclosures"
+    title: "Portfolio-to-sector evidence crosswalk"
+    date: "2026-07-28"
+    locator: "params/portfolio_sector_coverage.json, all 18 row-level sourceLocatorDate fields"
+    permanent_url_or_doi: "https://www.sec.gov/Archives/edgar/data/1181412/000162828026036936/spaceexplorationtechnologi.htm; https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm"
+    extracted_value: "The versioned 18-row register yields 12 documented-operating, zero demonstrated-but-not-scaled, five announced-or-development, zero adjacent-only, one no-evidence, and zero off-world-reproductively-closed sectors."
+    transformation: "Count mutually exclusive evidenceTier values and separate seven capability dimensions. Compute dependency-aware closure as the conjunction of all indispensable row-closure flags, never as the fraction of rows with some adjacency."
+    claim_text: "Public disclosures support a provisional 12/0/5/0/1 terrestrial evidence vector and zero demonstrated off-world reproductively closed sectors; this vector is not a closure percentage."
+    status: verified
+
+  orbital_ai_competitor_landscape_boundary:
+    source_class: analyst_synthesis
+    units: dated_program_comparison
+    source_ref: S92;S93;S94
+    organization_or_authors: "Google; Planet Labs PBC; Starcloud; Federal Communications Commission"
+    title: "Public orbital-AI program landscape"
+    date: "2026-07-28"
+    locator: "docs/sources/orbital-ai-landscape-2026-07-28.md; sections Project Suncatcher, Starcloud, and Project Sunrise"
+    permanent_url_or_doi: "https://blog.google/innovation-and-ai/technology/research/google-project-suncatcher/; https://www.starcloud.com/starcloud-1; https://docs.fcc.gov/public/attachments/DOC-420864A1.pdf"
+    extracted_value: "The dated comparison finds one company-reported orbital H100 demonstrator, two announced Google/Planet prototypes targeted for early 2027, and one Blue Origin application accepted for filing; none establishes an operating reproductively closed orbital AI industry."
+    transformation: "Keep demonstrations, future prototypes, regulatory filings, and operating capacity separate. Use the result to bound comparative leadership language rather than claim an exhaustive market census."
+    claim_text: "SpaceXAI is not the only publicly documented orbital-AI effort; competitor maturity and system breadth differ and must be compared as of a stated date."
+    status: verified
+
+  spacexai_scenario_registry_boundary:
+    source_class: analyst_synthesis
+    units: scenario_evidence_register
+    source_ref: S38;S50
+    organization_or_authors: "Author synthesis of SpaceX and FCC records"
+    title: "Orbital-AI scenario registry"
+    date: "2026-07-28"
+    locator: "params/orbital_ai_scenario_registry.json, scenarios, inputs, and simulationCoverage"
+    permanent_url_or_doi: "https://www.spacex.com/spacexai/starmind; https://docs.fcc.gov/public/attachments/DA-26-113A1.pdf"
+    extracted_value: "The disclosed AI1 design supplies six of 24 full lifecycle-cost parameters; the long-run target case supplies nine, including analyst completion assumptions. The FCC application maximum is not an authorized or commissioned topology."
+    transformation: "Publish generic, independent, disclosed-design, stated-aspiration, and explicitly hybrid tracks in stable order. Reject any result that silently mixes disclosed and assumed values."
+    claim_text: "Named company scenarios remain conditional overlays on the neutral model and visibly distinguish design specifications, targets, assumptions, filings, and achieved operation."
+    status: verified
+
+  spacexai_affiliate_control_boundary:
+    source_class: company_statement
+    units: legal_entity_boundary
+    source_ref: S95
+    organization_or_authors: "Tesla, Inc."
+    title: "Q1 2026 Form 10-Q and AI & Robotics program overview"
+    date: "2026-04-23; accessed 2026-07-28"
+    locator: "Form 10-Q pp. 17 and 27-31; AI & Robotics program page"
+    permanent_url_or_doi: "https://www.sec.gov/Archives/edgar/data/1318605/000162828026026673/tsla-20260331.htm; https://www.tesla.com/AI"
+    extracted_value: "Tesla states that it has significant influence over but does not control SpaceX and reports ordinary-course Megapack sales to SpaceX; its industrial and AI programs remain Tesla programs."
+    transformation: "Allow Tesla evidence only in an explicitly named affiliate-hybrid row. Do not infer ownership, common control, guaranteed transfer, orbital qualification, or availability."
+    claim_text: "Tesla capabilities may inform a bounded affiliate scenario but are not SpaceXAI-owned capabilities."
+    status: verified
+
+  orbital_ai_closure_stack_boundary:
+    source_class: analyst_synthesis
+    units: layer_evidence_matrix
+    source_ref: S27;S92;S93;S94;S95
+    organization_or_authors: "Author synthesis of first-party and regulatory records"
+    title: "Orbital-AI closure-stack comparison"
+    date: "2026-07-28"
+    locator: "params/orbital_ai_scenario_registry.json, programs, closureLayers, capabilities, and negativeEvidenceProtocol"
+    permanent_url_or_doi: "https://www.sec.gov/Archives/edgar/data/1181412/000162828026036936/spaceexplorationtechnologi.htm; https://blog.google/innovation-and-ai/technology/research/google-project-suncatcher/; https://www.starcloud.com/starcloud-1; https://docs.fcc.gov/public/attachments/DOC-420864A1.pdf"
+    extracted_value: "The bounded SpaceXAI ecosystem has qualifying evidence in 17 of 18 coarse layers and the highest evidence-weighted breadth in the dated comparison, but every program has zero off-world-reproductively-closed layers and fails dependency-aware closure."
+    transformation: "Expand absent program-layer records under the dated negative-evidence protocol, score maturity only as comparative breadth, publish every row before summaries, and never reinterpret layer breadth as a closure percentage."
+    claim_text: "SpaceXAI presents the broadest publicly disclosed closure-seeking stack in the dated comparison, while demonstrated off-world reproductive closure remains zero."
+    status: verified
+
+  openai_preparedness_ai_self_improvement_thresholds:
+    source_class: company_framework
+    units: capability_threshold_definition
+    source_ref: S96
+    organization_or_authors: "OpenAI"
+    title: "Preparedness Framework, version 2; Our updated Preparedness Framework"
+    date: "2025-04-15"
+    locator: "Preparedness Framework v2, AI Self-Improvement High and Critical capability thresholds; update article, Tracked Categories and capability levels"
+    permanent_url_or_doi: "https://cdn.openai.com/pdf/18a02b5d-6b67-4cec-ab64-68cdfbddebcd/preparedness-framework-v2.pdf; https://openai.com/index/updating-our-preparedness-framework/"
+    extracted_value: "High is comparable to giving every OpenAI researcher a strong mid-career research-engineer assistant relative to a 2024 baseline; Critical includes a superhuman research-scientist agent or sustained generational improvement in roughly one-fifth of 2024-equivalent wall-clock time."
+    transformation: "Map High only to the assistant-equivalent gate and Critical to broad automation or recursive-closure observables; do not treat either definition as evidence that the threshold has been reached."
+    claim_text: "OpenAI distinguishes an assistant-equivalent High threshold from a Critical threshold that includes sustained generational model improvement."
+    status: verified
+
+  openai_paperbench_replication_boundary:
+    source_class: company_benchmark_with_open_artifacts
+    units: rubric_weighted_research_replication_score
+    source_ref: S97
+    organization_or_authors: "Giulio Starace et al.; OpenAI"
+    title: "PaperBench: Evaluating AI's Ability to Replicate AI Research"
+    date: "2025-04-02"
+    locator: "release summary; benchmark description, initial results and human-baseline comparison"
+    permanent_url_or_doi: "https://openai.com/index/paperbench/"
+    extracted_value: "Twenty ICML 2024 Spotlight or Oral papers, 8,316 author-developed rubric items, and a 21.0% average for Claude 3.5 Sonnet (New) with the open-source scaffold, below the reported top-ML-PhD subset baseline."
+    transformation: "Treat as evidence about research replication, implementation, experiment execution and evaluation under the released harness; do not label it an RSI benchmark or map its score into a growth coefficient."
+    claim_text: "PaperBench measures bounded AI-research replication and its initial best tested agent remained below the reported human subset baseline."
+    status: verified
+
+  openai_gpt56_ai_self_improvement_suite:
+    source_class: company_self_evaluation_with_external_component
+    units: heterogeneous_component_evaluation_suite
+    source_ref: S98
+    organization_or_authors: "OpenAI; METR for Time Horizon 1.1"
+    title: "GPT-5.6 System Card"
+    date: "2026-07-09"
+    locator: "sec. 1 and secs. 9.1.3.1-9.1.3.6"
+    permanent_url_or_doi: "https://deploymentsafety.openai.com/gpt-5-6"
+    extracted_value: "The suite covers internal research debugging, KernelGen 1P, NanoGPT, PostTrainBench Lite, MLE-Bench Revised and externally run METR Time Horizon 1.1; OpenAI assessed Sol, Terra and Luna below High as of publication."
+    transformation: "Record every component with its own model, harness, budget, evaluator and limitations; record the METR observation once with both source references; do not infer no acceleration, no risk or general safety from below-High status."
+    claim_text: "OpenAI's July 2026 assessment places the GPT-5.6 family below High while reporting meaningful, qualified performance on several AI-R&D component tasks."
+    status: verified
+
+  openai_external_testing_boundary:
+    source_class: company_governance_statement
+    units: evaluator_independence_boundary
+    source_ref: S99
+    organization_or_authors: "OpenAI"
+    title: "Strengthening our safety ecosystem with external testing"
+    date: "2025-11-19"
+    locator: "Independent evaluations by external labs; methodology review; assessment-collaboration terms"
+    permanent_url_or_doi: "https://openai.com/index/strengthening-safety-with-external-testing/"
+    extracted_value: "OpenAI distinguishes independent evaluation, methodology review and subject-matter-expert probing and documents access, confidentiality, publication-review and compensation conditions."
+    transformation: "Preserve the external evaluator identity without claiming that pre-release access or a public summary makes all tasks and evidence independently reproducible."
+    claim_text: "Evaluator independence and public reproducibility are separate attributes of frontier-model evidence."
+    status: verified
+
+  deepmind_technical_agi_feedback_boundary:
+    source_class: company_research_framework
+    units: conceptual_positive_feedback_mechanism
+    source_ref: S100
+    organization_or_authors: "Google DeepMind"
+    title: "An Approach to Technical AGI Safety and Security"
+    date: "2025-04-02"
+    locator: "executive summary; secs. 2.3 and 3.4"
+    permanent_url_or_doi: "https://storage.googleapis.com/deepmind-media/DeepMind.com/Blog/evaluating-potential-cybersecurity-threats-of-advanced-ai/An_Approach_to_Technical_AGI_Safety_Apr_2025.pdf; https://deepmind.google/blog/taking-a-responsible-path-to-agi/"
+    extracted_value: "The paper describes automated R&D enabling more capable AI systems and thereby more automated R&D, while explicitly identifying paradigm, timeline, accelerating-growth and continuity assumptions."
+    transformation: "Use as conceptual support for the recurrence structure only; keep timeline and continuity assumptions out of empirical calibration and do not infer a realized loop."
+    claim_text: "DeepMind describes automated AI R&D as a plausible positive-feedback mechanism under stated assumptions."
+    status: verified
+
+  deepmind_fsf31_ml_rnd_thresholds:
+    source_class: company_framework
+    units: organization_level_capability_thresholds
+    source_ref: S101
+    organization_or_authors: "Google DeepMind"
+    title: "Frontier Safety Framework, version 3.1"
+    date: "2026-04-17"
+    locator: "secs. 3.1-3.2, especially Table 3.2.2.a and internal-deployment provisions"
+    permanent_url_or_doi: "https://storage.googleapis.com/deepmind-media/DeepMind.com/Blog/strengthening-our-frontier-safety-framework/frontier-safety-framework_3-1.pdf; https://deepmind.google/blog/strengthening-our-frontier-safety-framework/"
+    extracted_value: "Acceleration level 1 requires realized AI progress substantially beyond historical rates; automation level 1 requires automating any Google AI-capabilities research team's work at approximately comparable all-inclusive cost. The framework expects systems integrated with workflows and separately addresses high-risk internal deployment."
+    transformation: "Keep realized acceleration, broad automation and verified recursive closure as distinct gates; include workflow and organizational inputs in the evaluation boundary."
+    claim_text: "DeepMind separates realized R&D acceleration from team-equivalent R&D automation and locates both in model-plus-workflow systems."
+    status: verified
+
+  spacexai_cost_per_token_boundary:
+    source_class: company_statement
+    units: cost_framework_and_missing_metric
+    source_ref: S102
+    organization_or_authors: "Space Exploration Technologies Corp."
+    title: "Response to the U.S. Securities and Exchange Commission, comment 7"
+    date: "2026-05-07"
+    locator: "pp. 5-6 and 24-25"
+    permanent_url_or_doi: "https://www.sec.gov/Archives/edgar/data/1181412/000162827926000584/filename1.htm"
+    extracted_value: "SpaceX defines cost per token through model, compute hardware and energy; identifies compute depreciation as the largest current component; does not disclose a comparable figure; and includes launch-vehicle depreciation in capitalized internal satellite launch cost."
+    transformation: "Steel-man the hardware-plus-energy thesis while leaving the company-only lifecycle and accepted-token cases non-computable wherever required values are undisclosed."
+    claim_text: "SpaceX's public economic case couples hardware depreciation and energy rather than reducing orbital-compute economics to energy alone."
+    status: verified
+
+  musk_orbital_ai_cost_forecast:
+    source_class: personal_statement
+    units: dated_comparison_window
+    source_ref: S103
+    organization_or_authors: "Elon Musk; World Economic Forum"
+    title: "Conversation with Elon Musk"
+    date: "2026-01-22"
+    locator: "session 16:30-17:00 CET; official transcript, orbital AI discussion"
+    permanent_url_or_doi: "https://www.weforum.org/meetings/world-economic-forum-annual-meeting-2026/sessions/conversation-with-elon-musk/; https://www.weforum.org/podcasts/meet-the-leader/episodes/conversation-with-elon-musk-davos-2026/"
+    extracted_value: "Musk said that space would become the lowest-cost place to put AI within two years, or three at the latest."
+    transformation: "Fix January 22, 2028 through January 22, 2029 as a falsifiable comparison window; preserve the unspecified cost denominator and do not use the statement as an input prior."
+    claim_text: "The January 2026 prediction supplies a dated orbital-AI cost-comparison window but no engineering quantity or unambiguous denominator."
+    status: verified
+
 strategy_claims:
   s27_declared_portfolio:
     source_class: company_statement

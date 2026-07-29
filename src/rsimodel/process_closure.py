@@ -1,24 +1,36 @@
 """Validation and public gap register for process-feasible closure."""
+
 from __future__ import annotations
 
 import csv
 import io
+from collections.abc import Mapping, MutableMapping
 from pathlib import Path
-from typing import Any
-
-import yaml
+from typing import Protocol, TypedDict
 
 from rsimodel.evidence import (
     SHA256_PLACEHOLDER,
     artifact_files_template,
     binary_results_template,
+    binary_statuses,
     require_fields,
     require_list,
     require_mapping,
     require_sha256,
+    require_string,
     required_field_template,
     validate_binary_results,
     verify_artifact_files,
+)
+from rsimodel.yaml_adapter import (
+    load_yaml_mapping,
+    require_string_sequence,
+)
+from rsimodel.yaml_adapter import (
+    require_mapping as require_yaml_mapping,
+)
+from rsimodel.yaml_adapter import (
+    require_string as require_yaml_string,
 )
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -26,17 +38,193 @@ CONTRACT_PATH = ROOT / "params" / "process_closure_requirements.yaml"
 INTEGRATED_PATH = ROOT / "params" / "integrated_model.yaml"
 
 
+class GraphNodeTypeSettings(TypedDict):
+    required_fields: tuple[str, ...]
+
+
+class GraphSchemaSettings(TypedDict):
+    node_types: Mapping[str, GraphNodeTypeSettings]
+    edge_required_fields: tuple[str, ...]
+
+
+class NamedAcceptanceSettings(TypedDict):
+    acceptance: str
+
+
+class SourceAndFleetRequirements(TypedDict):
+    source_fields: tuple[str, ...]
+    fleet_fields: tuple[str, ...]
+
+
+class ClosureGateSettings(TypedDict):
+    test: str
+    evidence: tuple[str, ...]
+
+
+class ProcessClosureContract(TypedDict):
+    version: str
+    contract_id: str
+    status: str
+    source_class: str
+    epistemic_status: str
+    current_aggregate_categories: tuple[str, ...]
+    graph_schema: GraphSchemaSettings
+    required_material_grades: Mapping[str, NamedAcceptanceSettings]
+    required_process_stages: tuple[str, ...]
+    critical_part_families: Mapping[str, NamedAcceptanceSettings]
+    source_and_fleet_requirements: SourceAndFleetRequirements
+    acceptance_gates: Mapping[str, ClosureGateSettings]
+    evidence_record_required_fields: tuple[str, ...]
+    promotion_rule: str
+    execution_outputs_required: tuple[str, ...]
+
+
+class RecordParser[Record](Protocol):
+    def __call__(self, value: object, *, label: str) -> Record: ...
+
+
+def _named_records[Record](
+    value: object,
+    *,
+    label: str,
+    parser: RecordParser[Record],
+) -> dict[str, Record]:
+    source = require_yaml_mapping(value, label=label)
+    return {name: parser(record, label=f"{label}.{name}") for name, record in source.items()}
+
+
+def _graph_node_type(value: object, *, label: str) -> GraphNodeTypeSettings:
+    record = require_yaml_mapping(value, label=label)
+    return {
+        "required_fields": require_string_sequence(
+            record.get("required_fields"),
+            label=f"{label}.required_fields",
+        )
+    }
+
+
+def _graph_schema(value: object, *, label: str) -> GraphSchemaSettings:
+    record = require_yaml_mapping(value, label=label)
+    return {
+        "node_types": _named_records(
+            record.get("node_types"),
+            label=f"{label}.node_types",
+            parser=_graph_node_type,
+        ),
+        "edge_required_fields": require_string_sequence(
+            record.get("edge_required_fields"),
+            label=f"{label}.edge_required_fields",
+        ),
+    }
+
+
+def _named_acceptance(value: object, *, label: str) -> NamedAcceptanceSettings:
+    record = require_yaml_mapping(value, label=label)
+    return {
+        "acceptance": require_yaml_string(
+            record.get("acceptance"),
+            label=f"{label}.acceptance",
+        )
+    }
+
+
+def _source_and_fleet(value: object, *, label: str) -> SourceAndFleetRequirements:
+    record = require_yaml_mapping(value, label=label)
+    return {
+        "source_fields": require_string_sequence(
+            record.get("source_fields"),
+            label=f"{label}.source_fields",
+        ),
+        "fleet_fields": require_string_sequence(
+            record.get("fleet_fields"),
+            label=f"{label}.fleet_fields",
+        ),
+    }
+
+
+def _closure_gate(value: object, *, label: str) -> ClosureGateSettings:
+    record = require_yaml_mapping(value, label=label)
+    return {
+        "test": require_yaml_string(record.get("test"), label=f"{label}.test"),
+        "evidence": require_string_sequence(
+            record.get("evidence"),
+            label=f"{label}.evidence",
+        ),
+    }
+
+
 def load_process_closure_contract(
     path: Path | None = None,
-) -> dict[str, Any]:
-    return yaml.safe_load((path or CONTRACT_PATH).read_text(encoding="utf-8"))
+) -> ProcessClosureContract:
+    """Load and structurally validate the process-closure acceptance contract."""
+    raw = load_yaml_mapping(path or CONTRACT_PATH)
+    return {
+        "version": require_yaml_string(raw.get("version"), label="process_closure.version"),
+        "contract_id": require_yaml_string(
+            raw.get("contract_id"),
+            label="process_closure.contract_id",
+        ),
+        "status": require_yaml_string(raw.get("status"), label="process_closure.status"),
+        "source_class": require_yaml_string(
+            raw.get("source_class"),
+            label="process_closure.source_class",
+        ),
+        "epistemic_status": require_yaml_string(
+            raw.get("epistemic_status"),
+            label="process_closure.epistemic_status",
+        ),
+        "current_aggregate_categories": require_string_sequence(
+            raw.get("current_aggregate_categories"),
+            label="process_closure.current_aggregate_categories",
+        ),
+        "graph_schema": _graph_schema(
+            raw.get("graph_schema"),
+            label="process_closure.graph_schema",
+        ),
+        "required_material_grades": _named_records(
+            raw.get("required_material_grades"),
+            label="process_closure.required_material_grades",
+            parser=_named_acceptance,
+        ),
+        "required_process_stages": require_string_sequence(
+            raw.get("required_process_stages"),
+            label="process_closure.required_process_stages",
+        ),
+        "critical_part_families": _named_records(
+            raw.get("critical_part_families"),
+            label="process_closure.critical_part_families",
+            parser=_named_acceptance,
+        ),
+        "source_and_fleet_requirements": _source_and_fleet(
+            raw.get("source_and_fleet_requirements"),
+            label="process_closure.source_and_fleet_requirements",
+        ),
+        "acceptance_gates": _named_records(
+            raw.get("acceptance_gates"),
+            label="process_closure.acceptance_gates",
+            parser=_closure_gate,
+        ),
+        "evidence_record_required_fields": require_string_sequence(
+            raw.get("evidence_record_required_fields"),
+            label="process_closure.evidence_record_required_fields",
+        ),
+        "promotion_rule": require_yaml_string(
+            raw.get("promotion_rule"),
+            label="process_closure.promotion_rule",
+        ),
+        "execution_outputs_required": require_string_sequence(
+            raw.get("execution_outputs_required"),
+            label="process_closure.execution_outputs_required",
+        ),
+    }
 
 
 def validate_process_closure_contract(
-    contract: dict[str, Any] | None = None,
+    contract: ProcessClosureContract | None = None,
 ) -> None:
     """Reject drift or a requirements file that implies unearned closure."""
-    contract = contract or load_process_closure_contract()
+    if contract is None:
+        contract = load_process_closure_contract()
     errors: list[str] = []
 
     if contract.get("status") != (
@@ -46,11 +234,15 @@ def validate_process_closure_contract(
     if contract.get("source_class") != "ASSUMPTION":
         errors.append("contract must remain ASSUMPTION-class")
 
-    integrated = yaml.safe_load(INTEGRATED_PATH.read_text(encoding="utf-8"))
-    if contract.get("current_aggregate_categories") != integrated.get("elements"):
+    integrated = load_yaml_mapping(INTEGRATED_PATH)
+    integrated_elements = require_string_sequence(
+        integrated.get("elements"),
+        label="integrated_model.elements",
+    )
+    if contract["current_aggregate_categories"] != integrated_elements:
         errors.append("current aggregate categories drift from integrated_model.yaml")
 
-    graph = contract.get("graph_schema", {})
+    graph = contract["graph_schema"]
     required_nodes = {
         "source_lot",
         "process_unit",
@@ -60,12 +252,12 @@ def validate_process_closure_contract(
         "transport_leg",
         "waste_or_recycle_stream",
     }
-    if set(graph.get("node_types", {})) != required_nodes:
+    if set(graph["node_types"]) != required_nodes:
         errors.append("graph node types are incomplete or unexpected")
-    for node_id, node in graph.get("node_types", {}).items():
-        if not node.get("required_fields"):
+    for node_id, node in graph["node_types"].items():
+        if not node["required_fields"]:
             errors.append(f"{node_id}: required_fields is empty")
-    if len(graph.get("edge_required_fields", [])) < 9:
+    if len(graph["edge_required_fields"]) < 9:
         errors.append("graph edge evidence contract is incomplete")
 
     required_grades = {
@@ -75,7 +267,7 @@ def validate_process_closure_contract(
         "semiconductor_grade",
         "ultra_pure_process_input",
     }
-    if not required_grades <= set(contract.get("required_material_grades", {})):
+    if not required_grades <= set(contract["required_material_grades"]):
         errors.append("minimum material-grade ladder is incomplete")
 
     required_parts = {
@@ -94,10 +286,10 @@ def validate_process_closure_contract(
         "controls_and_power_electronics",
         "parent_tools",
     }
-    if set(contract.get("critical_part_families", {})) != required_parts:
+    if set(contract["critical_part_families"]) != required_parts:
         errors.append("critical part-family register is incomplete")
 
-    gates = contract.get("acceptance_gates", {})
+    gates = contract["acceptance_gates"]
     if set(gates) != {
         "C01_species_mass_balance",
         "C02_energy_and_capacity",
@@ -116,61 +308,68 @@ def validate_process_closure_contract(
         if unknown:
             errors.append(f"{gate_id}: unknown evidence nodes {sorted(unknown)}")
 
-    source_fleet = contract.get("source_and_fleet_requirements", {})
-    if len(source_fleet.get("source_fields", [])) < 8:
+    source_fleet = contract["source_and_fleet_requirements"]
+    if len(source_fleet["source_fields"]) < 8:
         errors.append("source-state requirements are incomplete")
-    if len(source_fleet.get("fleet_fields", [])) < 8:
+    if len(source_fleet["fleet_fields"]) < 8:
         errors.append("fleet requirements are incomplete")
-    if len(contract.get("evidence_record_required_fields", [])) < 12:
+    if len(contract["evidence_record_required_fields"]) < 12:
         errors.append("evidence-record provenance is incomplete")
-    if not contract.get("promotion_rule"):
+    if not contract["promotion_rule"]:
         errors.append("promotion rule is missing")
 
     if errors:
-        raise ValueError(
-            "invalid process-closure contract:\n- " + "\n- ".join(errors)
-        )
+        raise ValueError("invalid process-closure contract:\n- " + "\n- ".join(errors))
 
 
 def render_process_closure_gap_csv(
-    contract: dict[str, Any] | None = None,
+    contract: ProcessClosureContract | None = None,
 ) -> str:
     """Render all requirements without implying the missing graph exists."""
-    contract = contract or load_process_closure_contract()
+    if contract is None:
+        contract = load_process_closure_contract()
     validate_process_closure_contract(contract)
     stream = io.StringIO(newline="")
     writer = csv.writer(stream, lineterminator="\n")
-    writer.writerow([
-        "record_type",
-        "id",
-        "requirement",
-        "required_evidence_or_fields",
-        "readiness",
-    ])
+    writer.writerow(
+        [
+            "record_type",
+            "id",
+            "requirement",
+            "required_evidence_or_fields",
+            "readiness",
+        ]
+    )
     for node_id, node in contract["graph_schema"]["node_types"].items():
-        writer.writerow([
-            "graph_node_type",
-            node_id,
-            "versioned node with complete typed fields",
-            "; ".join(node["required_fields"]),
-            "evidence_pending",
-        ])
+        writer.writerow(
+            [
+                "graph_node_type",
+                node_id,
+                "versioned node with complete typed fields",
+                "; ".join(node["required_fields"]),
+                "evidence_pending",
+            ]
+        )
     for grade_id, grade in contract["required_material_grades"].items():
-        writer.writerow([
-            "material_grade",
-            grade_id,
-            grade["acceptance"],
-            "assay; specification; uncertainty; upstream and downstream edges",
-            "evidence_pending",
-        ])
+        writer.writerow(
+            [
+                "material_grade",
+                grade_id,
+                grade["acceptance"],
+                "assay; specification; uncertainty; upstream and downstream edges",
+                "evidence_pending",
+            ]
+        )
     for family_id, family in contract["critical_part_families"].items():
-        writer.writerow([
-            "critical_part_family",
-            family_id,
-            family["acceptance"],
-            "BOM; process route; parent tools; calibration; life; substitutes",
-            "evidence_pending",
-        ])
+        writer.writerow(
+            [
+                "critical_part_family",
+                family_id,
+                family["acceptance"],
+                "BOM; process route; parent tools; calibration; life; substitutes",
+                "evidence_pending",
+            ]
+        )
     for register_id, fields in (
         (
             "source_register",
@@ -181,21 +380,25 @@ def render_process_closure_gap_csv(
             contract["source_and_fleet_requirements"]["fleet_fields"],
         ),
     ):
-        writer.writerow([
-            register_id,
-            register_id,
-            "at least one complete, versioned record linked from the graph",
-            "; ".join(fields),
-            "evidence_pending",
-        ])
+        writer.writerow(
+            [
+                register_id,
+                register_id,
+                "at least one complete, versioned record linked from the graph",
+                "; ".join(fields),
+                "evidence_pending",
+            ]
+        )
     for gate_id, gate in contract["acceptance_gates"].items():
-        writer.writerow([
-            "acceptance_gate",
-            gate_id,
-            gate["test"],
-            "; ".join(gate["evidence"]),
-            "evidence_pending",
-        ])
+        writer.writerow(
+            [
+                "acceptance_gate",
+                gate_id,
+                gate["test"],
+                "; ".join(gate["evidence"]),
+                "evidence_pending",
+            ]
+        )
     return stream.getvalue()
 
 
@@ -206,10 +409,11 @@ def write_process_closure_gap_csv(path: Path) -> Path:
 
 
 def process_closure_bundle_template(
-    contract: dict[str, Any] | None = None,
-) -> dict[str, Any]:
+    contract: ProcessClosureContract | None = None,
+) -> dict[str, object]:
     """Return a complete-shape template that is invalid until evidence exists."""
-    contract = contract or load_process_closure_contract()
+    if contract is None:
+        contract = load_process_closure_contract()
     validate_process_closure_contract(contract)
     source_id = "SOURCE_REPLACE_001"
     fleet_id = "FLEET_REPLACE_001"
@@ -228,27 +432,26 @@ def process_closure_bundle_template(
         )
     ]
 
-    nodes: list[dict[str, Any]] = []
+    nodes: list[dict[str, object]] = []
+    node_ids: dict[str, str] = {}
     for node_type, cfg in contract["graph_schema"]["node_types"].items():
         if node_type in {"material_or_species", "part_family"}:
             continue
-        overrides: dict[str, Any] = {
-            "node_id": f"NODE_{node_type.upper()}_REPLACE_001",
+        node_id = f"NODE_{node_type.upper()}_REPLACE_001"
+        overrides: dict[str, object] = {
+            "node_id": node_id,
             "node_type": node_type,
         }
         if node_type == "source_lot":
             overrides["source_record_id"] = source_id
         if node_type == "transport_leg":
             overrides["fleet_record_id"] = fleet_id
-        nodes.append(
-            required_field_template(cfg["required_fields"], overrides)
-        )
-    for grade_id in contract["required_material_grades"]:
-        nodes.append(
+        nodes.append(required_field_template(cfg["required_fields"], overrides))
+        node_ids[node_type] = node_id
+    nodes.extend(
+        (
             required_field_template(
-                contract["graph_schema"]["node_types"][
-                    "material_or_species"
-                ]["required_fields"],
+                contract["graph_schema"]["node_types"]["material_or_species"]["required_fields"],
                 {
                     "node_id": f"NODE_MATERIAL_{grade_id.upper()}",
                     "node_type": "material_or_species",
@@ -257,12 +460,12 @@ def process_closure_bundle_template(
                 },
             )
         )
-    for requirement_id in contract["critical_part_families"]:
-        nodes.append(
+        for grade_id in contract["required_material_grades"]
+    )
+    nodes.extend(
+        (
             required_field_template(
-                contract["graph_schema"]["node_types"][
-                    "part_family"
-                ]["required_fields"],
+                contract["graph_schema"]["node_types"]["part_family"]["required_fields"],
                 {
                     "node_id": f"NODE_PART_{requirement_id.upper()}",
                     "node_type": "part_family",
@@ -270,9 +473,10 @@ def process_closure_bundle_template(
                 },
             )
         )
+        for requirement_id in contract["critical_part_families"]
+    )
 
-    node_ids = {node["node_type"]: node["node_id"] for node in nodes}
-    edges = []
+    edges: list[dict[str, object]] = []
     for index, stage in enumerate(contract["required_process_stages"], 1):
         edges.append(
             required_field_template(
@@ -301,28 +505,42 @@ def process_closure_bundle_template(
         "nodes": nodes,
         "edges": edges,
         "evidence_records": [evidence_record],
-        "gate_results": binary_results_template(
-            contract["acceptance_gates"]
-        ),
+        "gate_results": binary_results_template(contract["acceptance_gates"]),
     }
 
 
+def _link_graph_edge(
+    edge: Mapping[str, object],
+    *,
+    label: str,
+    node_ids: set[str],
+    adjacency: MutableMapping[str, set[str]],
+    errors: list[str],
+) -> None:
+    input_node = require_string(edge, "input_node", label, errors)
+    output_node = require_string(edge, "output_node", label, errors)
+    if input_node not in node_ids:
+        errors.append(f"{label}: unknown input_node")
+    if output_node not in node_ids:
+        errors.append(f"{label}: unknown output_node")
+    if input_node in node_ids and output_node in node_ids:
+        adjacency.setdefault(input_node, set()).add(output_node)
+
+
 def evaluate_process_closure_bundle(
-    bundle: dict[str, Any] | None,
-    contract: dict[str, Any] | None = None,
+    bundle: Mapping[str, object] | None,
+    contract: ProcessClosureContract | None = None,
     *,
     archive_root: Path | None = None,
-) -> dict[str, Any]:
+) -> dict[str, object]:
     """Validate a versioned process graph and its binary closure evidence."""
-    contract = contract or load_process_closure_contract()
+    if contract is None:
+        contract = load_process_closure_contract()
     validate_process_closure_contract(contract)
     if not bundle:
         return {
             "overall_status": "graph_and_evidence_pending",
-            "gate_status": {
-                gate: "evidence_pending"
-                for gate in contract["acceptance_gates"]
-            },
+            "gate_status": dict.fromkeys(contract["acceptance_gates"], "evidence_pending"),
         }
 
     errors: list[str] = []
@@ -346,9 +564,7 @@ def evaluate_process_closure_bundle(
     verify_artifact_files(bundle, archive_root, errors)
 
     source_fields = contract["source_and_fleet_requirements"]["source_fields"]
-    source_records = require_list(
-        bundle.get("source_records"), "source_records", errors
-    )
+    source_records = require_list(bundle.get("source_records"), "source_records", errors)
     if not source_records:
         errors.append("source_records: no source records supplied")
     source_ids: set[str] = set()
@@ -356,15 +572,15 @@ def evaluate_process_closure_bundle(
         label = f"source_records[{index}]"
         source = require_mapping(raw_source, label, errors)
         require_fields(source, source_fields, label, errors)
-        source_id = source.get("source_id")
+        source_id = require_string(source, "source_id", label, errors)
+        if source_id is None:
+            continue
         if source_id in source_ids:
             errors.append(f"{label}: duplicate source_id {source_id}")
         source_ids.add(source_id)
 
     fleet_fields = contract["source_and_fleet_requirements"]["fleet_fields"]
-    fleet_records = require_list(
-        bundle.get("fleet_records"), "fleet_records", errors
-    )
+    fleet_records = require_list(bundle.get("fleet_records"), "fleet_records", errors)
     if not fleet_records:
         errors.append("fleet_records: no fleet records supplied")
     fleet_ids: set[str] = set()
@@ -372,7 +588,9 @@ def evaluate_process_closure_bundle(
         label = f"fleet_records[{index}]"
         fleet = require_mapping(raw_fleet, label, errors)
         require_fields(fleet, fleet_fields, label, errors)
-        fleet_id = fleet.get("fleet_id")
+        fleet_id = require_string(fleet, "fleet_id", label, errors)
+        if fleet_id is None:
+            continue
         if fleet_id in fleet_ids:
             errors.append(f"{label}: duplicate fleet_id {fleet_id}")
         fleet_ids.add(fleet_id)
@@ -387,12 +605,14 @@ def evaluate_process_closure_bundle(
         label = f"nodes[{index}]"
         node = require_mapping(raw_node, label, errors)
         require_fields(node, {"node_id", "node_type"}, label, errors)
-        node_id, node_type = node.get("node_id"), node.get("node_type")
+        node_id = require_string(node, "node_id", label, errors)
+        node_type = require_string(node, "node_type", label, errors)
+        if node_id is None or node_type is None:
+            continue
         if node_id in node_ids:
             errors.append(f"{label}: duplicate node_id {node_id}")
         node_ids.add(node_id)
-        if isinstance(node_id, str) and isinstance(node_type, str):
-            node_types[node_id] = node_type
+        node_types[node_id] = node_type
         if node_type not in node_schema:
             errors.append(f"{label}: unknown node_type {node_type}")
             continue
@@ -403,30 +623,28 @@ def evaluate_process_closure_bundle(
             errors,
         )
         if node_type == "material_or_species":
-            observed_grades.add(node.get("grade_id"))
+            grade_id = require_string(node, "grade_id", label, errors)
+            if grade_id is not None:
+                observed_grades.add(grade_id)
         if node_type == "part_family":
-            observed_parts.add(node.get("requirement_id"))
-        if (
-            node_type == "source_lot"
-            and node.get("source_record_id") not in source_ids
-        ):
+            requirement_id = require_string(node, "requirement_id", label, errors)
+            if requirement_id is not None:
+                observed_parts.add(requirement_id)
+        if node_type == "source_lot" and node.get("source_record_id") not in source_ids:
             errors.append(f"{label}: unknown source_record_id")
-        if (
-            node_type == "transport_leg"
-            and node.get("fleet_record_id") not in fleet_ids
-        ):
+        if node_type == "transport_leg" and node.get("fleet_record_id") not in fleet_ids:
             errors.append(f"{label}: unknown fleet_record_id")
 
     evidence_schema = contract["evidence_record_required_fields"]
-    evidence_records = require_list(
-        bundle.get("evidence_records"), "evidence_records", errors
-    )
+    evidence_records = require_list(bundle.get("evidence_records"), "evidence_records", errors)
     evidence_ids: set[str] = set()
     for index, raw_evidence in enumerate(evidence_records):
         label = f"evidence_records[{index}]"
         evidence = require_mapping(raw_evidence, label, errors)
         require_fields(evidence, evidence_schema, label, errors)
-        evidence_id = evidence.get("record_id")
+        evidence_id = require_string(evidence, "record_id", label, errors)
+        if evidence_id is None:
+            continue
         if evidence_id in evidence_ids:
             errors.append(f"{label}: duplicate record_id {evidence_id}")
         evidence_ids.add(evidence_id)
@@ -449,54 +667,43 @@ def evaluate_process_closure_bundle(
         label = f"edges[{index}]"
         edge = require_mapping(raw_edge, label, errors)
         require_fields(edge, {"edge_id", *edge_schema}, label, errors)
-        edge_id = edge.get("edge_id")
+        edge_id = require_string(edge, "edge_id", label, errors)
+        if edge_id is None:
+            continue
         if edge_id in edge_ids:
             errors.append(f"{label}: duplicate edge_id {edge_id}")
         edge_ids.add(edge_id)
-        if edge.get("input_node") not in node_ids:
-            errors.append(f"{label}: unknown input_node")
-        if edge.get("output_node") not in node_ids:
-            errors.append(f"{label}: unknown output_node")
-        if (
-            edge.get("input_node") in node_ids
-            and edge.get("output_node") in node_ids
-        ):
-            adjacency.setdefault(edge["input_node"], set()).add(
-                edge["output_node"]
-            )
+        _link_graph_edge(
+            edge,
+            label=label,
+            node_ids=node_ids,
+            adjacency=adjacency,
+            errors=errors,
+        )
         if edge.get("evidence_record") not in evidence_ids:
             errors.append(f"{label}: unknown evidence_record")
-        for field in structured_edge_fields:
-            if not isinstance(edge.get(field), (dict, list)):
-                errors.append(
-                    f"{label}: {field} must be a structured object or array"
-                )
-        observed_stages.add(edge.get("process_stage"))
+        errors.extend(
+            f"{label}: {field} must be a structured object or array"
+            for field in structured_edge_fields
+            if not isinstance(edge.get(field), (dict, list))
+        )
+        process_stage = require_string(edge, "process_stage", label, errors)
+        if process_stage is not None:
+            observed_stages.add(process_stage)
 
     required_grades = set(contract["required_material_grades"])
     if not required_grades <= observed_grades:
-        errors.append(
-            f"nodes: missing material grades "
-            f"{sorted(required_grades - observed_grades)}"
-        )
+        errors.append(f"nodes: missing material grades {sorted(required_grades - observed_grades)}")
     required_parts = set(contract["critical_part_families"])
     if not required_parts <= observed_parts:
         errors.append(
-            f"nodes: missing critical part families "
-            f"{sorted(required_parts - observed_parts)}"
+            f"nodes: missing critical part families {sorted(required_parts - observed_parts)}"
         )
     required_stages = set(contract["required_process_stages"])
     if not required_stages <= observed_stages:
-        errors.append(
-            f"edges: missing process stages "
-            f"{sorted(required_stages - observed_stages)}"
-        )
+        errors.append(f"edges: missing process stages {sorted(required_stages - observed_stages)}")
 
-    reachable = {
-        node_id
-        for node_id, node_type in node_types.items()
-        if node_type == "source_lot"
-    }
+    reachable = {node_id for node_id, node_type in node_types.items() if node_type == "source_lot"}
     frontier = list(reachable)
     while frontier:
         current = frontier.pop()
@@ -507,7 +714,8 @@ def evaluate_process_closure_bundle(
     required_reachable = {
         node_id
         for node_id, node_type in node_types.items()
-        if node_type in {
+        if node_type
+        in {
             "material_or_species",
             "part_family",
             "process_unit",
@@ -518,13 +726,10 @@ def evaluate_process_closure_bundle(
     unreachable = required_reachable - reachable
     if unreachable:
         errors.append(
-            "graph: required nodes are not reachable from a source lot "
-            f"{sorted(unreachable)}"
+            f"graph: required nodes are not reachable from a source lot {sorted(unreachable)}"
         )
 
-    gate_results = require_mapping(
-        bundle.get("gate_results"), "gate_results", errors
-    )
+    gate_results = require_mapping(bundle.get("gate_results"), "gate_results", errors)
     validate_binary_results(
         gate_results,
         set(contract["acceptance_gates"]),
@@ -532,21 +737,15 @@ def evaluate_process_closure_bundle(
         errors,
     )
     if errors:
-        raise ValueError(
-            "invalid process-closure evidence bundle:\n- "
-            + "\n- ".join(errors)
-        )
-    statuses = {
-        gate: record["status"] for gate, record in gate_results.items()
-    }
+        raise ValueError("invalid process-closure evidence bundle:\n- " + "\n- ".join(errors))
+    statuses = binary_statuses(gate_results)
     return {
         "overall_status": (
-            "passed" if all(status == "pass" for status in statuses.values())
-            else "failed"
+            "passed" if all(status == "pass" for status in statuses.values()) else "failed"
         ),
         "gate_status": statuses,
         "node_count": len(nodes),
-        "edge_count": len(bundle["edges"]),
+        "edge_count": len(edges),
         "evidence_record_count": len(evidence_records),
         "source_record_count": len(source_records),
         "fleet_record_count": len(fleet_records),

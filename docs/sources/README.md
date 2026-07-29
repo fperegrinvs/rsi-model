@@ -43,6 +43,28 @@ source_class under the epistemic rules.
   the deterministic $185/kg + 100 kW/t aspiration case, and the accompanying
   launch-cadence feasibility audit in Part II.
 
+- **spacexai-economic-thesis-2026-07-29.md** — dated first-party boundary for
+  SpaceX's cost-per-token framework, SEC admissions, roadshow time-to-power
+  thesis, AI1 missing quantities, and Musk's January 2026 prediction.
+  Source_class: `company_statement` for company filings and specifications
+  and `personal_statement` for the forecast. Used for the company-only,
+  explicitly completed hybrid, accepted-output, schedule, and threshold
+  comparisons in Part II.
+
+- **orbital-ai-landscape-2026-07-28.md** — dated first-party and regulatory
+  comparison of SpaceXAI, Google/Planet Project Suncatcher, Starcloud, and
+  Blue Origin Project Sunrise, including the Tesla legal-entity boundary and
+  negative-evidence protocol. Source_class: mixed company statement,
+  regulatory filing, and analyst synthesis. Its SHA-256 hash is pinned in
+  `../../params/orbital_ai_scenario_registry.json`; every release repeats the
+  competitor search and creates a new registry version when the record changes.
+
+- **publication-venue-requirements-2026-07-29.md** — dated first-party
+  conformance snapshot for the selected Acta Astronautica, Space Policy, and
+  Astropolitics routes. It records numeric limits, file and reference rules,
+  and the unresolved conflict between Astropolitics' two live peer-review
+  statements. Source_class: `publisher_instructions`.
+
 The r4.0 provenance audit deliberately reclassified reporting-derived model
 bands as `ASSUMPTION` when the cited material did not directly support both
 modeled endpoints and their transformation. Contextual reporting remains

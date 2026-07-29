@@ -1,5 +1,5 @@
 scenario,n_runs,n_feasible,feasible_share,n_survived,survived_share,seed_p10_t,seed_p50_t,seed_p90_t,aggregate_doubling_p10_year,aggregate_doubling_p50_year,aggregate_doubling_p90_year
-terrestrial_rehearsal,200,83,0.415000,20,0.100000,171.262504,200.508339,228.133378,,,
-lunar_strategic_material_bridge,200,126,0.630000,0,0.000000,180.774101,212.213425,247.240490,,,
+terrestrial_rehearsal,200,81,0.405000,20,0.100000,171.334163,200.754980,228.399255,,,
+lunar_strategic_material_bridge,200,126,0.630000,0,0.000000,181.007588,212.483891,247.558277,,,
 lunar_strict,200,0,0.000000,0,0.000000,,,,,,
-moon_asteroid_network,200,187,0.935000,187,0.935000,155.243301,203.799012,309.765405,29.500000,33.500000,39.000000
+moon_asteroid_network,200,187,0.935000,187,0.935000,156.031774,207.192637,321.597093,29.500000,33.500000,38.500000

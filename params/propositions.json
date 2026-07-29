@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "propositions": [
+    {
+      "id": "P1",
+      "shortTitle": "Conceptual possibility",
+      "canonicalWording": "A recursively expanding industrial system is conceptually possible.",
+      "currentStatus": "A respectable conceptual case is made; no demonstrated closure is required.",
+      "anchor": "proposition-p1"
+    },
+    {
+      "id": "P2",
+      "shortTitle": "Technical feasibility",
+      "canonicalWording": "A recursively expanding industrial system might eventually be technically feasible.",
+      "currentStatus": "Quantitatively explored across named assumption sets; complete-system feasibility is not demonstrated.",
+      "anchor": "proposition-p2"
+    },
+    {
+      "id": "P3a",
+      "shortTitle": "Earth-dependent bridge economics",
+      "canonicalWording": "Orbital and lunar compute during the Earth-dependent bridge would be economically competitive.",
+      "currentStatus": "Quantified and negative at anchored values; crossover requires a specific, currently unanchored parameter corner.",
+      "anchor": "proposition-p3a"
+    },
+    {
+      "id": "P3b",
+      "shortTitle": "Mature high-closure economics",
+      "canonicalWording": "A mature, high-physical-closure space-industrial ecology would eventually obtain a structural economic advantage over terrestrial expansion.",
+      "currentStatus": "Scenario-modeled but unresolved; neither tested space case becomes self-financing inside 40 years under the declared assumptions.",
+      "anchor": "proposition-p3b"
+    },
+    {
+      "id": "P4a",
+      "shortTitle": "Documented portfolio direction",
+      "canonicalWording": "The companies are deliberately integrating launch, communications, AI, compute, chip manufacture, and prospective off-world energy and manufacturing.",
+      "currentStatus": "The portfolio direction is documented; shared technical interfaces, binding milestones, and joint resource allocation are not publicly established.",
+      "anchor": "proposition-p4a"
+    },
+    {
+      "id": "P4b",
+      "shortTitle": "Recursive-closure intent",
+      "canonicalWording": "The integrated portfolio is intended to produce recursive industrial closure.",
+      "currentStatus": "Inferential; no closure program, seed bill of materials, reproduction metric, or minimum-cut roadmap is published.",
+      "anchor": "proposition-p4b"
+    }
+  ]
+}

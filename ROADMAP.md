@@ -1,6 +1,6 @@
 # Roadmap — Evidence and Release Work Still Pending for r4.0
 
-**Audit date:** 2026-07-28
+**Audit date:** 2026-07-29
 
 **Scope:** the r4.0 manuscript, model, evidence program, and publication
 package.
@@ -31,21 +31,28 @@ be restated as demonstrated feasibility.
 
 **What is already done:** the repository now has a complete hashed dependency
 lock, an explicit `osqp` dependency, and a Linux CI workflow that installs
-with `--require-hashes`, runs the full test suite, regenerates the artifact
-sets and the canonical HTML, rejects generated drift, and verifies every row in both
-artifact manifests byte-for-byte. Candidate and publication preflight modes
-now also check r4.0 identity, clean-tree state, tag state, version versus
-concept DOI, release-date agreement, and immutable HTML metadata.
+from the locked environments, runs the full test suite, regenerates the
+artifact sets and canonical HTML, rejects generated drift, and verifies every
+row in both artifact manifests byte-for-byte. The complete local candidate
+pipeline passed on 2026-07-29, including model regeneration, provenance,
+standalone and Quarto builds, 255 Python tests, 17 Bun tests, coverage,
+package isolation, dependency audits, SBOM generation, cross-browser layout,
+site/accessibility checks, and 570 manifest records. Candidate and
+publication preflight modes also check r4.0 identity, clean-tree state, tag
+state, version versus concept DOI, release-date agreement, and immutable HTML
+metadata.
 Publication mode additionally requires an external authorization record
 bound to the exact commit, passing Linux CI run, archive record, release
 date, version DOI, canonical URL, responsible person, and attestation. The
 record stays outside Git so approving a commit does not change it.
 
-**Why it remains:** the repository has a configured GitHub remote, but the
-new workflow has not run on the current uncommitted release state. No local
-immutable r4.0 tag, archive, canonical release URL, or version DOI exists.
-Those publication actions require an intentional release commit and remote
-archive.
+**Why it remains:** the reviewed release candidate is prepared on a dedicated
+branch, but the workflow has not yet passed against that exact commit in
+GitHub's clean Linux runner or been merged into the remote default branch. No
+local immutable `r4.0` tag, archive, canonical release URL, or version DOI
+exists. Those publication actions still require a passing remote Linux run,
+author or release-manager authorization bound to the exact commit, and an
+immutable archive.
 
 **Complete when:**
 
@@ -59,8 +66,8 @@ archive.
 - the archived artifacts and both manifests verify byte-for-byte.
 
 **Evidence:** manuscript Status and Appendix C; `.github/workflows/publication.yml`;
-`requirements.lock`; `scripts/verify_manifests.py`;
-`scripts/release_preflight.py`; `docs/RELEASE_RUNBOOK.md`; GitHub `origin`
+`pyproject.toml`; `uv.lock`; `rsi-verify-manifests`;
+`rsi-release-preflight`; `docs/RELEASE_RUNBOOK.md`; GitHub `origin`
 is configured; no r4.0 tag is present locally.
 
 ## Priority 1 — Replace the hardest closure assumptions with process evidence
@@ -158,7 +165,6 @@ proposed falsification test, not an accomplished demonstration.
 `rehearsal_acceptance_matrix.csv`; knowledge, deployment, repair, and policy
 tables.
 
-
 ## Priority 2 — Calibrate the economics rather than adding more mechanics
 
 ### 4. Anchor the completed cost boundary and dynamic P3b comparison
@@ -216,25 +222,26 @@ symmetry test, not evidence for or against mature real-world P3b.
 ### 5. Complete and authorize the venue-specific submission packages
 
 **What is already done:** the monograph remains the archival object, and
-draft technical, orbital-compute economics, strategy/governance, and
-technical-supplement papers exist. Each has a result-led abstract under 250
-words and an explicit proposition boundary. Target/fallback routes are now
-Acta Astronautica/New Space for the technical paper, Space Policy/New Space
-for economics, and Astropolitics/Space Policy for strategy/governance.
-Publisher rules are encoded in a machine contract; the drafts now carry
-keywords, highlights, and data/code statements, and the generated readiness
-table measures rather than assumes conformance. An external authorization
-template now binds the selected route, exact manuscript and supplement
-hashes, every author confirmation, packaging action, portal recheck, final
-approval, and attestation; the generated template cannot pass until the
-author completes it.
+technical, orbital-compute economics, strategy/governance, and
+technical-supplement papers exist. Each selected route has a conformant
+abstract, keywords, structure, reference style, resolved core source set, and
+explicit proposition boundary. Target/fallback routes are Acta
+Astronautica/New Space for the technical paper, Space Policy/New Space for
+economics, and Astropolitics/Space Policy for strategy/governance. Publisher
+rules are encoded in a machine contract. The final source-to-claim and
+target-style audit and the dated public publisher-page recheck were completed
+on 2026-07-29. The generated readiness table measures rather than assumes
+conformance. An external authorization template binds the selected route,
+exact manuscript and supplement hashes, every author confirmation, packaging
+action, portal recheck, final approval, and attestation.
 
-**Why it remains:** the papers now contain in-text citations and a core
-reference set, but still require a final source-to-claim and target-style
-audit; several Astropolitics requirements must be rechecked in its live
-portal; and author
-identity, correspondence, contribution, funding, conflict, acknowledgement,
-permission, AI-use, and final-approval fields cannot be invented.
+**Why it remains:** author identity, correspondence, contribution, funding,
+conflict, acknowledgement, permission, AI-use, and final-approval fields
+cannot be invented. Immutable release coordinates are absent. The
+Astropolitics first-party pages conflict on anonymization, so the
+authenticated upload portal must settle that field. Editable exports,
+title-page/anonymization packaging, figure and supplement upload, and final
+submission actions remain external.
 
 **Complete when:**
 
@@ -251,7 +258,6 @@ permission, AI-use, and final-approval fields cannot be invented.
 `params/publication_targets.yaml`;
 `docs/VENUE_SELECTION_AND_CONFORMANCE.md`;
 `publication_readiness.csv`.
-
 
 ## Explicitly not pending
 

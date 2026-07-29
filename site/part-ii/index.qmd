@@ -1,0 +1,1 @@
+{{< include ../../docs/manuscript/20-part-ii-comparative-economics.md >}}

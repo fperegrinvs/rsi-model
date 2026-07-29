@@ -1,0 +1,16 @@
+form,metric,p10,p50,p90,telemetry_status,source_class
+power,coordination_agent_hours_per_verified_cell,110.872451936,142.019874019,180.307368244,unavailable,ASSUMPTION
+power,schedule_delay_days,2.309842749,2.958747375,3.756403505,unavailable,ASSUMPTION
+power,foregone_verified_output_units,0.184787420,0.236699790,0.300512280,unavailable,ASSUMPTION
+power,failure_probability,0.017217449,0.017840397,0.018606147,unavailable,ASSUMPTION
+power,coordination_labor_cost_musd,0.019957041,0.025563577,0.032455326,unavailable,ASSUMPTION
+logarithmic,coordination_agent_hours_per_verified_cell,112.923363374,141.491170761,177.950773163,unavailable,ASSUMPTION
+logarithmic,schedule_delay_days,2.352570070,2.947732724,3.707307774,unavailable,ASSUMPTION
+logarithmic,foregone_verified_output_units,0.188205606,0.235818618,0.296584622,unavailable,ASSUMPTION
+logarithmic,failure_probability,0.017258467,0.017829823,0.018559015,unavailable,ASSUMPTION
+logarithmic,coordination_labor_cost_musd,0.020326205,0.025468411,0.032031139,unavailable,ASSUMPTION
+saturating,coordination_agent_hours_per_verified_cell,116.114358028,149.268425441,192.575349233,unavailable,ASSUMPTION
+saturating,schedule_delay_days,2.419049126,3.109758863,4.011986442,unavailable,ASSUMPTION
+saturating,foregone_verified_output_units,0.193523930,0.248780709,0.320958915,unavailable,ASSUMPTION
+saturating,failure_probability,0.017322287,0.017985369,0.018851507,unavailable,ASSUMPTION
+saturating,coordination_labor_cost_musd,0.020900584,0.026868317,0.034663563,unavailable,ASSUMPTION

@@ -1,0 +1,22 @@
+---
+toc: false
+---
+
+{{< include ../docs/manuscript/00-front-matter.md >}}
+
+## Complete contents {#complete-contents}
+
+- Part I — Technical Feasibility
+  - [I.1–I.3 — Recursive loops and cost structure](part-i/index.qmd)
+  - [I.4–I.6 — Depreciation, closure, and coordination](part-i/depreciation-closure.qmd)
+  - [I.7–I.10 — Model, results, and development path](part-i/model-results.qmd)
+- [Part II — Comparative Economics](part-ii/index.qmd)
+- [Part III — Strategy Interpretation and Governance](part-iii/index.qmd)
+- [Part IV — Conclusion and Limitations](part-iv/index.qmd)
+- [Appendices A–B](appendices/index.qmd)
+- [Appendix C — Reproducibility](appendix-c/index.qmd)
+- [Appendix D — Complete model specification](appendix-d/index.qmd)
+- [Notation register](notation/index.qmd)
+- [Glossary](glossary/index.qmd)
+- [Sources](sources/index.qmd)
+- [Download the self-contained HTML edition](download/Recursive_Industrial_Intelligence_r4.0.html)

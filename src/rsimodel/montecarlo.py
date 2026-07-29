@@ -13,14 +13,17 @@ Sampling discipline (epistemic rules 1-2):
 Reports P(self-expanding by T), binding-sector histogram, doubling-time
 distribution, and the survival curve P(g(t) > 0) — never a single trajectory.
 """
+
 from __future__ import annotations
 
 from dataclasses import dataclass, field, replace
 
 import numpy as np
 
+from .array_types import FloatArray
 from .delta import draw_anchors, load_anchors
 from .model import Params, load_params, run
+from .solver_adapter import spearman_correlation
 
 
 def wilson_interval(k: int, n: int, z: float = 1.96) -> tuple[float, float]:
@@ -40,38 +43,41 @@ class MCResult:
     """Frequencies across a stipulated assumption ensemble + shock process —
     NOT empirical probabilities of real-world success. Every share is reported
     with its count and Wilson interval so n is never hidden."""
+
     label: str
     environment: str
     n_runs: int
     horizon: float
     q_spread: float
-    p_expanding: float           # share of sampled runs with g > 0 at horizon
-    binding_hist: dict[str, float]   # share of ALLOCATION STEPS (pooled) binding on each sector
+    p_expanding: float  # share of sampled runs with g > 0 at horizon
+    binding_hist: dict[str, float]  # share of ALLOCATION STEPS (pooled) binding on each sector
     doubling_times: list[float]  # AGGREGATE (sum-K, unit-dependent) doubling, all ever-doubled runs
-    t: np.ndarray                # (T,) time grid
-    survival: np.ndarray         # (T,) fraction of runs with g(t) > 0
+    t: FloatArray  # (T,) time grid
+    survival: FloatArray  # (T,) fraction of runs with g(t) > 0
     mean_shocks: float
-    n_expanding: int = 0         # count behind p_expanding
+    n_expanding: int = 0  # count behind p_expanding
     # survivor-conditioned: doubling times among runs ALSO expanding at horizon.
     # ever-doubled minus survivor counts = runs that doubled early, then lost
     # viability — a distinct outcome class, reported separately.
-    doubling_times_survivors: list[float] = None
+    doubling_times_survivors: list[float] = field(default_factory=lambda: list[float]())
     # endpoint hierarchy:
     # balanced (λ = min_j K_j/K_j(0) ≥ 2) doubling — the unit-invariant
     # replication metric; the sum-K lists above are aggregate-abstract-capacity
     # doubling and are NOT unit-invariant.
-    doubling_times_balanced: list[float] = None
-    doubling_times_balanced_survivors: list[float] = None
-    n_sustained: int = 0         # g > 0 at EVERY step of [horizon-sustain, horizon]
+    doubling_times_balanced: list[float] = field(default_factory=lambda: list[float]())
+    doubling_times_balanced_survivors: list[float] = field(default_factory=lambda: list[float]())
+    n_sustained: int = 0  # g > 0 at EVERY step of [horizon-sustain, horizon]
     sustain_years: float = 5.0
-    lambda_horizon: list[float] = None   # λ(horizon) per run (balanced scale reached)
+    lambda_horizon: list[float] = field(
+        default_factory=lambda: list[float]()
+    )  # λ(horizon) per run (balanced scale reached)
     # Pre-shock allocation feasibility is retained as a diagnostic, while
     # realized post-shock growth remains the headline endpoint.
     n_alloc_expanding: int = 0
     n_alloc_sustained: int = 0
     # Fractional pooled credit for co-binding rows. A step with k co-binders
     # contributes 1/k to each, so counts sum to the number of allocation steps.
-    binding_counts: np.ndarray | None = field(repr=False, default=None)
+    binding_counts: FloatArray | None = field(repr=False, default=None)
 
     @property
     def expanding_ci(self) -> tuple[float, float]:
@@ -82,52 +88,80 @@ class MCResult:
         return wilson_interval(self.n_sustained, self.n_runs)
 
     def summary(self) -> str:
-        def iqr(v):
-            v = np.array(v if v is not None else [])
-            return (f"{np.median(v):.1f} yr (IQR {np.percentile(v, 25):.1f}-"
-                    f"{np.percentile(v, 75):.1f}, n={len(v)})" if len(v) else "never")
+        def iqr(v: list[float] | None) -> str:
+            values = np.asarray(v if v is not None else [], dtype=float)
+            return (
+                f"{np.median(values):.1f} yr (IQR {np.percentile(values, 25):.1f}-"
+                f"{np.percentile(values, 75):.1f}, n={len(values)})"
+                if len(values)
+                else "never"
+            )
+
         lo, hi = self.expanding_ci
         lam = np.array(self.lambda_horizon or [np.nan])
         top = sorted(self.binding_hist.items(), key=lambda kv: -kv[1])[:3]
-        return (f"[{self.label}/{self.environment}] expanding @{self.horizon:g}yr: "
-                f"{self.n_expanding}/{self.n_runs} = {self.p_expanding:.2f} "
-                f"(95% CI {lo:.2f}-{hi:.2f}) | sustained "
-                f"[{self.horizon - self.sustain_years:g}-{self.horizon:g}]: "
-                f"{self.n_sustained}/{self.n_runs} | pre-shock alloc endpoint: "
-                f"{self.n_alloc_expanding}/{self.n_runs} | balanced dbl: "
-                f"{iqr(self.doubling_times_balanced)} | aggregate dbl: "
-                f"{iqr(self.doubling_times)} | λ@{self.horizon:g} med "
-                f"{np.nanmedian(lam):.2f} | binds: "
-                + ", ".join(f"{k} {v:.0%}" for k, v in top if v > 0))
+        return (
+            f"[{self.label}/{self.environment}] expanding @{self.horizon:g}yr: "
+            f"{self.n_expanding}/{self.n_runs} = {self.p_expanding:.2f} "
+            f"(95% CI {lo:.2f}-{hi:.2f}) | sustained "
+            f"[{self.horizon - self.sustain_years:g}-{self.horizon:g}]: "
+            f"{self.n_sustained}/{self.n_runs} | pre-shock alloc endpoint: "
+            f"{self.n_alloc_expanding}/{self.n_runs} | balanced dbl: "
+            f"{iqr(self.doubling_times_balanced)} | aggregate dbl: "
+            f"{iqr(self.doubling_times)} | λ@{self.horizon:g} med "
+            f"{np.nanmedian(lam):.2f} | binds: "
+            + ", ".join(f"{k} {v:.0%}" for k, v in top if v > 0)
+        )
 
 
-def sample_params(set_name: str, env: str, rng: np.random.Generator,
-                  q_spread: float = 0.10) -> Params:
+def sample_params(
+    set_name: str, env: str, rng: np.random.Generator, q_spread: float = 0.10
+) -> Params:
     """One MC draw: anchors sampled loguniformly (shared), q jittered (ASSUMPTION)."""
     draws = draw_anchors(load_anchors(), rng)
     p = load_params(set_name, env=env, anchor_draws=draws, rng=rng)
     return replace(p, q=p.q * rng.lognormal(0.0, q_spread, p.n))
 
 
-def ensemble(set_name: str = "central", env: str = "lunar", n_runs: int = 100,
-             years: float = 40.0, horizon: float = 30.0, dt: float = 0.25,
-             cutoff_year: float | None = None,
-             cutoff_sectors: list[str] | None = None,
-             shocks: bool = True, q_spread: float = 0.10,
-             sustain_years: float = 5.0,
-             label: str | None = None,
-             seed: int = 0) -> MCResult:
+def ensemble(
+    set_name: str = "central",
+    env: str = "lunar",
+    n_runs: int = 100,
+    years: float = 40.0,
+    horizon: float = 30.0,
+    dt: float = 0.25,
+    cutoff_year: float | None = None,
+    cutoff_sectors: list[str] | None = None,
+    shocks: bool = True,
+    q_spread: float = 0.10,
+    sustain_years: float = 5.0,
+    label: str | None = None,
+    seed: int = 0,
+) -> MCResult:
+    if n_runs <= 0:
+        raise ValueError("n_runs must be positive")
     rng = np.random.default_rng(seed)
     base = load_params(set_name, env=env)
-    expanding, doublings, doublings_surv, n_shocks = 0, [], [], 0
+    expanding = 0
+    doublings: list[float] = []
+    doublings_surv: list[float] = []
+    n_shocks = 0
     sustained, alloc_expanding, alloc_sustained = 0, 0, 0
-    bal, bal_surv, lam_h = [], [], []
+    bal: list[float] = []
+    bal_surv: list[float] = []
+    lam_h: list[float] = []
     binding_counts = np.zeros(base.n, dtype=float)
-    surv = None
+    surv: FloatArray | None = None
     for _ in range(n_runs):
         p = sample_params(set_name, env, rng, q_spread)
-        r = run(p, years=years, dt=dt, cutoff_year=cutoff_year,
-                cutoff_sectors=cutoff_sectors, rng=rng if shocks else None)
+        r = run(
+            p,
+            years=years,
+            dt=dt,
+            cutoff_year=cutoff_year,
+            cutoff_sectors=cutoff_sectors,
+            rng=rng if shocks else None,
+        )
         is_surv = r.self_expanding_at(horizon)
         if is_surv:
             expanding += 1
@@ -136,10 +170,7 @@ def ensemble(set_name: str = "central", env: str = "lunar", n_runs: int = 100,
         if r.allocatively_expanding_at(horizon):
             alloc_expanding += 1
         alloc_series = r.g if r.g_alloc is None else r.g_alloc
-        sustain_mask = (
-            (r.t > horizon - sustain_years + 1e-9)
-            & (r.t <= horizon + 1e-9)
-        )
+        sustain_mask = (r.t > horizon - sustain_years + 1e-9) & (r.t <= horizon + 1e-9)
         if sustain_mask.any() and np.all(alloc_series[sustain_mask] > 0):
             alloc_sustained += 1
         lam = r.lambda_series()
@@ -147,8 +178,8 @@ def ensemble(set_name: str = "central", env: str = "lunar", n_runs: int = 100,
         lam_h.append(float(lam[ih]))
         surv = (r.g > 0).astype(float) if surv is None else surv + (r.g > 0)
         if r.co_binding is None:
-            binding_counts += np.bincount(
-                np.asarray(r.binding, int), minlength=base.n
+            binding_counts += np.bincount(np.asarray(r.binding, int), minlength=base.n).astype(
+                float
             )
         else:
             co = np.asarray(r.co_binding, float)
@@ -167,43 +198,76 @@ def ensemble(set_name: str = "central", env: str = "lunar", n_runs: int = 100,
             bal.append(b)
             if is_surv:
                 bal_surv.append(b)
-    hist = dict(zip(base.sectors, binding_counts / binding_counts.sum()))
-    t = np.arange(1, int(round(years / dt)) + 1) * dt
-    return MCResult(label or set_name, env, n_runs, horizon, q_spread,
-                    expanding / n_runs, hist, doublings,
-                    t, surv / n_runs, n_shocks / n_runs, n_expanding=expanding,
-                    doubling_times_survivors=doublings_surv,
-                    doubling_times_balanced=bal,
-                    doubling_times_balanced_survivors=bal_surv,
-                    n_sustained=sustained, sustain_years=sustain_years,
-                    lambda_horizon=lam_h,
-                    n_alloc_expanding=alloc_expanding,
-                    n_alloc_sustained=alloc_sustained,
-                    binding_counts=binding_counts)
+    if surv is None:
+        raise RuntimeError("positive n_runs produced no survival trajectory")
+    hist = dict(zip(base.sectors, binding_counts / binding_counts.sum(), strict=True))
+    t = np.arange(1, round(years / dt) + 1) * dt
+    return MCResult(
+        label or set_name,
+        env,
+        n_runs,
+        horizon,
+        q_spread,
+        expanding / n_runs,
+        hist,
+        doublings,
+        t,
+        surv / n_runs,
+        n_shocks / n_runs,
+        n_expanding=expanding,
+        doubling_times_survivors=doublings_surv,
+        doubling_times_balanced=bal,
+        doubling_times_balanced_survivors=bal_surv,
+        n_sustained=sustained,
+        sustain_years=sustain_years,
+        lambda_horizon=lam_h,
+        n_alloc_expanding=alloc_expanding,
+        n_alloc_sustained=alloc_sustained,
+        binding_counts=binding_counts,
+    )
 
 
 def merge_ensembles(parts: list[MCResult]) -> MCResult:
     """Combine equal-sized chunks of one MC cell into a single MCResult.
 
-    Used by run_deep.py to split a 400-run cell into independently seeded
+    Used by ``rsi-run-deep`` to split a 400-run cell into independently seeded
     chunks for process-level load balancing. Counts and per-run lists merge
     exactly; the binding histogram and survival curve are averaged with
     equal weights, exact because every chunk has the same n_runs and time
     grid (asserted). Statistically identical to one big ensemble — the
     chunks' seeds differ, so this re-baselines cell values once."""
-    assert len({(m.label, m.environment, m.horizon, m.n_runs,
-                 m.sustain_years, m.q_spread) for m in parts}) == 1
-    assert all(np.array_equal(m.t, parts[0].t) for m in parts)
-    counts = np.sum([
-        (m.binding_counts if m.binding_counts is not None else
-         np.array(list(m.binding_hist.values()), float)
-         * m.n_runs * len(m.t))
-        for m in parts
-    ], axis=0)
-    hist = dict(zip(parts[0].binding_hist, counts / counts.sum()))
+    if not parts:
+        raise ValueError("at least one ensemble chunk is required")
+    if (
+        len(
+            {
+                (m.label, m.environment, m.horizon, m.n_runs, m.sustain_years, m.q_spread)
+                for m in parts
+            }
+        )
+        != 1
+    ):
+        raise ValueError("ensemble chunks must describe the same equal-sized cell")
+    if not all(np.array_equal(m.t, parts[0].t) for m in parts):
+        raise ValueError("ensemble chunks must share an identical time grid")
+    counts = np.sum(
+        [
+            (
+                m.binding_counts
+                if m.binding_counts is not None
+                else np.array(list(m.binding_hist.values()), float) * m.n_runs * len(m.t)
+            )
+            for m in parts
+        ],
+        axis=0,
+    )
+    hist = dict(zip(parts[0].binding_hist, counts / counts.sum(), strict=True))
     return MCResult(
-        parts[0].label, parts[0].environment,
-        sum(m.n_runs for m in parts), parts[0].horizon, parts[0].q_spread,
+        parts[0].label,
+        parts[0].environment,
+        sum(m.n_runs for m in parts),
+        parts[0].horizon,
+        parts[0].q_spread,
         sum(m.n_expanding for m in parts) / sum(m.n_runs for m in parts),
         hist,
         [d for m in parts for d in m.doubling_times],
@@ -211,15 +275,14 @@ def merge_ensembles(parts: list[MCResult]) -> MCResult:
         np.mean([m.survival for m in parts], axis=0),
         float(np.mean([m.mean_shocks for m in parts])),
         n_expanding=sum(m.n_expanding for m in parts),
-        doubling_times_survivors=[d for m in parts
-                                  for d in m.doubling_times_survivors],
-        doubling_times_balanced=[d for m in parts
-                                 for d in m.doubling_times_balanced],
+        doubling_times_survivors=[d for m in parts for d in m.doubling_times_survivors],
+        doubling_times_balanced=[d for m in parts for d in m.doubling_times_balanced],
         doubling_times_balanced_survivors=[
-            d for m in parts for d in m.doubling_times_balanced_survivors],
+            d for m in parts for d in m.doubling_times_balanced_survivors
+        ],
         n_sustained=sum(m.n_sustained for m in parts),
         sustain_years=parts[0].sustain_years,
-        lambda_horizon=[l for m in parts for l in m.lambda_horizon],
+        lambda_horizon=[value for m in parts for value in m.lambda_horizon],
         n_alloc_expanding=sum(m.n_alloc_expanding for m in parts),
         n_alloc_sustained=sum(m.n_alloc_sustained for m in parts),
         binding_counts=counts,
@@ -234,6 +297,7 @@ class SensitivityResult:
     per-anchor rank correlation is defensible (no Sobol assumptions needed).
     This is the displayed evidence behind any 'parameter X drives the results'
     claim — most notably the vitamin gap."""
+
     label: str
     environment: str
     n_runs: int
@@ -245,21 +309,28 @@ class SensitivityResult:
         return sorted(rows, key=lambda r: -abs(r[1]))[:top]
 
 
-def sensitivity(set_name: str = "central", env: str = "lunar",
-                n_runs: int = 200, years: float = 32.0, horizon: float = 30.0,
-                dt: float = 0.5, shocks: bool = False, q_spread: float = 0.10,
-                seed: int = 0) -> SensitivityResult:
+def sensitivity(
+    set_name: str = "central",
+    env: str = "lunar",
+    n_runs: int = 200,
+    years: float = 32.0,
+    horizon: float = 30.0,
+    dt: float = 0.5,
+    shocks: bool = False,
+    q_spread: float = 0.10,
+    seed: int = 0,
+) -> SensitivityResult:
     """Scalar-anchor sensitivity screen (not global sensitivity analysis).
 
     Shocks are off by default to isolate sampled scalar-anchor uncertainty
     from event noise; structural matrices, interactions, and policy families
     are outside this screen.
     """
-    from scipy.stats import spearmanr
-
     rng = np.random.default_rng(seed)
     anchors = load_anchors()
-    draw_log, g30, expanded = [], [], []
+    draw_log: list[dict[str, float]] = []
+    growth_at_horizon: list[float] = []
+    expanded_at_horizon: list[float] = []
     for _ in range(n_runs):
         draws = draw_anchors(anchors, rng)
         p = load_params(set_name, env=env, anchor_draws=draws, rng=rng)
@@ -267,29 +338,35 @@ def sensitivity(set_name: str = "central", env: str = "lunar",
         r = run(p, years=years, dt=dt, rng=rng if shocks else None)
         i = min(int(np.searchsorted(r.t, horizon)), len(r.g) - 1)
         draw_log.append(draws)
-        g30.append(r.g[i])
-        expanded.append(float(r.g[i] > 0))
-    g30, expanded = np.array(g30), np.array(expanded)
+        growth_at_horizon.append(float(r.g[i]))
+        expanded_at_horizon.append(float(r.g[i] > 0))
+    g30 = np.asarray(growth_at_horizon, dtype=float)
+    expanded = np.asarray(expanded_at_horizon, dtype=float)
     rho: dict[str, tuple[float, float]] = {}
     for name, entry in anchors.items():
         if "low" not in entry:
             continue  # point values and claims have no variation to rank
-        x = np.array([d[name] for d in draw_log])
+        x = np.asarray([draws[name] for draws in draw_log], dtype=float)
         if np.ptp(x) == 0:
             continue
-        r_g = float(spearmanr(x, g30).statistic)
-        r_e = (float(spearmanr(x, expanded).statistic)
-               if 0 < expanded.sum() < n_runs else float("nan"))
+        r_g = spearman_correlation(x, g30)
+        r_e = spearman_correlation(x, expanded) if 0 < expanded.sum() < n_runs else float("nan")
         rho[name] = (r_g, r_e)
     return SensitivityResult(set_name, env, n_runs, rho)
 
 
-def sweep_import_decay(set_name: str = "central", env: str = "lunar",
-                       decay_years: np.ndarray | None = None,
-                       n_runs: int = 40, years: float = 40.0,
-                       horizon: float = 30.0, dt: float = 0.25,
-                       shocks: bool = True, q_spread: float = 0.10,
-                       seed: int = 0) -> tuple[np.ndarray, np.ndarray]:
+def sweep_import_decay(
+    set_name: str = "central",
+    env: str = "lunar",
+    decay_years: FloatArray | None = None,
+    n_runs: int = 40,
+    years: float = 40.0,
+    horizon: float = 30.0,
+    dt: float = 0.25,
+    shocks: bool = True,
+    q_spread: float = 0.10,
+    seed: int = 0,
+) -> tuple[FloatArray, FloatArray]:
     """P(self-expanding by horizon) vs import ramp-down e-folding time.
 
     The clock-setting probe as a curve: how fast can Earth supply be withdrawn
@@ -301,8 +378,7 @@ def sweep_import_decay(set_name: str = "central", env: str = "lunar",
         rng = np.random.default_rng(seed + 1000 * k)
         hits = 0
         for _ in range(n_runs):
-            p = replace(sample_params(set_name, env, rng, q_spread),
-                        import_decay_years=float(dy))
+            p = replace(sample_params(set_name, env, rng, q_spread), import_decay_years=float(dy))
             r = run(p, years=years, dt=dt, rng=rng if shocks else None)
             hits += r.self_expanding_at(horizon)
         ps[k] = hits / n_runs

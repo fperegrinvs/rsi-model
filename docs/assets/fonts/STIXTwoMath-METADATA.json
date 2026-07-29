@@ -1,0 +1,14 @@
+{
+  "family": "STIX Two Math",
+  "style": "Regular",
+  "internalVersion": "Version 2.13 b170",
+  "upstreamRelease": "v2.13",
+  "upstreamCommit": "37308d44583ef882dc8b544aaa2e80ac8c406ebf",
+  "source": "https://raw.githubusercontent.com/stipub/stixfonts/v2.13/fonts/static_otf_woff2/STIXTwoMath-Regular.woff2",
+  "license": "SIL Open Font License 1.1",
+  "licenseFile": "STIXTwoMath-OFL.txt",
+  "sha256": "e623fcdb808e9a8a27833781f77d5a5ed5c7d5f34830aaa8bcc9fcf8ec32b9c9",
+  "licenseSha256": "bec17cee6412788db45fd2644b301afbc99cc5d372ddd3345dc4a7bfdefb9f04",
+  "requiredTables": ["MATH", "cmap", "name"],
+  "fontDisplay": "swap"
+}

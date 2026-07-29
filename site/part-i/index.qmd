@@ -1,0 +1,1 @@
+{{< include ../../docs/manuscript/10-part-i-foundations.md >}}

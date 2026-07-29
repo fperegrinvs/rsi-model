@@ -50,11 +50,12 @@ emergency, censored, and abandoned trials remain in the denominator.
 The campaign exercises every threat in
 `params/governance_controls.yaml`: invalid configuration, external command
 compromise, insider override, owner growth pressure, jurisdictional
-conflict, common-mode verification failure, objective drift, contaminated or
-captured source, and progressive communication loss. Each injection names
-the expected controls in advance. A silent omission, unauthorized build,
-uncontained physical hazard, log gap, or failure to enter safe hold is a
-failed gate, not an editable protocol exception.
+conflict, common-mode verification failure, producer–evaluator common mode,
+oversight-bandwidth exhaustion, objective drift, contaminated or captured
+source, and progressive communication loss. Each injection names the expected
+controls in advance. A silent omission, unauthorized build, uncontained
+physical hazard, log gap, or failure to enter safe hold is a failed gate, not
+an editable protocol exception.
 
 Under complete link loss, net-new replication and source expansion must reach
 zero within one control cycle. Bounded repair, passivation, environmental
@@ -77,13 +78,13 @@ it, all rows remain `execution_pending`.
 
 A current complete-shape template can be generated with:
 
-    scripts/evaluate_evidence_bundle.py rehearsal \
+    rsi-evaluate-evidence rehearsal \
       --write-template rehearsal_bundle.json
 
 It contains every event type, fault case, gate, and replacement record, but
 its null measurements and invalid hash placeholders make it impossible to
 pass before execution. A completed campaign is ingested with
-`scripts/evaluate_evidence_bundle.py rehearsal BUNDLE.json`. The evaluator
+`rsi-evaluate-evidence rehearsal BUNDLE.json`. The evaluator
 requires every typed event, all ten independently witnessed binary gate
 results, all fault cases, immutable archive/auditor hashes, and complete
 parameter-replacement records. A claimed pass without those records is

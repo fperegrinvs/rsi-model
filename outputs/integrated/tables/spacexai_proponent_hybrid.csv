@@ -1,0 +1,22 @@
+quantity_order,scenario_id,as_of,quantity_id,selected_value,unit,selection_status,evidence_class,source_or_model_anchor,note
+1,spacexai_proponent_hybrid,2026-07-29,cost_per_token,,2026 USD per token,not_disclosed,company_statement,S102,SpaceX explicitly says it does not disclose a specific comparable figure.
+2,spacexai_proponent_hybrid,2026-07-29,cost_per_token_model_component,,dimensionless model-efficiency adjustment,not_disclosed,company_statement,S102,Model architecture is named as one of three components but is not quantified.
+3,spacexai_proponent_hybrid,2026-07-29,compute_hardware_capex,,2026 USD per delivered kW,not_disclosed,company_statement,S102,Vertical integration is a stated pathway; a comparable capex value is absent.
+4,spacexai_proponent_hybrid,2026-07-29,compute_depreciation,,2026 USD per accepted million output tokens,not_disclosed,company_statement,S102,SpaceX identifies compute depreciation as the largest current component but gives no value.
+5,spacexai_proponent_hybrid,2026-07-29,solar_array_power,150.0,kW nameplate per AI1,disclosed_design,company_statement,S38,Nameplate solar power is not marginal energy cost or delivered IT load.
+6,spacexai_proponent_hybrid,2026-07-29,average_compute_payload,120.0,kW average per AI1,disclosed_design,company_statement,S38,Used only as the delivered-power denominator.
+7,spacexai_proponent_hybrid,2026-07-29,vehicle_efficiency,70.0,kW per metric tonne,disclosed_design,company_statement,S38,The page does not specify whether the numerator is peak or average compute.
+8,spacexai_proponent_hybrid,2026-07-29,long_run_vehicle_efficiency,100.0,kW per metric tonne,stated_target,company_statement,S37,"Long-run scaling assumption, not AI1 demonstrated performance."
+9,spacexai_proponent_hybrid,2026-07-29,launch_cost_ceiling,185.0,2026 USD per kg to LEO,derived_target,company_statement,S37,"Exact 99% reduction ceiling from the cited historical $18,500/kg benchmark; not a quote or achieved cost."
+10,spacexai_proponent_hybrid,2026-07-29,orbital_compute_deployment,100.0,GW per year,stated_target,company_statement,S37,"Long-run ambition, not commissioned capacity."
+11,spacexai_proponent_hybrid,2026-07-29,satellite_manufacturing_cost,,2026 USD per delivered kW,not_disclosed,company_statement,S37,Scaled manufacturing is asserted; unit cost is absent.
+12,spacexai_proponent_hybrid,2026-07-29,useful_life,7.0,years,explicit_gap_completion,ASSUMPTION,favorable bound of compute.life_years_space,Not disclosed by SpaceX; selected only for the named hybrid.
+13,spacexai_proponent_hybrid,2026-07-29,compute_availability,,fraction,not_disclosed,company_statement,S38,Continuous illumination is not achieved compute availability.
+14,spacexai_proponent_hybrid,2026-07-29,communications_goodput,,accepted output fraction inside service boundary,not_disclosed,company_statement,S38,"Laser links are described without delivered goodput, contention, latency, or availability."
+15,spacexai_proponent_hybrid,2026-07-29,replacement_cost,,2026 USD per delivered kW,not_disclosed,company_statement,S102,No AI1 replacement or in-orbit repair record is disclosed.
+16,spacexai_proponent_hybrid,2026-07-29,first_possible_deployment,2028.0,calendar year,stated_target,company_statement,S37,Possible initial deployment as early as 2028; not useful-capacity commissioning.
+17,spacexai_proponent_hybrid,2026-07-29,useful_capacity_ramp,0.75,years,explicit_gap_completion,ASSUMPTION,schedule scenario,Not disclosed by SpaceX; selected only for the named hybrid.
+18,spacexai_proponent_hybrid,2026-07-29,terrestrial_power_escalation,,fraction per year,not_disclosed,company_statement,S37,The filing recognizes terrestrial improvements as a risk but supplies no matched trajectory.
+19,spacexai_proponent_hybrid,2026-07-29,space_qualification_multiplier,1.2,multiple of terrestrial hardware capex,explicit_gap_completion,ASSUMPTION,favorable bound of compute.space_qual_multiplier,Not disclosed by SpaceX; selected only for the named hybrid.
+20,spacexai_proponent_hybrid,2026-07-29,compute_utilization,0.95,fraction,explicit_gap_completion,ASSUMPTION,favorable bound of compute.utilization_leo,Not disclosed by SpaceX; selected only for the named hybrid.
+21,spacexai_proponent_hybrid,2026-07-29,service_goodput,0.85,fraction inside latency/network boundary,explicit_gap_completion,ASSUMPTION,fixed inference comparison boundary,Not disclosed by SpaceX; selected only for the named hybrid.

@@ -1,0 +1,5 @@
+---
+title: "Depreciation, closure, and coordination"
+---
+
+{{< include ../../docs/manuscript/11-part-i-depreciation-closure.md >}}

@@ -1,10 +1,12 @@
 """Shared fail-closed helpers for empirical evidence bundles."""
+
 from __future__ import annotations
 
 import hashlib
-from pathlib import Path
 import re
-from typing import Any, Iterable
+from collections.abc import Iterable, Mapping
+from pathlib import Path
+from typing import cast
 
 SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 SHA256_PLACEHOLDER = "REPLACE_WITH_64_CHARACTER_LOWERCASE_SHA256"
@@ -12,15 +14,15 @@ SHA256_PLACEHOLDER = "REPLACE_WITH_64_CHARACTER_LOWERCASE_SHA256"
 
 def required_field_template(
     fields: Iterable[str],
-    overrides: dict[str, Any] | None = None,
-) -> dict[str, Any]:
+    overrides: Mapping[str, object] | None = None,
+) -> dict[str, object]:
     """Build a deterministic, visibly incomplete record template."""
-    record = {field: None for field in fields}
+    record = cast(dict[str, object], dict.fromkeys(fields))
     record.update(overrides or {})
     return record
 
 
-def binary_results_template(ids: Iterable[str]) -> dict[str, dict[str, Any]]:
+def binary_results_template(ids: Iterable[str]) -> dict[str, dict[str, object]]:
     """Build binary-result placeholders that cannot pass validation."""
     return {
         record_id: {
@@ -34,81 +36,91 @@ def binary_results_template(ids: Iterable[str]) -> dict[str, dict[str, Any]]:
 
 
 def require_fields(
-    record: Any,
-    fields: list[str] | set[str],
+    record: object,
+    fields: Iterable[str],
     label: str,
     errors: list[str],
 ) -> None:
-    if not isinstance(record, dict):
+    if not isinstance(record, Mapping):
         errors.append(f"{label}: must be an object")
         return
-    missing = [
-        field
-        for field in fields
-        if field not in record or record[field] in (None, "", [])
-    ]
+    missing = [field for field in fields if field not in record or record[field] in (None, "", [])]
     if missing:
         errors.append(f"{label}: missing fields {sorted(missing)}")
 
 
 def require_sha256(
-    record: Any,
+    record: object,
     field: str,
     label: str,
     errors: list[str],
 ) -> None:
-    value = record.get(field) if isinstance(record, dict) else None
+    value = record.get(field) if isinstance(record, Mapping) else None
     if not isinstance(value, str) or not SHA256_RE.fullmatch(value):
         errors.append(f"{label}: {field} must be a lowercase sha256")
 
 
 def require_mapping(
-    value: Any,
+    value: object,
     label: str,
     errors: list[str],
-) -> dict[str, Any]:
-    if not isinstance(value, dict):
+) -> dict[str, object]:
+    if not isinstance(value, Mapping):
         errors.append(f"{label}: must be an object")
         return {}
-    return value
+    raw = cast(Mapping[object, object], value)
+    if not all(isinstance(key, str) for key in raw):
+        errors.append(f"{label}: object keys must be strings")
+        return {}
+    return {str(key): child for key, child in raw.items()}
 
 
 def require_list(
-    value: Any,
+    value: object,
     label: str,
     errors: list[str],
-) -> list[Any]:
+) -> list[object]:
     if not isinstance(value, list):
         errors.append(f"{label}: must be an array")
         return []
-    return value
+    return list(cast(list[object], value))
 
 
 def require_nonnegative_number(
-    record: Any,
+    record: object,
     field: str,
     label: str,
     errors: list[str],
 ) -> None:
-    value = record.get(field) if isinstance(record, dict) else None
-    if (
-        not isinstance(value, (int, float))
-        or isinstance(value, bool)
-        or value < 0
-    ):
+    value = record.get(field) if isinstance(record, Mapping) else None
+    if not isinstance(value, (int, float)) or isinstance(value, bool) or value < 0:
         errors.append(f"{label}: {field} must be a nonnegative number")
 
 
+def require_string(
+    record: object,
+    field: str,
+    label: str,
+    errors: list[str],
+) -> str | None:
+    """Return a nonempty string field or record a contract error."""
+    value = record.get(field) if isinstance(record, Mapping) else None
+    if not isinstance(value, str) or not value:
+        errors.append(f"{label}: {field} must be a nonempty string")
+        return None
+    return value
+
+
 def require_exact_ids(
-    records: Any,
+    records: object,
     expected: set[str],
     label: str,
     errors: list[str],
 ) -> None:
-    if not isinstance(records, dict):
+    if not isinstance(records, Mapping):
         errors.append(f"{label}: must be an object")
         return
-    actual = set(records)
+    actual = {str(key) for key in records}
     missing, extra = expected - actual, actual - expected
     if missing:
         errors.append(f"{label}: missing ids {sorted(missing)}")
@@ -117,13 +129,13 @@ def require_exact_ids(
 
 
 def validate_binary_results(
-    records: Any,
+    records: object,
     expected: set[str],
     label: str,
     errors: list[str],
 ) -> None:
     require_exact_ids(records, expected, label, errors)
-    if not isinstance(records, dict):
+    if not isinstance(records, Mapping):
         return
     for record_id, record in records.items():
         require_fields(
@@ -132,7 +144,8 @@ def validate_binary_results(
             f"{label}.{record_id}",
             errors,
         )
-        if record.get("status") not in {"pass", "fail"}:
+        mapping = require_mapping(record, f"{label}.{record_id}", errors)
+        if mapping.get("status") not in {"pass", "fail"}:
             errors.append(f"{label}.{record_id}: status must be pass or fail")
         require_sha256(
             record,
@@ -143,7 +156,19 @@ def validate_binary_results(
         require_sha256(record, "witness_hash", f"{label}.{record_id}", errors)
 
 
-def artifact_files_template() -> dict[str, dict[str, Any]]:
+def binary_statuses(records: Mapping[str, object]) -> dict[str, str]:
+    """Extract statuses after ``validate_binary_results`` has accepted records."""
+    statuses: dict[str, str] = {}
+    for record_id, raw_record in records.items():
+        if not isinstance(raw_record, Mapping):
+            continue
+        status = raw_record.get("status")
+        if isinstance(status, str):
+            statuses[record_id] = status
+    return statuses
+
+
+def artifact_files_template() -> dict[str, dict[str, object]]:
     """Return a visibly incomplete content-addressed evidence index."""
     return {
         "REPLACE_WITH_ARTIFACT_ID": {
@@ -153,9 +178,9 @@ def artifact_files_template() -> dict[str, dict[str, Any]]:
     }
 
 
-def _referenced_hashes(value: Any, *, parent_key: str = "") -> set[str]:
+def _referenced_hashes(value: object, *, parent_key: str = "") -> set[str]:
     hashes: set[str] = set()
-    if isinstance(value, dict):
+    if isinstance(value, Mapping):
         for key, child in value.items():
             if key == "artifact_files":
                 continue
@@ -177,7 +202,7 @@ def _referenced_hashes(value: Any, *, parent_key: str = "") -> set[str]:
 
 
 def verify_artifact_files(
-    bundle: Any,
+    bundle: object,
     archive_root: Path | None,
     errors: list[str],
 ) -> set[str]:
@@ -188,9 +213,7 @@ def verify_artifact_files(
     in the bundle must resolve to a byte-for-byte verified local artifact.
     """
     if archive_root is None:
-        errors.append(
-            "archive_root is required to verify a completed evidence bundle"
-        )
+        errors.append("archive_root is required to verify a completed evidence bundle")
         return set()
     root = archive_root.resolve()
     if not root.is_dir():
@@ -198,7 +221,7 @@ def verify_artifact_files(
         return set()
 
     records = require_mapping(
-        bundle.get("artifact_files") if isinstance(bundle, dict) else None,
+        bundle.get("artifact_files") if isinstance(bundle, Mapping) else None,
         "artifact_files",
         errors,
     )
@@ -235,9 +258,7 @@ def verify_artifact_files(
         expected = record.get("sha256")
         actual = hashlib.sha256(target.read_bytes()).hexdigest()
         if actual != expected:
-            errors.append(
-                f"{label}: sha256 mismatch; expected {expected}, found {actual}"
-            )
+            errors.append(f"{label}: sha256 mismatch; expected {expected}, found {actual}")
             continue
         verified.add(actual)
 
@@ -245,7 +266,6 @@ def verify_artifact_files(
     missing = referenced - verified
     if missing:
         errors.append(
-            "artifact_files: referenced hashes are not backed by verified "
-            f"files {sorted(missing)}"
+            f"artifact_files: referenced hashes are not backed by verified files {sorted(missing)}"
         )
     return verified

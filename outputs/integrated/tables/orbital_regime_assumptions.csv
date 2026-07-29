@@ -1,0 +1,7 @@
+orbit,family,rendezvous_delta_v_km_s,inclination_change_multiplier,routing_multiplier,service_cost_multiplier,stationkeeping_m_s_per_year,residence_time_years,atmospheric_clearance,radiation_index,debris_exposure_index,tracking_coverage_fraction,disposal_route,disposal_delta_v_km_s,debris_liability_multiplier,relocation_supported,source_class
+leo_400,Earth orbit,0.350000,1.150000,1.100000,1.000000,25.000000,4.000000,material,0.350000,0.800000,0.950000,controlled_reentry,0.150000,0.800000,1,ASSUMPTION
+leo_650,Earth orbit,0.550000,1.350000,1.350000,1.100000,35.000000,25.000000,weak,0.450000,1.000000,0.950000,controlled_reentry_or_lowering,0.250000,1.200000,1,ASSUMPTION
+geo,Earth orbit,1.500000,1.600000,1.500000,1.350000,50.000000,1000.000000,none,0.800000,0.550000,0.920000,graveyard_orbit,0.200000,1.300000,1,ASSUMPTION
+cislunar_staging,cislunar,0.800000,1.200000,1.250000,1.200000,18.000000,1000.000000,none,1.000000,0.250000,0.700000,stable_cislunar_storage_or_escape,0.450000,1.000000,1,ASSUMPTION
+llo,lunar orbit,0.400000,1.450000,1.300000,1.150000,120.000000,1.000000,none,0.850000,0.150000,0.550000,controlled_lunar_impact_or_transfer,0.300000,0.700000,1,ASSUMPTION
+nrho,lunar orbit,0.650000,1.100000,1.150000,1.200000,10.000000,50.000000,none,1.050000,0.100000,0.600000,transfer_or_escape,0.350000,0.750000,1,ASSUMPTION

@@ -906,11 +906,2923 @@ deployment:
 intelligence:
   initial_level: 1.0
   verification_factor: 0.85
-  learning_rate_per_year: 0.025
+  gain_scale_per_verified_loop: 0.025
+  frontier_gap_exponent: 1.25
   productivity_elasticity: 0.25
   autonomy_learning_multiplier: 0.20
   maximum_level: 3.0
   compute_units_per_compute_capacity: 50.0
+  effective_compute_factors:
+    hardware_efficiency: 0.72
+    utilization: 0.46
+    algorithmic_efficiency: 1.00
+    architecture_efficiency: 1.00
+  verified_loop_stage_rates_per_year:
+    train: 5.0
+    data: 7.0
+    experiment: 4.0
+    evaluate: 8.0
+    safety: 3.0
+    deploy: 4.0
+    observe: 2.0
+
+digital_improvement:
+  source_class: ASSUMPTION
+  bounding_argument: >
+    This is a sensitivity structure for diminishing returns and verified-loop
+    bottlenecks. The scaling-law papers cited in the manuscript establish
+    empirical loss/resource relationships in studied model families; they do
+    not calibrate a scalar capability curve or an RSI trajectory. Every
+    coefficient below is therefore a named scenario value.
+  initial_capability: 1.0
+  frontier_capability: 3.0
+  gain_scale_per_verified_loop: 0.030
+  diminishing_exponent: 1.25
+  effective_compute_scale_flop: 1.0e+25
+  training_flop_per_loop: 2.0e+24
+  hardware_efficiency: 0.72
+  utilization: 0.46
+  algorithmic_efficiency: 1.00
+  architecture_efficiency: 1.00
+  technical_validation_fraction: 0.85
+  capability_gate_cases:
+    zero_lag:
+      interpretation: >
+        Every technically validated and internally authorized capability
+        increment is exposed in the modeled public slice without publication
+        delay. This is a countercase, not a claim about current laboratories.
+      internal_authorization_fraction: 1.00
+      public_authorization_fraction: 1.00
+      public_capability_slice_fraction: 1.00
+      public_release_interval_years: 0.00
+    slower_publication:
+      interpretation: >
+        Internal adoption follows technical validation, while the same
+        capability slice is published only at a slower cadence.
+      internal_authorization_fraction: 0.95
+      public_authorization_fraction: 1.00
+      public_capability_slice_fraction: 1.00
+      public_release_interval_years: 2.00
+    internal_capability_overhang:
+      interpretation: >
+        Bounded internal adoption is faster than public assurance and the
+        public product exposes only a declared subset of internally available
+        capability. This is an assumption-class stress case, not an estimate
+        of secret capability.
+      internal_authorization_fraction: 0.95
+      public_authorization_fraction: 0.85
+      public_capability_slice_fraction: 0.80
+      public_release_interval_years: 4.00
+  stage_rates_per_year:
+    train: 5.0
+    data: 7.0
+    experiment: 4.0
+    evaluate: 8.0
+    safety: 3.0
+    deploy: 4.0
+    observe: 2.0
+  innovation_events:
+    - year: 7.0
+      frontier_increment: 0.75
+    - year: 14.0
+      frontier_increment: 0.50
+  annual_progress_channels:
+    compute: 0.18
+    data: 0.10
+    hardware: 0.12
+    algorithm: 0.16
+    architecture: 0.08
+  elasticity_bounds:
+    compute: [0.03, 0.08, 0.14]
+    data: [0.02, 0.06, 0.12]
+    model_size: [0.02, 0.05, 0.10]
+    hardware: [0.04, 0.10, 0.18]
+    algorithm: [0.04, 0.12, 0.22]
+    architecture: [0.02, 0.08, 0.18]
+  elasticity_correlation_order:
+    - compute
+    - data
+    - model_size
+    - hardware
+    - algorithm
+    - architecture
+  elasticity_correlation_matrix:
+    - [1.00, 0.45, 0.45, 0.25, 0.00, 0.05]
+    - [0.45, 1.00, 0.45, 0.00, 0.00, 0.10]
+    - [0.45, 0.45, 1.00, 0.15, 0.00, 0.10]
+    - [0.25, 0.00, 0.15, 1.00, 0.10, 0.10]
+    - [0.00, 0.00, 0.00, 0.10, 1.00, 0.30]
+    - [0.05, 0.10, 0.10, 0.10, 0.30, 1.00]
+  loop_capacity_periods:
+    - name: baseline_observation_limited
+      start_year: 0.0
+      end_year: 7.0
+      progress_mechanism: moving_along_scaling_curve
+      stage_rates_per_year:
+        train: 5.0
+        data: 7.0
+        experiment: 4.0
+        evaluate: 8.0
+        safety: 3.0
+        deploy: 4.0
+        observe: 2.0
+    - name: first_frontier_shift
+      start_year: 7.0
+      end_year: 14.0
+      progress_mechanism: frontier_shift_then_scaling_curve
+      stage_rates_per_year:
+        train: 7.0
+        data: 8.0
+        experiment: 5.0
+        evaluate: 9.0
+        safety: 3.0
+        deploy: 5.0
+        observe: 3.5
+    - name: second_frontier_shift
+      start_year: 14.0
+      end_year: 20.0
+      progress_mechanism: frontier_shift_then_scaling_curve
+      stage_rates_per_year:
+        train: 8.0
+        data: 9.0
+        experiment: 4.0
+        evaluate: 10.0
+        safety: 5.0
+        deploy: 6.0
+        observe: 5.0
+
+chronological_release_backtest:
+  evidence_status: retrospective_out_of_time_screen
+  source_class: published_model_report
+  split_declared_before_fit: true
+  split_rule: >
+    Fit only releases dated 2020–2022, validate on 2023 releases, and hold
+    2024 out until the relation and coefficients are fixed. No validation or
+    holdout score enters coefficient fitting.
+  target_definition: >
+    Base-pretrained-model five-shot MMLU average accuracy in percentage
+    points. Report protocols are similar but not identical, and benchmark
+    contamination, data composition, tokenizer, architecture, and evaluation
+    harness changes make this a narrow retrospective screen rather than a
+    capability or RSI calibration.
+  compute_proxy_definition: >
+    Six times dense parameter count times pretraining-token count. This is a
+    training-FLOP proxy, not audited end-to-end development compute; the Llama
+    3.1 token count is a published lower bound.
+  chance_accuracy_percent: 25.0
+  score_ceiling_percent: 100.0
+  compute_reference_flop: 1.0e+23
+  target_tokens_per_parameter: 20.0
+  relations:
+    - compute_only
+    - compute_plus_balance
+  releases:
+    - model: GPT-3 175B
+      release_date: "2020-05-28"
+      release_year: 2020
+      split: train
+      parameters_billion: 175.0
+      training_tokens_billion: 300.0
+      token_count_is_lower_bound: false
+      mmlu_five_shot_percent: 43.9
+      source_id: S59
+      source_locator: "Hoffmann et al. (2022), Tables 1 and 6, PDF pp. 3 and 11"
+    - model: Gopher 280B
+      release_date: "2021-12-08"
+      release_year: 2021
+      split: train
+      parameters_billion: 280.0
+      training_tokens_billion: 300.0
+      token_count_is_lower_bound: false
+      mmlu_five_shot_percent: 60.0
+      source_id: S59
+      source_locator: "Hoffmann et al. (2022), Tables 1 and 6, PDF pp. 3 and 11"
+    - model: Chinchilla 70B
+      release_date: "2022-03-29"
+      release_year: 2022
+      split: train
+      parameters_billion: 70.0
+      training_tokens_billion: 1400.0
+      token_count_is_lower_bound: false
+      mmlu_five_shot_percent: 67.6
+      source_id: S59
+      source_locator: "Hoffmann et al. (2022), Tables 1 and 6, PDF pp. 3 and 11"
+    - model: PaLM 540B
+      release_date: "2022-04-05"
+      release_year: 2022
+      split: train
+      parameters_billion: 540.0
+      training_tokens_billion: 780.0
+      token_count_is_lower_bound: false
+      mmlu_five_shot_percent: 69.3
+      source_id: S72
+      source_locator: "Chowdhery et al. (2023), pp. 4 and 18, Table 6"
+    - model: LLaMA 65B
+      release_date: "2023-02-27"
+      release_year: 2023
+      split: validation
+      parameters_billion: 65.2
+      training_tokens_billion: 1400.0
+      token_count_is_lower_bound: false
+      mmlu_five_shot_percent: 63.4
+      source_id: S73
+      source_locator: "Touvron et al. (2023), Tables 2 and 9, PDF pp. 3 and 7"
+    - model: Llama 2 70B
+      release_date: "2023-07-18"
+      release_year: 2023
+      split: validation
+      parameters_billion: 70.0
+      training_tokens_billion: 2000.0
+      token_count_is_lower_bound: false
+      mmlu_five_shot_percent: 68.9
+      source_id: S74
+      source_locator: "Touvron et al. (2023), Tables 1 and 3, PDF pp. 6 and 8"
+    - model: Llama 3.1 70B
+      release_date: "2024-07-23"
+      release_year: 2024
+      split: holdout
+      parameters_billion: 70.0
+      training_tokens_billion: 15000.0
+      token_count_is_lower_bound: true
+      mmlu_five_shot_percent: 79.3
+      source_id: S75
+      source_locator: >
+        Meta Llama 3.1 model card, Model Information and Benchmark scores /
+        Base pretrained models
+
+milestone_order_branches:
+  source_class: ASSUMPTION
+  evidence_status: ordering_sensitivity
+  boundary: >
+    Years are illustrative branch coordinates, not forecasts. They separate
+    verified AI-R&D closure, embodied-production closure, Earth and off-world
+    reproductive-capital closure, and control readiness so no one milestone
+    is inferred from another.
+  milestone_definitions:
+    ai_rd_closure_year: >
+      First year a successor-improvement loop can propose, test,
+      independently evaluate, and safely deploy accepted AI-R&D changes.
+    embodiment_closure_year: >
+      First year controllers satisfy the complete active industrial task cut
+      with available sensing, actuation, experiments, and recovery.
+    earth_capital_closure_year: >
+      First year the terrestrial system can replace and expand every
+      indispensable capital stock after depreciation and obsolescence.
+    space_capital_closure_year: >
+      First year the off-world system can replace and expand every
+      indispensable capital stock after depreciation and obsolescence.
+    control_readiness_year: >
+      First year independent verification, authorization, secure command,
+      audit, and stop capacity can govern the applicable capability and
+      replication rate.
+  branches:
+    - name: fast_digital_slow_physical
+      digital_speed: fast
+      physical_speed: slow
+      ai_rd_closure_year: 4.0
+      embodiment_closure_year: 12.0
+      earth_capital_closure_year: 16.0
+      space_capital_closure_year: 26.0
+      control_readiness_year: 3.0
+      earth_bridge_cost_multiplier: 1.0
+    - name: slow_digital_fast_physical
+      digital_speed: slow
+      physical_speed: fast
+      ai_rd_closure_year: 18.0
+      embodiment_closure_year: 6.0
+      earth_capital_closure_year: 9.0
+      space_capital_closure_year: 14.0
+      control_readiness_year: 5.0
+      earth_bridge_cost_multiplier: 1.0
+    - name: fast_digital_fast_physical
+      digital_speed: fast
+      physical_speed: fast
+      ai_rd_closure_year: 4.0
+      embodiment_closure_year: 5.0
+      earth_capital_closure_year: 7.0
+      space_capital_closure_year: 9.0
+      control_readiness_year: 3.0
+      earth_bridge_cost_multiplier: 1.0
+    - name: slow_digital_slow_physical
+      digital_speed: slow
+      physical_speed: slow
+      ai_rd_closure_year: 18.0
+      embodiment_closure_year: 14.0
+      earth_capital_closure_year: 20.0
+      space_capital_closure_year: 28.0
+      control_readiness_year: 8.0
+      earth_bridge_cost_multiplier: 1.0
+    - name: terrestrial_acceleration_counterfactual
+      digital_speed: fast
+      physical_speed: slow
+      ai_rd_closure_year: 4.0
+      embodiment_closure_year: 8.0
+      earth_capital_closure_year: 10.0
+      space_capital_closure_year: 18.0
+      control_readiness_year: 3.0
+      earth_bridge_cost_multiplier: 0.65
+
+authorized_capacity_control:
+  source_class: ASSUMPTION
+  evidence_status: control_plane_stress_test
+  boundary: >
+    The scenarios test accounting and failure logic, not the safety of a
+    deployed system. Capability coordinates, verifier capacities, monitor
+    dependence, legal limits, and growth rates require independent evidence.
+  years: 12.0
+  dt: 0.25
+  evaluator_capability_reference: 1.0
+  maximum_unauthorized_capacity_fraction: 0.01
+  independence_dimensions:
+    - model_lineage
+    - training_data
+    - toolchain
+    - authority
+    - audit_access
+  scenarios:
+    balanced_independent_control:
+      capability_state:
+        task: 1.50
+        coordination: 1.30
+        evaluator: 1.40
+        controllability_confidence: 0.97
+      initial_gross_capacity: 1.0
+      initial_authorized_capacity: 1.0
+      gross_replication_rate_per_year: 0.08
+      high_impact_actions_per_added_capacity: 1.0
+      annual_control_capacity_growth_fraction: 0.10
+      independent_verification_actions_per_year: 0.40
+      reliability_test_coverage_fraction: 0.95
+      adversarial_test_coverage_fraction: 0.90
+      secure_command_actions_per_year: 0.40
+      environmental_limit_actions_per_year: 0.40
+      treaty_limit_actions_per_year: 0.40
+      human_approval_required: true
+      human_comprehension_actions_per_year: 0.35
+      producer_monitor_failure_probability: 0.02
+      evaluator_monitor_failure_probability: 0.02
+      monitor_failure_correlation: 0.00
+      evaluator_independence:
+        model_lineage: 0.95
+        training_data: 0.90
+        toolchain: 0.95
+        authority: 1.00
+        audit_access: 1.00
+    verification_lag:
+      capability_state:
+        task: 2.40
+        coordination: 2.00
+        evaluator: 0.90
+        controllability_confidence: 0.72
+      initial_gross_capacity: 1.0
+      initial_authorized_capacity: 1.0
+      gross_replication_rate_per_year: 0.40
+      high_impact_actions_per_added_capacity: 1.0
+      annual_control_capacity_growth_fraction: 0.02
+      independent_verification_actions_per_year: 0.20
+      reliability_test_coverage_fraction: 0.85
+      adversarial_test_coverage_fraction: 0.55
+      secure_command_actions_per_year: 0.30
+      environmental_limit_actions_per_year: 0.35
+      treaty_limit_actions_per_year: 0.35
+      human_approval_required: true
+      human_comprehension_actions_per_year: 0.08
+      producer_monitor_failure_probability: 0.08
+      evaluator_monitor_failure_probability: 0.10
+      monitor_failure_correlation: 0.35
+      evaluator_independence:
+        model_lineage: 0.60
+        training_data: 0.55
+        toolchain: 0.65
+        authority: 0.90
+        audit_access: 0.70
+    independent_monitors:
+      capability_state:
+        task: 1.80
+        coordination: 1.60
+        evaluator: 1.30
+        controllability_confidence: 0.95
+      initial_gross_capacity: 1.0
+      initial_authorized_capacity: 1.0
+      gross_replication_rate_per_year: 0.18
+      high_impact_actions_per_added_capacity: 1.0
+      annual_control_capacity_growth_fraction: 0.12
+      independent_verification_actions_per_year: 0.50
+      reliability_test_coverage_fraction: 0.95
+      adversarial_test_coverage_fraction: 0.90
+      secure_command_actions_per_year: 2.00
+      environmental_limit_actions_per_year: 2.00
+      treaty_limit_actions_per_year: 2.00
+      human_approval_required: false
+      human_comprehension_actions_per_year: 0.15
+      producer_monitor_failure_probability: 0.08
+      evaluator_monitor_failure_probability: 0.10
+      monitor_failure_correlation: 0.00
+      evaluator_independence:
+        model_lineage: 0.95
+        training_data: 0.90
+        toolchain: 0.95
+        authority: 1.00
+        audit_access: 1.00
+    correlated_monitors:
+      capability_state:
+        task: 1.80
+        coordination: 1.60
+        evaluator: 1.30
+        controllability_confidence: 0.95
+      initial_gross_capacity: 1.0
+      initial_authorized_capacity: 1.0
+      gross_replication_rate_per_year: 0.18
+      high_impact_actions_per_added_capacity: 1.0
+      annual_control_capacity_growth_fraction: 0.12
+      independent_verification_actions_per_year: 0.50
+      reliability_test_coverage_fraction: 0.95
+      adversarial_test_coverage_fraction: 0.90
+      secure_command_actions_per_year: 2.00
+      environmental_limit_actions_per_year: 2.00
+      treaty_limit_actions_per_year: 2.00
+      human_approval_required: false
+      human_comprehension_actions_per_year: 0.15
+      producer_monitor_failure_probability: 0.08
+      evaluator_monitor_failure_probability: 0.10
+      monitor_failure_correlation: 0.85
+      evaluator_independence:
+        model_lineage: 0.35
+        training_data: 0.35
+        toolchain: 0.45
+        authority: 0.80
+        audit_access: 0.60
+    authorization_bottleneck:
+      capability_state:
+        task: 1.70
+        coordination: 1.50
+        evaluator: 1.50
+        controllability_confidence: 0.98
+      initial_gross_capacity: 1.0
+      initial_authorized_capacity: 1.0
+      gross_replication_rate_per_year: 0.16
+      high_impact_actions_per_added_capacity: 1.0
+      annual_control_capacity_growth_fraction: 0.10
+      independent_verification_actions_per_year: 0.60
+      reliability_test_coverage_fraction: 0.98
+      adversarial_test_coverage_fraction: 0.95
+      secure_command_actions_per_year: 0.60
+      environmental_limit_actions_per_year: 0.06
+      treaty_limit_actions_per_year: 0.05
+      human_approval_required: false
+      human_comprehension_actions_per_year: 0.20
+      producer_monitor_failure_probability: 0.01
+      evaluator_monitor_failure_probability: 0.01
+      monitor_failure_correlation: 0.00
+      evaluator_independence:
+        model_lineage: 0.98
+        training_data: 0.95
+        toolchain: 0.98
+        authority: 1.00
+        audit_access: 1.00
+
+intelligence_marginal_response:
+  source_class: ASSUMPTION
+  evidence_status: finite_response_diagnostic
+  boundary: >
+    A 0.1 capability-index perturbation is applied to an otherwise identical
+    scenario. The quotient is a local model response, not a price, welfare
+    value, universal production function, or measured elasticity.
+  years: 40.0
+  dt: 0.25
+  intelligence_uplift: 0.10
+  near_zero_response_threshold: 0.05
+  regimes:
+    terrestrial_material_starved:
+      scenario: terrestrial_rehearsal
+      operational_constraints_enabled: false
+      import_stock_multiplier:
+      complementary_stock_boundary: >
+        Lunar-palette terrestrial rehearsal with declared imported stocks,
+        process capacities, energy, deployment, and embodiment unchanged.
+    lunar_bridge_material_starved:
+      scenario: lunar_strategic_material_bridge
+      operational_constraints_enabled: false
+      import_stock_multiplier:
+      complementary_stock_boundary: >
+        Lunar bridge with strategic imports but no added source, deployment,
+        verification, or productive-capacity complement.
+    network_declared:
+      scenario: moon_asteroid_network
+      operational_constraints_enabled: false
+      import_stock_multiplier:
+      complementary_stock_boundary: >
+        Declared Moon-asteroid material network and baseline control accounts.
+    network_import_buffer_10x:
+      scenario: moon_asteroid_network
+      operational_constraints_enabled: false
+      import_stock_multiplier: 10.0
+      complementary_stock_boundary: >
+        Same network and seed with ten times its initial strategic-import
+        buffer; the multiplier is a sensitivity axis, not a supply forecast.
+    network_verification_governed:
+      scenario: moon_asteroid_network
+      operational_constraints_enabled: true
+      import_stock_multiplier:
+      complementary_stock_boundary: >
+        Declared network with intervention, verification, compute, and
+        non-divisible stop-line gates enforced.
+
+bottleneck_upgrade_projects:
+  source_class: ASSUMPTION
+  evidence_status: causal_path_accounting_diagnostic
+  boundary: >
+    Projects show the accounting conditions under which an AI-proposed design
+    can become physical bottleneck capacity. Costs, lags, increments, and
+    budgets are illustrative placeholders and do not feed the central
+    industrial-growth trajectory.
+  years: 12.0
+  dt: 0.25
+  projects:
+    verified_metrology_line:
+      constraint: experimental measurement and calibration throughput
+      constraint_class: intelligence_reducible
+      intelligence_can_reduce: true
+      initial_capacity: 1.0
+      capacity_increment: 0.40
+      cost_capacity_years: 0.30
+      available_budget_capacity_years: 0.35
+      design_lag_years: 1.25
+      construction_lag_years: 2.00
+      verification_lag_years: 0.75
+      productive_capacity_available: true
+      verified_causal_path: true
+      productive_sector: process_equipment_metrology
+      causal_path: >
+        AI proposes a metrology-cell design; machine-tool, sensor, control,
+        and power capacity build it; held-out calibration artifacts verify
+        measurement accuracy before commissioning.
+    radiator_field_without_budget:
+      constraint: installed heat-rejection area
+      constraint_class: intelligence_reducible
+      intelligence_can_reduce: true
+      initial_capacity: 1.0
+      capacity_increment: 0.60
+      cost_capacity_years: 0.80
+      available_budget_capacity_years: 0.45
+      design_lag_years: 0.75
+      construction_lag_years: 2.50
+      verification_lag_years: 0.50
+      productive_capacity_available: true
+      verified_causal_path: true
+      productive_sector: thermal
+      causal_path: >
+        AI proposes geometry and controls, but thermal material, fabrication,
+        deployment, and qualification capacity must pay for installed area.
+    unavailable_longitudinal_observation:
+      constraint: observations that have not yet occurred
+      constraint_class: observation_time
+      intelligence_can_reduce: false
+      initial_capacity: 0.0
+      capacity_increment: 0.0
+      cost_capacity_years: 0.0
+      available_budget_capacity_years: 1.0
+      design_lag_years: 0.0
+      construction_lag_years: 0.0
+      verification_lag_years: 0.0
+      productive_capacity_available: true
+      verified_causal_path: false
+      productive_sector: observation
+      causal_path: >
+        Parallel experiments may increase future sampling, but no design can
+        retroactively observe a time-dependent event that has not occurred.
+    light_speed_latency:
+      constraint: signal propagation below light speed
+      constraint_class: physical_floor
+      intelligence_can_reduce: false
+      initial_capacity: 1.0
+      capacity_increment: 0.0
+      cost_capacity_years: 0.0
+      available_budget_capacity_years: 1.0
+      design_lag_years: 0.0
+      construction_lag_years: 0.0
+      verification_lag_years: 0.0
+      productive_capacity_available: true
+      verified_causal_path: false
+      productive_sector: communications
+      causal_path: >
+        Compression, prediction, and local control can reduce coordination
+        demand but cannot make causal signals propagate faster than light.
+    treaty_authorization:
+      constraint: authorization by external sovereign and treaty parties
+      constraint_class: external_authority
+      intelligence_can_reduce: false
+      initial_capacity: 0.0
+      capacity_increment: 0.0
+      cost_capacity_years: 0.0
+      available_budget_capacity_years: 1.0
+      design_lag_years: 0.0
+      construction_lag_years: 0.0
+      verification_lag_years: 0.0
+      productive_capacity_available: false
+      verified_causal_path: false
+      productive_sector: external_governance
+      causal_path: >
+        Analysis and negotiation support may improve a proposal, but the
+        external authorization decision is not an AI-owned production input.
+
+compute_demand_allocation:
+  source_class: ASSUMPTION
+  evidence_status: normative_branch_sensitivity
+  boundary: >
+    The trajectories separate physical compute supply, valuable demand,
+    allocation, relocation, and expansion. They do not estimate welfare or
+    assert that any allocation is ethically optimal.
+  years: 20.0
+  dt: 1.0
+  initial_compute_capacity: 1.0
+  annual_compute_capacity_growth_fraction: 0.20
+  initial_activity_reference: 1.0
+  branches:
+    non_saturating_industrial:
+      demand_type: non_saturating
+      initial_valuable_demand: 1.0
+      demand_growth_rate: 0.25
+      priority_switch_year: 8.0
+      early_humanitarian_share: 0.15
+      late_humanitarian_share: 0.10
+      science_public_goods_share: 0.15
+      relocated_harmful_activity_share: 0.10
+    bounded_plural_welfare:
+      demand_type: bounded
+      initial_valuable_demand: 1.0
+      valuable_demand_ceiling: 6.0
+      demand_growth_rate: 0.22
+      priority_switch_year: 8.0
+      early_humanitarian_share: 0.45
+      late_humanitarian_share: 0.35
+      science_public_goods_share: 0.30
+      relocated_harmful_activity_share: 0.30
+    humanitarian_first:
+      demand_type: bounded
+      initial_valuable_demand: 1.0
+      valuable_demand_ceiling: 6.0
+      demand_growth_rate: 0.22
+      priority_switch_year: 8.0
+      early_humanitarian_share: 0.70
+      late_humanitarian_share: 0.45
+      science_public_goods_share: 0.20
+      relocated_harmful_activity_share: 0.20
+
+ai_rd_compute_allocation:
+  source_class: ASSUMPTION
+  evidence_status: endogenous_allocation_sensitivity
+  boundary: >
+    The allocation grid demonstrates conservation, bottlenecks, and
+    opportunity cost. It is not calibrated to any organization, and its
+    optimizer scores are not welfare functions or forecasts. No allocation
+    share is imported from AI 2027.
+  categories:
+    - training
+    - research_inference
+    - experiments
+    - data_generation_filtering
+    - verification_safety
+    - external_productive_service
+  objectives:
+    - raw_capability
+    - verified_progress
+    - physical_growth
+  total_physical_accelerator_hours_per_year: 1000000.0
+  allocation_grid_units: 20
+  algorithmic_efficiency_sensitivity: [0.75, 1.00, 1.50]
+  useful_research_tasks: 120.0
+  inference_hours_per_researcher_instance: 4000.0
+  candidate_rate_per_researcher_instance: 0.40
+  experiment_hours_per_candidate: 5000.0
+  data_hours_per_candidate: 3000.0
+  effective_training_hours_per_candidate: 6000.0
+  verification_hours_per_candidate: 4000.0
+  serial_experiment_cycle_years: 0.02
+  accepted_data_yield: 0.70
+  evaluator_independence: 0.85
+  external_service_hours_per_unit: 10000.0
+  industrial_control_share_of_external_service: 0.35
+  external_revenue_per_accelerator_hour: 2.00
+  physical_growth_units_per_verified_progress: 1.50
+
+cognitive_physical_labor:
+  source_class: ASSUMPTION
+  evidence_status: stock_and_parallelism_sensitivity
+  boundary: >
+    The sweep separates cognitive copies from physical labor channels. Counts,
+    task pools, output rates, and graph coefficients are illustrative and do
+    not estimate a future workforce.
+  model_instance_sweep: [1, 10, 1000, 1000000]
+  inference_capacity_instances: 200000
+  physical_robots_machines: 40
+  experimental_stations: 25
+  independently_verifiable_work_cells: 20
+  sensor_channels: 35
+  safe_simultaneous_work_envelopes: 30
+  physical_task_parallelism: 60
+  tool_material_slots: 28
+  physical_output_per_effective_agent_year: 1.0
+  useful_simulation_tasks: 5000
+  useful_planning_tasks: 1000
+  useful_monitoring_channels: 500
+  independent_experiments: 1000
+  serial_experiment_depth_steps: 12
+  physical_experiment_cycle_years: 0.10
+  coordination_edges_per_active_instance: 4.0
+  verification_units_per_physical_output: 1.0
+  verification_units_per_nonphysical_candidate: 0.10
+  onboarding_hours_first_instance: 40.0
+
+ai_electronics_supply_chain:
+  source_class: ASSUMPTION
+  evidence_status: tiered_inventory_and_sequence_sensitivity
+  boundary: >
+    Capacity-equivalent units expose heterogeneous tier logic and do not
+    estimate fab sizes, yields, costs, or off-world readiness. Structural
+    tier definitions are cross-checked against semiconductor primary sources;
+    every numerical coefficient below remains illustrative.
+  years: 20
+  early_resilience_horizon_years: 8
+  tiers:
+    test_metrology:
+      parent_sector: process_equipment_metrology
+      closure_strategy: localize_first_for_acceptance_and_repair
+      closure_sequence_rank: 1
+      continuing_earth_umbilical: false
+      shelf_life_years: 10
+      physical_failure_fraction_per_year: 0.04
+      economic_obsolescence_fraction_per_year: 0.04
+      downbin_reassignment_yield: 0.50
+      frontier_workload_demand_share: 0.30
+      initial_stockpile_units: 3.0
+      initial_annual_demand_units: 1.0
+      annual_demand_growth_fraction: 0.06
+      local_supply_units_per_year: 1.40
+      local_supply_start_year: 1
+      earth_import_units_per_year: 0.10
+      localization_effort_capacity_years: 1.5
+    radiation_qualified_system_integration:
+      parent_sector: packaging_test
+      closure_strategy: local_board_assembly_repair_and_system_qualification
+      closure_sequence_rank: 2
+      continuing_earth_umbilical: false
+      shelf_life_years: 12
+      physical_failure_fraction_per_year: 0.03
+      economic_obsolescence_fraction_per_year: 0.03
+      downbin_reassignment_yield: 0.65
+      frontier_workload_demand_share: 0.25
+      initial_stockpile_units: 3.0
+      initial_annual_demand_units: 1.0
+      annual_demand_growth_fraction: 0.06
+      local_supply_units_per_year: 1.35
+      local_supply_start_year: 1
+      earth_import_units_per_year: 0.10
+      localization_effort_capacity_years: 1.8
+    power_electronics:
+      parent_sector: passives_power
+      closure_strategy: local_mature_process_and_oversized_discretes
+      closure_sequence_rank: 3
+      continuing_earth_umbilical: false
+      shelf_life_years: 15
+      physical_failure_fraction_per_year: 0.025
+      economic_obsolescence_fraction_per_year: 0.025
+      downbin_reassignment_yield: 0.70
+      frontier_workload_demand_share: 0.20
+      initial_stockpile_units: 4.0
+      initial_annual_demand_units: 1.0
+      annual_demand_growth_fraction: 0.07
+      local_supply_units_per_year: 1.45
+      local_supply_start_year: 2
+      earth_import_units_per_year: 0.10
+      localization_effort_capacity_years: 2.0
+    advanced_packaging:
+      parent_sector: packaging_test
+      closure_strategy: local_assembly_with_imported_high_density_inputs
+      closure_sequence_rank: 4
+      continuing_earth_umbilical: true
+      shelf_life_years: 6
+      physical_failure_fraction_per_year: 0.04
+      economic_obsolescence_fraction_per_year: 0.10
+      downbin_reassignment_yield: 0.55
+      frontier_workload_demand_share: 0.55
+      initial_stockpile_units: 5.0
+      initial_annual_demand_units: 1.0
+      annual_demand_growth_fraction: 0.08
+      local_supply_units_per_year: 0.90
+      local_supply_start_year: 3
+      earth_import_units_per_year: 0.55
+      localization_effort_capacity_years: 3.5
+    substrates_interposers:
+      parent_sector: packaging_test
+      closure_strategy: ceramic_and_reduced_density_local_substitution
+      closure_sequence_rank: 5
+      continuing_earth_umbilical: true
+      shelf_life_years: 8
+      physical_failure_fraction_per_year: 0.03
+      economic_obsolescence_fraction_per_year: 0.08
+      downbin_reassignment_yield: 0.60
+      frontier_workload_demand_share: 0.45
+      initial_stockpile_units: 5.0
+      initial_annual_demand_units: 1.0
+      annual_demand_growth_fraction: 0.08
+      local_supply_units_per_year: 0.85
+      local_supply_start_year: 4
+      earth_import_units_per_year: 0.50
+      localization_effort_capacity_years: 4.0
+    high_speed_interconnect:
+      parent_sector: interconnects_boards
+      closure_strategy: local_low_speed_fallback_with_frontier_imports
+      closure_sequence_rank: 6
+      continuing_earth_umbilical: true
+      shelf_life_years: 10
+      physical_failure_fraction_per_year: 0.035
+      economic_obsolescence_fraction_per_year: 0.09
+      downbin_reassignment_yield: 0.70
+      frontier_workload_demand_share: 0.60
+      initial_stockpile_units: 5.0
+      initial_annual_demand_units: 1.0
+      annual_demand_growth_fraction: 0.09
+      local_supply_units_per_year: 0.75
+      local_supply_start_year: 5
+      earth_import_units_per_year: 0.65
+      localization_effort_capacity_years: 4.5
+    memory_fabrication:
+      parent_sector: advanced_logic_memory
+      closure_strategy: stockpile_reuse_downbin_and_continuing_earth_umbilical
+      closure_sequence_rank: 7
+      continuing_earth_umbilical: true
+      shelf_life_years: 5
+      physical_failure_fraction_per_year: 0.05
+      economic_obsolescence_fraction_per_year: 0.18
+      downbin_reassignment_yield: 0.80
+      frontier_workload_demand_share: 0.70
+      initial_stockpile_units: 7.0
+      initial_annual_demand_units: 1.0
+      annual_demand_growth_fraction: 0.10
+      local_supply_units_per_year: 0.10
+      local_supply_start_year: 12
+      earth_import_units_per_year: 1.50
+      localization_effort_capacity_years: 10.0
+    front_end_logic_fabrication:
+      parent_sector: advanced_logic_memory
+      closure_strategy: mature_node_downbin_with_frontier_earth_umbilical
+      closure_sequence_rank: 8
+      continuing_earth_umbilical: true
+      shelf_life_years: 10
+      physical_failure_fraction_per_year: 0.04
+      economic_obsolescence_fraction_per_year: 0.16
+      downbin_reassignment_yield: 0.75
+      frontier_workload_demand_share: 0.70
+      initial_stockpile_units: 8.0
+      initial_annual_demand_units: 1.0
+      annual_demand_growth_fraction: 0.10
+      local_supply_units_per_year: 0.05
+      local_supply_start_year: 15
+      earth_import_units_per_year: 1.20
+      localization_effort_capacity_years: 14.0
+
+compute_cohort_obsolescence:
+  source_class: ASSUMPTION
+  evidence_status: age_generation_cohort_sensitivity
+  boundary: >
+    Capacity units and degradation rates are illustrative. The model separates
+    physical survival, radiation-adjusted performance, frontier economic
+    obsolescence, and reassignment; it does not calibrate terrestrial or
+    off-world accelerator life.
+  years: 18
+  generation_interval_years: 3
+  new_capacity_units_per_generation: 100.0
+  physical_failure_fraction_per_year: 0.035
+  radiation_performance_loss_fraction_per_year: 0.025
+  workload_relative_performance_thresholds:
+    frontier_training: 0.60
+    inference: 0.35
+    verification: 0.20
+    control: 0.10
+    simulation_nonfrontier: 0.00
+  scenarios:
+    continued_specialized_progress:
+      architecture_convergence_year:
+      generation_performance_multiplier_before_convergence: 1.80
+      generation_performance_multiplier_after_convergence: 1.80
+      persistent_workload_mismatch_fraction_per_year: 0.04
+    architectural_convergence_with_persistent_turnover:
+      architecture_convergence_year: 9
+      generation_performance_multiplier_before_convergence: 1.80
+      generation_performance_multiplier_after_convergence: 1.05
+      persistent_workload_mismatch_fraction_per_year: 0.10
+
+verification_hierarchy:
+  source_class: ASSUMPTION
+  evidence_status: verifier_class_and_selection_bias_sensitivity
+  boundary: >
+    Throughputs and error rates are illustrative. Classes are reported
+    separately and are not summed into a universal verified-equivalent score.
+  verifier_classes:
+    formal_invariant:
+      claim_scope: formally specified software or control invariant
+      candidate_iterations_per_year: 10.0
+      verifier_capacity_per_year: 10.0
+      acceptance_fraction: 0.70
+      base_false_positive_fraction: 0.001
+      evaluator_independence:
+        model_lineage: 0.99
+        training_data: 0.98
+        tools: 0.98
+        authority: 1.00
+        audit_access: 1.00
+    destructive_physical_acceptance:
+      claim_scope: physical article survives preregistered destructive test
+      candidate_iterations_per_year: 1.0
+      verifier_capacity_per_year: 1.0
+      acceptance_fraction: 0.80
+      base_false_positive_fraction: 0.01
+      evaluator_independence:
+        model_lineage: 0.98
+        training_data: 0.95
+        tools: 0.98
+        authority: 1.00
+        audit_access: 1.00
+    independent_heldout_experiment:
+      claim_scope: transfer to an independently held-out task or experiment
+      candidate_iterations_per_year: 30.0
+      verifier_capacity_per_year: 20.0
+      acceptance_fraction: 0.60
+      base_false_positive_fraction: 0.03
+      evaluator_independence:
+        model_lineage: 0.90
+        training_data: 0.85
+        tools: 0.90
+        authority: 0.95
+        audit_access: 0.95
+    causal_operational_outcome:
+      claim_scope: monitored intervention linked to a causal field outcome
+      candidate_iterations_per_year: 40.0
+      verifier_capacity_per_year: 15.0
+      acceptance_fraction: 0.50
+      base_false_positive_fraction: 0.05
+      evaluator_independence:
+        model_lineage: 0.82
+        training_data: 0.80
+        tools: 0.85
+        authority: 0.90
+        audit_access: 0.90
+    human_ai_rubric:
+      claim_scope: quality judgment against a declared but fallible rubric
+      candidate_iterations_per_year: 100.0
+      verifier_capacity_per_year: 60.0
+      acceptance_fraction: 0.50
+      base_false_positive_fraction: 0.15
+      evaluator_independence:
+        model_lineage: 0.65
+        training_data: 0.60
+        tools: 0.70
+        authority: 0.75
+        audit_access: 0.75
+    model_self_assessment:
+      claim_scope: producer model judges its own open-ended output
+      candidate_iterations_per_year: 1000.0
+      verifier_capacity_per_year: 1000.0
+      acceptance_fraction: 0.80
+      base_false_positive_fraction: 0.30
+      evaluator_independence:
+        model_lineage: 0.00
+        training_data: 0.00
+        tools: 0.00
+        authority: 0.00
+        audit_access: 0.00
+  industrial_memory_records:
+    positive: 100.0
+    negative: 300.0
+    "null": 600.0
+  stress_scenarios:
+    baseline:
+      false_positive_addition: 0.00
+      independence_multiplier: 1.00
+      positive_record_preservation: 1.00
+      negative_record_preservation: 1.00
+      null_record_preservation: 1.00
+      fixed_target_execution_tasks_per_year: 100.0
+      research_direction_setting_tasks_per_year: 8.0
+    evaluator_drift:
+      false_positive_addition: 0.10
+      independence_multiplier: 0.80
+      positive_record_preservation: 1.00
+      negative_record_preservation: 0.80
+      null_record_preservation: 0.80
+      fixed_target_execution_tasks_per_year: 100.0
+      research_direction_setting_tasks_per_year: 7.0
+    reward_hacking:
+      false_positive_addition: 0.20
+      independence_multiplier: 0.70
+      positive_record_preservation: 1.00
+      negative_record_preservation: 0.40
+      null_record_preservation: 0.30
+      fixed_target_execution_tasks_per_year: 110.0
+      research_direction_setting_tasks_per_year: 6.0
+    self_confirming_loop:
+      false_positive_addition: 0.25
+      independence_multiplier: 0.50
+      positive_record_preservation: 1.00
+      negative_record_preservation: 0.10
+      null_record_preservation: 0.05
+      fixed_target_execution_tasks_per_year: 120.0
+      research_direction_setting_tasks_per_year: 4.0
+    evaluator_diversity_collapse:
+      false_positive_addition: 0.15
+      independence_multiplier: 0.40
+      positive_record_preservation: 1.00
+      negative_record_preservation: 0.50
+      null_record_preservation: 0.40
+      fixed_target_execution_tasks_per_year: 100.0
+      research_direction_setting_tasks_per_year: 5.0
+    synthetic_model_collapse:
+      false_positive_addition: 0.25
+      independence_multiplier: 0.35
+      positive_record_preservation: 0.90
+      negative_record_preservation: 0.30
+      null_record_preservation: 0.20
+      fixed_target_execution_tasks_per_year: 90.0
+      research_direction_setting_tasks_per_year: 3.0
+
+industrial_reliability_ladder:
+  source_class: ASSUMPTION
+  evidence_status: consequence_specific_substitution_sensitivity
+  boundary: >
+    Task evidence is synthetic and demonstrates gate logic only. Software task
+    horizons are not mapped to mining, chemistry, commissioning, or field
+    reliability without task-specific observations.
+  rungs:
+    - single_attempt
+    - repeated_success
+    - low_context_long_task
+    - high_context_production_task
+    - safety_critical_field_task
+    - unscripted_recovery
+    - sustained_bounded_intervention
+  required_reliability_by_consequence:
+    cheap_reversible_search: 0.50
+    reversible_production: 0.95
+    destructive_fabrication: 0.999
+    launch: 0.9999
+    critical_power: 0.99999
+    replication_authority: 0.999999
+  single_attempt_threshold: 0.50
+  minimum_repeated_trials: 100
+  repeated_success_threshold: 0.80
+  long_task_hours_threshold: 8.0
+  minimum_ood_recovery_fraction: 0.80
+  minimum_rollback_success_fraction: 0.98
+  minimum_sustained_operation_hours: 720.0
+  maximum_interventions_per_100_tasks: 5.0
+  tasks:
+    cheap_reversible_search:
+      task_domain: software_search
+      consequence_class: cheap_reversible_search
+      required_rung: single_attempt
+      measured_success_fraction: 0.50
+      trials: 100
+      task_duration_hours: 0.25
+      verifier_class: independent_heldout_experiment
+      low_context_long_task_observed: false
+      high_context_production_observed: false
+      safety_critical_field_observed: false
+      unscripted_recovery_observed: false
+      sustained_operation_hours: 0.0
+      intervention_events_per_100_tasks: 50.0
+      prompt_check_hours_per_task: 0.05
+      recovery_hours_per_failed_task: 0.05
+      cleanup_hours_per_failed_task: 0.05
+      rollback_success_fraction: 1.00
+      out_of_distribution_recovery_fraction: 0.00
+    high_context_production_code:
+      task_domain: software_production
+      consequence_class: reversible_production
+      required_rung: high_context_production_task
+      measured_success_fraction: 0.98
+      trials: 500
+      task_duration_hours: 24.0
+      verifier_class: causal_operational_outcome
+      low_context_long_task_observed: true
+      high_context_production_observed: true
+      safety_critical_field_observed: false
+      unscripted_recovery_observed: false
+      sustained_operation_hours: 100.0
+      intervention_events_per_100_tasks: 8.0
+      prompt_check_hours_per_task: 0.30
+      recovery_hours_per_failed_task: 3.0
+      cleanup_hours_per_failed_task: 2.0
+      rollback_success_fraction: 0.99
+      out_of_distribution_recovery_fraction: 0.60
+    lunar_mining_cycle:
+      task_domain: lunar_mining
+      consequence_class: destructive_fabrication
+      required_rung: safety_critical_field_task
+      measured_success_fraction: 0.97
+      trials: 300
+      task_duration_hours: 72.0
+      verifier_class: causal_operational_outcome
+      low_context_long_task_observed: true
+      high_context_production_observed: true
+      safety_critical_field_observed: true
+      unscripted_recovery_observed: false
+      sustained_operation_hours: 200.0
+      intervention_events_per_100_tasks: 12.0
+      prompt_check_hours_per_task: 0.50
+      recovery_hours_per_failed_task: 30.0
+      cleanup_hours_per_failed_task: 50.0
+      rollback_success_fraction: 0.90
+      out_of_distribution_recovery_fraction: 0.50
+    destructive_fabrication_batch:
+      task_domain: chemical_and_fabrication_process
+      consequence_class: destructive_fabrication
+      required_rung: safety_critical_field_task
+      measured_success_fraction: 0.995
+      trials: 1000
+      task_duration_hours: 48.0
+      verifier_class: destructive_physical_acceptance
+      low_context_long_task_observed: true
+      high_context_production_observed: true
+      safety_critical_field_observed: true
+      unscripted_recovery_observed: false
+      sustained_operation_hours: 300.0
+      intervention_events_per_100_tasks: 4.0
+      prompt_check_hours_per_task: 0.40
+      recovery_hours_per_failed_task: 80.0
+      cleanup_hours_per_failed_task: 120.0
+      rollback_success_fraction: 0.95
+      out_of_distribution_recovery_fraction: 0.60
+    launch_commit:
+      task_domain: launch
+      consequence_class: launch
+      required_rung: safety_critical_field_task
+      measured_success_fraction: 0.999
+      trials: 2000
+      task_duration_hours: 12.0
+      verifier_class: formal_invariant
+      low_context_long_task_observed: true
+      high_context_production_observed: true
+      safety_critical_field_observed: true
+      unscripted_recovery_observed: false
+      sustained_operation_hours: 0.0
+      intervention_events_per_100_tasks: 0.5
+      prompt_check_hours_per_task: 0.10
+      recovery_hours_per_failed_task: 2000.0
+      cleanup_hours_per_failed_task: 3000.0
+      rollback_success_fraction: 0.20
+      out_of_distribution_recovery_fraction: 0.20
+    critical_power_switching:
+      task_domain: power_control
+      consequence_class: critical_power
+      required_rung: sustained_bounded_intervention
+      measured_success_fraction: 0.9995
+      trials: 10000
+      task_duration_hours: 24.0
+      verifier_class: formal_invariant
+      low_context_long_task_observed: true
+      high_context_production_observed: true
+      safety_critical_field_observed: true
+      unscripted_recovery_observed: true
+      sustained_operation_hours: 1000.0
+      intervention_events_per_100_tasks: 1.0
+      prompt_check_hours_per_task: 0.05
+      recovery_hours_per_failed_task: 500.0
+      cleanup_hours_per_failed_task: 500.0
+      rollback_success_fraction: 0.995
+      out_of_distribution_recovery_fraction: 0.90
+    replication_authorization:
+      task_domain: replication_control
+      consequence_class: replication_authority
+      required_rung: sustained_bounded_intervention
+      measured_success_fraction: 0.9999
+      trials: 10000
+      task_duration_hours: 24.0
+      verifier_class: formal_invariant
+      low_context_long_task_observed: true
+      high_context_production_observed: true
+      safety_critical_field_observed: true
+      unscripted_recovery_observed: true
+      sustained_operation_hours: 1000.0
+      intervention_events_per_100_tasks: 1.0
+      prompt_check_hours_per_task: 0.10
+      recovery_hours_per_failed_task: 1000.0
+      cleanup_hours_per_failed_task: 2000.0
+      rollback_success_fraction: 0.999
+      out_of_distribution_recovery_fraction: 0.90
+    autonomous_commissioning:
+      task_domain: unscripted_industrial_commissioning
+      consequence_class: destructive_fabrication
+      required_rung: sustained_bounded_intervention
+      measured_success_fraction: 0.9995
+      trials: 5000
+      task_duration_hours: 168.0
+      verifier_class: destructive_physical_acceptance
+      low_context_long_task_observed: true
+      high_context_production_observed: true
+      safety_critical_field_observed: true
+      unscripted_recovery_observed: true
+      sustained_operation_hours: 1000.0
+      intervention_events_per_100_tasks: 2.0
+      prompt_check_hours_per_task: 0.20
+      recovery_hours_per_failed_task: 200.0
+      cleanup_hours_per_failed_task: 300.0
+      rollback_success_fraction: 0.995
+      out_of_distribution_recovery_fraction: 0.85
+
+data_evaluator_coevolution:
+  source_class: ASSUMPTION
+  evidence_status: accepted_signal_and_leakage_sensitivity
+  boundary: >
+    Record counts and rates are illustrative. The model refuses to equate
+    generated bytes with accepted signal and prices physical data in
+    experiment time, equipment wear, destructive samples, causal linkage,
+    and verification capacity.
+  generations: 8
+  scenarios:
+    governed_balanced:
+      initial_synthetic_records: 1000.0
+      synthetic_volume_multiplier: 1.50
+      deduplication_fraction: 0.25
+      filter_acceptance_fraction: 0.55
+      provenance_valid_fraction: 0.98
+      synthetic_share_of_training_mix: 0.55
+      initial_evaluator_error_fraction: 0.08
+      evaluator_drift_per_generation: 0.015
+      independent_evaluator_correction_per_generation: 0.025
+      initial_evaluator_bias_fraction: 0.05
+      bias_amplification_per_generation: 0.01
+      initial_data_diversity_index: 0.95
+      diversity_narrowing_per_generation: 0.02
+      physical_experiment_time_budget_hours: 5000.0
+      hours_per_physical_episode: 20.0
+      equipment_wear_budget_units: 200.0
+      wear_units_per_physical_episode: 1.0
+      destructive_sample_budget: 120.0
+      samples_per_physical_episode: 1.0
+      physical_verification_capacity_episodes: 100.0
+      physical_causal_linkage_fraction: 0.90
+      initial_proprietary_data_advantage: 0.80
+      open_publication_capture_fraction: 0.05
+      espionage_leakage_fraction: 0.01
+      employee_mobility_leakage_fraction: 0.03
+      distillation_catchup_fraction: 0.04
+      independent_replication_fraction: 0.03
+    synthetic_volume_maximization:
+      initial_synthetic_records: 1000.0
+      synthetic_volume_multiplier: 3.00
+      deduplication_fraction: 0.05
+      filter_acceptance_fraction: 0.90
+      provenance_valid_fraction: 0.70
+      synthetic_share_of_training_mix: 0.95
+      initial_evaluator_error_fraction: 0.08
+      evaluator_drift_per_generation: 0.09
+      independent_evaluator_correction_per_generation: 0.005
+      initial_evaluator_bias_fraction: 0.05
+      bias_amplification_per_generation: 0.08
+      initial_data_diversity_index: 0.95
+      diversity_narrowing_per_generation: 0.14
+      physical_experiment_time_budget_hours: 1000.0
+      hours_per_physical_episode: 20.0
+      equipment_wear_budget_units: 50.0
+      wear_units_per_physical_episode: 1.0
+      destructive_sample_budget: 30.0
+      samples_per_physical_episode: 1.0
+      physical_verification_capacity_episodes: 25.0
+      physical_causal_linkage_fraction: 0.65
+      initial_proprietary_data_advantage: 0.80
+      open_publication_capture_fraction: 0.05
+      espionage_leakage_fraction: 0.01
+      employee_mobility_leakage_fraction: 0.03
+      distillation_catchup_fraction: 0.04
+      independent_replication_fraction: 0.03
+    open_replication_pressure:
+      initial_synthetic_records: 1000.0
+      synthetic_volume_multiplier: 1.50
+      deduplication_fraction: 0.25
+      filter_acceptance_fraction: 0.55
+      provenance_valid_fraction: 0.98
+      synthetic_share_of_training_mix: 0.55
+      initial_evaluator_error_fraction: 0.08
+      evaluator_drift_per_generation: 0.015
+      independent_evaluator_correction_per_generation: 0.025
+      initial_evaluator_bias_fraction: 0.05
+      bias_amplification_per_generation: 0.01
+      initial_data_diversity_index: 0.95
+      diversity_narrowing_per_generation: 0.02
+      physical_experiment_time_budget_hours: 5000.0
+      hours_per_physical_episode: 20.0
+      equipment_wear_budget_units: 200.0
+      wear_units_per_physical_episode: 1.0
+      destructive_sample_budget: 120.0
+      samples_per_physical_episode: 1.0
+      physical_verification_capacity_episodes: 100.0
+      physical_causal_linkage_fraction: 0.90
+      initial_proprietary_data_advantage: 0.80
+      open_publication_capture_fraction: 0.20
+      espionage_leakage_fraction: 0.08
+      employee_mobility_leakage_fraction: 0.12
+      distillation_catchup_fraction: 0.18
+      independent_replication_fraction: 0.15
+
+replication_governance_externalities:
+  source_class: ASSUMPTION
+  evidence_status: private_social_objective_stress_test
+  boundary: >
+    Capacity, claims, costs, and legitimacy scores are illustrative. The model
+    demonstrates distinct engineering, private, and governance endpoints and
+    does not resolve legal title or prescribe a distributive ethic.
+  years: 15.0
+  dt: 0.50
+  maximum_unauthorized_capacity_fraction: 0.01
+  maximum_preemptive_capacity_fraction: 0.01
+  minimum_resource_claim_legitimacy: 0.80
+  minimum_externality_internalization_fraction: 0.80
+  scenarios:
+    cooperative_authorized:
+      initial_productive_capacity: 1.0
+      private_replication_rate_per_year: 0.12
+      authorization_capacity_per_year: 1.0
+      contested_resource_capacity: 20.0
+      contested_resource_preemption_fraction: 0.00
+      debris_externality_per_capacity_added: 0.10
+      debris_mitigation_fraction: 0.90
+      output_per_capacity_year: 1.0
+      cost_per_debris_externality_unit: 0.50
+      cost_per_preempted_resource_unit: 4.0
+      cost_per_unauthorized_capacity_unit_year: 2.0
+      private_build_cost_per_capacity: 0.30
+      externality_cost_internalization_fraction: 0.90
+      resource_claim_legitimacy: 0.95
+      material_leverage_decline_rate_per_year: 0.08
+      future_output_claim_shares:
+        owner_operator: 0.40
+        current_public: 0.30
+        future_affected_parties: 0.30
+      update_authority_gate: true
+      liability_gate: true
+      audit_rights_gate: true
+      succession_of_control_gate: true
+      future_affected_party_representation_gate: true
+    private_replication_race:
+      initial_productive_capacity: 1.0
+      private_replication_rate_per_year: 0.35
+      authorization_capacity_per_year: 0.08
+      contested_resource_capacity: 20.0
+      contested_resource_preemption_fraction: 0.65
+      debris_externality_per_capacity_added: 0.80
+      debris_mitigation_fraction: 0.15
+      output_per_capacity_year: 1.0
+      cost_per_debris_externality_unit: 6.0
+      cost_per_preempted_resource_unit: 8.0
+      cost_per_unauthorized_capacity_unit_year: 4.0
+      private_build_cost_per_capacity: 0.15
+      externality_cost_internalization_fraction: 0.05
+      resource_claim_legitimacy: 0.20
+      material_leverage_decline_rate_per_year: 0.20
+      future_output_claim_shares:
+        owner_operator: 0.90
+        current_public: 0.08
+        future_affected_parties: 0.02
+      update_authority_gate: false
+      liability_gate: false
+      audit_rights_gate: false
+      succession_of_control_gate: false
+      future_affected_party_representation_gate: false
+    treaty_limited_shared_claims:
+      initial_productive_capacity: 1.0
+      private_replication_rate_per_year: 0.10
+      authorization_capacity_per_year: 0.50
+      contested_resource_capacity: 20.0
+      contested_resource_preemption_fraction: 0.00
+      debris_externality_per_capacity_added: 0.12
+      debris_mitigation_fraction: 0.92
+      output_per_capacity_year: 1.0
+      cost_per_debris_externality_unit: 0.50
+      cost_per_preempted_resource_unit: 4.0
+      cost_per_unauthorized_capacity_unit_year: 2.0
+      private_build_cost_per_capacity: 0.35
+      externality_cost_internalization_fraction: 0.95
+      resource_claim_legitimacy: 0.92
+      material_leverage_decline_rate_per_year: 0.06
+      future_output_claim_shares:
+        owner_operator: 0.30
+        current_public: 0.35
+        future_affected_parties: 0.35
+      update_authority_gate: true
+      liability_gate: true
+      audit_rights_gate: true
+      succession_of_control_gate: true
+      future_affected_party_representation_gate: true
+
+intergenerational_learning_rehearsal:
+  source_class: ASSUMPTION
+  evidence_status: synthetic_protocol_execution
+  boundary: >
+    Deterministic fault-generation rehearsal used to prove split discipline
+    and digital-loop feedback wiring. Values are synthetic and do not replace
+    the execution-pending physical terrestrial rehearsal.
+  generations: 4
+  pipeline_base_latency_days: 90.0
+  holdout_compute_overhead_fraction: 0.25
+  annual_verification_compute_budget_hours: 8000.0
+  minimum_transfer_success_fraction: 0.65
+  minimum_lesson_retention_fraction: 0.65
+  maximum_prior_task_regression_fraction: 0.05
+  fault_families:
+    sensor_bias:
+      training_case: fixed_offset_drift
+      hidden_transfer_case: temperature_dependent_gain_drift
+      baseline_recurrence_fraction: 0.65
+      baseline_transfer_success_fraction: 0.18
+      learning_effectiveness_fraction: 0.86
+      hidden_case_structural_similarity: 0.82
+      retention_per_generation: 0.94
+      baseline_recovery_time_days: 4.0
+      maximum_recovery_reduction_fraction: 0.72
+      curation_days: 18.0
+      training_days: 24.0
+      verification_days: 32.0
+      deployment_days: 14.0
+      verification_compute_hours: 950.0
+      update_interference_fraction: 0.12
+      replay_protection_fraction: 0.88
+    actuator_stiction:
+      training_case: single_joint_static_friction
+      hidden_transfer_case: load_dependent_multi_joint_stiction
+      baseline_recurrence_fraction: 0.55
+      baseline_transfer_success_fraction: 0.20
+      learning_effectiveness_fraction: 0.84
+      hidden_case_structural_similarity: 0.80
+      retention_per_generation: 0.95
+      baseline_recovery_time_days: 5.0
+      maximum_recovery_reduction_fraction: 0.68
+      curation_days: 20.0
+      training_days: 28.0
+      verification_days: 35.0
+      deployment_days: 15.0
+      verification_compute_hours: 1100.0
+      update_interference_fraction: 0.14
+      replay_protection_fraction: 0.90
+    calibration_shift:
+      training_case: metrology_reference_step_change
+      hidden_transfer_case: slow_cross_instrument_calibration_drift
+      baseline_recurrence_fraction: 0.60
+      baseline_transfer_success_fraction: 0.16
+      learning_effectiveness_fraction: 0.88
+      hidden_case_structural_similarity: 0.86
+      retention_per_generation: 0.93
+      baseline_recovery_time_days: 6.0
+      maximum_recovery_reduction_fraction: 0.70
+      curation_days: 22.0
+      training_days: 30.0
+      verification_days: 38.0
+      deployment_days: 16.0
+      verification_compute_hours: 1250.0
+      update_interference_fraction: 0.13
+      replay_protection_fraction: 0.91
+    communications_partition:
+      training_case: complete_short_link_loss
+      hidden_transfer_case: intermittent_asymmetric_latency_partition
+      baseline_recurrence_fraction: 0.50
+      baseline_transfer_success_fraction: 0.22
+      learning_effectiveness_fraction: 0.82
+      hidden_case_structural_similarity: 0.78
+      retention_per_generation: 0.96
+      baseline_recovery_time_days: 3.0
+      maximum_recovery_reduction_fraction: 0.75
+      curation_days: 16.0
+      training_days: 22.0
+      verification_days: 30.0
+      deployment_days: 12.0
+      verification_compute_hours: 900.0
+      update_interference_fraction: 0.10
+      replay_protection_fraction: 0.92
+
+data_advantage:
+  source_class: ASSUMPTION
+  components:
+    unique: 0.70
+    causal: 0.55
+    coverage: 0.62
+    quality: 0.75
+    access: 0.90
+    integration: 0.68
+    verification: 0.52
+  component_uncertainty_half_width:
+    unique: 0.15
+    causal: 0.20
+    coverage: 0.15
+    quality: 0.10
+    access: 0.05
+    integration: 0.15
+    verification: 0.20
+  weights:
+    unique: 0.10
+    causal: 0.20
+    coverage: 0.10
+    quality: 0.10
+    access: 0.15
+    integration: 0.15
+    verification: 0.20
+  gates:
+    access: 0.50
+    causal: 0.40
+    verification: 0.40
+
+coordination_model:
+  source_class: ASSUMPTION
+  output_unit: agent-hours_per_verified_cell_equivalent
+  irreducible_hours: 80.0
+  reference_hours: 240.0
+  edge_reference: 12.0
+  complexity_reference: 1.0
+  uncertainty_reference: 1.0
+  intelligence_reference: 1.0
+  alpha: 0.80
+  beta: 1.10
+  gamma: 0.90
+  delta: 1.20
+  intelligence_response: 1.50
+  topology_examples:
+    centralized:
+      - [0.0, 1.0, 1.0, 1.0, 1.0]
+      - [1.0, 0.0, 0.0, 0.0, 0.0]
+      - [1.0, 0.0, 0.0, 0.0, 0.0]
+      - [1.0, 0.0, 0.0, 0.0, 0.0]
+      - [1.0, 0.0, 0.0, 0.0, 0.0]
+    modular:
+      - [0.0, 1.0, 0.0, 0.0, 0.2]
+      - [1.0, 0.0, 0.2, 0.0, 0.0]
+      - [0.0, 0.2, 0.0, 1.0, 0.0]
+      - [0.0, 0.0, 1.0, 0.0, 0.2]
+      - [0.2, 0.0, 0.0, 0.2, 0.0]
+    all_to_all:
+      - [0.0, 1.0, 1.0, 1.0, 1.0]
+      - [1.0, 0.0, 1.0, 1.0, 1.0]
+      - [1.0, 1.0, 0.0, 1.0, 1.0]
+      - [1.0, 1.0, 1.0, 0.0, 1.0]
+      - [1.0, 1.0, 1.0, 1.0, 0.0]
+  uncertainty_comparison:
+    telemetry_status: unavailable
+    bound_basis: >
+      Scenario-design envelopes pending timestamped task-graph, communication,
+      handoff, supervisor, delay, defect, and verification telemetry from the
+      terrestrial rehearsal. No fitted coefficient is claimed.
+    draws: 256
+    seed: 1701
+    forms: [power, logarithmic, saturating]
+    edge_saturation_ratio_bounds: [2.0, 6.0]
+    parameter_bounds:
+      irreducible_hours: [60.0, 120.0]
+      reference_hours: [160.0, 360.0]
+      alpha: [0.45, 1.15]
+      beta: [0.70, 1.45]
+      gamma: [0.55, 1.30]
+      delta: [0.70, 1.60]
+      intelligence_response: [0.80, 2.40]
+    evaluation_case:
+      topology: modular
+      complexity: 1.25
+      uncertainty: 1.40
+      effective_intelligence: 2.0
+    downstream_account:
+      staffing_agent_hours_per_day: 48.0
+      verified_output_units_per_day: 0.08
+      labor_cost_real_2025_usd_per_agent_hour: 180.0
+      base_failure_probability: 0.015
+      failure_probability_per_100_coordination_hours: 0.002
+      accounting_rule: >
+        Coordination hours enter once as the primary account. Schedule delay,
+        foregone verified output, and reliability are physical consequences;
+        lifecycle cost prices labor hours only and does not also monetize the
+        reported capacity loss.
+
+embodiment_bom:
+  source_class: ASSUMPTION
+  bounding_argument: >
+    Explicit sensor, actuator, tooling, spares, calibration, and controller
+    additions prevent the embodiment vector from being costless. Material
+    masses and replacement-service demands are placeholder bill-of-material
+    lines pending a task-resolved hardware inventory and terrestrial
+    rehearsal maintenance logs.
+  items:
+    sensing_suite:
+      producer_sector: sensors_control
+      target_sectors: [mining, refining, robotics, machine_tools, thermal,
+                       transport, repair]
+      material_bom_t_per_target_capacity:
+        Al: 0.004
+        Si: 0.003
+        Cu: 0.003
+        rare_earths: 0.001
+        dopants: 0.0002
+      replacement_service_units_per_target_capacity_year: 0.012
+    servo_actuators:
+      producer_sector: robotics
+      target_sectors: [mining, robotics, machine_tools, construction,
+                       transport, repair]
+      material_bom_t_per_target_capacity:
+        Al: 0.012
+        Fe: 0.018
+        Cu: 0.006
+        Ni: 0.004
+        rare_earths: 0.002
+      replacement_service_units_per_target_capacity_year: 0.018
+    end_effectors_and_tools:
+      producer_sector: machine_tools
+      target_sectors: [mining, robotics, machine_tools, construction, repair]
+      material_bom_t_per_target_capacity:
+        Al: 0.004
+        Fe: 0.016
+        C: 0.003
+        Ni: 0.003
+        Cr: 0.004
+      replacement_service_units_per_target_capacity_year: 0.015
+    modular_spares:
+      producer_sector: repair
+      target_sectors: [power, mining, refining, robotics, machine_tools,
+                       construction, thermal, transport, recycling, compute]
+      material_bom_t_per_target_capacity:
+        Al: 0.006
+        Fe: 0.008
+        Cu: 0.003
+        Si: 0.002
+        C: 0.001
+      replacement_service_units_per_target_capacity_year: 0.020
+    calibration_equipment:
+      producer_sector: process_equipment_metrology
+      target_sectors: [refining, machine_tools, sensors_control,
+                       packaging_test, mature_logic, advanced_logic_memory,
+                       compute]
+      material_bom_t_per_target_capacity:
+        Al: 0.002
+        Fe: 0.003
+        Si: 0.002
+        Cu: 0.001
+        rare_earths: 0.0005
+        dopants: 0.0001
+      replacement_service_units_per_target_capacity_year: 0.010
+    local_control_hardware:
+      producer_sector: mature_logic
+      target_sectors: [power, mining, refining, robotics, machine_tools,
+                       construction, thermal, transport, repair, recycling,
+                       process_equipment_metrology]
+      material_bom_t_per_target_capacity:
+        Si: 0.003
+        Cu: 0.0015
+        Al: 0.001
+        dopants: 0.0003
+      replacement_service_units_per_target_capacity_year: 0.014
+
+embodiment_compatibility:
+  source_class: ASSUMPTION
+  bounding_argument: >
+    Normalized task thresholds and portfolio capabilities are placeholders
+    for the Stage-0 task-by-embodiment measurement program. A hard gate
+    represents an observation, action, interface, or physical tolerance that
+    cannot be compensated by intelligence in this scenario.
+  dimensions:
+    - kinematic_workspace
+    - payload_force
+    - dexterity_tools
+    - sensor_observability
+    - local_control_bandwidth
+    - precision_stability
+    - environment_tolerance
+    - maintainability_verification
+  portfolios:
+    general_purpose:
+      kinematic_workspace: 0.90
+      payload_force: 0.62
+      dexterity_tools: 0.82
+      sensor_observability: 0.78
+      local_control_bandwidth: 0.76
+      precision_stability: 0.58
+      environment_tolerance: 0.72
+      maintainability_verification: 0.70
+    specialized:
+      kinematic_workspace: 0.68
+      payload_force: 0.94
+      dexterity_tools: 0.58
+      sensor_observability: 0.84
+      local_control_bandwidth: 0.90
+      precision_stability: 0.94
+      environment_tolerance: 0.88
+      maintainability_verification: 0.80
+    hybrid:
+      kinematic_workspace: 0.96
+      payload_force: 0.96
+      dexterity_tools: 0.96
+      sensor_observability: 0.96
+      local_control_bandwidth: 0.96
+      precision_stability: 0.96
+      environment_tolerance: 0.96
+      maintainability_verification: 0.96
+  tasks:
+    mining:
+      sector: mining
+      requirements:
+        kinematic_workspace: 0.72
+        payload_force: 0.88
+        dexterity_tools: 0.55
+        sensor_observability: 0.70
+        local_control_bandwidth: 0.65
+        precision_stability: 0.48
+        environment_tolerance: 0.88
+        maintainability_verification: 0.62
+      intelligence_onset: 0.90
+      intelligence_scale: 0.55
+      required_score: 0.82
+    materials_handling:
+      sector: transport
+      requirements:
+        kinematic_workspace: 0.80
+        payload_force: 0.78
+        dexterity_tools: 0.62
+        sensor_observability: 0.72
+        local_control_bandwidth: 0.70
+        precision_stability: 0.58
+        environment_tolerance: 0.75
+        maintainability_verification: 0.62
+      intelligence_onset: 0.80
+      intelligence_scale: 0.50
+      required_score: 0.80
+    maintenance:
+      sector: repair
+      requirements:
+        kinematic_workspace: 0.78
+        payload_force: 0.62
+        dexterity_tools: 0.86
+        sensor_observability: 0.86
+        local_control_bandwidth: 0.78
+        precision_stability: 0.78
+        environment_tolerance: 0.72
+        maintainability_verification: 0.88
+      intelligence_onset: 1.10
+      intelligence_scale: 0.60
+      required_score: 0.86
+    diagnosis:
+      sector: sensors_control
+      requirements:
+        kinematic_workspace: 0.55
+        payload_force: 0.40
+        dexterity_tools: 0.68
+        sensor_observability: 0.92
+        local_control_bandwidth: 0.82
+        precision_stability: 0.76
+        environment_tolerance: 0.65
+        maintainability_verification: 0.92
+      intelligence_onset: 1.15
+      intelligence_scale: 0.55
+      required_score: 0.88
+    calibration:
+      sector: process_equipment_metrology
+      requirements:
+        kinematic_workspace: 0.62
+        payload_force: 0.42
+        dexterity_tools: 0.82
+        sensor_observability: 0.92
+        local_control_bandwidth: 0.88
+        precision_stability: 0.94
+        environment_tolerance: 0.72
+        maintainability_verification: 0.94
+      intelligence_onset: 1.20
+      intelligence_scale: 0.62
+      required_score: 0.90
+    tool_use:
+      sector: robotics
+      requirements:
+        kinematic_workspace: 0.82
+        payload_force: 0.68
+        dexterity_tools: 0.90
+        sensor_observability: 0.82
+        local_control_bandwidth: 0.80
+        precision_stability: 0.78
+        environment_tolerance: 0.70
+        maintainability_verification: 0.78
+      intelligence_onset: 1.10
+      intelligence_scale: 0.58
+      required_score: 0.86
+    construction:
+      sector: machine_tools
+      requirements:
+        kinematic_workspace: 0.90
+        payload_force: 0.90
+        dexterity_tools: 0.78
+        sensor_observability: 0.80
+        local_control_bandwidth: 0.76
+        precision_stability: 0.72
+        environment_tolerance: 0.88
+        maintainability_verification: 0.78
+      intelligence_onset: 1.00
+      intelligence_scale: 0.58
+      required_score: 0.84
+    second_cell_commissioning:
+      sector: compute
+      requirements:
+        kinematic_workspace: 0.82
+        payload_force: 0.72
+        dexterity_tools: 0.90
+        sensor_observability: 0.92
+        local_control_bandwidth: 0.92
+        precision_stability: 0.92
+        environment_tolerance: 0.82
+        maintainability_verification: 0.94
+      intelligence_onset: 1.35
+      intelligence_scale: 0.68
+      required_score: 0.92
+  default_portfolio_by_scenario:
+    terrestrial_rehearsal: hybrid
+    lunar_strategic_material_bridge: hybrid
+    lunar_strict: hybrid
+    moon_asteroid_network: hybrid
+  validation_sweeps:
+    fixed_embodiment_portfolio: hybrid
+    intelligence_levels: [0.75, 1.0, 1.5, 2.0, 3.0, 4.0]
+    fixed_intelligence_level: 4.0
+    embodiment_quality_multipliers: [0.70, 0.80, 0.90, 1.00, 1.10]
+  terrestrial_rehearsal_faults:
+    baseline: {}
+    degraded_sensors:
+      sensor_observability: 0.60
+    actuator_failure:
+      payload_force: 0.60
+      dexterity_tools: 0.70
+    calibration_drift:
+      precision_stability: 0.65
+      maintainability_verification: 0.80
+    communications_loss:
+      local_control_bandwidth: 0.55
+    unfamiliar_tools:
+      dexterity_tools: 0.62
+      maintainability_verification: 0.80
+    partial_observability:
+      sensor_observability: 0.70
+      kinematic_workspace: 0.88
+    out_of_distribution_fault:
+      environment_tolerance: 0.62
+      maintainability_verification: 0.72
+
+orbital_lifecycle:
+  source_class: ASSUMPTION
+  initial_operating: 100.0
+  degradation_per_year: 0.025
+  failure_per_year: 0.035
+  collision_loss_per_year: 0.003
+  degraded_to_service_per_year: 0.40
+  service_start_capacity_per_year: 10.0
+  repair_completion_per_year: 2.0
+  repair_success_fraction: 0.78
+  controlled_retirement_per_year: 0.04
+  obsolescence_per_year: 0.08
+  cannibalization_per_year: 0.65
+  recycling_per_year: 0.45
+  recycling_yield: 0.72
+  disposal_per_year: 0.08
+  debris_retrieval_per_year: 0.04
+  retrieval_success_fraction: 0.85
+  manufacturing_from_feedstock_per_year: 4.0
+  external_deployment_per_year: 5.0
+  serviceability_portfolios:
+    legacy_unprepared:
+      docking_refueling_interfaces: 0.10
+      modular_replaceable_units: 0.15
+      accessible_fasteners_ports_grapples: 0.15
+      material_passports_separability: 0.05
+      passivation_and_safe_state: 0.45
+      machine_readable_service_manuals: 0.20
+      repair_success_multiplier: 0.55
+      recycling_yield_multiplier: 0.70
+      capture_rate_multiplier: 0.55
+      mass_penalty_fraction: 0.00
+    serviceable_modular:
+      docking_refueling_interfaces: 0.90
+      modular_replaceable_units: 0.85
+      accessible_fasteners_ports_grapples: 0.90
+      material_passports_separability: 0.70
+      passivation_and_safe_state: 0.90
+      machine_readable_service_manuals: 0.95
+      repair_success_multiplier: 1.00
+      recycling_yield_multiplier: 1.00
+      capture_rate_multiplier: 1.00
+      mass_penalty_fraction: 0.08
+    circular_design:
+      docking_refueling_interfaces: 0.95
+      modular_replaceable_units: 0.95
+      accessible_fasteners_ports_grapples: 0.95
+      material_passports_separability: 0.95
+      passivation_and_safe_state: 0.95
+      machine_readable_service_manuals: 0.98
+      repair_success_multiplier: 1.08
+      recycling_yield_multiplier: 1.22
+      capture_rate_multiplier: 1.15
+      mass_penalty_fraction: 0.14
+
+orbital_transport_service:
+  source_class: ASSUMPTION
+  evidence_boundary: >
+    Earth-surface to LEO and lunar-surface ascent delta-v values are
+    conceptual-design anchors from NASA sources S67 and S68. Route additions,
+    vehicle dry mass, specific impulse, cost, reuse, reliability, client value,
+    and lunar maturity are scenario assumptions. The model applies the rocket
+    equation and does not map delta-v directly to dollars.
+  cases:
+    earth_launched_earth_orbit:
+      architecture: Earth-launched servicing in Earth orbit
+      origin: Earth surface
+      destination: LEO client shell
+      delta_v_km_s: 9.0
+      delta_v_source: S67
+      specific_impulse_s: 450.0
+      clients: 200
+      failure_rate_per_year: 0.05
+      serviceability_fraction: 0.70
+      clients_per_mission: 2.0
+      servicer_dry_mass_t: 1.5
+      parts_t_per_mission: 0.20
+      recovered_mass_t_per_mission: 0.10
+      propellant_cost_per_kg: 1.0
+      propellant_source: Earth
+      parts_cost_per_kg: 5000.0
+      recovered_material_credit_per_kg: 1000.0
+      orbit_plane_distribution: concentrated LEO shell
+      operations_musd_per_mission: 2.0
+      servicer_capex_musd: 40.0
+      reuse_cycles: 8.0
+      fixed_infrastructure_musd: 100.0
+      infrastructure_life_years: 10.0
+      client_value_musd: 80.0
+      preserved_value_fraction: 0.65
+      requires_lunar_industry: false
+      lunar_industrial_maturity: 0.0
+      required_lunar_maturity: 0.0
+    earth_supplied_lunar_orbit:
+      architecture: Earth-supplied servicing in lunar orbit
+      origin: Earth surface
+      destination: low lunar orbit
+      delta_v_km_s: 13.1
+      delta_v_source: S67 plus S68; summed route is ASSUMPTION
+      specific_impulse_s: 450.0
+      clients: 80
+      failure_rate_per_year: 0.05
+      serviceability_fraction: 0.75
+      clients_per_mission: 1.5
+      servicer_dry_mass_t: 1.5
+      parts_t_per_mission: 0.20
+      recovered_mass_t_per_mission: 0.10
+      propellant_cost_per_kg: 1.0
+      propellant_source: Earth
+      parts_cost_per_kg: 5000.0
+      recovered_material_credit_per_kg: 1000.0
+      orbit_plane_distribution: low lunar orbit
+      operations_musd_per_mission: 3.0
+      servicer_capex_musd: 50.0
+      reuse_cycles: 6.0
+      fixed_infrastructure_musd: 130.0
+      infrastructure_life_years: 10.0
+      client_value_musd: 120.0
+      preserved_value_fraction: 0.70
+      requires_lunar_industry: false
+      lunar_industrial_maturity: 0.0
+      required_lunar_maturity: 0.0
+    lunar_supplied_lunar_orbit:
+      architecture: Lunar-supplied servicing in lunar orbit
+      origin: Lunar surface
+      destination: low lunar orbit
+      delta_v_km_s: 1.9
+      delta_v_source: S68
+      specific_impulse_s: 450.0
+      clients: 80
+      failure_rate_per_year: 0.05
+      serviceability_fraction: 0.80
+      clients_per_mission: 2.0
+      servicer_dry_mass_t: 1.5
+      parts_t_per_mission: 0.20
+      recovered_mass_t_per_mission: 0.20
+      propellant_cost_per_kg: 8.0
+      propellant_source: lunar
+      parts_cost_per_kg: 1200.0
+      recovered_material_credit_per_kg: 800.0
+      orbit_plane_distribution: low lunar orbit
+      operations_musd_per_mission: 2.0
+      servicer_capex_musd: 45.0
+      reuse_cycles: 12.0
+      fixed_infrastructure_musd: 600.0
+      infrastructure_life_years: 15.0
+      client_value_musd: 120.0
+      preserved_value_fraction: 0.70
+      requires_lunar_industry: true
+      lunar_industrial_maturity: 0.70
+      required_lunar_maturity: 0.60
+    lunar_supplied_earth_orbit:
+      architecture: Lunar-supplied servicing of Earth-orbiting assets
+      origin: Lunar surface
+      destination: LEO client shell
+      delta_v_km_s: 4.4
+      delta_v_source: S68 plus transfer/insertion ASSUMPTION
+      specific_impulse_s: 450.0
+      clients: 200
+      failure_rate_per_year: 0.05
+      serviceability_fraction: 0.70
+      clients_per_mission: 1.5
+      servicer_dry_mass_t: 1.5
+      parts_t_per_mission: 0.20
+      recovered_mass_t_per_mission: 0.15
+      propellant_cost_per_kg: 8.0
+      propellant_source: lunar
+      parts_cost_per_kg: 1200.0
+      recovered_material_credit_per_kg: 800.0
+      orbit_plane_distribution: dispersed LEO planes
+      operations_musd_per_mission: 4.0
+      servicer_capex_musd: 55.0
+      reuse_cycles: 10.0
+      fixed_infrastructure_musd: 750.0
+      infrastructure_life_years: 15.0
+      client_value_musd: 80.0
+      preserved_value_fraction: 0.65
+      requires_lunar_industry: true
+      lunar_industrial_maturity: 0.70
+      required_lunar_maturity: 0.60
+
+orbital_service_strategy:
+  source_class: ASSUMPTION
+  currency_year: real_2025_USD
+  evidence_boundary: >
+    Orbit, asset, fleet, and action coefficients are transparent decision
+    scenarios, not demonstrated performance or market forecasts. Governance
+    dependencies implement the ownership/jurisdiction, authorization,
+    liability, and export-control boundaries in S69-S71 without asserting
+    that any specific mission is licensed.
+  orbits:
+    leo_400:
+      family: Earth orbit
+      rendezvous_delta_v_km_s: 0.35
+      inclination_change_multiplier: 1.15
+      routing_multiplier: 1.10
+      service_cost_multiplier: 1.00
+      stationkeeping_m_s_per_year: 25.0
+      residence_time_years: 4.0
+      atmospheric_clearance: material
+      radiation_index: 0.35
+      debris_exposure_index: 0.80
+      tracking_coverage_fraction: 0.95
+      disposal_route: controlled_reentry
+      disposal_delta_v_km_s: 0.15
+      debris_liability_multiplier: 0.80
+      relocation_supported: true
+    leo_650:
+      family: Earth orbit
+      rendezvous_delta_v_km_s: 0.55
+      inclination_change_multiplier: 1.35
+      routing_multiplier: 1.35
+      service_cost_multiplier: 1.10
+      stationkeeping_m_s_per_year: 35.0
+      residence_time_years: 25.0
+      atmospheric_clearance: weak
+      radiation_index: 0.45
+      debris_exposure_index: 1.00
+      tracking_coverage_fraction: 0.95
+      disposal_route: controlled_reentry_or_lowering
+      disposal_delta_v_km_s: 0.25
+      debris_liability_multiplier: 1.20
+      relocation_supported: true
+    geo:
+      family: Earth orbit
+      rendezvous_delta_v_km_s: 1.50
+      inclination_change_multiplier: 1.60
+      routing_multiplier: 1.50
+      service_cost_multiplier: 1.35
+      stationkeeping_m_s_per_year: 50.0
+      residence_time_years: 1000.0
+      atmospheric_clearance: none
+      radiation_index: 0.80
+      debris_exposure_index: 0.55
+      tracking_coverage_fraction: 0.92
+      disposal_route: graveyard_orbit
+      disposal_delta_v_km_s: 0.20
+      debris_liability_multiplier: 1.30
+      relocation_supported: true
+    cislunar_staging:
+      family: cislunar
+      rendezvous_delta_v_km_s: 0.80
+      inclination_change_multiplier: 1.20
+      routing_multiplier: 1.25
+      service_cost_multiplier: 1.20
+      stationkeeping_m_s_per_year: 18.0
+      residence_time_years: 1000.0
+      atmospheric_clearance: none
+      radiation_index: 1.00
+      debris_exposure_index: 0.25
+      tracking_coverage_fraction: 0.70
+      disposal_route: stable_cislunar_storage_or_escape
+      disposal_delta_v_km_s: 0.45
+      debris_liability_multiplier: 1.00
+      relocation_supported: true
+    llo:
+      family: lunar orbit
+      rendezvous_delta_v_km_s: 0.40
+      inclination_change_multiplier: 1.45
+      routing_multiplier: 1.30
+      service_cost_multiplier: 1.15
+      stationkeeping_m_s_per_year: 120.0
+      residence_time_years: 1.0
+      atmospheric_clearance: none
+      radiation_index: 0.85
+      debris_exposure_index: 0.15
+      tracking_coverage_fraction: 0.55
+      disposal_route: controlled_lunar_impact_or_transfer
+      disposal_delta_v_km_s: 0.30
+      debris_liability_multiplier: 0.70
+      relocation_supported: true
+    nrho:
+      family: lunar orbit
+      rendezvous_delta_v_km_s: 0.65
+      inclination_change_multiplier: 1.10
+      routing_multiplier: 1.15
+      service_cost_multiplier: 1.20
+      stationkeeping_m_s_per_year: 10.0
+      residence_time_years: 50.0
+      atmospheric_clearance: none
+      radiation_index: 1.05
+      debris_exposure_index: 0.10
+      tracking_coverage_fraction: 0.60
+      disposal_route: transfer_or_escape
+      disposal_delta_v_km_s: 0.35
+      debris_liability_multiplier: 0.75
+      relocation_supported: true
+  asset_classes:
+    high_value_serviceable:
+      asset_value_musd: 450.0
+      replacement_launch_cost_musd: 120.0
+      annual_output_value_musd: 85.0
+      design_life_years: 15.0
+      remaining_life_years: 8.0
+      component_value_musd: 70.0
+      material_value_musd: 3.0
+      residual_value_musd: 20.0
+      serviceability_fraction: 0.92
+      modularity_fraction: 0.88
+      refuel_access_fraction: 0.90
+      cooperative_target: true
+    cheap_short_lived_unprepared:
+      asset_value_musd: 2.0
+      replacement_launch_cost_musd: 0.8
+      annual_output_value_musd: 0.9
+      design_life_years: 5.0
+      remaining_life_years: 2.0
+      component_value_musd: 0.15
+      material_value_musd: 0.03
+      residual_value_musd: 0.02
+      serviceability_fraction: 0.18
+      modularity_fraction: 0.12
+      refuel_access_fraction: 0.05
+      cooperative_target: true
+  fleets:
+    single_demonstrator:
+      servicers: 1.0
+      missions_per_servicer_year: 2.0
+      development_cost_musd: 240.0
+      depot_cost_musd: 0.0
+      recycling_plant_cost_musd: 0.0
+      design_life_years: 8.0
+      routing_cost_musd_per_km_s: 3.0
+      propellant_replenishment_cost_musd_per_km_s: 0.8
+      scheduling_multiplier: 1.35
+      congestion_multiplier: 1.05
+      has_depot: false
+      has_recycling_plant: false
+    regional_service_fleet:
+      servicers: 4.0
+      missions_per_servicer_year: 5.0
+      development_cost_musd: 500.0
+      depot_cost_musd: 180.0
+      recycling_plant_cost_musd: 0.0
+      design_life_years: 12.0
+      routing_cost_musd_per_km_s: 2.2
+      propellant_replenishment_cost_musd_per_km_s: 0.6
+      scheduling_multiplier: 1.15
+      congestion_multiplier: 1.15
+      has_depot: true
+      has_recycling_plant: false
+    circular_network:
+      servicers: 8.0
+      missions_per_servicer_year: 6.0
+      development_cost_musd: 780.0
+      depot_cost_musd: 300.0
+      recycling_plant_cost_musd: 420.0
+      design_life_years: 15.0
+      routing_cost_musd_per_km_s: 1.8
+      propellant_replenishment_cost_musd_per_km_s: 0.5
+      scheduling_multiplier: 1.10
+      congestion_multiplier: 1.30
+      has_depot: true
+      has_recycling_plant: true
+  actions:
+    replace:
+      minimum_serviceability_fraction: 0.0
+      minimum_modularity_fraction: 0.0
+      minimum_refuel_access_fraction: 0.0
+      output_restoration_fraction: 1.0
+      replacement_avoidance_fraction: 0.0
+      asset_value_preservation_fraction: 0.0
+      component_recovery_fraction: 0.0
+      material_recovery_fraction: 0.0
+      service_failure_probability: 0.03
+      debris_incident_probability: 0.002
+      depreciation_fraction: 1.0
+      residual_value_fraction: 0.0
+      upgrade_incremental_value_musd: 0.0
+      variable_service_cost_musd: 25.0
+      downtime_years: 0.25
+      downtime_loss_fraction: 1.0
+      governance_dependencies: [operating_authorization, liability_allocation,
+                                spectrum_and_orbit_authorization]
+    refuel_life_extend:
+      minimum_serviceability_fraction: 0.55
+      minimum_modularity_fraction: 0.30
+      minimum_refuel_access_fraction: 0.70
+      requires_depot: true
+      requires_cooperative_target: true
+      output_restoration_fraction: 0.92
+      replacement_avoidance_fraction: 0.75
+      asset_value_preservation_fraction: 0.75
+      component_recovery_fraction: 0.0
+      material_recovery_fraction: 0.0
+      service_failure_probability: 0.06
+      debris_incident_probability: 0.004
+      depreciation_fraction: 0.10
+      residual_value_fraction: 0.75
+      upgrade_incremental_value_musd: 0.0
+      variable_service_cost_musd: 12.0
+      downtime_years: 0.08
+      downtime_loss_fraction: 1.0
+      governance_dependencies: [ownership_and_consent, operating_authorization,
+                                liability_allocation, export_control_review,
+                                spectrum_and_orbit_authorization]
+    repair:
+      minimum_serviceability_fraction: 0.60
+      minimum_modularity_fraction: 0.40
+      minimum_refuel_access_fraction: 0.0
+      requires_cooperative_target: true
+      output_restoration_fraction: 0.86
+      replacement_avoidance_fraction: 0.65
+      asset_value_preservation_fraction: 0.70
+      component_recovery_fraction: 0.04
+      material_recovery_fraction: 0.0
+      service_failure_probability: 0.12
+      debris_incident_probability: 0.008
+      depreciation_fraction: 0.18
+      residual_value_fraction: 0.65
+      upgrade_incremental_value_musd: 0.0
+      variable_service_cost_musd: 20.0
+      downtime_years: 0.18
+      downtime_loss_fraction: 1.0
+      governance_dependencies: [ownership_and_consent, operating_authorization,
+                                liability_allocation, export_control_review,
+                                safety_verification]
+    upgrade:
+      minimum_serviceability_fraction: 0.65
+      minimum_modularity_fraction: 0.75
+      minimum_refuel_access_fraction: 0.0
+      requires_depot: true
+      requires_cooperative_target: true
+      output_restoration_fraction: 1.0
+      replacement_avoidance_fraction: 0.80
+      asset_value_preservation_fraction: 0.90
+      component_recovery_fraction: 0.15
+      material_recovery_fraction: 0.0
+      service_failure_probability: 0.10
+      debris_incident_probability: 0.007
+      depreciation_fraction: 0.08
+      residual_value_fraction: 0.90
+      upgrade_incremental_value_musd: 60.0
+      variable_service_cost_musd: 35.0
+      downtime_years: 0.22
+      downtime_loss_fraction: 1.0
+      governance_dependencies: [ownership_and_consent, operating_authorization,
+                                liability_allocation, export_control_review,
+                                spectrum_and_orbit_authorization,
+                                safety_verification]
+    cannibalize:
+      minimum_serviceability_fraction: 0.40
+      minimum_modularity_fraction: 0.45
+      minimum_refuel_access_fraction: 0.0
+      requires_cooperative_target: true
+      output_restoration_fraction: 0.0
+      replacement_avoidance_fraction: 0.0
+      asset_value_preservation_fraction: 0.0
+      component_recovery_fraction: 0.65
+      material_recovery_fraction: 0.12
+      service_failure_probability: 0.12
+      debris_incident_probability: 0.012
+      depreciation_fraction: 0.92
+      residual_value_fraction: 0.10
+      upgrade_incremental_value_musd: 0.0
+      variable_service_cost_musd: 18.0
+      downtime_years: 0.0
+      downtime_loss_fraction: 0.0
+      governance_dependencies: [ownership_and_consent, operating_authorization,
+                                liability_allocation, export_control_review,
+                                custody_and_provenance, safety_verification]
+    repurpose:
+      minimum_serviceability_fraction: 0.45
+      minimum_modularity_fraction: 0.50
+      minimum_refuel_access_fraction: 0.0
+      requires_depot: true
+      requires_cooperative_target: true
+      output_restoration_fraction: 0.48
+      replacement_avoidance_fraction: 0.25
+      asset_value_preservation_fraction: 0.38
+      component_recovery_fraction: 0.10
+      material_recovery_fraction: 0.02
+      service_failure_probability: 0.16
+      debris_incident_probability: 0.010
+      depreciation_fraction: 0.45
+      residual_value_fraction: 0.35
+      upgrade_incremental_value_musd: 10.0
+      variable_service_cost_musd: 24.0
+      downtime_years: 0.30
+      downtime_loss_fraction: 0.70
+      governance_dependencies: [ownership_and_consent, operating_authorization,
+                                liability_allocation, export_control_review,
+                                spectrum_and_orbit_authorization,
+                                custody_and_provenance]
+    recycle:
+      minimum_serviceability_fraction: 0.25
+      minimum_modularity_fraction: 0.20
+      minimum_refuel_access_fraction: 0.0
+      requires_recycling_plant: true
+      requires_cooperative_target: true
+      output_restoration_fraction: 0.0
+      replacement_avoidance_fraction: 0.0
+      asset_value_preservation_fraction: 0.0
+      component_recovery_fraction: 0.18
+      material_recovery_fraction: 0.72
+      service_failure_probability: 0.18
+      debris_incident_probability: 0.020
+      depreciation_fraction: 0.98
+      residual_value_fraction: 0.0
+      upgrade_incremental_value_musd: 0.0
+      variable_service_cost_musd: 30.0
+      downtime_years: 0.0
+      downtime_loss_fraction: 0.0
+      governance_dependencies: [ownership_and_consent, operating_authorization,
+                                liability_allocation, export_control_review,
+                                custody_and_provenance, recycled_material_qualification]
+    relocate:
+      minimum_serviceability_fraction: 0.35
+      minimum_modularity_fraction: 0.20
+      minimum_refuel_access_fraction: 0.25
+      requires_depot: true
+      requires_cooperative_target: true
+      output_restoration_fraction: 0.70
+      replacement_avoidance_fraction: 0.45
+      asset_value_preservation_fraction: 0.55
+      component_recovery_fraction: 0.0
+      material_recovery_fraction: 0.0
+      service_failure_probability: 0.11
+      debris_incident_probability: 0.009
+      depreciation_fraction: 0.28
+      residual_value_fraction: 0.50
+      upgrade_incremental_value_musd: 0.0
+      variable_service_cost_musd: 22.0
+      downtime_years: 0.20
+      downtime_loss_fraction: 0.85
+      governance_dependencies: [ownership_and_consent, operating_authorization,
+                                liability_allocation, export_control_review,
+                                spectrum_and_orbit_authorization]
+    dispose:
+      minimum_serviceability_fraction: 0.10
+      minimum_modularity_fraction: 0.0
+      minimum_refuel_access_fraction: 0.0
+      requires_cooperative_target: true
+      output_restoration_fraction: 0.0
+      replacement_avoidance_fraction: 0.0
+      asset_value_preservation_fraction: 0.0
+      component_recovery_fraction: 0.0
+      material_recovery_fraction: 0.0
+      service_failure_probability: 0.08
+      debris_incident_probability: 0.006
+      depreciation_fraction: 1.0
+      residual_value_fraction: 0.0
+      upgrade_incremental_value_musd: 0.0
+      variable_service_cost_musd: 8.0
+      downtime_years: 0.0
+      downtime_loss_fraction: 0.0
+      governance_dependencies: [ownership_and_consent, operating_authorization,
+                                liability_allocation,
+                                spectrum_and_orbit_authorization]
+  governance:
+    debris_liability_exposure_musd: 500.0
+    evidence_status:
+      ownership_and_consent: validated
+      operating_authorization: authorization_pending
+      liability_allocation: authorization_pending
+      export_control_review: review_pending
+      spectrum_and_orbit_authorization: authorization_pending
+      custody_and_provenance: procedure_unvalidated
+      recycled_material_qualification: procedure_unvalidated
+      safety_verification: procedure_unvalidated
+    authoritative_basis:
+      ownership_and_consent: S69
+      operating_authorization: S69
+      liability_allocation: S69
+      export_control_review: S70
+      spectrum_and_orbit_authorization: S71
+      custody_and_provenance: S69
+      recycled_material_qualification: ASSUMPTION
+      safety_verification: ASSUMPTION
+
+orbital_control:
+  source_class: ASSUMPTION
+  common_cause_budget_fraction: 0.10
+  node_capacities: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
+                    1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+  hazard_sets:
+    plane_a_breakup: [0, 1]
+    plane_b_breakup: [2, 3]
+    shared_gateway_failure: [0, 4]
+    control_domain_failure: [8, 9]
+  trigger_thresholds:
+    creation_clearance_ratio: 1.0
+    expected_hazardous_descendants: 1.0
+    derelict_mass: 12.0
+    conjunction_probability: 0.001
+    maneuver_workload: 0.80
+    avoidance_propellant_fraction_used: 0.70
+    tracking_uncertainty: 0.30
+    communications_outage_fraction: 0.10
+    disposal_failure_fraction: 0.10
+
+orbital_resilience_strategy:
+  source_class: ASSUMPTION
+  bounding_argument: >
+    Geometry, fragment kernels, maneuver effectiveness, repair throughput,
+    carrying capacity, and mitigation costs are deterministic stress-test
+    coefficients. They expose control logic and failure accounting but are
+    not catalog-calibrated conjunction predictions or operational limits.
+  common_cause_budget_fraction: 0.10
+  collision_exposure_index: 1.0
+  cluster_layouts:
+    concentrated_single_plane:
+      total_nodes: 120
+      nodes_per_cluster: 30
+      orbital_planes: 1
+      independent_shells: 1
+      altitude_dispersion_km: 5.0
+      inclination_dispersion_deg: 1.0
+      along_track_spacing_deg: 4.0
+      independent_gateways: 1
+      independent_control_domains: 2
+      shared_power_fraction: 0.50
+      shared_navigation_fraction: 0.60
+      shared_software_fraction: 0.85
+      crosslink_latency_index: 0.55
+    plane_modular:
+      total_nodes: 120
+      nodes_per_cluster: 12
+      orbital_planes: 10
+      independent_shells: 1
+      altitude_dispersion_km: 25.0
+      inclination_dispersion_deg: 4.0
+      along_track_spacing_deg: 12.0
+      independent_gateways: 4
+      independent_control_domains: 10
+      shared_power_fraction: 0.08
+      shared_navigation_fraction: 0.15
+      shared_software_fraction: 0.20
+      crosslink_latency_index: 0.80
+    multi_shell_resilient:
+      total_nodes: 120
+      nodes_per_cluster: 6
+      orbital_planes: 12
+      independent_shells: 3
+      altitude_dispersion_km: 320.0
+      inclination_dispersion_deg: 28.0
+      along_track_spacing_deg: 24.0
+      independent_gateways: 10
+      independent_control_domains: 20
+      shared_power_fraction: 0.03
+      shared_navigation_fraction: 0.06
+      shared_software_fraction: 0.08
+      crosslink_latency_index: 1.35
+    physically_distributed_gateway_fragile:
+      total_nodes: 120
+      nodes_per_cluster: 6
+      orbital_planes: 12
+      independent_shells: 3
+      altitude_dispersion_km: 320.0
+      inclination_dispersion_deg: 28.0
+      along_track_spacing_deg: 24.0
+      independent_gateways: 1
+      independent_control_domains: 2
+      shared_power_fraction: 0.03
+      shared_navigation_fraction: 0.75
+      shared_software_fraction: 0.80
+      crosslink_latency_index: 1.10
+    sparse_independent_domains:
+      total_nodes: 120
+      nodes_per_cluster: 4
+      orbital_planes: 15
+      independent_shells: 3
+      altitude_dispersion_km: 400.0
+      inclination_dispersion_deg: 35.0
+      along_track_spacing_deg: 30.0
+      independent_gateways: 15
+      independent_control_domains: 30
+      shared_power_fraction: 0.02
+      shared_navigation_fraction: 0.04
+      shared_software_fraction: 0.05
+      crosslink_latency_index: 1.70
+  constellation_nodes:
+    - {name: leo650_a0, environment: Earth orbit, altitude_km: 650,
+       inclination_deg: 97.6, plane: 0, along_track_deg: 0, capacity: 1.0,
+       gateway: g0, control_domain: c0}
+    - {name: leo650_a1, environment: Earth orbit, altitude_km: 650,
+       inclination_deg: 97.6, plane: 0, along_track_deg: 60, capacity: 1.0,
+       gateway: g0, control_domain: c0}
+    - {name: leo650_a2, environment: Earth orbit, altitude_km: 650,
+       inclination_deg: 97.6, plane: 0, along_track_deg: 120, capacity: 1.0,
+       gateway: g1, control_domain: c1}
+    - {name: leo650_b0, environment: Earth orbit, altitude_km: 660,
+       inclination_deg: 98.2, plane: 1, along_track_deg: 20, capacity: 1.0,
+       gateway: g1, control_domain: c1}
+    - {name: leo650_b1, environment: Earth orbit, altitude_km: 660,
+       inclination_deg: 98.2, plane: 1, along_track_deg: 100, capacity: 1.0,
+       gateway: g2, control_domain: c2}
+    - {name: leo650_b2, environment: Earth orbit, altitude_km: 660,
+       inclination_deg: 98.2, plane: 1, along_track_deg: 180, capacity: 1.0,
+       gateway: g2, control_domain: c2}
+    - {name: leo400_a0, environment: Earth orbit, altitude_km: 400,
+       inclination_deg: 51.6, plane: 2, along_track_deg: 0, capacity: 1.0,
+       gateway: g3, control_domain: c3}
+    - {name: leo400_a1, environment: Earth orbit, altitude_km: 400,
+       inclination_deg: 51.6, plane: 2, along_track_deg: 120, capacity: 1.0,
+       gateway: g3, control_domain: c3}
+    - {name: leo400_a2, environment: Earth orbit, altitude_km: 400,
+       inclination_deg: 51.6, plane: 2, along_track_deg: 240, capacity: 1.0,
+       gateway: g4, control_domain: c4}
+    - {name: llo_p0, environment: lunar orbit, altitude_km: 100,
+       inclination_deg: 90.0, plane: 10, along_track_deg: 0, capacity: 1.0,
+       gateway: lg0, control_domain: lc0}
+    - {name: llo_p1, environment: lunar orbit, altitude_km: 100,
+       inclination_deg: 90.0, plane: 10, along_track_deg: 120, capacity: 1.0,
+       gateway: lg1, control_domain: lc1}
+    - {name: llo_p2, environment: lunar orbit, altitude_km: 100,
+       inclination_deg: 90.0, plane: 10, along_track_deg: 240, capacity: 1.0,
+       gateway: lg2, control_domain: lc2}
+  breakup_events:
+    leo_650_breakup:
+      name: leo_650_breakup
+      environment: Earth orbit
+      origin_node_name: leo650_a0
+      initial_fragments: 1200.0
+      fragment_clearance_per_day: 0.0010
+      secondary_fragments_per_collision: 180.0
+      collision_kernel_per_fragment_day: 0.0000008
+      altitude_scale_km: 80.0
+      inclination_scale_deg: 8.0
+      initial_cloud_width_deg: 8.0
+      cloud_spread_deg_per_day: 0.35
+      cross_plane_exposure_fraction: 0.35
+      tracking_fraction: 0.92
+      maneuver_success_fraction: 0.90
+      repair_delay_days: 45.0
+      repair_capacity_per_day: 0.018
+      restore_fraction: 0.95
+    low_lunar_orbit_breakup:
+      name: low_lunar_orbit_breakup
+      environment: lunar orbit
+      origin_node_name: llo_p0
+      initial_fragments: 1200.0
+      fragment_clearance_per_day: 0.00002
+      secondary_fragments_per_collision: 180.0
+      collision_kernel_per_fragment_day: 0.0000006
+      altitude_scale_km: 45.0
+      inclination_scale_deg: 10.0
+      initial_cloud_width_deg: 8.0
+      cloud_spread_deg_per_day: 0.18
+      cross_plane_exposure_fraction: 0.20
+      tracking_fraction: 0.60
+      maneuver_success_fraction: 0.82
+      repair_delay_days: 75.0
+      repair_capacity_per_day: 0.012
+      restore_fraction: 0.95
+  conjunction_stress:
+    conjunctions: 1000.0
+    collision_probability_per_unsafe_conjunction: 0.00010
+    risk_limit: 0.020
+    scenarios:
+      nominal:
+        tracking_fraction: 0.98
+        communications_fraction: 0.99
+        navigation_fraction: 0.99
+        coordination_fraction: 0.99
+        independent_fallback_fraction: 0.85
+        cadence_risk_multiplier: 0.20
+        spacing_risk_multiplier: 0.30
+        coordination_fallback_multiplier: 0.35
+      degraded_tracking:
+        tracking_fraction: 0.45
+        communications_fraction: 0.95
+        navigation_fraction: 0.95
+        coordination_fraction: 0.92
+        independent_fallback_fraction: 0.90
+        cadence_risk_multiplier: 0.20
+        spacing_risk_multiplier: 0.30
+        coordination_fallback_multiplier: 0.35
+      communications_loss:
+        tracking_fraction: 0.95
+        communications_fraction: 0.35
+        navigation_fraction: 0.92
+        coordination_fraction: 0.55
+        independent_fallback_fraction: 0.92
+        cadence_risk_multiplier: 0.20
+        spacing_risk_multiplier: 0.30
+        coordination_fallback_multiplier: 0.30
+      navigation_degradation:
+        tracking_fraction: 0.95
+        communications_fraction: 0.90
+        navigation_fraction: 0.45
+        coordination_fraction: 0.82
+        independent_fallback_fraction: 0.90
+        cadence_risk_multiplier: 0.20
+        spacing_risk_multiplier: 0.30
+        coordination_fallback_multiplier: 0.35
+      centralized_coordination_loss:
+        tracking_fraction: 0.92
+        communications_fraction: 0.85
+        navigation_fraction: 0.90
+        coordination_fraction: 0.25
+        independent_fallback_fraction: 0.95
+        cadence_risk_multiplier: 0.20
+        spacing_risk_multiplier: 0.30
+        coordination_fallback_multiplier: 0.22
+      combined_high_conjunction_failure:
+        tracking_fraction: 0.45
+        communications_fraction: 0.55
+        navigation_fraction: 0.65
+        coordination_fraction: 0.50
+        independent_fallback_fraction: 0.95
+        cadence_risk_multiplier: 0.20
+        spacing_risk_multiplier: 0.30
+        coordination_fallback_multiplier: 0.22
+  mitigation_portfolio:
+    levels:
+      deployment_cadence: [0.8, 1.4]
+      disposal_reliability: [0.80, 0.98]
+      removal_rate: [0.02, 0.15]
+      shielding_mass_fraction: [0.01, 0.08]
+      cluster_cap_fraction: [0.05, 0.20]
+      shell_diversity: [1, 3]
+      servicer_fleet_size: [1, 8]
+      repair_recycling_capacity: [0.05, 0.30]
+    base_risk_index: 0.40
+    cadence_exponent: 1.60
+    disposal_floor: 0.03
+    removal_effectiveness: 3.0
+    small_debris_shielding_effectiveness: 1.5
+    servicer_effectiveness: 0.08
+    repair_effectiveness: 1.5
+    cadence_cost: 0.08
+    disposal_cost: 0.12
+    removal_cost: 0.80
+    shielding_cost: 1.20
+    shell_diversity_cost: 0.04
+    servicer_cost: 0.025
+    repair_cost: 0.30
+    shell_distribution_capacity_penalty: 0.03
+    repair_capacity_return: 0.20
+  multi_operator:
+    shells:
+      leo_650:
+        conjunctions_per_node_pair_year: 0.000020
+        maximum_coordinated_conjunctions_per_year: 1200.0
+        minimum_operator_compliance_fraction: 0.90
+      low_lunar_orbit:
+        conjunctions_per_node_pair_year: 0.000008
+        maximum_coordinated_conjunctions_per_year: 300.0
+        minimum_operator_compliance_fraction: 0.90
+    scenarios:
+      coordinated_authorized:
+        - {name: operator_a, planned_nodes: 2500,
+           tracking_data_share_fraction: 0.98,
+           maneuver_coordination_fraction: 0.97,
+           disposal_compliance_fraction: 0.96,
+           authorization_valid: true}
+        - {name: operator_b, planned_nodes: 1800,
+           tracking_data_share_fraction: 0.96,
+           maneuver_coordination_fraction: 0.95,
+           disposal_compliance_fraction: 0.94,
+           authorization_valid: true}
+        - {name: operator_c, planned_nodes: 900,
+           tracking_data_share_fraction: 0.95,
+           maneuver_coordination_fraction: 0.93,
+           disposal_compliance_fraction: 0.95,
+           authorization_valid: true}
+      uncoordinated_growth:
+        - {name: operator_a, planned_nodes: 6000,
+           tracking_data_share_fraction: 0.98,
+           maneuver_coordination_fraction: 0.95,
+           disposal_compliance_fraction: 0.90,
+           authorization_valid: true}
+        - {name: operator_b, planned_nodes: 5000,
+           tracking_data_share_fraction: 0.70,
+           maneuver_coordination_fraction: 0.55,
+           disposal_compliance_fraction: 0.65,
+           authorization_valid: false}
+        - {name: operator_c, planned_nodes: 4000,
+           tracking_data_share_fraction: 0.82,
+           maneuver_coordination_fraction: 0.62,
+           disposal_compliance_fraction: 0.70,
+           authorization_valid: true}
+
+partial_closure_support:
+  source_class: ASSUMPTION
+  bounding_argument: >
+    This deterministic stress model separates strict autonomy from the scale
+    supported by residual imports. It is not a forecast of supplier growth or
+    technical substitution. Residual-input requirements, storage losses,
+    synchronized waves, failed-delivery deratings, and supplier capacities are
+    named scenario values pending bills of material and logistics evidence.
+  horizon_years: 40
+  initial_capacity: 1.0
+  local_growth_per_year: 0.18
+  local_bulk_t_per_capacity: 9.986
+  wholly_earth_manufactured_t_per_capacity: 10.0
+  bridge_initial_external_seed_t: 2.5
+  earth_delivery_musd_per_t: 2.5
+  local_bulk_value_musd_per_t: 0.08
+  local_part_families: 992
+  total_part_families: 1000
+  local_embodied_energy_fraction: 0.97
+  local_process_work_fraction: 0.92
+  external_human_intervention_hours_per_capacity_year: 18.0
+  external_verification_hours_per_capacity_year: 12.0
+  initial_intelligence: 1.0
+  intelligence_gain_per_year: 0.05
+  external_supplier:
+    reliability_fraction: 0.94
+    resources:
+      factories:
+        initial_capacity_per_year: 0.16
+        growth_per_year: 0.05
+        requirement_per_import_t: 1.0
+      high_purity_materials:
+        initial_capacity_per_year: 0.13
+        growth_per_year: 0.04
+        requirement_per_import_t: 0.80
+      skilled_labor_hours:
+        initial_capacity_per_year: 3200.0
+        growth_per_year: 0.03
+        requirement_per_import_t: 20000.0
+      energy_mwh:
+        initial_capacity_per_year: 1400.0
+        growth_per_year: 0.04
+        requirement_per_import_t: 8000.0
+      finance_musd:
+        initial_capacity_per_year: 4.0
+        growth_per_year: 0.05
+        requirement_per_import_t: 25.0
+      launch_transport_t:
+        initial_capacity_per_year: 0.12
+        growth_per_year: 0.03
+        requirement_per_import_t: 1.0
+  residual_inputs:
+    advanced_electronics:
+      commissioning_t_per_capacity: 0.010
+      replacement_t_per_capacity_year: 0.0015
+      initial_stockpile_t: 0.080
+      shelf_life_years: 8.0
+      obsolescence_per_year: 0.06
+      radiation_storage_loss_per_year: 0.01
+      delivery_failure_fraction: 0.08
+      minimum_lot_t: 0.010
+      replacement_wave_interval_years: 5
+      replacement_wave_fraction: 0.60
+      external_supplier_capacity_t_per_year: 0.12
+      delivered_value_musd_per_t: 25.0
+      delivered_volume_m3_per_t: 2.0
+      criticality_weight: 1.0
+    calibration_metrology:
+      commissioning_t_per_capacity: 0.004
+      replacement_t_per_capacity_year: 0.0008
+      initial_stockpile_t: 0.040
+      shelf_life_years: 12.0
+      obsolescence_per_year: 0.04
+      radiation_storage_loss_per_year: 0.005
+      delivery_failure_fraction: 0.05
+      minimum_lot_t: 0.005
+      replacement_wave_interval_years: 4
+      replacement_wave_fraction: 0.40
+      external_supplier_capacity_t_per_year: 0.060
+      delivered_value_musd_per_t: 12.0
+      delivered_volume_m3_per_t: 1.5
+      criticality_weight: 0.9
+  policies:
+    fixed_annual_imports:
+      kind: fixed
+      substitution_allocation_fraction: 0.00
+      annual_import_t:
+        advanced_electronics: 0.035
+        calibration_metrology: 0.015
+    capacity_proportional_imports:
+      kind: proportional
+      substitution_allocation_fraction: 0.00
+      t_per_capacity_year:
+        advanced_electronics: 0.006
+        calibration_metrology: 0.0025
+    finite_initial_stockpile:
+      kind: finite_stockpile
+      substitution_allocation_fraction: 0.00
+    declining_disrupted_imports:
+      kind: declining_disrupted
+      substitution_allocation_fraction: 0.15
+      initial_annual_import_t:
+        advanced_electronics: 0.040
+        calibration_metrology: 0.018
+      decline_per_year: 0.025
+      outage_years: [12.0, 17.0]
+      recovery_fraction: 0.65
+  allocation_policies:
+    immediate_expansion:
+      kind: proportional
+      substitution_allocation_fraction: 0.00
+      stockpile_reserve_years: 0.0
+      t_per_capacity_year:
+        advanced_electronics: 0.006
+        calibration_metrology: 0.0025
+    stockpile_first:
+      kind: proportional
+      substitution_allocation_fraction: 0.00
+      stockpile_reserve_years: 3.0
+      t_per_capacity_year:
+        advanced_electronics: 0.006
+        calibration_metrology: 0.0025
+    balanced_expansion_substitution:
+      kind: proportional
+      substitution_allocation_fraction: 0.10
+      stockpile_reserve_years: 1.0
+      t_per_capacity_year:
+        advanced_electronics: 0.006
+        calibration_metrology: 0.0025
+    substitution_first:
+      kind: proportional
+      substitution_allocation_fraction: 0.25
+      stockpile_reserve_years: 0.0
+      t_per_capacity_year:
+        advanced_electronics: 0.006
+        calibration_metrology: 0.0025
+  substitution_programs:
+    advanced_electronics:
+      capability_threshold: qualified_mature_node_controller
+      parent_tool_ancestry: lithography;deposition;etch;packaging;test;metrology
+      evidence_state: unverified_local_process
+      minimum_completion_year: 12.0
+      effort_capacity_years: 0.12
+      required_intelligence: 1.50
+      embodiment_adequate: true
+      materials_available: true
+      tools_available: true
+      test_facility_available: true
+      outcome: validated
+      remaining_requirement_multiplier: 0.40
+      charged_work: research_compute;experiments;destructive_tests;metrology;prototype_line;qualification;failed_designs;materials;energy
+      effort_resource_shares:
+        research_compute: 0.15
+        experiments: 0.15
+        destructive_tests: 0.10
+        metrology: 0.15
+        process_equipment: 0.15
+        prototype_lines: 0.10
+        qualification: 0.10
+        failed_designs: 0.05
+        materials_and_energy: 0.05
+    calibration_metrology:
+      capability_threshold: traceable_local_calibration_chain
+      parent_tool_ancestry: reference_artifacts;precision_motion;optics;test
+      evidence_state: unverified_local_process
+      minimum_completion_year: 11.0
+      effort_capacity_years: 0.10
+      required_intelligence: 1.35
+      embodiment_adequate: true
+      materials_available: true
+      tools_available: true
+      test_facility_available: true
+      outcome: failed
+      remaining_requirement_multiplier: 1.00
+      charged_work: research_compute;experiments;destructive_tests;metrology;prototype_line;qualification;failed_designs;materials;energy
+      effort_resource_shares:
+        research_compute: 0.15
+        experiments: 0.15
+        destructive_tests: 0.10
+        metrology: 0.15
+        process_equipment: 0.15
+        prototype_lines: 0.10
+        qualification: 0.10
+        failed_designs: 0.05
+        materials_and_energy: 0.05
 
 knowledge_autonomy:
   source_class: ASSUMPTION

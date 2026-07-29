@@ -75,14 +75,14 @@ populates a separate calibration release.
 
 A current complete-shape template can be generated with:
 
-    scripts/evaluate_evidence_bundle.py economic_calibration \
+    rsi-evaluate-evidence economic_calibration \
       --write-template economic_calibration_bundle.json
 
 It enumerates every package, fit, cash-flow event type, and parameter
 decision, but remains invalid until measurements, hashes, holdouts, and
 independent reviews replace its placeholders. A calibration release is
 ingested with
-`scripts/evaluate_evidence_bundle.py economic_calibration BUNDLE.json`. The
+`rsi-evaluate-evidence economic_calibration BUNDLE.json`. The
 evaluator requires all six normalized evidence packages, all five
 correlation fits and holdout results, every cash-flow event type, immutable
 hashes, and a reviewed retain/promote decision for every bound parameter.

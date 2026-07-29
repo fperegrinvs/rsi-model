@@ -1,4 +1,4 @@
-# RSI model run report — 2026-07-28
+# RSI model run report — 2026-07-29
 
 All replication/doubling times below are MODEL OUTPUTS. No single trajectory is
 "the" answer: results span assumption sets (conservative/central/optimistic,

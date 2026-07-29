@@ -4,16 +4,18 @@ Epistemic rules 1-2: every reported number is traceable to a source_class, and
 results are presented as sweeps across assumption sets + Monte Carlo — the
 report exists so no figure circulates without its provenance table.
 """
+
 from __future__ import annotations
 
+from collections.abc import Mapping
 from datetime import date
 from pathlib import Path
 
 import numpy as np
 
 from .cutsets import CutProbability, CutSetResult
-from .lco import CASE_LABELS, CASES, EarthLCO, LCOMC, SpaceLCO
-from .model import Params, RunResult
+from .lco import CASE_LABELS, LCOMC, EarthLCO, SpaceLCO
+from .model import Params, Provenance, RunResult
 from .montecarlo import MCResult
 
 OUTDIR = Path(__file__).resolve().parents[2] / "outputs"
@@ -25,11 +27,12 @@ def provenance_table(p: Params) -> str:
         "| quantity | value | source_class | anchor | note |",
         "|---|---|---|---|---|",
     ]
-    for pr in p.provenance:
-        lines.append(f"| {pr.quantity} | {pr.value:.4f} | {pr.source_class} "
-                     f"| {pr.anchor or '—'} | {pr.note} |")
+    lines.extend(
+        (f"| {pr.quantity} | {pr.value:.4f} | {pr.source_class} | {pr.anchor or '—'} | {pr.note} |")
+        for pr in p.provenance
+    )
     struct = [
-        ("A matrix (all entries)", "assumptions.yaml set '%s'" % p.label),
+        ("A matrix (all entries)", f"assumptions.yaml set '{p.label}'"),
         ("q (incl. environment q_scale)", "assumptions.yaml + environments.yaml"),
         ("import profile/budget/decay", "assumptions.yaml + environments.yaml"),
         ("repair efficiency/spares", "assumptions.yaml"),
@@ -42,8 +45,10 @@ def provenance_table(p: Params) -> str:
     return "\n".join(lines)
 
 
-def deterministic_table(results: dict[tuple[str, str], RunResult],
-                        horizon: float = 30.0) -> str:
+def deterministic_table(
+    results: Mapping[tuple[str, str], RunResult],
+    horizon: float = 30.0,
+) -> str:
     lines = [
         f"| set | environment | g @10yr | g @{horizon:g}yr | balanced dbl (yr) "
         "| aggregate dbl (yr) | last binding sector |",
@@ -58,39 +63,51 @@ def deterministic_table(results: dict[tuple[str, str], RunResult],
             f"| {set_name} | {env} | {r.g[i10]:+.3f} | {r.g[ih]:+.3f} "
             f"| {'never' if b is None else f'{b:.1f}'} "
             f"| {'never' if d is None else f'{d:.1f}'} "
-            f"| {r.params.sectors[r.binding[-1]]} |")
+            f"| {r.params.sectors[r.binding[-1]]} |"
+        )
     return "\n".join(lines)
 
 
-def cutset_section(cuts: dict[str, CutSetResult]) -> str:
+def cutset_section(cuts: Mapping[str, CutSetResult]) -> str:
     out = []
     for label, cs in cuts.items():
         out.append(f"**{label}** (horizon {cs.horizon:g} yr, {cs.n_sims} simulations)")
         out.append(f"- baseline self-expanding: {'yes' if cs.baseline_expanding else 'no'}")
         if cs.baseline_expanding:
             if cs.minimal_cuts:
-                out.append("- minimal import cut sets (loss of these import lines "
-                           "alone prevents self-expansion):")
+                out.append(
+                    "- minimal import cut sets (loss of these import lines "
+                    "alone prevents self-expansion):"
+                )
                 out.extend(f"  - {{{', '.join(c)}}}" for c in cs.minimal_cuts)
             else:
-                out.append("- no import cut set prevents self-expansion by the horizon "
-                           "(imports accelerate but are not load-bearing at these central values)")
-        out.append("- indispensable sectors (capacity knockout unrecoverable): "
-                   + (", ".join(cs.indispensable) or "none"))
+                out.append(
+                    "- no import cut set prevents self-expansion by the horizon "
+                    "(imports accelerate but are not load-bearing at these central values)"
+                )
+        out.append(
+            "- indispensable sectors (capacity knockout unrecoverable): "
+            + (", ".join(cs.indispensable) or "none")
+        )
         out.append("")
     return "\n".join(out)
 
 
 def cut_probability_section(cps: list[CutProbability]) -> str:
-    out = ["Cut sets appear only near the feasibility margin, so central-value",
-           "cut analysis understates dependency risk. Over sampled anchors",
-           "(no shocks; structural question only):", ""]
+    out = [
+        "Cut sets appear only near the feasibility margin, so central-value",
+        "cut analysis understates dependency risk. Over sampled anchors",
+        "(no shocks; structural question only):",
+        "",
+    ]
     for cp in cps:
-        out.append(f"**{cp.label}/{cp.environment}** (n={cp.n_runs}, horizon "
-                   f"{cp.horizon:g} yr): P(baseline expands) = {cp.p_baseline:.2f}")
+        out.append(
+            f"**{cp.label}/{cp.environment}** (n={cp.n_runs}, horizon "
+            f"{cp.horizon:g} yr): P(baseline expands) = {cp.p_baseline:.2f}"
+        )
         for c, pf in sorted(cp.p_fatal.items(), key=lambda kv: -kv[1]):
             if pf > 0:
-                name = "ALL import lines" if len(c) > 1 else c[0]
+                name = "ALL import lines" if len(c) > 1 else next(iter(c), "none")
                 out.append(f"- P(fatal | baseline ok) cutting {name}: {pf:.2f}")
         if all(pf == 0 for pf in cp.p_fatal.values()):
             out.append("- no candidate cut fatal in any sampled draw")
@@ -102,23 +119,29 @@ def mc_section(mcs: list[MCResult]) -> str:
     out = []
     for mc in mcs:
         out.append(f"- {mc.summary()}")
-        out.append(f"  (shocks/run: {mc.mean_shocks:.1f}; q jitter sigma={mc.q_spread}, "
-                   "ASSUMPTION-class)")
+        out.append(
+            f"  (shocks/run: {mc.mean_shocks:.1f}; q jitter sigma={mc.q_spread}, ASSUMPTION-class)"
+        )
     return "\n".join(out)
 
 
-def write_report(results: dict[tuple[str, str], RunResult],
-                 mcs: list[MCResult],
-                 cuts: dict[str, CutSetResult],
-                 figures: list[Path],
-                 provenance_of: Params,
-                 path: Path | None = None,
-                 horizon: float = 30.0,
-                 cut_probs: list[CutProbability] | None = None) -> Path:
+def write_report(
+    results: Mapping[tuple[str, str], RunResult],
+    mcs: list[MCResult],
+    cuts: Mapping[str, CutSetResult],
+    figures: list[Path],
+    provenance_of: Params,
+    path: Path | None = None,
+    horizon: float = 30.0,
+    cut_probs: list[CutProbability] | None = None,
+) -> Path:
     p = provenance_of
     fig_lines = "\n\n".join(f"![{f.stem}](figures/{f.name})" for f in figures)
-    cp_block = ("\n## Cut-set fatality over the MC ensemble\n\n"
-                + cut_probability_section(cut_probs) if cut_probs else "")
+    cp_block = (
+        "\n## Cut-set fatality over the MC ensemble\n\n" + cut_probability_section(cut_probs)
+        if cut_probs
+        else ""
+    )
     md = f"""# RSI model run report — {date.today().isoformat()}
 
 All replication/doubling times below are MODEL OUTPUTS. No single trajectory is
@@ -167,8 +190,8 @@ Metric definitions:
     return out
 
 
-def _lco_provenance_table(prov_lists: list[list]) -> str:
-    seen: dict[str, object] = {}
+def _lco_provenance_table(prov_lists: list[list[Provenance]]) -> str:
+    seen: dict[str, Provenance] = {}
     for pl in prov_lists:
         for pr in pl:
             seen.setdefault(pr.quantity, pr)
@@ -179,19 +202,24 @@ def _lco_provenance_table(prov_lists: list[list]) -> str:
     return "\n".join(lines)
 
 
-def write_part2_report(spaces: dict[str, SpaceLCO], earths: dict[str, EarthLCO],
-                       mcs: list[LCOMC], figures: list[Path],
-                       breakeven_notes: str = "",
-                       path: Path | None = None) -> Path:
+def write_part2_report(
+    spaces: Mapping[str, SpaceLCO],
+    earths: Mapping[str, EarthLCO],
+    mcs: list[LCOMC],
+    figures: list[Path],
+    breakeven_notes: str = "",
+    path: Path | None = None,
+) -> Path:
     arch_label = {
         "serviceable_platform": "serviceable/reusable platform",
         "integrated_disposable": "integrated disposable satellite",
     }
     ctable = [
-        "| case | architecture | LCO $/kW-yr | launched kg/kW | hardware | pv | radiator | storage | other infrastructure + NRE | launch |",
+        "| case | architecture | LCO $/kW-yr | launched kg/kW | hardware | pv "
+        "| radiator | storage | other infrastructure + NRE | launch |",
         "|---|---|---:|---:|---:|---:|---:|---:|---:|---:|",
     ]
-    for _, s in spaces.items():
+    for s in spaces.values():
         k = s.capex_per_kw
         other = sum(
             k.get(name, 0.0)
@@ -207,17 +235,18 @@ def write_part2_report(spaces: dict[str, SpaceLCO], earths: dict[str, EarthLCO],
             f"| {CASE_LABELS.get(s.case, s.case)} "
             f"| {arch_label[s.architecture]} | {s.lco:,.0f} "
             f"| {s.mass_kg_per_kw:,.0f} "
-                      f"| {k['hardware']:,.0f} | {k['pv']:,.0f} | {k['radiator']:,.0f} "
+            f"| {k['hardware']:,.0f} | {k['pv']:,.0f} | {k['radiator']:,.0f} "
             f"| {k['storage']:,.0f} | {other:,.0f} | {k['launch']:,.0f} |"
         )
     etable = ["| scenario | LCO $/kW-yr | node choice |", "|---|---|---|"]
     for scen, e in earths.items():
         etable.append(f"| {scen} | {e.lco:,.0f} | {e.node} |")
     workload_table = [
-        "| case | cost / million defined inferences | cost / network-effective training kW-yr | training network efficiency |",
+        "| case | cost / million defined inferences "
+        "| cost / network-effective training kW-yr | training network efficiency |",
         "|---|---:|---:|---:|",
     ]
-    for _, s in spaces.items():
+    for s in spaces.values():
         w = s.workload_costs
         workload_table.append(
             f"| {CASE_LABELS.get(s.case, s.case)} · {arch_label[s.architecture]} "
@@ -233,20 +262,26 @@ def write_part2_report(spaces: dict[str, SpaceLCO], earths: dict[str, EarthLCO],
             f"| {w['training_network_efficiency']:.3f} |"
         )
     mtable = [
-        "| case | architecture | vs Earth | ratio p10/p50/p90 | P(space cheaper) | break-even LEO $/kg p50 (p90) |",
+        "| case | architecture | vs Earth | ratio p10/p50/p90 "
+        "| P(space cheaper) | break-even LEO $/kg p50 (p90) |",
         "|---|---|---|---|---|---|",
     ]
-    for m in mcs:
-        mtable.append(
+    mtable.extend(
+        (
             f"| {CASE_LABELS.get(m.case, m.case)} "
             f"| {arch_label[m.architecture]} | {m.scenario} "
             f"| {m.ratio_pcts[10]:.1f} / {m.ratio_pcts[50]:.1f} / {m.ratio_pcts[90]:.1f} "
             f"| {m.p_space_cheaper:.3f} "
-            f"| {m.breakeven_pcts[50]:,.0f} ({m.breakeven_pcts[90]:,.0f}) |")
-    spectable = ["| case | disclosed/derived quantity | central value | source_class | model role |",
-                 "|---|---|---:|---|---|"]
+            f"| {m.breakeven_pcts[50]:,.0f} ({m.breakeven_pcts[90]:,.0f}) |"
+        )
+        for m in mcs
+    )
+    spectable = [
+        "| case | disclosed/derived quantity | central value | source_class | model role |",
+        "|---|---|---:|---|---|",
+    ]
     seen_specs = set()
-    for _, s in spaces.items():
+    for s in spaces.values():
         prov_by_name = {pr.quantity: pr for pr in s.provenance}
         for name, value in s.architecture_specs.items():
             key = (s.case, name)
@@ -256,49 +291,53 @@ def write_part2_report(spaces: dict[str, SpaceLCO], earths: dict[str, EarthLCO],
             pr = prov_by_name[name]
             spectable.append(
                 f"| {CASE_LABELS.get(s.case, s.case)} | `{name}` | {value:,.4g} "
-                f"| {pr.source_class} | {pr.note} |")
-    specs_block = ("\n## Disclosed and aspirational scenario inputs\n\n"
-                   "These company statements and separately source-classed model "
-                   "assumptions define conditional scenarios; they do not replace "
-                   "the generic reference cases or establish achieved cost, "
-                   "lifetime, or availability.\n\n"
-                   + "\n".join(spectable)
-                   if len(spectable) > 2 else "")
+                f"| {pr.source_class} | {pr.note} |"
+            )
+    specs_block = (
+        "\n## Disclosed and aspirational scenario inputs\n\n"
+        "These company statements and separately source-classed model "
+        "assumptions define conditional scenarios; they do not replace "
+        "the generic reference cases or establish achieved cost, "
+        "lifetime, or availability.\n\n" + "\n".join(spectable)
+        if len(spectable) > 2
+        else ""
+    )
     fig_lines = "\n\n".join(f"![{f.stem}](figures/{f.name})" for f in figures)
-    prov = _lco_provenance_table([s.provenance for s in spaces.values()]
-                                 + [e.provenance for e in earths.values()])
+    prov = _lco_provenance_table(
+        [s.provenance for s in spaces.values()] + [e.provenance for e in earths.values()]
+    )
     leo = next(
         (
-            s for s in spaces.values()
-            if s.case == "leo_inference"
-            and s.architecture == "serviceable_platform"
+            s
+            for s in spaces.values()
+            if s.case == "leo_inference" and s.architecture == "serviceable_platform"
         ),
         None,
     )
     worked = ""
     if leo is not None:
         d, k = leo.detail, leo.capex_per_kw
-        worked = fr"""
+        worked = rf"""
 For the central LEO serviceable-platform case, the resolved values are
-\(C_h={k['hardware']:,.0f}\), \(C_I={d['infra_capex']:,.0f}\) $/kW,
-\(M_h={d['hw_mass']:.1f}\), \(M_I={d['non_hw_launched_mass']:.1f}\) kg/kW,
+\(C_h={k["hardware"]:,.0f}\), \(C_I={d["infra_capex"]:,.0f}\) $/kW,
+\(M_h={d["hw_mass"]:.1f}\), \(M_I={d["non_hw_launched_mass"]:.1f}\) kg/kW,
 \(p_L={leo.launch_per_kg_leo:,.0f}\) $/kg,
-\(a_h={d['ann_hw']:.4f}\), \(a_I={d['ann_infra']:.4f}\), and
-\(U_s={d['utilization']:.3f}\). Substitution gives
+\(a_h={d["ann_hw"]:.4f}\), \(a_I={d["ann_infra"]:.4f}\), and
+\(U_s={d["utilization"]:.3f}\). Substitution gives
 
 \[
 L_s =
-\frac{{{k['hardware']:,.0f}({d['ann_hw']:.4f})
-+{d['infra_capex']:,.0f}({d['ann_infra']:.4f})
-+{d['spectrum_regulatory_per_kw_year']:,.0f}
+\frac{{{k["hardware"]:,.0f}({d["ann_hw"]:.4f})
++{d["infra_capex"]:,.0f}({d["ann_infra"]:.4f})
++{d["spectrum_regulatory_per_kw_year"]:,.0f}
 +{leo.launch_per_kg_leo:,.0f}
-[{d['hw_mass']:.1f}({d['ann_hw']:.4f})
-+{d['non_hw_launched_mass']:.1f}({d['ann_infra']:.4f})]}}
-{{{d['utilization']:.3f}}}
+[{d["hw_mass"]:.1f}({d["ann_hw"]:.4f})
++{d["non_hw_launched_mass"]:.1f}({d["ann_infra"]:.4f})]}}
+{{{d["utilization"]:.3f}}}
 = {leo.lco:,.0f}\ \$/\mathrm{{kW\!-\!yr}}.
 \]
 """
-    formula_block = fr"""
+    formula_block = rf"""
 ## Complete levelized-cost specification
 
 For WACC \(r\), useful life \(T\), annual operations fraction \(f_o\),
@@ -360,14 +399,16 @@ counterfactual.
 
 {worked}
 """
-    md = f"""# Part II report: levelized cost of compute, space vs Earth — {date.today().isoformat()}
+    report_date = date.today().isoformat()
+    earth_reference = earths.get("base", next(iter(earths.values())))
+    md = f"""# Part II report: levelized cost of compute, space vs Earth — {report_date}
 
 Unit: **$ per frontier-equivalent kW-year of delivered IT load** (older-node
 hardware is compute-normalized by its J/FLOP penalty). Three reference cases
 (paper Section 9): LEO inference, cislunar batch, and **Earth-supplied**
 lunar-surface compute (central closure fraction is zero — local manufacture
 enters only through the closure sweep axis), plus separate Starmind AI1
-current-disclosure and aspirational-best-case scenarios.
+disclosed-design and stated-aspiration scenarios.
 Two architectures are reported explicitly. In the integrated-disposable
 satellite, compute, PV, radiator, storage, structure, and original launch
 retire together. In the serviceable/reusable platform, compute refreshes
@@ -401,7 +442,8 @@ explicit network-efficiency gate):
 
 {chr(10).join(workload_table)}
 
-A calibration check: the Earth base LCO corresponds to ≈ ${earths.get("base", next(iter(earths.values()))).lco / 8760:,.2f}/kW-hr,
+A calibration check: the Earth base LCO corresponds to
+≈ ${earth_reference.lco / 8760:,.2f}/kW-hr,
 consistent with published accelerator rental rates — the model is anchored at
 the right order of magnitude.
 
@@ -409,7 +451,7 @@ the right order of magnitude.
 
 ## Monte Carlo over anchored ranges (shared draws both sides)
 
-The aspirational best case is excluded: company targets and deliberately
+The stated-aspiration case is excluded: company targets and deliberately
 favorable unpublished assumptions are point sensitivities, not probability
 distributions.
 

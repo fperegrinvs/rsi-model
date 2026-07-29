@@ -1,4 +1,4 @@
 scenario,total_steps,material_limited_steps,service_limited_steps,order_rate_limited_steps,autonomy_limited_steps,verification_limited_steps,repair_limited_steps,compute_limited_steps
 terrestrial_rehearsal,160,145,0,15,0,0,0,0
-lunar_strategic_material_bridge,160,146,0,14,0,0,0,0
+lunar_strategic_material_bridge,160,145,0,15,0,0,0,0
 moon_asteroid_network,160,48,0,112,0,0,0,0

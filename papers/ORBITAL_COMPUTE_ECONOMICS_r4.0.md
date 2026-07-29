@@ -1,7 +1,5 @@
 # Orbital compute after complete system accounting
 
-r4.0 companion economics-paper draft
-
 ## Abstract
 
 We compare terrestrial compute with LEO, cislunar, lunar-surface, and disclosed
@@ -15,11 +13,12 @@ space financing. Central serviceable-platform costs are approximately 5.29×
 Earth for generic LEO, 8.97× for cislunar batch, 263× for Earth-supplied lunar
 surface compute, and 3.17× for the disclosed AI1 mass/power case. Even a
 quarantined $185/kg, 100 kW/t aspirational case is 1.09× Earth after the
-omitted-cost boundary is completed; its former incomplete-cost result was
-0.76×. Training is less favorable because orbital network efficiency is an
-explicit gate. Present bridge architectures therefore do not reach commodity
-terrestrial parity under the declared ranges. Mature high-closure economics
-remain unresolved and require a dynamically financed physical system.
+omitted-cost boundary is completed; the corresponding incomplete boundary
+produces 0.76×. Training is less favorable because orbital network efficiency
+is an explicit gate. Present bridge architectures therefore do not reach
+commodity terrestrial parity under the declared ranges. Mature high-closure
+economics remain unresolved and require a dynamically financed physical
+system.
 
 ## Keywords
 

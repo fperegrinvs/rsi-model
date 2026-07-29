@@ -1,0 +1,6 @@
+scenario_order,scenario_id,schedule_source_class,delay_from_2026_01_22_years,first_useful_compute_date,useful_capacity_ramp_years,discount_rate,discounted_accepted_tokens_through_2028_01_22,discounted_accepted_tokens_through_2029_01_22,schedule_note
+1,earth_reference,ASSUMPTION,2.0,2028-01-22,0.5,0.1,0.0,709983722.1819203,"Matched construction, interconnection, commissioning, and ramp scenario; not a universal terrestrial project duration."
+2,generic_model,ASSUMPTION,2.5,2028-07-23,1.0,0.1,0.0,91624282.27605112,"Generic orbital production, launch, commissioning, and constellation-ramp scenario."
+3,independent_reference,ASSUMPTION,2.5,2028-07-23,1.0,0.1,0.0,97732567.7611212,Uses the same maturity date and schedule boundary as the generic orbital case.
+4,spacexai_proponent_case,company_statement,2.0,,,0.1,,,Possible deployment as early as 2028; commissioning duration and useful-capacity ramp are not disclosed.
+5,spacexai_proponent_hybrid,mixed,2.0,2028-01-22,0.75,0.1,0.0,527513683.123203,The 2028 deployment marker is a company target; the nine-month useful-capacity ramp is an explicit ASSUMPTION.

@@ -1,22 +1,24 @@
 """Fail-closed r4.0 candidate and immutable-publication preflight."""
+
 from __future__ import annotations
 
-from dataclasses import dataclass
-from datetime import date, datetime
 import hashlib
 import json
 import re
+from collections.abc import Mapping
+from dataclasses import dataclass
+from datetime import date, datetime
 from pathlib import Path
-from typing import Any
-
-import yaml
+from typing import Literal, TypedDict, assert_never
 
 from rsimodel.manifests import verify_manifest, verify_release_manifest
+from rsimodel.yaml_adapter import load_yaml_mapping, require_mapping, require_sequence
 
 CONCEPT_DOI = "10.5281/zenodo.21619447"
 RELEASE_AUTHORIZATION_SCHEMA = "r4.0-release-authorization-v1"
 REPOSITORY_URL = "https://github.com/fperegrinvs/rsi-model"
 SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
+type ReleaseMode = Literal["candidate", "publication"]
 
 
 @dataclass(frozen=True)
@@ -26,7 +28,45 @@ class Gate:
     detail: str
 
 
-def release_authorization_template() -> dict[str, Any]:
+class ReleaseAuthorizationRecord(TypedDict):
+    schema: str
+    version: str
+    final_source_approved: bool
+    approved_commit: str | None
+    author_or_release_manager: str | None
+    approval_timestamp_utc: str | None
+    linux_ci_run_url: str | None
+    linux_ci_repository: str
+    linux_ci_commit: str | None
+    linux_ci_conclusion: str | None
+    linux_ci_evidence_path: str | None
+    linux_ci_evidence_sha256: str | None
+    archive_record_url: str | None
+    release_date: str | None
+    version_doi: str | None
+    canonical_url: str | None
+    attestation_path: str | None
+    attestation_sha256: str | None
+
+
+def release_mode(value: str) -> ReleaseMode:
+    """Validate an external release-mode string once at the boundary."""
+    if value == "candidate":
+        return "candidate"
+    if value == "publication":
+        return "publication"
+    raise ValueError("mode must be candidate or publication")
+
+
+def _is_candidate(mode: ReleaseMode) -> bool:
+    if mode == "candidate":
+        return True
+    if mode == "publication":
+        return False
+    assert_never(mode)
+
+
+def release_authorization_template() -> ReleaseAuthorizationRecord:
     """Return an external authorization template that cannot yet pass."""
     return {
         "schema": RELEASE_AUTHORIZATION_SCHEMA,
@@ -52,8 +92,8 @@ def release_authorization_template() -> dict[str, Any]:
 
 def _verified_file(
     evidence_root: Path | None,
-    relative_value: Any,
-    expected: Any,
+    relative_value: object,
+    expected: object,
 ) -> tuple[bool, str, bytes | None]:
     if evidence_root is None:
         return False, "evidence_root is required", None
@@ -78,7 +118,7 @@ def _verified_file(
 
 
 def release_authorization_gates(
-    record: dict[str, Any],
+    record: Mapping[str, object],
     *,
     head_commit: str,
     release_date: str,
@@ -101,13 +141,13 @@ def release_authorization_gates(
         record.get("linux_ci_evidence_path"),
         record.get("linux_ci_evidence_sha256"),
     )
-    ci_payload: dict[str, Any] = {}
+    ci_payload: dict[str, object] = {}
     if ci_evidence_valid and ci_content is not None:
         try:
-            candidate = json.loads(ci_content)
-            if isinstance(candidate, dict):
-                ci_payload = candidate
-            else:
+            candidate: object = json.loads(ci_content)
+            try:
+                ci_payload = require_mapping(candidate, label="CI evidence")
+            except ValueError:
                 ci_evidence_valid = False
                 ci_evidence_detail = "CI evidence must be a JSON object"
         except (UnicodeDecodeError, json.JSONDecodeError):
@@ -202,8 +242,7 @@ def release_authorization_gates(
         ),
         Gate(
             "authorization_canonical_url",
-            record.get("canonical_url") == canonical_url
-            and canonical_url in canonical_allowed,
+            record.get("canonical_url") == canonical_url and canonical_url in canonical_allowed,
             str(record.get("canonical_url")),
         ),
         Gate(
@@ -249,6 +288,16 @@ def validate_publication_values(
         raise ValueError("invalid publication metadata:\n- " + "\n- ".join(errors))
 
 
+def _valid_readability_review(review: object) -> bool:
+    try:
+        fields = require_mapping(review, label="readability review")
+    except ValueError:
+        return False
+    return fields.get("disposition") in {"keep_main", "keep_appendix"} and bool(
+        fields.get("rationale")
+    )
+
+
 def repository_gates(
     root: Path,
     mode: str,
@@ -257,22 +306,48 @@ def repository_gates(
     canonical_url: str | None = None,
 ) -> list[Gate]:
     """Evaluate deterministic repository contents; Git gates are CLI-level."""
-    if mode not in {"candidate", "publication"}:
-        raise ValueError("mode must be candidate or publication")
+    typed_mode = release_mode(mode)
 
-    cff = yaml.safe_load((root / "CITATION.cff").read_text(encoding="utf-8"))
-    manuscript = (
-        root / "docs" / "Recursive_Industrial_Intelligence_r4.0.md"
-    ).read_text(encoding="utf-8")
-    html = (
-        root / "docs" / "Recursive_Industrial_Intelligence_r4.0.html"
-    ).read_text(encoding="utf-8")
+    cff = load_yaml_mapping(root / "CITATION.cff")
+    manuscript = (root / "docs" / "Recursive_Industrial_Intelligence_r4.0.md").read_text(
+        encoding="utf-8"
+    )
+    html = (root / "docs" / "Recursive_Industrial_Intelligence_r4.0.html").read_text(
+        encoding="utf-8"
+    )
+    readability_path = root / "docs" / "reviews" / "readability-review.json"
+    try:
+        readability_value: object = json.loads(readability_path.read_text(encoding="utf-8"))
+        readability = require_mapping(
+            readability_value,
+            label="readability review root",
+        )
+        reviews_value = readability.get("reviews")
+        readability_reviews = require_sequence(
+            reviews_value,
+            label="readability review reviews",
+        )
+        readability_passed = (
+            readability.get("schemaVersion") == 1
+            and str(readability.get("mainTextReview", "")).startswith("PASS:")
+            and len(readability_reviews) > 0
+            and all(_valid_readability_review(review) for review in readability_reviews)
+        )
+        readability_detail = f"{len(readability_reviews)} contextual reviews"
+    except (OSError, json.JSONDecodeError, AttributeError, ValueError) as exc:
+        readability_passed = False
+        readability_detail = str(exc)
     gates = [
         Gate("cff_version", cff.get("version") == "r4.0", str(cff.get("version"))),
         Gate(
             "manuscript_identity",
             "## r4.0 · July 2026" in manuscript,
             "r4.0",
+        ),
+        Gate(
+            "readability_review",
+            readability_passed,
+            readability_detail,
         ),
     ]
     for manifest in (
@@ -295,69 +370,77 @@ def repository_gates(
         except ValueError as exc:
             gates.append(Gate(f"manifest:{manifest.parent.name}", False, str(exc)))
 
-    if mode == "candidate":
-        gates.extend([
-            Gate(
-                "candidate_wording",
-                "r4.0 release candidate" in manuscript,
-                "manuscript must identify the candidate",
-            ),
-            Gate(
-                "candidate_no_version_doi",
-                _meta(html, "citation_doi") is None
-                and "date-released" not in cff,
-                "version DOI and release date intentionally absent",
-            ),
-            Gate(
-                "candidate_no_canonical",
-                _canonical(html) is None
-                and _meta(html, "citation_public_url") is None,
-                "immutable canonical URL intentionally absent",
-            ),
-        ])
+    if _is_candidate(typed_mode):
+        gates.extend(
+            [
+                Gate(
+                    "candidate_wording",
+                    "r4.0 release candidate" in manuscript,
+                    "manuscript must identify the candidate",
+                ),
+                Gate(
+                    "candidate_no_version_doi",
+                    _meta(html, "citation_doi") is None and "date-released" not in cff,
+                    "version DOI and release date intentionally absent",
+                ),
+                Gate(
+                    "candidate_no_canonical",
+                    _canonical(html) is None and _meta(html, "citation_public_url") is None,
+                    "immutable canonical URL intentionally absent",
+                ),
+            ]
+        )
         return gates
 
     if release_date is None or version_doi is None or canonical_url is None:
-        raise ValueError(
-            "publication mode requires RELEASE_DATE, VERSION_DOI, and CANONICAL_URL"
-        )
+        raise ValueError("publication mode requires RELEASE_DATE, VERSION_DOI, and CANONICAL_URL")
     validate_publication_values(release_date, version_doi, canonical_url)
-    identifiers = {
-        item.get("value")
-        for item in cff.get("identifiers", [])
-        if item.get("type") == "doi"
-    }
-    gates.extend([
-        Gate(
-            "final_wording",
-            "r4.0 release candidate" not in manuscript,
-            "candidate wording removed",
-        ),
-        Gate(
-            "cff_release_date",
-            str(cff.get("date-released", "")) == release_date,
-            str(cff.get("date-released", "")),
-        ),
-        Gate(
-            "cff_version_doi",
-            version_doi in identifiers,
-            "; ".join(sorted(str(value) for value in identifiers)),
-        ),
-        Gate(
-            "html_release_date",
-            _meta(html, "citation_publication_date") == release_date,
-            str(_meta(html, "citation_publication_date")),
-        ),
-        Gate(
-            "html_version_doi",
-            _meta(html, "citation_doi") == version_doi,
-            str(_meta(html, "citation_doi")),
-        ),
-        Gate(
-            "html_canonical",
-            _canonical(html) == canonical_url
-            and _meta(html, "citation_public_url") == canonical_url,
-            str(_canonical(html)),
-        ),
-    ])
+    identifier_items = require_sequence(
+        cff.get("identifiers", []),
+        label="CITATION.cff.identifiers",
+    )
+    identifiers: set[str] = set()
+    for index, raw_identifier in enumerate(identifier_items):
+        identifier = require_mapping(
+            raw_identifier,
+            label=f"CITATION.cff.identifiers[{index}]",
+        )
+        value = identifier.get("value")
+        if identifier.get("type") == "doi" and isinstance(value, str):
+            identifiers.add(value)
+    gates.extend(
+        [
+            Gate(
+                "final_wording",
+                "r4.0 release candidate" not in manuscript,
+                "candidate wording removed",
+            ),
+            Gate(
+                "cff_release_date",
+                str(cff.get("date-released", "")) == release_date,
+                str(cff.get("date-released", "")),
+            ),
+            Gate(
+                "cff_version_doi",
+                version_doi in identifiers,
+                "; ".join(sorted(str(value) for value in identifiers)),
+            ),
+            Gate(
+                "html_release_date",
+                _meta(html, "citation_publication_date") == release_date,
+                str(_meta(html, "citation_publication_date")),
+            ),
+            Gate(
+                "html_version_doi",
+                _meta(html, "citation_doi") == version_doi,
+                str(_meta(html, "citation_doi")),
+            ),
+            Gate(
+                "html_canonical",
+                _canonical(html) == canonical_url
+                and _meta(html, "citation_public_url") == canonical_url,
+                str(_canonical(html)),
+            ),
+        ]
+    )
     return gates

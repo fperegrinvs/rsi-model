@@ -1,5 +1,72 @@
 # Changelog
+
 ## r4.0 — 2026-07-27
+
+### 2026-07-28 editorial, model, and web-publication pass
+
+- Split the editable manuscript into an explicit ordered fragment set while
+  preserving the generated monolithic Markdown and standalone HTML as release
+  artifacts; added assembly, fragment-order, cross-reference, and source
+  continuity checks.
+- Added deterministic equation numbering and hyperlinks, a consolidated
+  notation register and audit, complete local definitions for the revised
+  equations, and native MathML/mobile-layout regression checks.
+- Replaced the constant-gain digital-loop placeholder and one-sided embodied
+  autonomy framing with bounded, state-dependent sensitivity models; added
+  verified cross-generation learning, matched lifecycle cost, data-advantage,
+  coordination-work, orbital lifecycle/control, and partial-closure models
+  with generated diagnostic tables and tests.
+- Added a Quarto 1.9.38 multi-page book build, GitHub Pages workflow,
+  base-path-safe navigation, source/equation deep links, downloadable
+  standalone edition, 404 page, and a structural crawler covering all 14
+  generated HTML pages.
+- Restyled the Quarto edition to match the standalone publication’s typography,
+  paper palette, headings, equations, tables, and responsive behavior. The
+  landing page now retains the canonical manuscript title treatment and hides
+  Quarto’s redundant title panel and empty first-page “previous” pager.
+- Added a static accessibility audit, keyboard skip links, meaningful figure
+  alternatives, no-JavaScript navigation, a separately reported non-gating
+  external-link audit, and explicit latest-site, preview, deployment,
+  canonical-URL, and rollback operations.
+- Added paired Earth/space lifecycle-cost contributions, digital-channel
+  freezes and bottleneck periods, two-direction embodiment and degraded-fault
+  sweeps, serviceability/circularity portfolios, an origin-specific orbital
+  transport network grounded by NASA delta-v anchors, and four externally
+  supported partial-closure policies with charged discrete substitution
+  programs. All new coefficients remain visibly assumption-class.
+- Replaced the JavaScript build scripts with strict TypeScript executed by
+  Bun 1.3.14, retained pnpm for locked dependency management, and placed the
+  Quarto site assembly behind a typed Vite build.
+- Added canonical proposition and equation-explanation registries, semantic
+  cross-links, selective accessible footnotes, and automated readability,
+  footnote-interaction, figure, equation-layout, and artifact-viewer checks.
+- Added a first-party observed-precursor register for `autoresearch`, DGM,
+  AI Scientist-v2, and Sakana's declared RSI Lab strategy. Candidate
+  throughput, benchmark changes, scaffold modification, research workflow,
+  and foundation-model-weight improvement remain explicitly distinct.
+- Added a versioned 18-row Tesla and SpaceX/xAI portfolio-to-sector evidence
+  crosswalk with seven independent capability dimensions, row-level source
+  boundaries, five grouped and aggregate views, and a dependency-aware zero
+  off-world-closure result. The provisional evidence vector is
+  12 operating, 0 demonstrated-but-unscaled, 5 announced/development,
+  0 adjacent-only, and 1 not evidenced.
+- Added a dated orbital-AI scenario registry spanning neutral, independent,
+  SpaceXAI disclosed-design, stated-aspiration, and affiliate-hybrid tracks;
+  generated a 10-family simulation-coverage audit and provenance-complete
+  result table without changing neutral LCO values or random draws. Added an
+  actor-bounded 18-layer comparison of SpaceXAI, Google/Planet, Starcloud,
+  and Blue Origin. SpaceXAI ranks first on disclosed breadth in the July 28
+  comparison, while every program remains at zero demonstrated off-world
+  reproductive closure.
+- Added a denominator-matched SpaceXAI economic thesis test with a
+  company-only incomplete case, explicitly completed hybrid case,
+  fixed accepted-output workload, schedule-aware 2028–2029 target, claim
+  crosswalk, independent mass reference, and regenerated threshold/tornado
+  artifacts. Undisclosed quantities remain visibly non-computable.
+- Added OpenAI and Google DeepMind to the versioned AI-R&D evidence registry,
+  numbered and cross-referenced all substantive tables, replaced the opening
+  causal arrow chain with a constrained coupled recurrence, and brought the
+  shared accessible CSV viewer to both the site and self-contained edition.
 
 - Published the complete standalone r4.0 manuscript and
   its executable model outputs as one coherent release.
@@ -55,7 +122,7 @@
   derived from the slowest normalized operating sector. This invalidated the
   earlier scalar crossing and inert-coupling results: the terrestrial and
   lunar bridge never double in the 80-year extension, the Moon–asteroid
-  network crosses at year 34.75 and reaches 3.61 equivalents at year 40,
+  network crosses at year 35.25 and reaches 3.27 equivalents at year 40,
   and its dynamic AI coupling is operative while the
   material-starved cases remain nearly insensitive.
 - Added lexicographic seed objectives for installed mass, Earth-import mass,

@@ -1,0 +1,3 @@
+environment,breakup_event,atmospheric_clearance,tracking_fraction,fragment_clearance_per_day,stationkeeping_m_s_per_year,residence_time_years,disposal_route,direct_loss_capacity,expected_secondary_collisions,service_interruption_capacity_days,time_to_restore_days,source_class
+Earth orbit,leo_650_breakup,weak,0.920000,0.001000000,35.000000,25.000000,controlled_reentry_or_lowering,1.000000000,0.102730177,72.668161474,76.000000,ASSUMPTION
+lunar orbit,low_lunar_orbit_breakup,none,0.600000,0.000020000,120.000000,1.000000,controlled_lunar_impact_or_transfer,1.000000000,0.122477717,117.445759415,149.000000,ASSUMPTION

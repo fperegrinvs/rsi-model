@@ -3,11 +3,34 @@
 Status: release-candidate checks implemented; publication not authorized or
 executed.
 
+## Reader-site operations
+
+- Live URL: <https://fperegrinvs.github.io/rsi-model/>.
+- Local preview: run `pnpm run build:site`, then
+  `uv run --locked python -m http.server 8000 --directory _site` and open
+  <http://localhost:8000/>.
+- Deployment trigger: a non-pull-request run of
+  `.github/workflows/publication.yml` deploys `_site/` only after the test,
+  regeneration, notation, site, accessibility, manifest, and candidate
+  preflight gates pass. Pull requests build and verify but do not deploy.
+- URL policy: the Pages root is the mutable latest-reviewed reader edition.
+  Immutable r4.0 identity belongs to the Git tag and versioned archive/DOI,
+  not to the mutable root. No `/r4.0/` Pages permanence is claimed until
+  versioned-tree retention is implemented.
+- External links: `pnpm run check:external-links` reports third-party
+  availability in a non-gating workflow step. Internal links, assets, and
+  fragments remain hard deployment gates.
+- Rollback: revert the offending source commit on `main` and let the same
+  publication workflow rebuild, verify, and deploy the restored source state.
+  Do not edit `_site/` or a deployed artifact by hand. For an emergency,
+  disable the Pages environment deployment until the verified revert run
+  succeeds.
+
 The release has two distinct preflight modes:
 
 ```bash
-python scripts/release_preflight.py --mode candidate
-python scripts/release_preflight.py --mode publication \
+uv run --locked rsi-release-preflight --project-root . --mode candidate
+uv run --locked rsi-release-preflight --project-root . --mode publication \
   --authorization-record /secure/path/r4.0-release-authorization.json
 ```
 
@@ -35,7 +58,7 @@ Publication mode fails unless all of the following are already true:
 Generate the current authorization shape with:
 
 ```bash
-python scripts/release_preflight.py \
+uv run --locked rsi-release-preflight --project-root . \
   --write-authorization-template /secure/path/r4.0-release-authorization.json
 ```
 
@@ -60,16 +83,34 @@ are known. The intended sequence is:
    RELEASE_DATE=YYYY-MM-DD \
    VERSION_DOI=10.5281/zenodo.VERSION \
    CANONICAL_URL=https://immutable-version-url \
-   npm run build:manuscript
+   pnpm run build:manuscript
    ```
 
-6. Regenerate both manifests, run the full suite, commit the final metadata,
+6. Run `pnpm run check:notation`, `pnpm run check:prose`,
+   `pnpm run check:scenario-policy`,
+   `pnpm run check:propositions`, `pnpm run check:readability`,
+   `pnpm run build:site`, `pnpm run check:site`,
+   `pnpm run check:accessibility`, and `pnpm run check:footnotes`.
+   Quarto 1.9.38
+   writes the reader edition to untracked `_site/`; Pandoc remains responsible
+   for the self-contained archival HTML. Separately, execute the LLM-assisted
+   editorial review in `docs/EDITORIAL_STYLE.md` — the Rule 1 sentence-level
+   review, Rule 2 section-conclusion validation, and Rule 6 contextual
+   readability review — and record the verdict tables in the release review
+   notes.
+7. Run `pnpm run quality:python`, `pnpm run test:coverage`,
+   `pnpm run check:package`, `pnpm audit --audit-level high`,
+   `pnpm run audit`, and `pnpm run sbom`. The package gate builds both
+   distributions and tests the installed wheel outside the checkout.
+8. Regenerate both manifests, run the full suite, commit the final metadata,
    and rerun Linux CI.
-7. Have the author or release manager complete and attest the external
+9. Have the author or release manager complete and attest the external
    authorization record for that exact clean `HEAD` and passing CI run.
-8. Tag that exact commit `r4.0`, run publication preflight with the external
+10. Tag that exact commit `r4.0`, run publication preflight with the external
    authorization record, push the tag, and attach the verified archive.
-9. Verify the archive's hashes against both committed manifests.
+11. Verify the archive's hashes against both committed manifests. On
+    non-pull-request runs, the same passing workflow deploys `_site/` to the
+    configured GitHub Pages project URL.
 
 Tagging, pushing, creating a GitHub release, or minting a DOI changes external
 state. This runbook and its tests do not perform those actions.

@@ -1,0 +1,224 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "rsi-model"
+version = "4.0.0"
+description = "Companion models and publication checks for Recursive Industrial Intelligence"
+readme = "README.md"
+requires-python = ">=3.13,<3.14"
+license = "MIT"
+authors = [
+  { name = "Leonardo Stern" },
+]
+keywords = [
+  "industrial-closure",
+  "recursive-self-improvement",
+  "space-compute",
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Scientific/Engineering",
+]
+dependencies = [
+  "matplotlib==3.10.3",
+  "numpy==2.1.3",
+  "osqp==1.1.3",
+  "pyyaml==6.0.3",
+  "scipy==1.16.0",
+]
+
+[project.urls]
+Documentation = "https://fperegrinvs.github.io/rsi-model/"
+Issues = "https://github.com/fperegrinvs/rsi-model/issues"
+Repository = "https://github.com/fperegrinvs/rsi-model"
+
+[project.scripts]
+rsi-check-dependencies = "rsimodel.cli:check_dependencies_main"
+rsi-check-coverage = "rsimodel.coverage_gate:coverage_main"
+rsi-check-external-links = "rsimodel.external_links:main"
+rsi-check-math-font = "rsimodel.math_font_gate:main"
+rsi-check-notation = "rsimodel.notation_gate:main"
+rsi-check-package = "rsimodel.package_gate:package_main"
+rsi-check-prose = "rsimodel.prose_gate:main"
+rsi-evaluate-evidence = "rsimodel.evidence_cli:main"
+rsi-publication-preflight = "rsimodel.publication_cli:main"
+rsi-release-preflight = "rsimodel.release_cli:main"
+rsi-run-baseline = "rsimodel.baseline_runner:baseline_main"
+rsi-run-deep = "rsimodel.deep_runner:deep_main"
+rsi-run-integrated = "rsimodel.integrated_runner:integrated_main"
+rsi-run-part2 = "rsimodel.part2_runner:part2_main"
+rsi-verify-manifests = "rsimodel.manifest_cli:main"
+rsi-write-manifest = "rsimodel.release_manifest:main"
+rsi-write-provenance = "rsimodel.provenance_cli:main"
+
+[dependency-groups]
+test = [
+  "hypothesis>=6.136,<7",
+  "pytest==9.0.3",
+  "pytest-cov>=7,<8",
+  "pytest-timeout>=2.4,<3",
+]
+quality = [
+  "check-jsonschema>=0.33,<1",
+  "fonttools[woff]==4.63.0",
+  "pyright==1.1.411",
+  "ruff==0.16.0",
+  "types-pyyaml>=6.0.12,<7",
+  "yamllint>=1.37,<2",
+]
+release = [
+  "cyclonedx-bom==7.3.1",
+  "pip-audit>=2.9,<3",
+]
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "/LICENSE",
+  "/README.md",
+  "/src",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/rsimodel"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = [
+  "--strict-config",
+  "--strict-markers",
+  "--timeout=180",
+]
+filterwarnings = [
+  "error",
+  # Matplotlib 3.10.3 still calls pyparsing's deprecated oneOf helper during
+  # import. Remove this exact third-party filter when the pinned pair is upgraded.
+  "ignore::pyparsing.warnings.PyparsingDeprecationWarning",
+]
+markers = [
+  "integration: exercises multiple model or publication components",
+  "slow: intentionally expensive generation or simulation check",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["rsimodel"]
+
+[tool.coverage.report]
+fail_under = 85
+precision = 0
+show_missing = true
+skip_covered = false
+
+[tool.coverage.json]
+output = "outputs/quality/coverage.json"
+
+[tool.ruff]
+target-version = "py313"
+line-length = 100
+src = ["src", "scripts", "tests"]
+extend-exclude = [
+  "_site",
+  "docs/Recursive_Industrial_Intelligence_r4.0.html",
+  "docs/Recursive_Industrial_Intelligence_r4.0.md",
+  "output",
+  "outputs",
+  "papers",
+  "site",
+  "tmp",
+]
+
+[tool.ruff.lint]
+allowed-confusables = ["–", "×", "−"]
+select = [
+  "ANN001",
+  "ANN002",
+  "ANN003",
+  "ANN201",
+  "ANN202",
+  "ANN204",
+  "ANN205",
+  "ANN206",
+  "ARG",
+  "B",
+  "C4",
+  "C90",
+  "E",
+  "F",
+  "I",
+  "NPY",
+  "PERF",
+  "PGH",
+  "RET",
+  "RUF",
+  "S",
+  "SIM",
+  "UP",
+  "W",
+]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 40
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["S101"]
+
+[tool.pyright]
+include = ["src", "scripts", "tests"]
+strict = [
+  "src/rsimodel/cli.py",
+  "src/rsimodel/coverage_gate.py",
+  "src/rsimodel/evidence_cli.py",
+  "src/rsimodel/extension_config.py",
+  "src/rsimodel/external_links.py",
+  "src/rsimodel/manifests.py",
+  "src/rsimodel/manifest_cli.py",
+  "src/rsimodel/math_font_gate.py",
+  "src/rsimodel/notation_gate.py",
+  "src/rsimodel/package_gate.py",
+  "src/rsimodel/prose_gate.py",
+  "src/rsimodel/provenance.py",
+  "src/rsimodel/provenance_cli.py",
+  "src/rsimodel/publication.py",
+  "src/rsimodel/publication_cli.py",
+  "src/rsimodel/release_cli.py",
+  "src/rsimodel/release_manifest.py",
+  "src/rsimodel/integrated_runner.py",
+  "src/rsimodel/run_config.py",
+  "src/rsimodel/array_types.py",
+  "src/rsimodel/governance.py",
+  "src/rsimodel/orbital_config.py",
+  "src/rsimodel/solver_adapter.py",
+  "src/rsimodel/typed_config.py",
+  "src/rsimodel/yaml_adapter.py",
+  "src/rsimodel/delta.py",
+  "src/rsimodel/economic_calibration.py",
+  "src/rsimodel/model.py",
+  "src/rsimodel/policies.py",
+  "src/rsimodel/montecarlo.py",
+  "src/rsimodel/process_closure.py",
+  "src/rsimodel/precursor_telemetry.py",
+  "src/rsimodel/portfolio_coverage.py",
+  "src/rsimodel/orbital_ai_scenarios.py",
+  "src/rsimodel/extensions.py",
+  "src/rsimodel/extensions_coordination.py",
+  "src/rsimodel/extensions_digital.py",
+  "src/rsimodel/extensions_orbital.py",
+  "src/rsimodel/integrated.py",
+  "src/rsimodel/integrated_artifacts.py",
+  "src/rsimodel/integrated_types.py",
+  "src/rsimodel/rehearsal.py",
+  "src/rsimodel/release.py",
+]
+typeCheckingMode = "standard"
+pythonVersion = "3.13"
+pythonPlatform = "All"
+venvPath = "."
+venv = ".venv"
+
+[tool.rsi-model]
+uv-version = "0.9.18"

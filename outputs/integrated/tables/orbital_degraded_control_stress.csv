@@ -1,0 +1,7 @@
+scenario,detected_conjunctions,executed_avoidance_maneuvers,conflicting_maneuvers,residual_unsafe_conjunctions,collision_risk_index,risk_limit,safe_before_fallback,fallback_actions,residual_risk_after_fallback,safe_after_fallback,source_class
+nominal,970.200000000,941.384089800,9.508930200,58.615910200,0.005861591,0.020000000,1,,0.005861591,1,ASSUMPTION
+degraded_tracking,427.500000000,354.953250000,30.865500000,645.046750000,0.064504675,0.020000000,0,pause_deployment;increase_spacing;independent_tracking;local_safe_mode,0.001606166,1,ASSUMPTION
+communications_loss,874.000000000,154.785400000,126.642600000,845.214600000,0.084521460,0.020000000,0,pause_deployment;increase_spacing;independent_tracking;local_safe_mode;isolate_control_domains;deterministic_right_of_way,0.000611597,1,ASSUMPTION
+navigation_degradation,427.500000000,141.972750000,31.164750000,858.027250000,0.085802725,0.020000000,0,pause_deployment;increase_spacing;independent_tracking;local_safe_mode,0.002136488,1,ASSUMPTION
+centralized_coordination_loss,828.000000000,158.355000000,475.065000000,841.645000000,0.084164500,0.020000000,0,pause_deployment;increase_spacing;isolate_control_domains;deterministic_right_of_way,0.001110971,1,ASSUMPTION
+combined_high_conjunction_failure,292.500000000,52.284375000,52.284375000,947.715625000,0.094771563,0.020000000,0,pause_deployment;increase_spacing;independent_tracking;local_safe_mode;isolate_control_domains;deterministic_right_of_way,0.000478502,1,ASSUMPTION

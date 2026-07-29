@@ -1,0 +1,6 @@
+frozen_channel,assumed_annual_channel_rate,full_annual_multiplier,frozen_annual_multiplier,removed_log_progress_share,interpretation,source_class
+compute,0.180000000,1.821270528,1.543449600,0.276071652,"one-channel freeze; accounting sensitivity, not causal estimate",ASSUMPTION
+data,0.100000000,1.821270528,1.655700480,0.158973677,"one-channel freeze; accounting sensitivity, not causal estimate",ASSUMPTION
+hardware,0.120000000,1.821270528,1.626134400,0.189027844,"one-channel freeze; accounting sensitivity, not causal estimate",ASSUMPTION
+algorithm,0.160000000,1.821270528,1.570060800,0.247558802,"one-channel freeze; accounting sensitivity, not causal estimate",ASSUMPTION
+architecture,0.080000000,1.821270528,1.686361600,0.128368026,"one-channel freeze; accounting sensitivity, not causal estimate",ASSUMPTION

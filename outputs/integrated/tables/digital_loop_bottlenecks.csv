@@ -1,0 +1,4 @@
+period,start_year,end_year,binding_stage,verified_loops_per_year,progress_mechanism,stage_rates_per_year,source_class
+baseline_observation_limited,0.000000,7.000000,observe,2.000000000,moving_along_scaling_curve,train=5;data=7;experiment=4;evaluate=8;safety=3;deploy=4;observe=2,ASSUMPTION
+first_frontier_shift,7.000000,14.000000,safety,3.000000000,frontier_shift_then_scaling_curve,train=7;data=8;experiment=5;evaluate=9;safety=3;deploy=5;observe=3.5,ASSUMPTION
+second_frontier_shift,14.000000,20.000000,experiment,4.000000000,frontier_shift_then_scaling_curve,train=8;data=9;experiment=4;evaluate=10;safety=5;deploy=6;observe=5,ASSUMPTION

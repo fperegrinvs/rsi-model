@@ -1,0 +1,247 @@
+.artifact-reference {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.6rem;
+}
+
+.artifact-view-button {
+  display: none;
+  min-height: 2rem;
+  padding: 0.15rem 0.55rem;
+  border: 1px solid currentcolor;
+  border-radius: 0.3rem;
+  color: inherit;
+  font: inherit;
+  font-weight: 700;
+  text-align: left;
+  background: transparent;
+  cursor: pointer;
+}
+
+.rsi-enhanced .artifact-view-button {
+  display: inline-flex;
+}
+
+.artifact-download-link,
+.artifact-full-page-link {
+  font-size: 0.88em;
+}
+
+.artifact-preview-notice {
+  margin: 0.8rem 0;
+  padding: 0.65rem 0.8rem;
+  border-inline-start: 0.3rem solid #9b6a16;
+  background: color-mix(in srgb, Canvas 92%, #f2c14e 8%);
+}
+
+.artifact-viewer {
+  width: min(76rem, calc(100vw - 2rem));
+  max-width: none;
+  max-height: calc(100dvh - 2rem);
+  padding: 0;
+  border: 0;
+  border-radius: 0.7rem;
+  color: CanvasText;
+  background: Canvas;
+}
+
+.artifact-viewer::backdrop {
+  background: rgb(9 24 31 / 55%);
+}
+
+.artifact-viewer-panel {
+  position: relative;
+  padding: 1.4rem;
+}
+
+.artifact-viewer-close {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  border: 0;
+  border-radius: 50%;
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.artifact-viewer h2 {
+  margin: 0 3rem 0.35rem 0;
+}
+
+.artifact-viewer-status {
+  min-height: 1.5em;
+  font-weight: 650;
+}
+
+.artifact-viewer-controls,
+.artifact-viewer-actions,
+.artifact-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 0.65rem 1rem;
+  margin: 0.8rem 0;
+}
+
+.artifact-viewer-controls label {
+  display: grid;
+  gap: 0.2rem;
+  font-weight: 650;
+}
+
+.artifact-viewer input,
+.artifact-viewer select,
+.artifact-viewer button {
+  min-height: 2.4rem;
+}
+
+.artifact-viewer input[type="search"] {
+  width: min(28rem, 70vw);
+}
+
+.artifact-table-scroll {
+  max-height: min(56dvh, 38rem);
+  overflow: auto;
+  border: 1px solid color-mix(in srgb, currentcolor 20%, transparent);
+  border-radius: 0.4rem;
+  overscroll-behavior: contain;
+}
+
+.artifact-table-scroll:focus-visible,
+.artifact-view-button:focus-visible {
+  outline: 3px solid Highlight;
+  outline-offset: 2px;
+}
+
+.artifact-table-scroll table {
+  width: max-content;
+  min-width: 100%;
+  margin: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.artifact-table-scroll caption {
+  padding: 0.55rem 0.65rem;
+  font-weight: 750;
+  text-align: left;
+  background: Canvas;
+}
+
+.artifact-table-scroll th {
+  position: sticky;
+  z-index: 2;
+  top: 0;
+  padding: 0;
+  color: CanvasText;
+  background: Canvas;
+  box-shadow: 0 1px 0 color-mix(in srgb, currentcolor 22%, transparent);
+}
+
+.artifact-table-scroll tbody th,
+.artifact-table-scroll td {
+  max-width: 32rem;
+  padding: 0.45rem 0.6rem;
+  overflow-wrap: anywhere;
+  font-weight: 400;
+  text-align: left;
+  vertical-align: top;
+}
+
+.artifact-table-scroll .artifact-key-column {
+  position: sticky;
+  z-index: 1;
+  left: 0;
+  font-weight: 700;
+  background: Canvas;
+  box-shadow: 1px 0 0 color-mix(in srgb, currentcolor 28%, transparent);
+}
+
+.artifact-table-scroll thead .artifact-key-column {
+  z-index: 3;
+}
+
+.artifact-table-scroll .artifact-numeric {
+  text-align: right;
+}
+
+.artifact-table-scroll tbody tr:nth-child(even) {
+  background: color-mix(in srgb, Canvas 95%, currentcolor 5%);
+}
+
+.artifact-sort {
+  width: 100%;
+  padding: 0.5rem 1.25rem 0.5rem 0.6rem;
+  border: 0;
+  color: inherit;
+  font-weight: 750;
+  text-align: inherit;
+  white-space: nowrap;
+  background: transparent;
+}
+
+.artifact-sort[data-direction="asc"]::after {
+  content: " ▲";
+}
+
+.artifact-sort[data-direction="desc"]::after {
+  content: " ▼";
+}
+
+.artifact-missing {
+  color: GrayText;
+  font-style: italic;
+}
+
+.artifact-pagination span {
+  min-width: 12rem;
+  text-align: center;
+}
+
+@media (max-width: 40rem) {
+  .artifact-viewer {
+    width: 100vw;
+    height: 100dvh;
+    max-height: none;
+    margin: 0;
+    border-radius: 0;
+  }
+
+  .artifact-viewer-panel {
+    padding: 1rem;
+  }
+
+  .artifact-table-scroll {
+    max-height: 52dvh;
+  }
+
+  .artifact-viewer input[type="search"] {
+    width: calc(100vw - 2rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .artifact-viewer,
+  .artifact-viewer::backdrop {
+    scroll-behavior: auto;
+  }
+}
+
+@media (forced-colors: active) {
+  .artifact-view-button,
+  .artifact-preview-notice,
+  .artifact-table-scroll {
+    border: 1px solid CanvasText;
+  }
+}
+
+@media print {
+  .artifact-view-button,
+  .artifact-viewer {
+    display: none;
+  }
+}

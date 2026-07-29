@@ -4,40 +4,39 @@ Each test targets a defect class found during external review: process-salted
 seeds, uncached shared draws, unit-dependent doubling, divergent binding-sector
 definitions, and committed artifacts that disagree with each other.
 """
+
 import csv
 import re
-import sys
 from dataclasses import replace as dc_replace
 from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 import numpy as np
 import pytest
 
 from rsimodel import allocate_step, imports_at, load_params, run
+from rsimodel.array_types import FloatArray
 from rsimodel.lco import AnchorSet, lco_earth, lco_mc, lco_space
+from rsimodel.model import Params
 from rsimodel.montecarlo import ensemble
 
 OUTPUTS = Path(__file__).resolve().parents[1] / "outputs"
 HTML_MANUSCRIPT = (
-    Path(__file__).resolve().parents[1]
-    / "docs"
-    / "Recursive_Industrial_Intelligence_r4.0.html"
+    Path(__file__).resolve().parents[1] / "docs" / "Recursive_Industrial_Intelligence_r4.0.html"
 )
 
 
 # --- shared draws -----------------------------------------------------------
 
-def test_anchorset_caches_draws():
+
+def test_anchorset_caches_draws() -> None:
     a = AnchorSet(np.random.default_rng(0))
     v1 = a("earth.wacc")
     v2 = a("earth.wacc")
-    assert v1 == v2                       # second request returns the SAME draw
+    assert v1 == v2  # second request returns the SAME draw
     assert sum(p.quantity == "earth.wacc" for p in a.used) == 1
 
 
-def test_space_and_earth_share_physical_draws_but_not_financing():
+def test_space_and_earth_share_physical_draws_but_not_financing() -> None:
     # Common hardware properties remain correlated through one AnchorSet,
     # while the completed r4.0 boundary deliberately separates financing.
     a = AnchorSet(np.random.default_rng(42))
@@ -49,13 +48,11 @@ def test_space_and_earth_share_physical_draws_but_not_financing():
     assert a._cache["compute.hw_per_kw_it"] == hw_after_space
     assert a._cache["space_cost_completion.wacc"] != a._cache["earth.wacc"]
     assert sum(p.quantity == "compute.hw_per_kw_it" for p in a.used) == 1
-    assert sum(
-        p.quantity == "space_cost_completion.wacc" for p in a.used
-    ) == 1
+    assert sum(p.quantity == "space_cost_completion.wacc" for p in a.used) == 1
     assert sum(p.quantity == "earth.wacc" for p in a.used) == 1
 
 
-def test_override_wins_even_after_cached_draw():
+def test_override_wins_even_after_cached_draw() -> None:
     a = AnchorSet(np.random.default_rng(1))
     drawn = a("earth.dc_capex_per_kw_it")
     a.overrides["earth.dc_capex_per_kw_it"] = 123.0
@@ -65,21 +62,22 @@ def test_override_wins_even_after_cached_draw():
 
 # --- draw-stream stability under anchor-list growth -------------------------
 
-def test_anchor_draws_stable_under_anchor_additions():
+
+def test_anchor_draws_stable_under_anchor_additions() -> None:
     # Adding an anchor must not change any other anchor's draw: each
     # draw is keyed by anchor NAME + run entropy, not stream position)
     from rsimodel import draw_anchors, load_anchors
+
     anchors = load_anchors()
     d1 = draw_anchors(anchors, np.random.default_rng(9))
     extended = dict(anchors)
-    extended["zz.hypothetical_new_anchor"] = {
-        "low": 1.0, "high": 2.0, "source_class": "ASSUMPTION"}
+    extended["zz.hypothetical_new_anchor"] = {"low": 1.0, "high": 2.0, "source_class": "ASSUMPTION"}
     d2 = draw_anchors(extended, np.random.default_rng(9))
     assert all(d1[k] == d2[k] for k in d1)
     assert "zz.hypothetical_new_anchor" in d2
 
 
-def test_anchorset_draws_independent_of_request_order():
+def test_anchorset_draws_independent_of_request_order() -> None:
     a1 = AnchorSet(np.random.default_rng(21))
     a2 = AnchorSet(np.random.default_rng(21))
     x1, y1 = a1("earth.wacc"), a1("compute.hw_per_kw_it")
@@ -89,9 +87,11 @@ def test_anchorset_draws_independent_of_request_order():
 
 # --- chunk merging -----------------------------------------------------------
 
-def test_merge_ensembles_invariants():
+
+def test_merge_ensembles_invariants() -> None:
     from rsimodel.montecarlo import merge_ensembles
-    kw = dict(n_runs=3, years=8, horizon=6, dt=0.5)
+
+    kw = {"n_runs": 3, "years": 8, "horizon": 6, "dt": 0.5}
     parts = [ensemble("central", "lunar", seed=100 + i, **kw) for i in range(2)]
     m = merge_ensembles(parts)
     assert m.n_runs == 6
@@ -106,15 +106,16 @@ def test_merge_ensembles_invariants():
 
 # --- deterministic seeds ----------------------------------------------------
 
-def test_lco_mc_reproducible_across_calls():
+
+def test_lco_mc_reproducible_across_calls() -> None:
     m1 = lco_mc("leo_inference", "base", n=50, seed=7)
     m2 = lco_mc("leo_inference", "base", n=50, seed=7)
     assert m1.ratio_pcts == m2.ratio_pcts
     assert m1.breakeven_pcts == m2.breakeven_pcts
 
 
-def test_ensemble_reproducible_across_calls():
-    kw = dict(n_runs=3, years=8, horizon=6, dt=0.5, seed=11)
+def test_ensemble_reproducible_across_calls() -> None:
+    kw = {"n_runs": 3, "years": 8, "horizon": 6, "dt": 0.5, "seed": 11}
     m1 = ensemble("central", "lunar", **kw)
     m2 = ensemble("central", "lunar", **kw)
     assert m1.n_expanding == m2.n_expanding
@@ -125,7 +126,8 @@ def test_ensemble_reproducible_across_calls():
 
 # --- unit invariance of the replication metric ------------------------------
 
-def test_balanced_doubling_is_unit_invariant():
+
+def test_balanced_doubling_is_unit_invariant() -> None:
     r = run(load_params("optimistic", env="lunar"), years=20)
     lam = r.lambda_series()
     # rescale one sector's arbitrary capacity unit by 10x: physical system
@@ -136,10 +138,10 @@ def test_balanced_doubling_is_unit_invariant():
     assert np.allclose(r2.lambda_series(), lam)
     assert r2.balanced_doubling_time() == r.balanced_doubling_time()
     tot, tot2 = r.K.sum(axis=1)[-1], r2.K.sum(axis=1)[-1]
-    assert not np.isclose(tot, tot2)      # the aggregate metric is unit-bound
+    assert not np.isclose(tot, tot2)  # the aggregate metric is unit-bound
 
 
-def test_balanced_doubling_not_before_aggregate():
+def test_balanced_doubling_not_before_aggregate() -> None:
     # λ ≥ 2 requires EVERY sector doubled; sum-K doubling can be reached by
     # overbuilding easy sectors first
     r = run(load_params("optimistic", env="lunar"), years=25)
@@ -148,27 +150,28 @@ def test_balanced_doubling_not_before_aggregate():
     assert b >= d - 1e-9
 
 
-def test_doubling_measured_from_supplied_K0():
+def test_doubling_measured_from_supplied_K0() -> None:
     p = load_params("optimistic", env="lunar")
     K0 = np.full(p.n, 2.0)
     r = run(p, K0=K0, years=5)
-    assert np.allclose(r.K0, K0)          # not the post-step value
+    assert np.allclose(r.K0, K0)  # not the post-step value
     assert r.lambda_series()[0] == pytest.approx(r.K[0].min() / 2.0, rel=1e-9)
 
 
 # --- endpoint hierarchy -----------------------------------------------------
 
-def test_sustained_implies_instantaneous():
-    mc = ensemble("optimistic", "lunar", n_runs=4, years=12, horizon=10,
-                  dt=0.5, seed=3)
+
+def test_sustained_implies_instantaneous() -> None:
+    mc = ensemble("optimistic", "lunar", n_runs=4, years=12, horizon=10, dt=0.5, seed=3)
     assert 0 <= mc.n_sustained <= mc.n_expanding
     assert len(mc.lambda_horizon) == mc.n_runs
-    assert all(l > 0 for l in mc.lambda_horizon)
+    assert all(value > 0 for value in mc.lambda_horizon)
 
 
 # --- binding-sector definition ----------------------------------------------
 
-def _state(p, years=5.0):
+
+def _state(p: Params, years: float = 5.0) -> tuple[FloatArray, FloatArray, FloatArray]:
     r = run(p, years=years)
     K = r.K[-1]
     m = imports_at(p, years)
@@ -177,7 +180,7 @@ def _state(p, years=5.0):
     return K, m_direct, stock
 
 
-def test_binding_is_one_percent_response_argmax():
+def test_binding_is_one_percent_response_argmax() -> None:
     # The binding sector is defined by a unit-invariant one-percent supply
     # relaxation, not by a raw unit-dependent dual.
     p = load_params("central", env="lunar")
@@ -196,7 +199,7 @@ def test_binding_is_one_percent_response_argmax():
     assert a["binding_mask"][j]
 
 
-def test_binding_and_actions_invariant_to_material_row_units():
+def test_binding_and_actions_invariant_to_material_row_units() -> None:
     p = load_params("central", env="lunar")
     K, m_direct, stock = _state(p)
     a = allocate_step(p, K, m_direct, stock)
@@ -213,7 +216,10 @@ def test_binding_and_actions_invariant_to_material_row_units():
     recycle_profile[i] *= scale
     recycle_opex[i] *= scale
     p2 = dc_replace(
-        p, q=q, A=A, recycle_profile=recycle_profile,
+        p,
+        q=q,
+        A=A,
+        recycle_profile=recycle_profile,
         recycle_opex=recycle_opex,
     )
     m2 = m_direct.copy()
@@ -224,13 +230,12 @@ def test_binding_and_actions_invariant_to_material_row_units():
     assert a2["g"] == pytest.approx(a["g"], abs=2e-7)
     assert a2["binding"] == a["binding"]
     assert np.array_equal(a2["binding_mask"], a["binding_mask"])
-    assert np.allclose(a2["binding_responses"],
-                       a["binding_responses"], atol=2e-7)
+    assert np.allclose(a2["binding_responses"], a["binding_responses"], atol=2e-7)
     for key in ("x", "u"):
         assert np.allclose(a2[key], a[key], atol=2e-4), key
 
 
-def test_stage3_state_transition_is_history_independent():
+def test_stage3_state_transition_is_history_independent() -> None:
     p = load_params("central", env="lunar")
     K, m_direct, stock = _state(p)
     a1 = allocate_step(p, K, m_direct, stock)
@@ -242,10 +247,11 @@ def test_stage3_state_transition_is_history_independent():
     assert a2["w"] == pytest.approx(a1["w"], abs=2e-5)
 
 
-def test_policy_binding_same_definition_as_model():
+def test_policy_binding_same_definition_as_model() -> None:
     # run_policy('myopic') and model.run must produce IDENTICAL binding
     # sequences on deterministic dynamics — one definition, both components
     from rsimodel.policies import run_policy
+
     p = load_params("central", env="lunar")
     r1 = run(p, years=6, dt=0.5)
     r2 = run_policy(p, policy="myopic", years=6, dt=0.5)
@@ -254,11 +260,12 @@ def test_policy_binding_same_definition_as_model():
 
 # --- fast LP path must match the scipy reference path ------------------------
 
-def test_fast_lp_matches_scipy():
+
+def test_fast_lp_matches_scipy() -> None:
     # the persistent-HiGHS fast path must return the same vertex, g, duals,
     # and binding as scipy.linprog on a real trajectory's states
-    from rsimodel.model import (_USE_FAST_LP, _allocate_scipy, _FastLP,
-                                replacement_demand)
+    from rsimodel.model import _USE_FAST_LP, _allocate_scipy, _FastLP, replacement_demand
+
     if not _USE_FAST_LP:
         pytest.skip("fast LP unavailable or disabled")
     p = load_params("central", env="lunar")
@@ -286,10 +293,12 @@ def test_fast_lp_matches_scipy():
 
 # --- committed artifacts must agree with each other -------------------------
 
-@pytest.mark.skipif(not (OUTPUTS / "tables" / "mc_deep.csv").exists()
-                    or not (OUTPUTS / "report_deep.md").exists(),
-                    reason="deep outputs not generated")
-def test_committed_csv_matches_committed_report():
+
+@pytest.mark.skipif(
+    not (OUTPUTS / "tables" / "mc_deep.csv").exists() or not (OUTPUTS / "report_deep.md").exists(),
+    reason="deep outputs not generated",
+)
+def test_committed_csv_matches_committed_report() -> None:
     """Reject mc_deep.csv and report_deep.md from different runs."""
     rows = {}
     with open(OUTPUTS / "tables" / "mc_deep.csv") as f:
@@ -297,21 +306,19 @@ def test_committed_csv_matches_committed_report():
             rows[(row["set"], row["env"])] = row
     text = (OUTPUTS / "report_deep.md").read_text()
     checked = 0
-    for m in re.finditer(
-            r"\[(\w+)/(\w+)\] expanding @(\d+)yr: (\d+)/(\d+)", text):
+    for m in re.finditer(r"\[(\w+)/(\w+)\] expanding @(\d+)yr: (\d+)/(\d+)", text):
         set_name, env, _h, k, n = m.groups()
         assert (set_name, env) in rows, f"{set_name}/{env} missing from CSV"
-        assert rows[(set_name, env)]["n_expanding"] == k, \
-            f"{set_name}/{env}: report says {k}, CSV says " \
-            f"{rows[(set_name, env)]['n_expanding']}"
+        assert rows[(set_name, env)]["n_expanding"] == k, (
+            f"{set_name}/{env}: report says {k}, CSV says {rows[(set_name, env)]['n_expanding']}"
+        )
         assert rows[(set_name, env)]["n_runs"] == n
         checked += 1
-    assert checked >= 9                   # all set x env cells present
+    assert checked >= 9  # all set x env cells present
 
 
-@pytest.mark.skipif(not HTML_MANUSCRIPT.exists(),
-                    reason="HTML manuscript not generated")
-def test_html_manuscript_has_semantic_math_and_tables():
+@pytest.mark.skipif(not HTML_MANUSCRIPT.exists(), reason="HTML manuscript not generated")
+def test_html_manuscript_has_semantic_math_and_tables() -> None:
     """Publication regression: formulas and tables must survive conversion."""
     text = HTML_MANUSCRIPT.read_text()
     assert len(re.findall(r"<math\b", text)) >= 10

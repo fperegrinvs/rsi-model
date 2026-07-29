@@ -1,10 +1,8 @@
-import sys
 import re
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
-
 import numpy as np
+import pytest
 import yaml
 
 from rsimodel.integrated import (
@@ -14,13 +12,13 @@ from rsimodel.integrated import (
     seed_ensemble,
     simulate_capacity_growth,
     simulate_debris,
-    simulate_shell_debris,
     simulate_seed_deployment,
+    simulate_shell_debris,
     size_seed,
 )
 
 
-def test_integrated_parameter_graph_is_mass_conserving_and_decomposed():
+def test_integrated_parameter_graph_is_mass_conserving_and_decomposed() -> None:
     p = load_integrated_params()
     assert p.n == 18
     assert p.m == 17
@@ -42,7 +40,59 @@ def test_integrated_parameter_graph_is_mass_conserving_and_decomposed():
         assert tier in p.sectors
 
 
-def test_gravity_is_process_specific_not_global():
+def test_embodiment_hardware_is_in_material_and_replacement_graphs() -> None:
+    p = load_integrated_params()
+    with open(
+        Path(__file__).resolve().parents[1] / "params" / "integrated_model.yaml",
+        encoding="utf-8",
+    ) as handle:
+        raw = yaml.safe_load(handle)
+
+    sector_rows = {row["name"]: row for row in raw["sectors"]}
+    sector_idx = {name: index for index, name in enumerate(p.sectors)}
+    element_idx = {name: index for index, name in enumerate(p.elements)}
+    base_service = raw["base_service_recipe"]
+    items = raw["embodiment_bom"]["items"]
+
+    expected_B = np.column_stack(
+        [
+            np.array(
+                [
+                    float(sector_rows[sector].get("bom_t", {}).get(element, 0.0))
+                    for element in p.elements
+                ]
+            )
+            for sector in p.sectors
+        ]
+    )
+    expected_A = np.column_stack(
+        [
+            np.array(
+                [
+                    float(base_service.get(producer, 0.0))
+                    + float(sector_rows[target].get("recipe_additions", {}).get(producer, 0.0))
+                    for producer in p.sectors
+                ]
+            )
+            for target in p.sectors
+        ]
+    )
+    for item in items.values():
+        producer = sector_idx[item["producer_sector"]]
+        material = item["material_bom_t_per_target_capacity"]
+        replacement = float(item["replacement_service_units_per_target_capacity_year"])
+        for target_name in item["target_sectors"]:
+            target = sector_idx[target_name]
+            for element, mass in material.items():
+                expected_B[element_idx[element], target] += float(mass)
+            expected_A[producer, target] += replacement / p.q[target]
+
+    assert np.allclose(p.B, expected_B)
+    assert np.allclose(p.A, expected_A)
+    assert p.B[:, sector_idx["mining"]].sum() > sum(sector_rows["mining"]["bom_t"].values())
+
+
+def test_gravity_is_process_specific_not_global() -> None:
     p = load_integrated_params()
     profile = process_profile(p, "lunar_strategic_material_bridge")
     mining = p.sector_idx("mining")
@@ -60,9 +110,9 @@ def test_gravity_is_process_specific_not_global():
     assert nominal.environment_depreciation_multiplier[mining] > 1.0
 
 
-def test_knowledge_package_and_observable_autonomy_are_explicit():
+def test_knowledge_package_and_observable_autonomy_are_explicit() -> None:
     p = load_integrated_params()
-    package = p.raw["knowledge_autonomy"]["knowledge_package_t"]
+    package = p.knowledge_autonomy["knowledge_package_t"]
     assert sum(package.values()) == p.seed["fixed_digital_seed_mass_t"]
     profile = process_profile(p, "moon_asteroid_network")
     for values in (
@@ -71,29 +121,32 @@ def test_knowledge_package_and_observable_autonomy_are_explicit():
         profile.process_yield,
         profile.repair_success_fraction,
     ):
-        assert np.all((0.0 <= values) & (values <= 1.0))
+        assert np.all((values >= 0.0) & (values <= 1.0))
     assert np.all(profile.verification_throughput_per_year > 0.0)
     assert np.all(profile.engineering_cycle_years > 0.0)
     assert np.all(profile.mean_time_to_recovery_days > 0.0)
     assert np.all(profile.stop_line_task_pass)
 
 
-def test_seed_sizing_distinguishes_import_stock_from_strict_lunar_closure():
+def test_seed_sizing_distinguishes_import_stock_from_strict_lunar_closure() -> None:
     p = load_integrated_params()
     bridge = size_seed(p, "lunar_strategic_material_bridge")
     strict = size_seed(p, "lunar_strict")
     network = size_seed(p, "moon_asteroid_network")
-    assert bridge.feasible and bridge.import_stock_mass_t > 0
+    bridge_total, _, bridge_import = bridge.required_masses()
+    _, _, network_import = network.required_masses()
+    assert bridge.feasible and bridge_import > 0
     assert not strict.feasible
-    assert network.feasible and network.import_stock_mass_t == 0
+    assert network.feasible and network_import == 0
     assert network.asteroid_feed_t_per_year > 0
-    assert bridge.total_seed_mass_t > bridge.digital_seed_mass_t
-    assert network.minimum_task_coverage >= p.scenarios[
-        "moon_asteroid_network"
-    ]["minimum_task_coverage"]
+    assert bridge_total > bridge.digital_seed_mass_t
+    assert (
+        network.minimum_task_coverage
+        >= p.scenarios["moon_asteroid_network"]["minimum_task_coverage"]
+    )
 
 
-def test_seed_objectives_expose_no_current_design_tradeoff():
+def test_seed_objectives_expose_no_current_design_tradeoff() -> None:
     p = load_integrated_params()
     for scenario in (
         "terrestrial_rehearsal",
@@ -116,20 +169,24 @@ def test_seed_objectives_expose_no_current_design_tradeoff():
         size_seed(p, "terrestrial_rehearsal", objective="unknown")
 
 
-def test_aggregate_capacity_doubling_and_intelligence_coupling():
+def test_aggregate_capacity_doubling_and_intelligence_coupling() -> None:
     p = load_integrated_params()
     seed = size_seed(p, "moon_asteroid_network")
     run = simulate_capacity_growth(p, seed, years=60, dt=0.25)
     assert run.survived
-    assert run.aggregate_doubling_year == 34.75
+    assert run.aggregate_doubling_year == 35.25
+    assert run.aggregate_doubling_year is not None
     i = int(np.searchsorted(run.t, run.aggregate_doubling_year))
     assert run.operating_cells[i] >= 2.0
     assert run.intelligence[-1] > run.intelligence[0]
+    assert np.all(run.verified_loop_throughput >= 0.0)
+    assert np.all(np.isfinite(run.intelligence_marginal_gain_per_loop))
+    assert run.intelligence[-1] < p.intelligence["maximum_level"]
     assert run.local_compute[-1] > run.local_compute[0]
     assert run.asteroid_material_t > 0
 
 
-def test_capacity_growth_state_remains_sector_resolved():
+def test_capacity_growth_state_remains_sector_resolved() -> None:
     p = load_integrated_params()
     seed = size_seed(p, "moon_asteroid_network")
     run = simulate_capacity_growth(p, seed, years=40, dt=0.25)
@@ -141,14 +198,12 @@ def test_capacity_growth_state_remains_sector_resolved():
     normalized = run.operating_sector_capacity / seed.capacities
     assert np.allclose(run.operating_cells, normalized.min(axis=1))
     assert np.any(np.ptp(normalized, axis=1) > 1e-6)
-    assert np.all(
-        run.operating_sector_capacity <= run.installed_sector_capacity + 1e-12
-    )
+    assert np.all(run.operating_sector_capacity <= run.installed_sector_capacity + 1e-12)
     assert run.commissioned_sector_capacity.sum() > 0.0
     assert run.activated_sector_capacity.sum() > 0.0
 
 
-def test_independent_allocation_repair_and_shock_states_are_explicit():
+def test_independent_allocation_repair_and_shock_states_are_explicit() -> None:
     p = load_integrated_params()
     seed = size_seed(p, "lunar_strategic_material_bridge")
     run = simulate_capacity_growth(
@@ -171,7 +226,7 @@ def test_independent_allocation_repair_and_shock_states_are_explicit():
     assert run.repair_enabled
 
 
-def test_delivered_seed_has_distinct_states_and_recovers_startup_failures():
+def test_delivered_seed_has_distinct_states_and_recovers_startup_failures() -> None:
     p = load_integrated_params()
     seed = size_seed(p, "moon_asteroid_network")
     deployment = simulate_seed_deployment(p, seed)
@@ -195,7 +250,7 @@ def test_delivered_seed_has_distinct_states_and_recovers_startup_failures():
     )
 
 
-def test_earth_fed_orbit_is_rate_limited_and_endogenous_case_compounds():
+def test_earth_fed_orbit_is_rate_limited_and_endogenous_case_compounds() -> None:
     p = load_integrated_params()
     seed = size_seed(p, "moon_asteroid_network")
     run = simulate_capacity_growth(p, seed, years=40, dt=0.25)
@@ -206,14 +261,12 @@ def test_earth_fed_orbit_is_rate_limited_and_endogenous_case_compounds():
     assert curves.endogenous_orbit[-1] <= curves.endogenous[-1]
 
 
-def test_debris_condition_changes_with_topology_and_mitigation():
+def test_debris_condition_changes_with_topology_and_mitigation() -> None:
     p = load_integrated_params()
     seed = size_seed(p, "moon_asteroid_network")
     run = simulate_capacity_growth(p, seed, years=40, dt=0.25)
     curves = compare_compute_regimes(p, run)
-    dense = simulate_debris(
-        p, curves.endogenous, curves.t, "weak_mitigation", label="dense"
-    )
+    dense = simulate_debris(p, curves.endogenous, curves.t, "weak_mitigation", label="dense")
     distributed = simulate_debris(
         p,
         curves.endogenous_orbit,
@@ -227,7 +280,7 @@ def test_debris_condition_changes_with_topology_and_mitigation():
     assert distributed.fragments[-1] < dense.fragments[-1]
 
 
-def test_shell_debris_has_finite_mass_conservation_and_capacity_feedback():
+def test_shell_debris_has_finite_mass_conservation_and_capacity_feedback() -> None:
     p = load_integrated_params()
     t = np.arange(0.0, 40.25, 0.25)
     requested_capacity = np.linspace(1.0, 100.0, len(t))
@@ -239,25 +292,16 @@ def test_shell_debris_has_finite_mass_conservation_and_capacity_feedback():
     assert np.all(np.diff(result.uncaptured_reservoir_t) <= 1e-12)
     # Reservoir + accessible orbital mass changes only through Earth import
     # and declared unrecoverable loss; capture is an internal transfer.
-    accounted = (
-        result.uncaptured_reservoir_t
-        + result.accessible_orbital_mass_t
-    )
-    residual = (
-        np.diff(accounted)
-        - result.earth_imported_t[1:]
-        + result.unrecoverable_loss_t[1:]
-    )
+    accounted = result.uncaptured_reservoir_t + result.accessible_orbital_mass_t
+    residual = np.diff(accounted) - result.earth_imported_t[1:] + result.unrecoverable_loss_t[1:]
     assert np.max(np.abs(residual)) < 1e-8
     assert np.all(result.branching_ratio_by_shell >= 0.0)
     assert result.replacement_and_import_cost_usd > 0.0
 
 
-def test_governance_threats_have_controls_verification_and_residual_risk():
+def test_governance_threats_have_controls_verification_and_residual_risk() -> None:
     root = Path(__file__).resolve().parents[1]
-    governance = yaml.safe_load(
-        (root / "params" / "governance_controls.yaml").read_text()
-    )
+    governance = yaml.safe_load((root / "params" / "governance_controls.yaml").read_text())
     assert set(governance["communication_states"]) == {
         "normal",
         "delayed",
@@ -276,7 +320,7 @@ def test_governance_threats_have_controls_verification_and_residual_risk():
         assert set(threat["controls"]) <= set(controls)
 
 
-def test_integrated_ensemble_is_reproducible():
+def test_integrated_ensemble_is_reproducible() -> None:
     p = load_integrated_params()
     a = seed_ensemble(p, "moon_asteroid_network", n_runs=8, seed=77, dt=0.5)
     b = seed_ensemble(p, "moon_asteroid_network", n_runs=8, seed=77, dt=0.5)
@@ -285,48 +329,51 @@ def test_integrated_ensemble_is_reproducible():
     assert a.n_survived <= a.n_feasible
 
 
-def test_integrated_html_has_intact_inline_math_and_release_candidate_metadata():
+def test_integrated_html_has_intact_inline_math_and_release_candidate_metadata() -> None:
     root = Path(__file__).resolve().parents[1]
-    source = (
-        root / "docs" / "Recursive_Industrial_Intelligence_r4.0.md"
-    ).read_text(encoding="utf-8")
-    html = (
-        root / "docs" / "Recursive_Industrial_Intelligence_r4.0.html"
-    ).read_text(encoding="utf-8")
+    source = (root / "docs" / "Recursive_Industrial_Intelligence_r4.0.md").read_text(
+        encoding="utf-8"
+    )
+    html = (root / "docs" / "Recursive_Industrial_Intelligence_r4.0.html").read_text(
+        encoding="utf-8"
+    )
 
     assert r"\(" not in source and r"\)" not in source
     assert html.count("<math") >= 80
+    rendered_html = re.sub(
+        r"<script\b[^>]*>.*?</script>",
+        "",
+        html,
+        flags=re.IGNORECASE | re.DOTALL,
+    )
     for malformed in (
-        "<span class=\"citation\"",
+        '<span class="citation"',
         "(_",
         "()/",
         "(t+t)",
         "T_{I,}",
         "C</em>{DC}",
     ):
-        assert malformed not in html
+        assert malformed not in rendered_html
 
     # An untagged candidate must not pretend mutable main is canonical or
     # present the all-versions concept DOI as the version-specific DOI.
     assert (
-        '<link rel="canonical" '
-        'href="https://github.com/fperegrinvs/rsi-model/blob/main'
+        '<link rel="canonical" href="https://github.com/fperegrinvs/rsi-model/blob/main'
     ) not in html
     assert 'name="citation_doi"' not in html
     assert 'name="citation_publication_date"' not in html
 
-    ids = re.findall(r'\bid="([^"]+)"', html)
+    ids = re.findall(r'\bid="([^"]+)"', rendered_html)
     assert len(ids) == len(set(ids))
     targets = set(ids)
-    internal_hrefs = re.findall(r'\bhref="#([^"]+)"', html)
+    internal_hrefs = re.findall(r'\bhref="#([^"]+)"', rendered_html)
     assert all(target in targets for target in internal_hrefs)
 
 
-def test_integrated_public_artifacts_use_r40_claim_vocabulary():
+def test_integrated_public_artifacts_use_r40_claim_vocabulary() -> None:
     root = Path(__file__).resolve().parents[1]
-    glossary = yaml.safe_load(
-        (root / "params" / "claim_glossary.yaml").read_text()
-    )
+    glossary = yaml.safe_load((root / "params" / "claim_glossary.yaml").read_text())
     paths = (
         root / "docs" / "Recursive_Industrial_Intelligence_r4.0.md",
         root / "outputs" / "integrated" / "report.md",
@@ -338,13 +385,13 @@ def test_integrated_public_artifacts_use_r40_claim_vocabulary():
     for section in ("metrics", "material_terms"):
         for entry in glossary[section].values():
             deprecated.update(entry.get("deprecated", []))
-    for deprecated in sorted(deprecated):
-        assert deprecated not in public_text
+    for deprecated_phrase in sorted(deprecated):
+        assert deprecated_phrase not in public_text
     for entry in glossary["metrics"].values():
         assert entry["preferred"] in public_text
 
 
-def test_publication_set_has_short_result_led_abstracts_and_boundaries():
+def test_publication_set_has_short_result_led_abstracts_and_boundaries() -> None:
     root = Path(__file__).resolve().parents[1]
     papers = (
         root / "papers" / "TECHNICAL_PAPER_r4.0.md",
@@ -360,3 +407,42 @@ def test_publication_set_has_short_result_led_abstracts_and_boundaries():
     readme = (root / "papers" / "README.md").read_text(encoding="utf-8")
     for paper in papers:
         assert paper.name in readme
+
+
+@pytest.mark.integration
+@pytest.mark.slow
+def test_integrated_pipeline_writes_complete_artifact_set_to_explicit_workspace(
+    tmp_path: Path,
+) -> None:
+    """Exercise the artifact boundary without mutating checked-in outputs."""
+    from rsimodel.integrated_pipeline import run as run_integrated_pipeline
+    from rsimodel.run_config import IntegratedRunConfig
+
+    project_root = Path(__file__).resolve().parents[1]
+    output_directory = tmp_path / "integrated"
+    run_integrated_pipeline(
+        IntegratedRunConfig(
+            project_root=project_root,
+            parameters=project_root / "params" / "integrated_model.yaml",
+            output_directory=output_directory,
+            ensemble_size=1,
+            ensemble_seed=404,
+        ).validated()
+    )
+
+    tables = sorted((output_directory / "tables").glob("*.csv"))
+    figures = sorted((output_directory / "figures").glob("*.png"))
+    assert len(tables) >= 100
+    assert {path.name for path in figures} == {
+        "compute_growth_regimes.png",
+        "debris_regimes.png",
+        "operating_capacity.png",
+        "oversize_frontier.png",
+        "seed_mass_ensemble.png",
+        "spacexai_threshold_tornado.png",
+    }
+    assert (output_directory / "report.md").stat().st_size > 10_000
+    manifest = (output_directory / "MANIFEST.md").read_text(encoding="utf-8")
+    assert "`OUTPUT/report.md`" in manifest
+    for path in (*tables, *figures):
+        assert f"`OUTPUT/{path.relative_to(output_directory)}`" in manifest

@@ -62,13 +62,13 @@ gates can replace the current internal-consistency certificate.
 
 A current complete-shape template can be generated with:
 
-    scripts/evaluate_evidence_bundle.py process_closure \
+    rsi-evaluate-evidence process_closure \
       --write-template process_closure_bundle.json
 
 The generated file is deliberately invalid until real values, immutable
 hashes, and witnessed results replace its placeholders. A candidate graph is
 then ingested with
-`scripts/evaluate_evidence_bundle.py process_closure BUNDLE.json`. The
+`rsi-evaluate-evidence process_closure BUNDLE.json`. The
 evaluator checks node and edge fields, references to immutable evidence
 records, linked source and fleet registers, the complete grade ladder, every
 critical part family, every process stage, and all eight independently

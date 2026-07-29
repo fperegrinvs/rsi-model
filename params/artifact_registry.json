@@ -1,0 +1,496 @@
+{
+  "outputs/integrated/tables/ai_rnd_benchmark_registry.csv": {
+    "title": "Cross-lab AI-R&D evidence registry",
+    "description": "Records source version, evaluation boundary, model, harness, compute and tool access, comparator, scoring, evaluator independence, limitations, direct loop stages and analytic gates without converting results into simulation coefficients.",
+    "class": "mixed framework, company, external and scenario evidence register",
+    "keyColumns": [
+      "evidenceId",
+      "organization",
+      "sourceRef",
+      "evidenceClass"
+    ],
+    "defaultSort": {
+      "column": "sourceDate",
+      "direction": "asc"
+    }
+  },
+  "outputs/integrated/tables/ai_rnd_evidence_crosswalk.csv": {
+    "title": "AI-R&D evidence-to-loop crosswalk",
+    "description": "Normalizes each evidence record to only the loop stages and analytic gates it directly informs while preserving non-proof boundaries and prohibiting coefficient use.",
+    "class": "evidence interpretation crosswalk",
+    "keyColumns": [
+      "evidenceId",
+      "mappingType",
+      "mappedConstruct"
+    ]
+  },
+  "outputs/integrated/tables/closure_loop_ablation_matrix.csv": {
+    "title": "Verified-loop and reproductive-capital ablation matrix",
+    "description": "Crosses the implemented verified AI-R&D loop with permission to order reproductive industrial capital.",
+    "class": "ASSUMPTION-class model output",
+    "keyColumns": [
+      "verified_ai_rd_loop",
+      "reproductive_capital_loop"
+    ]
+  },
+  "outputs/integrated/tables/digital_elasticity_bounds.csv": {
+    "title": "Digital-elasticity bounds",
+    "description": "Declares lower, central, and upper response bounds for the implemented digital-improvement channels.",
+    "class": "ASSUMPTION-class model input",
+    "keyColumns": [
+      "record_type",
+      "quantity"
+    ]
+  },
+  "outputs/integrated/tables/internal_public_capability_trajectories.csv": {
+    "title": "Internal and publicly visible capability trajectories",
+    "description": "Separates experiment, technical-validation, internal-adoption, and public-release clocks in zero-lag, slower-publication, and internal-overhang sensitivity cases.",
+    "class": "ASSUMPTION-class model output",
+    "keyColumns": [
+      "gate_case",
+      "year"
+    ],
+    "defaultSort": {
+      "column": "year",
+      "direction": "asc"
+    }
+  },
+  "outputs/integrated/tables/matched_lifecycle_cost_contributions.csv": {
+    "title": "Matched lifecycle-cost contributions",
+    "description": "Uses one accounting category order to compare Earth and orbital lifecycle-cost contributions.",
+    "class": "mixed-source model output",
+    "keyColumns": [
+      "environment",
+      "category"
+    ],
+    "defaultSort": {
+      "column": "category_order",
+      "direction": "asc"
+    }
+  },
+  "outputs/integrated/tables/observed_precursor_telemetry.csv": {
+    "title": "Observed precursor telemetry",
+    "description": "Separates bounded self-improvement demonstrations and declared strategy by modified object, search topology, evaluation boundary, human role, observed result, and missing evidence.",
+    "class": "mixed first-party evidence register",
+    "keyColumns": [
+      "systemId",
+      "sourceRef"
+    ]
+  },
+  "outputs/integrated/tables/portfolio_sector_coverage.csv": {
+    "title": "Portfolio-to-sector evidence crosswalk",
+    "description": "Crosswalks Tesla and SpaceX/xAI initiatives to all 18 modeled industrial functions while keeping terrestrial operation, space qualification, off-world operation, local inputs, parent-tool reproduction, repair, and reproductive closure separate.",
+    "class": "mixed first-party evidence register",
+    "keyColumns": [
+      "sector",
+      "sector_group",
+      "entities",
+      "evidence_tier",
+      "residual_closure_gap"
+    ],
+    "defaultSort": {
+      "column": "sector_order",
+      "direction": "asc"
+    }
+  },
+  "outputs/integrated/tables/portfolio_sector_coverage_summary.csv": {
+    "title": "Portfolio-sector evidence summary",
+    "description": "Reports the audited evidence-tier vector, each capability-dimension count, the zero off-world-closure result, and the dependency-aware parent-tool blocker.",
+    "class": "mixed first-party evidence summary",
+    "keyColumns": [
+      "total_sectors",
+      "documented_operating",
+      "announced_or_under_development",
+      "no_evidence",
+      "dependency_aware_closure"
+    ]
+  },
+  "outputs/integrated/tables/portfolio_sector_group_summary.csv": {
+    "title": "Portfolio-sector group summary",
+    "description": "Groups the 18 modeled functions into bulk material, industrial equipment, electronics, operations and maintenance, and intelligence and compute blocks.",
+    "class": "mixed first-party evidence summary",
+    "keyColumns": [
+      "sector_group"
+    ]
+  },
+  "outputs/integrated/tables/orbital_ai_scenario_inputs.csv": {
+    "title": "Orbital-AI scenario input register",
+    "description": "Publishes every named SpaceXAI design, target, derived, and completion input with unit, denominator, state, evidence class, source snapshot, hash, and permitted simulations.",
+    "class": "mixed first-party and assumption scenario register",
+    "keyColumns": [
+      "scenario_id",
+      "anchor_key",
+      "evidence_class",
+      "maturity_state"
+    ],
+    "defaultSort": {
+      "column": "scenario_order",
+      "direction": "asc"
+    }
+  },
+  "outputs/integrated/tables/simulation_scenario_coverage.csv": {
+    "title": "Orbital-AI simulation scenario coverage",
+    "description": "Audits every relevant simulation and output against the generic, independent, disclosed-design, aspiration, and affiliate-hybrid tracks, including explicit not-parameterizable boundaries.",
+    "class": "scenario-policy coverage register",
+    "keyColumns": [
+      "simulation_id",
+      "output_path",
+      "spacexai_disclosed_status",
+      "spacexai_aspiration_status"
+    ],
+    "defaultSort": {
+      "column": "simulation_order",
+      "direction": "asc"
+    }
+  },
+  "outputs/integrated/tables/orbital_ai_scenario_results.csv": {
+    "title": "Orbital-AI scenario results and axis markers",
+    "description": "Reports commensurable central LCO results and disclosed or aspirational scale markers while preserving scenario ID, evidence class, source snapshot, parameter completeness, and boundary.",
+    "class": "mixed-source model output",
+    "keyColumns": [
+      "scenario_id",
+      "metric_id",
+      "metric_status",
+      "evidence_class"
+    ],
+    "defaultSort": {
+      "column": "scenario_order",
+      "direction": "asc"
+    }
+  },
+  "outputs/integrated/tables/orbital_ai_closure_stack.csv": {
+    "title": "Actor-bounded orbital-AI closure stack",
+    "description": "Expands four programs across 18 indispensable industrial layers while separating legal entity, relationship, environment, maturity, demonstrated capacity, target, dependencies, control, and off-world closure.",
+    "class": "mixed first-party evidence matrix",
+    "keyColumns": [
+      "program_id",
+      "layer_id",
+      "responsible_legal_entity",
+      "maturity_level",
+      "off_world_reproductively_closed"
+    ],
+    "defaultSort": {
+      "column": "program_order",
+      "direction": "asc"
+    }
+  },
+  "outputs/integrated/tables/orbital_ai_closure_summary.csv": {
+    "title": "Orbital-AI closure-stack comparison summary",
+    "description": "Compares evidence-weighted breadth, common-control fraction, missing-dependency concentration, minimum-cut gaps, and demonstrated off-world closure only after publishing the complete matrix.",
+    "class": "mixed first-party evidence summary",
+    "keyColumns": [
+      "program_id",
+      "breadth_rank",
+      "weighted_breadth_score",
+      "minimum_cut_gaps",
+      "dependency_aware_off_world_closure"
+    ],
+    "defaultSort": {
+      "column": "breadth_rank",
+      "direction": "asc"
+    }
+  },
+  "outputs/integrated/tables/debris_summary.csv": {
+    "title": "Orbital debris condition summary",
+    "description": "Reports the final five-year fragment creation-to-clearance flow ratio and year-40 active, derelict, and fragment states for the modeled deployment strategies.",
+    "class": "ASSUMPTION-class model output",
+    "keyColumns": [
+      "case"
+    ],
+    "columns": {
+      "case": {
+        "label": "Deployment and mitigation case"
+      },
+      "creation_clearance_ratio_last5y": {
+        "label": "Creation-to-clearance ratio, final five years",
+        "units": "dimensionless"
+      },
+      "active_year40": {
+        "label": "Active capacity, year 40",
+        "units": "normalized capacity"
+      },
+      "derelict_year40": {
+        "label": "Derelict stock, year 40",
+        "units": "normalized stock"
+      },
+      "fragment_index_year40": {
+        "label": "Fragment index, year 40",
+        "units": "normalized index"
+      }
+    }
+  },
+  "outputs/integrated/tables/ensemble_summary.csv": {
+    "title": "Thirty-year ensemble summary",
+    "description": "Summarizes expansion, persistence, balanced-doubling, bottleneck, and local-gain outcomes by assumption set and environment.",
+    "class": "ASSUMPTION-class ensemble output",
+    "keyColumns": [
+      "set",
+      "env"
+    ],
+    "columns": {
+      "set": {
+        "label": "Assumption set"
+      },
+      "env": {
+        "label": "Environment"
+      },
+      "share": {
+        "label": "Expanding share",
+        "units": "fraction"
+      },
+      "ci95_lo": {
+        "label": "95% interval, lower",
+        "units": "fraction"
+      },
+      "ci95_hi": {
+        "label": "95% interval, upper",
+        "units": "fraction"
+      },
+      "bal_dbl_med": {
+        "label": "Balanced doubling median",
+        "units": "years"
+      },
+      "lambda_h_med": {
+        "label": "Local gain median",
+        "units": "dimensionless"
+      }
+    }
+  },
+  "outputs/integrated/tables/milestone_order_branches.csv": {
+    "title": "Milestone-order branches",
+    "description": "Separates digital, embodiment, Earth-capital, space-capital, and control-readiness milestone order across four named scenario branches.",
+    "class": "ASSUMPTION-class scenario output",
+    "keyColumns": [
+      "branch"
+    ],
+    "columns": {
+      "branch": {
+        "label": "Scenario branch"
+      },
+      "ai_rd_closure_year": {
+        "label": "AI-R&D closure",
+        "units": "scenario year"
+      },
+      "embodiment_closure_year": {
+        "label": "Embodiment closure",
+        "units": "scenario year"
+      },
+      "earth_capital_closure_year": {
+        "label": "Earth capital closure",
+        "units": "scenario year"
+      },
+      "space_capital_closure_year": {
+        "label": "Space capital closure",
+        "units": "scenario year"
+      }
+    }
+  },
+  "outputs/integrated/tables/partial_closure_dashboard.csv": {
+    "title": "Partial-closure policy dashboard",
+    "description": "Summarizes strict-autonomy status, closure fractions, entry capital, external support efficiency, maximum scale, stockout, residual bottlenecks, and capacity losses by support policy.",
+    "class": "ASSUMPTION-class model output",
+    "keyColumns": [
+      "policy"
+    ],
+    "columns": {
+      "policy": {
+        "label": "Residual-support policy"
+      },
+      "initial_external_seed_t": {
+        "label": "Initial external seed",
+        "units": "metric tonnes"
+      },
+      "maximum_supportable_scale": {
+        "label": "Maximum supportable scale",
+        "units": "capacity equivalents"
+      },
+      "first_stockout_year": {
+        "label": "First stockout",
+        "units": "year"
+      },
+      "net_capacity_per_external_t": {
+        "label": "Net capacity per external mass",
+        "units": "capacity equivalents per metric tonne"
+      }
+    }
+  },
+  "outputs/integrated/tables/seed_objective_comparison.csv": {
+    "title": "Seed-objective comparison",
+    "description": "Reports feasibility, installed mass, Earth-import mass, intervention burden, design displacement, year-40 balanced capacity, and long-horizon doubling by architecture and objective.",
+    "class": "ASSUMPTION-class optimization output",
+    "keyColumns": [
+      "scenario",
+      "objective"
+    ],
+    "columns": {
+      "scenario": {
+        "label": "Bootstrap architecture"
+      },
+      "objective": {
+        "label": "Optimization objective"
+      },
+      "installed_seed_mass_t": {
+        "label": "Installed seed mass",
+        "units": "metric tonnes"
+      },
+      "earth_import_mass_t": {
+        "label": "Earth strategic-material import mass",
+        "units": "metric tonnes"
+      },
+      "intervention_hours_per_year": {
+        "label": "External intervention",
+        "units": "hours per year"
+      },
+      "sector_balanced_equivalents_year40": {
+        "label": "Sector-balanced capacity, year 40",
+        "units": "cell equivalents"
+      },
+      "aggregate_doubling_year_80y_extension": {
+        "label": "Aggregate doubling",
+        "units": "years"
+      }
+    }
+  },
+  "outputs/integrated/tables/sector_capacity_trajectory.csv": {
+    "title": "Sector-capacity trajectory",
+    "description": "Reports installed, operating, ordered, and normalized capacity for every modeled sector over time and by scenario.",
+    "class": "ASSUMPTION-class model trajectory",
+    "keyColumns": [
+      "scenario",
+      "year",
+      "sector"
+    ],
+    "defaultSort": {
+      "column": "year",
+      "direction": "asc"
+    },
+    "columns": {
+      "scenario": {
+        "label": "Scenario"
+      },
+      "year": {
+        "label": "Model time",
+        "units": "years"
+      },
+      "sector": {
+        "label": "Industrial sector"
+      },
+      "installed_capacity": {
+        "label": "Installed capacity",
+        "units": "sector capacity units"
+      },
+      "operating_capacity": {
+        "label": "Operating capacity",
+        "units": "sector capacity units"
+      },
+      "ordered_capacity": {
+        "label": "Ordered capacity",
+        "units": "sector capacity units"
+      },
+      "normalized_installed_cell_equivalents": {
+        "label": "Normalized installed capacity",
+        "units": "cell equivalents"
+      },
+      "normalized_operating_cell_equivalents": {
+        "label": "Normalized operating capacity",
+        "units": "cell equivalents"
+      }
+    }
+  },
+  "outputs/integrated/tables/orbital_mitigation_portfolio_pareto.csv": {
+    "title": "Orbital-mitigation portfolio frontier",
+    "description": "Reports the modeled risk, lifecycle-cost, and delivered-capacity trade space for 256 mitigation portfolios.",
+    "class": "ASSUMPTION-class model output",
+    "keyColumns": [
+      "pareto_nondominated"
+    ]
+  },
+  "outputs/integrated/tables/process_closure_gap_register.csv": {
+    "title": "Process-closure gap register",
+    "description": "Lists process-level closure claims and the evidence still required to promote them.",
+    "class": "evidence-readiness register",
+    "keyColumns": [
+      "process_id"
+    ]
+  },
+  "outputs/integrated/tables/spacexai_proponent_claim_crosswalk.csv": {
+    "title": "SpaceXAI claim-to-observable crosswalk",
+    "description": "Maps the strongest dated proponent claims to model terms, discriminating observables, and the current evidence boundary.",
+    "class": "company-claim and model-boundary crosswalk",
+    "keyColumns": [
+      "claim_order",
+      "source_ref"
+    ]
+  },
+  "outputs/integrated/tables/spacexai_proponent_case.csv": {
+    "title": "SpaceXAI company-only economic case",
+    "description": "Records only dated company quantities and preserves every missing lifecycle, workload, service, and schedule input as not disclosed.",
+    "class": "company-statement comparison target",
+    "keyColumns": [
+      "scenario_id",
+      "quantity_id",
+      "status",
+      "source_ref"
+    ]
+  },
+  "outputs/integrated/tables/spacexai_proponent_hybrid.csv": {
+    "title": "SpaceXAI proponent-hybrid input register",
+    "description": "Completes the company-only case with separately labeled independent or ASSUMPTION-class values; it is not a SpaceX or Musk estimate.",
+    "class": "mixed company and assumption scenario register",
+    "keyColumns": [
+      "scenario_id",
+      "quantity_id",
+      "selection_status",
+      "evidence_class"
+    ]
+  },
+  "outputs/integrated/tables/spacexai_economic_comparison.csv": {
+    "title": "Denominator-matched SpaceXAI economic comparison",
+    "description": "Compares terrestrial, generic orbital, independent-mass, company-only, and proponent-hybrid cases using identical lifecycle and fixed accepted-inference boundaries.",
+    "class": "mixed-source deterministic model comparison",
+    "keyColumns": [
+      "scenario_id",
+      "result_status",
+      "workload_id"
+    ],
+    "defaultSort": {
+      "column": "scenario_order",
+      "direction": "asc"
+    }
+  },
+  "outputs/integrated/tables/spacexai_time_to_useful_compute.csv": {
+    "title": "SpaceXAI time-to-useful-compute comparison",
+    "description": "Values terrestrial construction and orbital production, launch, commissioning, and ramp timing through the dated January 2028–January 2029 forecast window.",
+    "class": "mixed company and assumption schedule comparison",
+    "keyColumns": [
+      "scenario_id",
+      "schedule_source_class"
+    ],
+    "defaultSort": {
+      "column": "scenario_order",
+      "direction": "asc"
+    }
+  },
+  "outputs/integrated/tables/spacexai_threshold_tornado.csv": {
+    "title": "SpaceXAI economic threshold and tornado results",
+    "description": "Separates one-at-a-time LCO, accepted-token, and forecast-window sensitivities from one explicitly joint favorable boundary.",
+    "class": "ASSUMPTION-class deterministic sensitivity",
+    "keyColumns": [
+      "parameter",
+      "scope"
+    ],
+    "defaultSort": {
+      "column": "sensitivity_order",
+      "direction": "asc"
+    }
+  },
+  "outputs/tables/claim_provenance.csv": {
+    "title": "Claim-provenance register",
+    "description": "Connects model values and public claims to source class, locator, transformation, and review status.",
+    "class": "provenance register",
+    "keyColumns": [
+      "record_type",
+      "key"
+    ]
+  }
+}

@@ -1,0 +1,5 @@
+---
+title: "Model, results, and development path"
+---
+
+{{< include ../../docs/manuscript/12-part-i-model-results.md >}}

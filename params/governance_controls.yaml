@@ -107,6 +107,26 @@ controls:
     verification: auditor-controlled sensors and inventory sampling
     rollback: reduce build rate to zero on unresolved material discrepancy
     status: requirement_unvalidated
+  independent_adversarial_verification:
+    action: >
+      reserve evaluator capacity with disjoint model lineage, training data,
+      toolchain, authority, and audit access for strategic attempts to defeat
+      the producer's safety case
+    verification: >
+      measure lineage overlap, hidden-test transfer, disagreement, correlated
+      failure, and evaluator access to unfiltered physical telemetry
+    rollback: hold the affected action class and restore the prior signed cohort
+    status: requirement_unvalidated
+  oversight_throughput_interlock:
+    action: >
+      cap high-consequence proposals and capacity additions at the minimum of
+      reliability verification, adversarial verification, secure command,
+      environmental, treaty, and required human-comprehension throughput
+    verification: >
+      reconcile proposed and authorized action rates against independent
+      counters for every limiting channel
+    rollback: stop new authorization while retaining safe repair and passivation
+    status: requirement_unvalidated
 
 threats:
   accidental_configuration_error:
@@ -166,9 +186,41 @@ threats:
     physical_state_trigger: correlated yield, metrology, or commissioning error
     controls:
       - verification_diversity
+      - independent_adversarial_verification
       - independent_capacity_audit
       - sector_compartmentalization
     residual_risk: shared physical reference or specification error
+  producer_evaluator_common_mode:
+    class: strategic_common_mode
+    path: >
+      nominally separate producer and evaluator share lineage, training data,
+      tools, authority, or filtered observations and therefore pass the same
+      strategically selected unsafe action
+    affected_assets: [compute_and_verification_capacity, build_and_replication_authority]
+    physical_state_trigger: >
+      correlated monitor failure or evaluator-independence score below the
+      declared authorization threshold
+    controls:
+      - independent_adversarial_verification
+      - verification_diversity
+      - sector_compartmentalization
+    residual_risk: shared specification, physical reference, or undiscovered exploit
+  oversight_bandwidth_exhaustion:
+    class: control_capacity
+    path: >
+      proposal and replication throughput grows faster than independent
+      verification, command, legal, environmental, or human-comprehension
+      capacity
+    affected_assets: [build_and_replication_authority, compute_and_verification_capacity]
+    physical_state_trigger: >
+      gross proposed action rate exceeds any required authorization channel or
+      unauthorized operating capacity exceeds its declared share limit
+    controls:
+      - oversight_throughput_interlock
+      - rate_limit_interlock
+      - independent_adversarial_verification
+      - recovery_and_safe_hold
+    residual_risk: delayed detection, emergency bypass, or collusive limit increase
   autonomous_objective_drift:
     class: autonomy
     path: controller optimizes proxy growth while violating safety intent

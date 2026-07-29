@@ -1,0 +1,789 @@
+{
+  "schemaVersion": 1,
+  "terms": [
+    {
+      "key": "orbital-deployment-01",
+      "symbol": "$t,\\Delta t,T$",
+      "meaning": "elapsed time, discrete step, and declared horizon",
+      "unitsOrDomain": "years; $\\Delta t,T>0$",
+      "firstEquation": "eq:orbital-deployment",
+      "modelLayer": "shared time convention"
+    },
+    {
+      "key": "orbital-deployment-02",
+      "symbol": "$C_{\\mathrm{orbit}}$",
+      "meaning": "commissioned orbital compute capacity",
+      "unitsOrDomain": "frontier-equivalent compute-capacity units",
+      "firstEquation": "eq:orbital-deployment",
+      "modelLayer": "Executive Summary deployment"
+    },
+    {
+      "key": "orbital-deployment-03",
+      "symbol": "$q_c$",
+      "meaning": "compute capacity delivered per unit of Earth-to-orbit launch service",
+      "unitsOrDomain": "compute-capacity units per launch-service unit",
+      "firstEquation": "eq:orbital-deployment",
+      "modelLayer": "Executive Summary deployment"
+    },
+    {
+      "key": "orbital-deployment-04",
+      "symbol": "$L_{E\\rightarrow O}(t)$",
+      "meaning": "gross Earth-to-orbit launch-service flow",
+      "unitsOrDomain": "launch-service units/yr, $\\ge0$",
+      "firstEquation": "eq:orbital-deployment",
+      "modelLayer": "Executive Summary deployment"
+    },
+    {
+      "key": "orbital-deployment-05",
+      "symbol": "$\\delta_C$",
+      "meaning": "orbital compute-capacity depreciation rate",
+      "unitsOrDomain": "yr$^{-1}$, $\\ge0$",
+      "firstEquation": "eq:orbital-deployment",
+      "modelLayer": "Executive Summary deployment"
+    },
+    {
+      "key": "endogenous-hardware-growth-01",
+      "symbol": "$H$",
+      "meaning": "installed productive hardware capacity",
+      "unitsOrDomain": "declared hardware- or capacity-equivalent units, $\\ge0$",
+      "firstEquation": "eq:endogenous-hardware-growth",
+      "modelLayer": "conceptual hardware growth"
+    },
+    {
+      "key": "endogenous-hardware-growth-02",
+      "symbol": "$r,\\delta_H$",
+      "meaning": "gross hardware reproduction rate and hardware depreciation rate",
+      "unitsOrDomain": "yr$^{-1}$, $\\ge0$",
+      "firstEquation": "eq:endogenous-hardware-growth",
+      "modelLayer": "conceptual hardware growth"
+    },
+    {
+      "key": "digital-capability-update-01",
+      "symbol": "$\\mathbf I_n^{\\mathrm{int}},\\mathbf I_r^{\\mathrm{pub}},\\mathbf G_n$",
+      "meaning": "internally available capability vector, publicly observable capability vector, and observed candidate gain",
+      "unitsOrDomain": "declared component scales; vector gain in the corresponding component scales",
+      "firstEquation": "eq:digital-capability-update",
+      "modelLayer": "digital improvement"
+    },
+    {
+      "key": "digital-capability-update-02",
+      "symbol": "$z_n^{\\mathrm{tech}},z_n^{\\mathrm{int}},z_r^{\\mathrm{pub}}$",
+      "meaning": "technical-validation, bounded-internal-authorization, and external/public-authorization indicators",
+      "unitsOrDomain": "binary indicators in $\\{0,1\\}$ with distinct evidence and authorization semantics",
+      "firstEquation": "eq:digital-capability-update",
+      "modelLayer": "digital improvement"
+    },
+    {
+      "key": "digital-capability-update-03",
+      "symbol": "$\\mathcal D_n,\\mathcal A_n,\\mathcal V_n$",
+      "meaning": "data, architecture/algorithm, and technical-verification state for attempt $n$; $\\mathbf R_r$, $\\tau(r)$, and $\\mathcal E_r^{\\mathrm{pub}}$ are the release mapping, selected internal state, and public evidence/exposure conditions",
+      "unitsOrDomain": "structured state, not scalar scores",
+      "firstEquation": "eq:digital-capability-update",
+      "modelLayer": "digital improvement"
+    },
+    {
+      "key": "digital-saturating-frontier-01",
+      "symbol": "$I_m,I_{m,0},A_m$",
+      "meaning": "held-out capability component, its starting value, and attainable fixed-regime improvement",
+      "unitsOrDomain": "one declared component scale; $A_m\\ge0$",
+      "firstEquation": "eq:digital-saturating-frontier",
+      "modelLayer": "digital sensitivity"
+    },
+    {
+      "key": "digital-saturating-frontier-02",
+      "symbol": "$C_{\\mathrm{eff}},C_{m,0},\\beta_m$",
+      "meaning": "cumulative effective effort, its scale constant, and curvature",
+      "unitsOrDomain": "equivalent useful FLOP; $C_{\\mathrm{eff}}\\ge0$, $C_{m,0},\\beta_m>0$",
+      "firstEquation": "eq:digital-saturating-frontier",
+      "modelLayer": "digital sensitivity"
+    },
+    {
+      "key": "effective-training-compute-01",
+      "symbol": "$C_{\\mathrm{train}}$",
+      "meaning": "realized physical training compute",
+      "unitsOrDomain": "FLOP, $\\ge0$",
+      "firstEquation": "eq:effective-training-compute",
+      "modelLayer": "digital compute account"
+    },
+    {
+      "key": "effective-training-compute-02",
+      "symbol": "$\\eta_{\\mathrm{hw}},\\eta_{\\mathrm{util}},\\eta_{\\mathrm{alg}},\\eta_{\\mathrm{arch}}$",
+      "meaning": "hardware, utilization, algorithmic, and architecture efficiency relative to named baselines",
+      "unitsOrDomain": "dimensionless ratios, $\\ge0$",
+      "firstEquation": "eq:effective-training-compute",
+      "modelLayer": "digital compute account"
+    },
+    {
+      "key": "effective-training-compute-03",
+      "symbol": "$N_{\\mathrm{act}},D,k_{\\mathrm{train}}$",
+      "meaning": "mean active parameters/token, training tokens, and training-compute proportionality factor",
+      "unitsOrDomain": "parameters, tokens, and FLOP/(parameter-token)",
+      "firstEquation": "eq:effective-training-compute",
+      "modelLayer": "digital compute account"
+    },
+    {
+      "key": "ai-rd-compute-allocation-01",
+      "symbol": "$\\mathcal S_C,C_{\\mathrm{tot}}^{\\mathrm{phys}},C_s^{\\mathrm{phys}},C_s^{\\mathrm{eff}},\\eta_s$",
+      "meaning": "compute-use set, conserved total physical accelerator hours, use-$s$ physical/effective hours, and conversion efficiency",
+      "unitsOrDomain": "set; accelerator-hours/yr; accelerator-hours/yr; baseline-equivalent hours/yr; ratio $\\ge0$",
+      "firstEquation": "eq:ai-rd-compute-allocation",
+      "modelLayer": "AI-R&D compute allocation"
+    },
+    {
+      "key": "ai-rd-compute-allocation-02",
+      "symbol": "$R_{\\mathrm{eff}},c_R,U_R,\\rho_R$",
+      "meaning": "effective automated researchers, inference hours per instance, useful-task limit, and candidate rate per researcher",
+      "unitsOrDomain": "instances; accelerator-hours/(instance-yr); task-equivalent instances; candidates/(instance-yr)",
+      "firstEquation": "eq:ai-rd-compute-allocation",
+      "modelLayer": "AI-R&D compute allocation"
+    },
+    {
+      "key": "ai-rd-compute-allocation-03",
+      "symbol": "$C_{\\mathrm{inf}}^{\\mathrm{phys}},C_{\\mathrm{exp}}^{\\mathrm{eff}},C_{\\mathrm{data}}^{\\mathrm{phys}},C_{\\mathrm{ver}}^{\\mathrm{phys}}$",
+      "meaning": "inference, effective experiment, data-generation/filtering, and verification compute allocations",
+      "unitsOrDomain": "accelerator-hours/yr or baseline-equivalent hours/yr as superscripted",
+      "firstEquation": "eq:ai-rd-compute-allocation",
+      "modelLayer": "AI-R&D compute allocation"
+    },
+    {
+      "key": "ai-rd-compute-allocation-04",
+      "symbol": "$c_{\\mathrm{exp}},c_D,c_V,y_D,q_V,\\tau_{\\mathrm{serial}},\\nu_{\\mathrm{verified}}$",
+      "meaning": "compute per experiment/data/verification candidate, accepted-data yield, evaluator-independence yield, serial experiment cycle, and verified-progress rate",
+      "unitsOrDomain": "accelerator-hours/candidate; fractions; years/candidate; verified candidates/yr",
+      "firstEquation": "eq:ai-rd-compute-allocation",
+      "modelLayer": "AI-R&D compute allocation"
+    },
+    {
+      "key": "chronological-release-backtest-01",
+      "symbol": "$M_i,p_i,N_i,D_i,C_{\\mathrm{ref}},b_i$",
+      "meaning": "release-$i$ five-shot MMLU accuracy, chance-adjusted score, dense parameters, pretraining tokens, compute reference, and data-balance fraction",
+      "unitsOrDomain": "percentage points; fraction $(0,1)$; parameters; tokens; FLOP; fraction $(0,1]$",
+      "firstEquation": "eq:chronological-release-backtest",
+      "modelLayer": "chronological release backtest"
+    },
+    {
+      "key": "chronological-release-backtest-02",
+      "symbol": "$\\beta_0,\\beta_C,\\beta_B$",
+      "meaning": "fitted intercept, log-compute coefficient, and log-balance coefficient",
+      "unitsOrDomain": "dimensionless on the chance-adjusted logit scale",
+      "firstEquation": "eq:chronological-release-backtest",
+      "modelLayer": "chronological release backtest"
+    },
+    {
+      "key": "milestone-control-gate-01",
+      "symbol": "$T_{\\mathrm{AIR\\&D}},T_{\\mathrm{emb}},T_{\\mathrm{cl},E},T_{\\mathrm{cl},S},T_{\\mathrm{ctrl}}$",
+      "meaning": "verified AI-R&D closure, embodiment closure, Earth/space reproductive-capital closure, and control-readiness milestones",
+      "unitsOrDomain": "elapsed years, each $\\ge0$",
+      "firstEquation": "eq:milestone-control-gate",
+      "modelLayer": "milestone-order screen"
+    },
+    {
+      "key": "milestone-control-gate-02",
+      "symbol": "$\\Gamma_{\\mathrm{ctrl}}$",
+      "meaning": "branch-level control-admissibility indicator",
+      "unitsOrDomain": "$\\{0,1\\}$",
+      "firstEquation": "eq:milestone-control-gate",
+      "modelLayer": "milestone-order screen"
+    },
+    {
+      "key": "authorized-capacity-control-01",
+      "symbol": "$I_{\\mathrm{task}},I_{\\mathrm{coord}},I_{\\mathrm{eval}},p_{\\mathrm{ctrl}}$",
+      "meaning": "task, coordination, and evaluator capability coordinates plus controllability confidence",
+      "unitsOrDomain": "declared capability indices; probability in $[0,1]$",
+      "firstEquation": "eq:authorized-capacity-control",
+      "modelLayer": "authorized-capacity control"
+    },
+    {
+      "key": "authorized-capacity-control-02",
+      "symbol": "$K_{\\mathrm{gross}},K_{\\mathrm{auth}},K_{\\mathrm{unauth}}$",
+      "meaning": "gross, authorized, and unauthorized operating capacity",
+      "unitsOrDomain": "capacity units, each $\\ge0$",
+      "firstEquation": "eq:authorized-capacity-control",
+      "modelLayer": "authorized-capacity control"
+    },
+    {
+      "key": "authorized-capacity-control-03",
+      "symbol": "$\\dot K_{\\mathrm{gross}}^{+},a_K$",
+      "meaning": "proposed positive gross-capacity addition rate and required high-impact actions per added capacity",
+      "unitsOrDomain": "capacity/yr; actions/capacity",
+      "firstEquation": "eq:authorized-capacity-control",
+      "modelLayer": "authorized-capacity control"
+    },
+    {
+      "key": "authorized-capacity-control-04",
+      "symbol": "$V_{\\mathrm{rel}},V_{\\mathrm{adv}},C_{\\mathrm{cmd}},E_{\\mathrm{env}},L_{\\mathrm{treaty}},H_{\\mathrm{human}}$",
+      "meaning": "reliability verification, adversarial verification, secure command, environmental limit, treaty limit, and human-comprehension throughput",
+      "unitsOrDomain": "high-impact authorization actions/yr, each $\\ge0$",
+      "firstEquation": "eq:authorized-capacity-control",
+      "modelLayer": "authorized-capacity control"
+    },
+    {
+      "key": "replication-governance-gate-01",
+      "symbol": "$K_{\\mathrm{prod}},K_{\\mathrm{auth}},K_{\\mathrm{unauth}},K_{\\mathrm{preempt}}$",
+      "meaning": "productive, legitimately authorized, unauthorized, and contested-resource-preempting capacity",
+      "unitsOrDomain": "capacity units, each $\\ge0$",
+      "firstEquation": "eq:replication-governance-gate",
+      "modelLayer": "replication governance"
+    },
+    {
+      "key": "replication-governance-gate-02",
+      "symbol": "$\\Gamma_{\\mathrm{gov}},\\bar u,\\bar p$",
+      "meaning": "governance-endpoint indicator and maximum unauthorized/preemptive capacity shares",
+      "unitsOrDomain": "$\\{0,1\\}$; fractions in $[0,1]$",
+      "firstEquation": "eq:replication-governance-gate",
+      "modelLayer": "replication governance"
+    },
+    {
+      "key": "replication-governance-gate-03",
+      "symbol": "$L_{\\mathrm{claim}},\\bar L,\\phi_{\\mathrm{ext}},\\bar\\phi$",
+      "meaning": "resource-claim legitimacy and its floor; externality-cost internalization and its floor",
+      "unitsOrDomain": "normalized fractions in $[0,1]$",
+      "firstEquation": "eq:replication-governance-gate",
+      "modelLayer": "replication governance"
+    },
+    {
+      "key": "replication-governance-gate-04",
+      "symbol": "$\\mathcal G,g_j$",
+      "meaning": "required governance-gate set and gate-$j$ pass indicator",
+      "unitsOrDomain": "finite set; $g_j\\in\\{0,1\\}$",
+      "firstEquation": "eq:replication-governance-gate",
+      "modelLayer": "replication governance"
+    },
+    {
+      "key": "marginal-intelligence-response-01",
+      "symbol": "$\\operatorname{MP}_{I}^{(r)},K_r,I_{r,0},\\Delta I,\\mathbf X_r$",
+      "meaning": "regime-$r$ finite marginal response, endpoint capacity, baseline intelligence, capability perturbation, and fixed complement vector",
+      "unitsOrDomain": "capacity/capability-index; capacity; capability index; capability index; declared mixed-unit state vector",
+      "firstEquation": "eq:marginal-intelligence-response",
+      "modelLayer": "intelligence marginal response"
+    },
+    {
+      "key": "bottleneck-upgrade-gate-01",
+      "symbol": "$\\Delta B_p,\\Delta\\bar B_p,\\tau_{p,\\mathrm{design}},\\tau_{p,\\mathrm{build}},\\tau_{p,\\mathrm{verify}}$",
+      "meaning": "commissioned and proposed bottleneck increment plus design, construction, and verification lags for project $p$",
+      "unitsOrDomain": "capacity; capacity; years",
+      "firstEquation": "eq:bottleneck-upgrade-gate",
+      "modelLayer": "bottleneck upgrade"
+    },
+    {
+      "key": "bottleneck-upgrade-gate-02",
+      "symbol": "$C_p,\\bar C_p,P_p,V_p$",
+      "meaning": "project cost, available productive-capacity budget, productive-sector gate, and verified-causal-path gate",
+      "unitsOrDomain": "capacity-years; capacity-years; $\\{0,1\\}$; $\\{0,1\\}$",
+      "firstEquation": "eq:bottleneck-upgrade-gate",
+      "modelLayer": "bottleneck upgrade"
+    },
+    {
+      "key": "welfare-activity-accounts-01",
+      "symbol": "$\\mathbf A_W,A_{\\mathrm{reloc}},A_{\\mathrm{expand}},A_{\\mathrm{hum}},A_{\\mathrm{sci}},A_{\\mathrm{ind}}$",
+      "meaning": "welfare-relevant activity-account vector: relocated harmful activity, expanded activity, and humanitarian, science/public-goods, and industrial compute allocations",
+      "unitsOrDomain": "declared compute/activity units, each $\\ge0$",
+      "firstEquation": "eq:welfare-activity-accounts",
+      "modelLayer": "demand and allocation sensitivity"
+    },
+    {
+      "key": "verified-loop-bottleneck-01",
+      "symbol": "$\\nu_v,\\nu_s$",
+      "meaning": "verified-loop throughput and required stage-$s$ capacity",
+      "unitsOrDomain": "completed-loop equivalents/yr, $\\ge0$",
+      "firstEquation": "eq:verified-loop-bottleneck",
+      "modelLayer": "digital loop"
+    },
+    {
+      "key": "verification-hierarchy-01",
+      "symbol": "$\\nu_{v,k},\\nu_{\\mathrm{candidate},k},\\nu_{\\mathrm{capacity},k},y_k,f_k,q_k$",
+      "meaning": "independently supported throughput, candidate and verifier capacity, acceptance yield, false-positive fraction, and evaluator independence for verifier class $k$",
+      "unitsOrDomain": "iterations/yr; iterations/yr; iterations/yr; fractions in $[0,1]$",
+      "firstEquation": "eq:verification-hierarchy",
+      "modelLayer": "verification hierarchy"
+    },
+    {
+      "key": "verification-hierarchy-02",
+      "symbol": "$\\nu_{\\mathrm{licensed},k},\\nu_{\\mathrm{direction}},\\nu_{\\mathrm{execution}}$",
+      "meaning": "licensed loop rate for verifier class $k$, research direction-setting rate, and fixed-target execution rate",
+      "unitsOrDomain": "completed-loop or task equivalents/yr, each $\\ge0$",
+      "firstEquation": "eq:verification-hierarchy",
+      "modelLayer": "verification hierarchy"
+    },
+    {
+      "key": "accepted-training-signal-01",
+      "symbol": "$S_g,V_g^{\\mathrm{syn}},d_g,y_g,p_g,e_g,D_g,N_g^{\\mathrm{phys}},c_g$",
+      "meaning": "accepted training signal; generated synthetic records; deduplication, filter acceptance, provenance, evaluator error, and diversity factors; physical episodes; causal linkage",
+      "unitsOrDomain": "signal units; records; fractions in $[0,1]$; episodes; fraction in $[0,1]$",
+      "firstEquation": "eq:accepted-training-signal",
+      "modelLayer": "data/evaluator coevolution"
+    },
+    {
+      "key": "embodiment-adequacy-gate-01",
+      "symbol": "$\\mathbf E,\\mathbf R_k,\\mathcal E$",
+      "meaning": "embodiment capabilities, task-$k$ requirements, and operating environment",
+      "unitsOrDomain": "matched normalized or physical dimensions",
+      "firstEquation": "eq:embodiment-adequacy-gate",
+      "modelLayer": "embodiment compatibility"
+    },
+    {
+      "key": "embodiment-adequacy-gate-02",
+      "symbol": "$\\mathcal P_k,A_k$",
+      "meaning": "task-$k$ hard-gate dimensions and physical-adequacy indicator",
+      "unitsOrDomain": "set; $A_k\\in\\{0,1\\}$",
+      "firstEquation": "eq:embodiment-adequacy-gate",
+      "modelLayer": "embodiment compatibility"
+    },
+    {
+      "key": "intelligence-embodiment-compatibility-01",
+      "symbol": "$S_k,S_{k,\\max},\\bar S_k$",
+      "meaning": "verified task score, hardware-imposed ceiling, and required score",
+      "unitsOrDomain": "normalized $[0,1]$",
+      "firstEquation": "eq:intelligence-embodiment-compatibility",
+      "modelLayer": "embodiment compatibility"
+    },
+    {
+      "key": "intelligence-embodiment-compatibility-02",
+      "symbol": "$I,I_{k,0},\\sigma_k$",
+      "meaning": "effective task intelligence, onset, and response scale",
+      "unitsOrDomain": "same declared capability-index scale; $\\sigma_k>0$",
+      "firstEquation": "eq:intelligence-embodiment-compatibility",
+      "modelLayer": "embodiment compatibility"
+    },
+    {
+      "key": "embodied-task-first-passage-01",
+      "symbol": "$I_k^\\ast,T_k^\\ast,V_k(t)$",
+      "meaning": "intelligence threshold, verified first-passage year, and verification indicator",
+      "unitsOrDomain": "capability index; years; $\\{0,1\\}$",
+      "firstEquation": "eq:embodied-task-first-passage",
+      "modelLayer": "embodiment compatibility"
+    },
+    {
+      "key": "data-advantage-profile-01",
+      "symbol": "$\\mathbf d,d_j$",
+      "meaning": "seven-component operational-data-advantage profile and component $j$",
+      "unitsOrDomain": "normalized $[0,1]$ with uncertainty interval",
+      "firstEquation": "eq:data-advantage-profile",
+      "modelLayer": "industrial memory/data"
+    },
+    {
+      "key": "data-advantage-profile-02",
+      "symbol": "$\\kappa_D,F$",
+      "meaning": "optional data-advantage aggregate and declared aggregation rule",
+      "unitsOrDomain": "dimensionless; not measured unless calibrated",
+      "firstEquation": "eq:data-advantage-profile",
+      "modelLayer": "industrial memory/data"
+    },
+    {
+      "key": "data-advantage-scalarization-01",
+      "symbol": "$a_{\\min},c_{\\min},v_{\\min}$",
+      "meaning": "access, causal-linkage, and verification hard gates",
+      "unitsOrDomain": "normalized $[0,1]$",
+      "firstEquation": "eq:data-advantage-scalarization",
+      "modelLayer": "industrial memory/data"
+    },
+    {
+      "key": "data-advantage-scalarization-02",
+      "symbol": "$w_j,\\mathcal J_D$",
+      "meaning": "component weights and included data-component set",
+      "unitsOrDomain": "$w_j\\ge0$, $\\sum_jw_j=1$",
+      "firstEquation": "eq:data-advantage-scalarization",
+      "modelLayer": "industrial memory/data"
+    },
+    {
+      "key": "matched-lifecycle-cost-01",
+      "symbol": "$C_e(u,T)$",
+      "meaning": "discounted matched lifecycle cost in environment $e$ for functional output $u$ over horizon $T$",
+      "unitsOrDomain": "constant-currency dollars per declared functional unit",
+      "firstEquation": "eq:matched-lifecycle-cost",
+      "modelLayer": "conceptual lifecycle cost"
+    },
+    {
+      "key": "matched-lifecycle-cost-02",
+      "symbol": "$\\mathcal K,C_{k,e}^{\\mathrm{external}},C_{k,e}^{\\mathrm{internal}}$",
+      "meaning": "common cost-category set and external-purchase/internal-opportunity-cost streams",
+      "unitsOrDomain": "constant-currency dollars by dated cash flow",
+      "firstEquation": "eq:matched-lifecycle-cost",
+      "modelLayer": "conceptual lifecycle cost"
+    },
+    {
+      "key": "matched-lifecycle-cost-03",
+      "symbol": "$\\operatorname{PV}_e,V_{\\mathrm{residual},e}$",
+      "meaning": "environment-specific present-value operator and terminal residual value",
+      "unitsOrDomain": "constant-currency dollars at declared discount convention",
+      "firstEquation": "eq:matched-lifecycle-cost",
+      "modelLayer": "conceptual lifecycle cost"
+    },
+    {
+      "key": "matched-lifecycle-cost-04",
+      "symbol": "$R_C,\\Delta_C$",
+      "meaning": "space/Earth cost ratio and difference under the same functional unit",
+      "unitsOrDomain": "dimensionless; constant-currency dollars/unit",
+      "firstEquation": "eq:matched-lifecycle-cost",
+      "modelLayer": "conceptual lifecycle cost"
+    },
+    {
+      "key": "centrifugal-acceleration-01",
+      "symbol": "$a_c,\\omega,R$",
+      "meaning": "centrifugal acceleration, angular speed, and rotor radius",
+      "unitsOrDomain": "m/s$^2$, rad/s, m",
+      "firstEquation": "eq:centrifugal-acceleration",
+      "modelLayer": "process physics"
+    },
+    {
+      "key": "depreciation-decomposition-01",
+      "symbol": "$\\delta_{\\mathrm{total}},\\delta_{\\mathrm{wear}},\\delta_{\\mathrm{catastrophic}},\\delta_{\\mathrm{obsolescence}},\\delta_{\\mathrm{logistics}}$",
+      "meaning": "total and component depreciation hazards",
+      "unitsOrDomain": "yr$^{-1}$, each $\\ge0$",
+      "firstEquation": "eq:depreciation-decomposition",
+      "modelLayer": "lifecycle/depreciation"
+    },
+    {
+      "key": "orbital-lifecycle-state-01",
+      "symbol": "$\\mathbf x_t,\\mathbf Q_t,\\mathbf b_t$",
+      "meaning": "nine-state orbital lifecycle stock, transition-rate matrix, and external flow vector",
+      "unitsOrDomain": "capacity-equivalent mass; yr$^{-1}$; capacity-equivalent mass/yr",
+      "firstEquation": "eq:orbital-lifecycle-state",
+      "modelLayer": "orbital lifecycle"
+    },
+    {
+      "key": "orbital-lifecycle-state-02",
+      "symbol": "$(O,D,A_s,R,C,S,F,W,U)$",
+      "meaning": "operating, degraded, awaiting-service, under-repair, cannibalized, salvaged, recycled-feedstock, disposed-waste, and uncontrolled-debris stocks",
+      "unitsOrDomain": "capacity-equivalent mass, each $\\ge0$",
+      "firstEquation": "eq:orbital-lifecycle-state",
+      "modelLayer": "orbital lifecycle"
+    },
+    {
+      "key": "effective-irreversible-loss-01",
+      "symbol": "$\\delta_{\\mathrm{irr}}^{(T)},\\dot W_{\\mathrm{unrecoverable}},\\dot U_{\\mathrm{unrecoverable}}$",
+      "meaning": "horizon-average irreversible-loss rate and unrecoverable waste/debris flows",
+      "unitsOrDomain": "yr$^{-1}$; capacity-equivalent mass/yr",
+      "firstEquation": "eq:effective-irreversible-loss",
+      "modelLayer": "orbital lifecycle"
+    },
+    {
+      "key": "orbital-service-decision-value-01",
+      "symbol": "$V^{\\mathrm{net}}_{aocf},p_a,V^{\\mathrm{out}}_{aoc},L^{\\mathrm{avoid}}_{ac}$",
+      "meaning": "net service-decision value, action failure probability, lifetime output value, and avoided replacement launch",
+      "unitsOrDomain": "real-2025 MUSD/client event; fraction; MUSD; MUSD",
+      "firstEquation": "eq:orbital-service-decision-value",
+      "modelLayer": "orbital service decision"
+    },
+    {
+      "key": "orbital-service-decision-value-02",
+      "symbol": "$C^{\\mathrm{variable}}_{ao},C^{\\mathrm{fixed}}_f,N_{of},T_f,C^{\\mathrm{route}}_{of},C^{\\mathrm{down}}_{ac},C^{\\mathrm{risk}}_{aoc},C^{\\mathrm{depr}}_{ac}$",
+      "meaning": "variable service, fleet fixed cost, annual clients, fleet life, routing, downtime, risk/liability, and depreciation",
+      "unitsOrDomain": "real-2025 MUSD; MUSD; clients/yr; years; MUSD/client event",
+      "firstEquation": "eq:orbital-service-decision-value",
+      "modelLayer": "orbital service decision"
+    },
+    {
+      "key": "orbital-common-cause-budget-01",
+      "symbol": "$L_{\\max},\\mathcal H_t,K_i,K_{\\mathrm{total}},\\epsilon$",
+      "meaning": "maximum single-event capacity loss, credible hazard sets, node/total service capacity, and loss budget",
+      "unitsOrDomain": "capacity units; set; capacity units; fraction in $(0,1)$",
+      "firstEquation": "eq:orbital-common-cause-budget",
+      "modelLayer": "orbital controls"
+    },
+    {
+      "key": "critical-component-replenishment-01",
+      "symbol": "$T_{\\mathrm{replenish},j},T_{\\mathrm{effective\\ survival},j}$",
+      "meaning": "critical-component replenishment and effective survival times",
+      "unitsOrDomain": "years, $>0$",
+      "firstEquation": "eq:critical-component-replenishment",
+      "modelLayer": "closure test"
+    },
+    {
+      "key": "net-capacity-growth-01",
+      "symbol": "$P,D,g_H$",
+      "meaning": "gross capacity production, capacity loss, and net fractional growth",
+      "unitsOrDomain": "capacity units/yr; capacity units/yr; yr$^{-1}$",
+      "firstEquation": "eq:net-capacity-growth",
+      "modelLayer": "closure/growth"
+    },
+    {
+      "key": "closure-ratio-01",
+      "symbol": "$\\kappa$",
+      "meaning": "mass- or category-specific closure ratio under a declared account",
+      "unitsOrDomain": "fraction $[0,1]$",
+      "firstEquation": "eq:closure-ratio",
+      "modelLayer": "closure profile"
+    },
+    {
+      "key": "closure-and-import-leverage-01",
+      "symbol": "$A_{\\mathrm{aut}},\\mathcal J_{\\mathrm{crit}}$",
+      "meaning": "strict-autonomy indicator and critical-input set",
+      "unitsOrDomain": "$\\{0,1\\}$; set",
+      "firstEquation": "eq:closure-and-import-leverage",
+      "modelLayer": "partial closure"
+    },
+    {
+      "key": "closure-and-import-leverage-02",
+      "symbol": "$\\dot m_j^{\\mathrm{external}},\\dot H_{\\mathrm{verified}}$",
+      "meaning": "external input-$j$ mass flow and verified capacity-addition flow",
+      "unitsOrDomain": "kg/yr; capacity units/yr",
+      "firstEquation": "eq:closure-and-import-leverage",
+      "modelLayer": "partial closure"
+    },
+    {
+      "key": "closure-and-import-leverage-03",
+      "symbol": "$\\sigma_{\\mathrm{ext}},\\Lambda_{\\mathrm{import}}$",
+      "meaning": "external-support intensity and reciprocal import leverage",
+      "unitsOrDomain": "kg/capacity unit; capacity units/kg",
+      "firstEquation": "eq:closure-and-import-leverage",
+      "modelLayer": "partial closure"
+    },
+    {
+      "key": "externally-supported-capacity-01",
+      "symbol": "$\\mathbf K_t,\\mathbf y^{\\mathrm{local}},\\mathbf B\\mathbf u_t,\\boldsymbol\\delta_t$",
+      "meaning": "commissioned sector capacity, local capacity-addition flow, import-enabled flow, and sector depreciation",
+      "unitsOrDomain": "capacity vector; capacity/yr; capacity/yr; yr$^{-1}$",
+      "firstEquation": "eq:externally-supported-capacity",
+      "modelLayer": "integrated capacity"
+    },
+    {
+      "key": "coordination-workload-01",
+      "symbol": "$B_{\\mathrm{coord}},B_{\\mathrm{irred}},B_0$",
+      "meaning": "coordination work, irreducible floor, and reference reducible work",
+      "unitsOrDomain": "agent-hours per verified cell-equivalent, $\\ge0$",
+      "firstEquation": "eq:coordination-workload",
+      "modelLayer": "coordination"
+    },
+    {
+      "key": "coordination-workload-02",
+      "symbol": "$E_G,E_0,\\chi,\\chi_0,u,u_0$",
+      "meaning": "active dependency-edge weight and reference, operational complexity and reference, uncertainty and reference",
+      "unitsOrDomain": "dimensionless indexed observables; references $>0$",
+      "firstEquation": "eq:coordination-workload",
+      "modelLayer": "coordination"
+    },
+    {
+      "key": "coordination-workload-03",
+      "symbol": "$I_{\\mathrm{eff}},I_0,\\alpha,\\beta,\\gamma,\\delta,\\eta$",
+      "meaning": "effective coordination capability, reference, elasticities, and intelligence response",
+      "unitsOrDomain": "dimensionless; references/exponents/response $>0$",
+      "firstEquation": "eq:coordination-workload",
+      "modelLayer": "coordination"
+    },
+    {
+      "key": "coordination-burden-01",
+      "symbol": "$B_{\\mathrm{sensing}},B_{\\mathrm{latency}},B_{\\mathrm{synchronization}},B_{\\mathrm{safety}},B_{\\mathrm{verification}},B_{\\mathrm{contention}}$",
+      "meaning": "irreducible coordination-work accounts",
+      "unitsOrDomain": "agent-hours per verified cell-equivalent, each $\\ge0$",
+      "firstEquation": "eq:coordination-burden",
+      "modelLayer": "coordination"
+    },
+    {
+      "key": "cognitive-physical-labor-01",
+      "symbol": "$N_{\\mathrm{phys}}^{\\mathrm{eff}},N_{\\mathrm{model}},N_{\\mathrm{inf}},N_{\\mathrm{robot}},N_{\\mathrm{sensor}},N_{\\mathrm{safe}},N_{\\mathrm{task}},N_{\\mathrm{tool}},N_{\\mathrm{vcell}}$",
+      "meaning": "effective physical agents and limiting model, inference, robot/machine, sensor, safe-envelope, task, tool/material, and verifiable-cell stocks",
+      "unitsOrDomain": "simultaneous instance/channel counts, each $\\ge0$",
+      "firstEquation": "eq:cognitive-physical-labor",
+      "modelLayer": "cognitive-to-physical labor"
+    },
+    {
+      "key": "cognitive-physical-labor-02",
+      "symbol": "$T_{\\mathrm{experiment}},d_{\\mathrm{serial}},\\tau_{\\mathrm{phys}},N_{\\mathrm{indep}},P_{\\mathrm{experiment}}$",
+      "meaning": "experiment-program wall time, serial depth, physical-cycle time, independent experiment count, and parallel station capacity",
+      "unitsOrDomain": "years; steps; years/step; experiments; simultaneous experiments",
+      "firstEquation": "eq:cognitive-physical-labor",
+      "modelLayer": "cognitive-to-physical labor"
+    },
+    {
+      "key": "cumulative-created-hardware-01",
+      "symbol": "$H_{\\mathrm{created}}$",
+      "meaning": "cumulative gross hardware created before losses",
+      "unitsOrDomain": "hardware-equivalent units, $\\ge0$",
+      "firstEquation": "eq:cumulative-created-hardware",
+      "modelLayer": "conceptual hardware growth"
+    },
+    {
+      "key": "coupled-hardware-growth-01",
+      "symbol": "$r(I,E,M)$",
+      "meaning": "gross hardware reproduction rate conditional on intelligence, energy, and materials",
+      "unitsOrDomain": "yr$^{-1}$, $\\ge0$",
+      "firstEquation": "eq:coupled-hardware-growth",
+      "modelLayer": "conceptual hardware growth"
+    },
+    {
+      "key": "material-balance-01",
+      "symbol": "$M_e,Y_{s,e},X_s,I_e,L_e$",
+      "meaning": "inventory change, recoverable yield, processed-source amount, bounded import, and loss for material category $e$",
+      "unitsOrDomain": "tonnes/category over the declared step; compatible coefficients",
+      "firstEquation": "eq:material-balance",
+      "modelLayer": "integrated material balance"
+    },
+    {
+      "key": "material-balance-02",
+      "symbol": "$F_{a,e}^{\\mathrm{in/out}}$",
+      "meaning": "material-category flow on transfer arc $a$",
+      "unitsOrDomain": "tonnes over the declared step, $\\ge0$",
+      "firstEquation": "eq:material-balance",
+      "modelLayer": "integrated material balance"
+    },
+    {
+      "key": "material-balance-03",
+      "symbol": "$B_{e,j},x_j$",
+      "meaning": "material category $e$ required per unit sector-$j$ build and sector build amount",
+      "unitsOrDomain": "tonnes/capacity unit; capacity units",
+      "firstEquation": "eq:material-balance",
+      "modelLayer": "integrated material balance"
+    },
+    {
+      "key": "capital-recovery-factor-01",
+      "symbol": "$\\operatorname{CRF}(r,T),f_o,a(T)$",
+      "meaning": "capital-recovery factor, fixed annual opex fraction, and annualization factor",
+      "unitsOrDomain": "yr$^{-1}$",
+      "firstEquation": "eq:capital-recovery-factor",
+      "modelLayer": "Part II cost"
+    },
+    {
+      "key": "space-lifecycle-cost-01",
+      "symbol": "$L_s,L_E$",
+      "meaning": "space and Earth levelized lifecycle cost",
+      "unitsOrDomain": "constant-2025 USD per delivered kW-year",
+      "firstEquation": "eq:space-lifecycle-cost",
+      "modelLayer": "Part II cost"
+    },
+    {
+      "key": "space-lifecycle-cost-02",
+      "symbol": "$C_h,C_I,M_h,M_I,T_h,T_I$",
+      "meaning": "space hardware/infrastructure capital, launch mass, and component lives",
+      "unitsOrDomain": "USD/kW; kg/kW; years",
+      "firstEquation": "eq:space-lifecycle-cost",
+      "modelLayer": "Part II cost"
+    },
+    {
+      "key": "capital-recovery-factor-02",
+      "symbol": "$a_s(T),f_o,f_{\\mathrm{ins}},\\rho,C_{\\mathrm{reg}}$",
+      "meaning": "space annualization multiplier, annual operations and insurance fractions, residual fraction, and regulatory flow",
+      "unitsOrDomain": "dimensionless except $C_{\\mathrm{reg}}$ in constant-2025 USD/kW-yr",
+      "firstEquation": "eq:capital-recovery-factor",
+      "modelLayer": "Part II cost"
+    },
+    {
+      "key": "space-lifecycle-cost-03",
+      "symbol": "$p_L,\\mu,U_s,\\alpha,\\beta$",
+      "meaning": "launch price, launch mass multiplier, utilization/availability factor, affine intercept, and slope",
+      "unitsOrDomain": "USD/kg; dimensionless; dimensionless; USD/kW-yr; kg/kW-yr",
+      "firstEquation": "eq:space-lifecycle-cost",
+      "modelLayer": "Part II cost"
+    },
+    {
+      "key": "earth-lifecycle-cost-01",
+      "symbol": "$\\phi_e,C_{h,e},C_{DC},p_e,\\psi_e,U_E$",
+      "meaning": "Earth financing multiplier, hardware/data-center capital, electricity price, PUE, and utilization/availability",
+      "unitsOrDomain": "dimensionless; USD/kW; USD/kWh; dimensionless",
+      "firstEquation": "eq:earth-lifecycle-cost",
+      "modelLayer": "Part II cost"
+    },
+    {
+      "key": "launch-price-break-even-01",
+      "symbol": "$p_L^\\ast$",
+      "meaning": "launch-price break-even under the affine space-cost model",
+      "unitsOrDomain": "constant-2025 USD/kg",
+      "firstEquation": "eq:launch-price-break-even",
+      "modelLayer": "Part II cost"
+    },
+    {
+      "key": "coupled-rsi-system-01",
+      "symbol": "$I_t,\\mathbf c_t,\\mathbf K_t,C_t,\\mathbf R_t,E_t,H_t,D_t,V_t,\\tau_x,\\boldsymbol\\delta_K,\\delta_C,\\Gamma_{x,t},\\Pi,f_x,\\theta_x,G_{\\mathrm{loc}},\\epsilon_{xy},\\rho(J_t)$",
+      "meaning": "intelligence, task-coverage, productive-capacity, and usable-compute states; limiting resources, energy, compute hardware, data, and verification; delays, depreciation, active gates, ceiling projection, saturating response functions and parameters; and local elasticity/Jacobian amplification diagnostics",
+      "unitsOrDomain": "capability index; task fractions; sector-capacity vector; usable-compute units; declared resource-state units; years; rates/yr; gates in $[0,1]$; state-preserving mappings; dimensionless local diagnostics",
+      "firstEquation": "eq:coupled-rsi-system",
+      "modelLayer": "front-matter causal system and integrated implementation"
+    },
+    {
+      "key": "task-coverage-01",
+      "symbol": "$c_j,c_j^0,c_j^{\\max},\\alpha_j$",
+      "meaning": "process task coverage, baseline, ceiling, and AI-level slope",
+      "unitsOrDomain": "fractions in $[0,1]$; slope per capability-index unit",
+      "firstEquation": "eq:task-coverage",
+      "modelLayer": "integrated bootstrap"
+    },
+    {
+      "key": "centrifuge-speed-01",
+      "symbol": "$\\mathrm{rpm}_j,g_j^\\ast,g_L,r_j$",
+      "meaning": "centrifuge speed, required acceleration, lunar gravity fraction, and rotor radius",
+      "unitsOrDomain": "rpm; multiples of Earth $g$; multiples of Earth $g$; m",
+      "firstEquation": "eq:centrifuge-speed",
+      "modelLayer": "integrated bootstrap"
+    },
+    {
+      "key": "seed-mass-objective-01",
+      "symbol": "$M_{\\mathrm{seed}},M_{\\mathrm{digital}},z_j,v_e,B_{e,j}^{\\mathrm{eff}}$",
+      "meaning": "installed seed mass, digital package, sector capacities, strategic-import stocks, and environment-adjusted bill of materials",
+      "unitsOrDomain": "tonnes; tonnes; capacity units; tonnes; tonnes/capacity unit",
+      "firstEquation": "eq:seed-mass-objective",
+      "modelLayer": "integrated bootstrap"
+    },
+    {
+      "key": "intelligence-update-01",
+      "symbol": "$I_t,I_{\\max},\\ell,\\beta_I$",
+      "meaning": "implemented capability index, fixed-regime frontier, gain scale per verified loop, and frontier curvature",
+      "unitsOrDomain": "dimensionless; dimensionless; capability/loop; positive exponent",
+      "firstEquation": "eq:intelligence-update",
+      "modelLayer": "integrated bootstrap"
+    },
+    {
+      "key": "intelligence-update-02",
+      "symbol": "$C_t,C_0$",
+      "meaning": "installed compute and its initial reference",
+      "unitsOrDomain": "model compute-capacity units, $C_0>0$",
+      "firstEquation": "eq:intelligence-update",
+      "modelLayer": "integrated bootstrap"
+    },
+    {
+      "key": "lexicographic-growth-stage-01",
+      "symbol": "$K_j,q_j,A_{i,j},\\delta_j$",
+      "meaning": "sector capacity, output rate, input-service coefficient, and depreciation",
+      "unitsOrDomain": "capacity units; output/(capacity-yr); input-output coefficient; yr$^{-1}$",
+      "firstEquation": "eq:lexicographic-growth-stage",
+      "modelLayer": "ten-sector model"
+    },
+    {
+      "key": "lexicographic-growth-stage-02",
+      "symbol": "$x_j,u_j,w,d_i,g$",
+      "meaning": "build, wear repair, recycling activity, stock draw, and lexicographic growth floor",
+      "unitsOrDomain": "capacity/yr; capacity/yr; service/yr; output/yr; yr$^{-1}$",
+      "firstEquation": "eq:lexicographic-growth-stage",
+      "modelLayer": "ten-sector model"
+    },
+    {
+      "key": "lexicographic-growth-stage-03",
+      "symbol": "$s_f,\\eta_{\\mathrm{rep}},\\eta_{\\mathrm{scrap}},o_i,\\rho_i,f_{c,j}$",
+      "meaning": "spares share, repair/recycling efficiencies, recycling input/output profiles, and recoverable loss share",
+      "unitsOrDomain": "dimensionless fractions or compatible service coefficients",
+      "firstEquation": "eq:lexicographic-growth-stage",
+      "modelLayer": "ten-sector model"
+    },
+    {
+      "key": "recoverable-retirement-01",
+      "symbol": "$R(K,u)$",
+      "meaning": "recoverable retirement flow before processing",
+      "unitsOrDomain": "capacity-equivalent recoverable material/yr",
+      "firstEquation": "eq:recoverable-retirement",
+      "modelLayer": "ten-sector model"
+    },
+    {
+      "key": "normalized-tie-break-01",
+      "symbol": "$\\widehat K_j,\\widehat R,\\widehat D_i$",
+      "meaning": "positive state-derived normalization scales for the tie-break",
+      "unitsOrDomain": "same units as the normalized variable, all $>0$",
+      "firstEquation": "eq:normalized-tie-break",
+      "modelLayer": "ten-sector model"
+    },
+    {
+      "key": "state-updates-01",
+      "symbol": "$S_i,L_i,C_i$",
+      "meaning": "stockpile, shelf life, and stock cap",
+      "unitsOrDomain": "sector-output units; years; sector-output units",
+      "firstEquation": "eq:state-updates",
+      "modelLayer": "ten-sector model"
+    },
+    {
+      "key": "realized-growth-01",
+      "symbol": "$g_{\\mathrm{real}},K_{j,\\mathrm{prestep}},K_{j,\\mathrm{postshock}}$",
+      "meaning": "realized minimum sector growth and pre-step/post-shock capacities",
+      "unitsOrDomain": "yr$^{-1}$; capacity units",
+      "firstEquation": "eq:realized-growth",
+      "modelLayer": "ten-sector model"
+    }
+  ]
+}

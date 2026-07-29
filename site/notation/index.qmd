@@ -1,0 +1,6 @@
+---
+title: "Notation register"
+description: "Consolidated symbols, meanings, units, domains, and model-layer scope."
+---
+
+{{< include ../../docs/manuscript/53-notation-register.md >}}
