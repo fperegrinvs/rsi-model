@@ -175,7 +175,7 @@
 | `src/rsimodel/integrated_runner.py` | `bfd6711044a9118436c010095fcf8b2a59215cbf43115e45588c0c92bb46b377` |
 | `src/rsimodel/integrated_tables.py` | `0ca050c0d6ef165b85e4ebce0f64f39455c8e6379cca58a866e6ac8ef83ad730` |
 | `src/rsimodel/manifest_cli.py` | `a36d936df91ddf98f1dd4d4457f3371166b90f5b537d9f2f44e7553a7c24b17c` |
-| `src/rsimodel/manifests.py` | `b0a092df2ef63ff6cabdc4e63618d6b4aae08a18de7ff37c0fc941eae21f8468` |
+| `src/rsimodel/manifests.py` | `cc8b15ef049a717ad0f20da27bb6c42d89d46e2117ee3ed40e83331647533f50` |
 | `src/rsimodel/orbital_ai_scenarios.py` | `e398406cb741f874b7b8ab7b75d8c72bba70f016cdecb2c4f3e8a70e3681b047` |
 | `src/rsimodel/portfolio_coverage.py` | `e5cbbbe6472b3f343163ed9d668aa27e8ff9f37fef011d6be57ebbdc585a8fb2` |
 | `src/rsimodel/precursor_telemetry.py` | `48d0706b950f4a690d4d03b3289752f2e422356ec645971e1d8e915794a64037` |
@@ -193,7 +193,7 @@
 | `tests/test_extensions.py` | `416f465888c704245125e58d335de79cc606b1e17d661ec6f1c327a24a7725d9` |
 | `tests/test_integrated.py` | `cd0b333c0f1f5a3d6f8127ced8d9ba639f99516d331a2e4b1452078ac9ca0257` |
 | `tests/test_integrated_analysis.py` | `e284492ffc3c798703152ac8c9e78dd993798359bf18c7a0cd2f2fed84e5b4a4` |
-| `tests/test_manifests.py` | `1979a2d3c55513356e8c38ea6cb311e9e629d0b00df6ec85a634e1644f313d2c` |
+| `tests/test_manifests.py` | `e1b23397b81c812ecea955bac5b2fc431aa99fe42197083db0762f7132cedca5` |
 | `tests/test_process_closure.py` | `e300df9365fca10d2bc660dcd2efeb8f89d7af2f48e17ceda02774b90beffdcb` |
 | `tests/test_publication.py` | `0a535dbee2ff159b30c6e555e29c3519e7b4339a364111d02cdf125e42023925` |
 | `tests/test_rehearsal.py` | `c1362c5bc03709d2c9192689861cc640399275816507d7188b2942b3c0b4150e` |

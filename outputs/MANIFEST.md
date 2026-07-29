@@ -7,8 +7,10 @@
 | artifact | sha256 |
 |---|---|
 | .bun-version | 56b0485099b6c5427d3b68c042fd05b632d5e52e924c5064473389812227164c |
+| .gitattributes | 3165cbf5b965dd9f272f4c31525275a8ac1fc8056671d269c11c2d0f2f0d5de1 |
 | .github/dependabot.yml | e8c30d7c9a49b66e5a08552537ccbf037873d4637d9ad0a635631d0f930cc018 |
 | .github/workflows/publication.yml | 507e2221835f90df7040afcbbdc79d8941d9f923274503ea19904f6b3202e32b |
+| .gitignore | 92c5639813179187a5114cc599a1a442d10910eb36ffc2acd3771805b115cd9c |
 | .markdownlint-cli2.jsonc | dabdcc4e1a6b12c75ff62dcc4f340cb0671429a3f5b498e87d27fdbe30186e32 |
 | .python-version | 02e735b3dfe1c32833eb550b7ff8ffa17f5f2bc3fa1e7bae61a8f5a3883ce398 |
 | .yamllint.yaml | 8246912462bf4bda6fcc76a4db89001a2f9b51faab323b29b354bbce490aaaaa |
@@ -77,7 +79,7 @@
 | outputs/figures/survival.png | 4930c97422eb55a24d962f7882b910b2f689192da9540c71a3a6662bb0588229 |
 | outputs/figures/survival_deep_central.png | 07216ccad9e372e45bae791e8162572823b2aeb86ebbb0fcffde2f9dbb7a88e6 |
 | outputs/figures/survival_deep_lunar.png | 9b29233e19c8cbb07dafb991c7b8f5c24ab2029fc7dfed7febeccd244f42a137 |
-| outputs/integrated/MANIFEST.md | d5fa9efe9f4e178d35d26ed717f5ce651f838dc63956cbc756a11f428572846c |
+| outputs/integrated/MANIFEST.md | e50fd36187f94a27d4cc72e44295bb55fe66723d9a813477edfcd92f4af13415 |
 | outputs/integrated/figures/compute_growth_regimes.png | 5365ced99fadf06924fc6bdf2ad0f79d39c16bf31741ab831f0ce748a7cc38fd |
 | outputs/integrated/figures/debris_regimes.png | 5d9b772b3ae608fd666f978b42540cea0146769943d1833c6b995ffa17e40bf2 |
 | outputs/integrated/figures/operating_capacity.png | 1320d886a77e05000567fc857339489a794edf110840d0b36638fa9812ab0afa |
@@ -248,7 +250,7 @@
 | scripts/check-table-layout.ts | c1d58464556d3f48496dda13a8f41c1f98fc5605366750cbe1c1e3722b167cc6 |
 | scripts/check-tables.ts | 790196ad1a9c02e9d8609bb2c26acebed7ca07f5210cb06a9d8b85a490ef1042 |
 | scripts/equation_explanations.lua | c0d6fcf3e27f8107d22ae83b6bb46901e92101bbe2b2aa1374480a9b51d88d1e |
-| scripts/equation_numbering.lua | c7a7aee5c4d1b72305ed68bd86bdbc9d1221548696a993c3964b76ea6e3d449b |
+| scripts/equation_numbering.lua | eecc6d1f9d0f1ed50dbdb558cdd54baf039f36484c80c49b49b0f0bcbda106b2 |
 | scripts/equations.ts | fb8b3f2a2e6a8c502623cf428b68c974689429aab23790fd432d41555d335e0d |
 | scripts/figure_numbering.lua | 595eba2c8677a87e6fd37ce82e1c443657e8f3d17763d1a496203247b0338787 |
 | scripts/inline-viewer.ts | 518113f9c4714479fd1db95df3cd87ee522ae0c166420c1c4a575c00efd28d32 |
@@ -314,7 +316,7 @@
 | src/rsimodel/integrated_types.py | da2ce4c0aa655ad0afb8594df6aadee45abb993857053afb3d016a627ec4ca90 |
 | src/rsimodel/lco.py | d4cab36efc1da958da62d9358fa2767b7890378beb01836fb284a53181df0e73 |
 | src/rsimodel/manifest_cli.py | a36d936df91ddf98f1dd4d4457f3371166b90f5b537d9f2f44e7553a7c24b17c |
-| src/rsimodel/manifests.py | b0a092df2ef63ff6cabdc4e63618d6b4aae08a18de7ff37c0fc941eae21f8468 |
+| src/rsimodel/manifests.py | cc8b15ef049a717ad0f20da27bb6c42d89d46e2117ee3ed40e83331647533f50 |
 | src/rsimodel/math_font_gate.py | 6bff904df07137b0d541df1df21246fa7b8949d17972b4288f3cfa0fac16ba41 |
 | src/rsimodel/model.py | 4e66e278f264738c1eca77785f5589264c1ec51589484a9acdfdb1ab864d1c7f |
 | src/rsimodel/montecarlo.py | ccaf5fc7a3d4d4fedf592e41cf795c019ee06381459863855cc6a338771ca1e4 |
@@ -337,7 +339,7 @@
 | src/rsimodel/rehearsal.py | 2e112df7e16d11201ec3125085a1c4fb46e81c6e442b44d3f5cd59b88226546c |
 | src/rsimodel/release.py | be4c748796e7022b170b7b280bb494142c3715276ad5ff557756337b7e314080 |
 | src/rsimodel/release_cli.py | 9e6c296001fea82c0223eb76971ab2bc656f439cac1de5ac88c1766ee8fcd65f |
-| src/rsimodel/release_manifest.py | f0578f9ee82ce033814d31ae850e791418596753d917cea1872faddecb341e33 |
+| src/rsimodel/release_manifest.py | 63637440db5f8e65ce9d3017038a3970b9747add3164c54f4919b5ab50ac8f5f |
 | src/rsimodel/report.py | 80338f5d66c1d4ae8367cc15062ab5111e36994ee80d53ed257d434d6977c58c |
 | src/rsimodel/run_config.py | 5d81e5d837627195864ef88a3d36dba97c89cdd8538c31a2bec9c288ced046f4 |
 | src/rsimodel/solver_adapter.py | 64ecd6028c435a2c6bf0aa782f453c6dc41232e3abbebf26b9128c85f6aa40fd |
@@ -354,7 +356,7 @@
 | tests/test_integrated.py | cd0b333c0f1f5a3d6f8127ced8d9ba639f99516d331a2e4b1452078ac9ca0257 |
 | tests/test_integrated_analysis.py | e284492ffc3c798703152ac8c9e78dd993798359bf18c7a0cd2f2fed84e5b4a4 |
 | tests/test_lco.py | 949e883ce52da22a2ca3a3a71d048b6626ee1ba21794cff2f216f7ecda1224b4 |
-| tests/test_manifests.py | 1979a2d3c55513356e8c38ea6cb311e9e629d0b00df6ec85a634e1644f313d2c |
+| tests/test_manifests.py | e1b23397b81c812ecea955bac5b2fc431aa99fe42197083db0762f7132cedca5 |
 | tests/test_manuscript_sources.py | ecba43489a9b0e89fd0ba010e09f79dd9ff37a10b385ab454d12b6d52b63f7e2 |
 | tests/test_model.py | 2aad58e5a59e3f696d6def5ad6b91ea6cee3a21711e319db19acdfcc6efb1015 |
 | tests/test_notation_audit.py | 7efbfba4342a1c407e110b29e883b7cbda1fbae71cef62be6e41065f6f6f8ecf |

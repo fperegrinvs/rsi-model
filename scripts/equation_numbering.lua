@@ -218,9 +218,12 @@ local function number_document(document)
           "",
           {"equation-math-scroll"},
           {
-            ["tabindex"] = "0",
-            ["aria-label"] = "Equation " .. number ..
-              " mathematical expression; scroll horizontally if needed",
+            {"tabindex", "0"},
+            {
+              "aria-label",
+              "Equation " .. number ..
+                " mathematical expression; scroll horizontally if needed",
+            },
           }
         )
       )

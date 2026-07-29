@@ -38,6 +38,8 @@ def release_artifacts(root: Path) -> list[Path]:
         root / "README.md",
         root / "ROADMAP.md",
         root / ".bun-version",
+        root / ".gitattributes",
+        root / ".gitignore",
         root / ".markdownlint-cli2.jsonc",
         root / ".python-version",
         root / ".yamllint.yaml",

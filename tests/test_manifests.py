@@ -1,5 +1,7 @@
 """Release manifests must match every recorded artifact byte-for-byte."""
 
+import shutil
+import subprocess
 from pathlib import Path
 
 from rsimodel.manifests import (
@@ -30,6 +32,23 @@ def test_canonical_release_manifest_verifies_and_covers_manuscript() -> None:
         Path("tests/visual/math/desktop-diminishing-frontier.png"),
     ):
         assert path in records
+
+
+def test_canonical_release_manifest_only_references_tracked_files() -> None:
+    manifest = ROOT / "outputs" / "MANIFEST.md"
+    git = shutil.which("git")
+    assert git is not None
+    tracked = {
+        Path(line)
+        for line in subprocess.run(  # noqa: S603
+            [git, "ls-files"],
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.splitlines()
+    }
+    assert set(manifest_records(manifest)) <= tracked
 
 
 def test_integrated_model_manifest_verifies() -> None:

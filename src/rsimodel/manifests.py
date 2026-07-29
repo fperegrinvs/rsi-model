@@ -14,6 +14,8 @@ REQUIRED_RELEASE_PATHS = {
     CANONICAL_HTML,
     Path("CITATION.cff"),
     Path(".bun-version"),
+    Path(".gitattributes"),
+    Path(".gitignore"),
     Path(".python-version"),
     Path("uv.lock"),
     Path("pyproject.toml"),

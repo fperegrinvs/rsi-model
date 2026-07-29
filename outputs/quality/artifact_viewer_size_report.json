@@ -1,0 +1,577 @@
+{
+  "format": "rsi-artifact-viewer-size-v1",
+  "baseline": {
+    "description": "Measured immediately before the shared viewer; the older TODO estimate was 2.8 MiB HTML and 2.55 MiB of referenced CSVs.",
+    "referencedCsvBytes": 2997241,
+    "standaloneBytes": 3141572
+  },
+  "budgets": {
+    "baseline": {
+      "description": "Measured immediately before the shared viewer; the older TODO estimate was 2.8 MiB HTML and 2.55 MiB of referenced CSVs.",
+      "referencedCsvBytes": 2997241,
+      "standaloneBytes": 3141572
+    },
+    "embeddedArtifactRawBytes": 1310720,
+    "embeddedArtifactGzipBytes": 262144,
+    "fullArtifactRawBytes": 65536,
+    "previewRows": 50,
+    "standaloneBrotliBytes": 2202010,
+    "standaloneGzipBytes": 2359296,
+    "standaloneRawBytes": 4718592,
+    "startupMilliseconds": 2500,
+    "firstViewMilliseconds": 2500
+  },
+  "measured": {
+    "artifactCount": 90,
+    "brotliBytes": 1864085,
+    "embeddedArtifactGzipBytes": 189955,
+    "embeddedArtifactRawBytes": 1157131,
+    "fullArtifacts": 82,
+    "gzipBytes": 2022550,
+    "previewArtifacts": 8,
+    "referencedCsvBytes": 3019763,
+    "standaloneRawBytes": 3688338
+  },
+  "artifacts": [
+    {
+      "complete": true,
+      "embeddedRows": 21,
+      "path": "outputs/integrated/tables/ablations.csv",
+      "sourceRows": 21
+    },
+    {
+      "complete": true,
+      "embeddedRows": 8,
+      "path": "outputs/integrated/tables/ai_electronics_supply_chain.csv",
+      "sourceRows": 8
+    },
+    {
+      "complete": true,
+      "embeddedRows": 9,
+      "path": "outputs/integrated/tables/ai_rd_compute_allocation.csv",
+      "sourceRows": 9
+    },
+    {
+      "complete": true,
+      "embeddedRows": 16,
+      "path": "outputs/integrated/tables/ai_rnd_benchmark_registry.csv",
+      "sourceRows": 16
+    },
+    {
+      "complete": true,
+      "embeddedRows": 108,
+      "path": "outputs/integrated/tables/ai_rnd_evidence_crosswalk.csv",
+      "sourceRows": 108
+    },
+    {
+      "complete": true,
+      "embeddedRows": 5,
+      "path": "outputs/integrated/tables/authorized_capacity_control_summary.csv",
+      "sourceRows": 5
+    },
+    {
+      "complete": true,
+      "embeddedRows": 245,
+      "path": "outputs/integrated/tables/authorized_capacity_control_trajectory.csv",
+      "sourceRows": 245
+    },
+    {
+      "complete": true,
+      "embeddedRows": 5,
+      "path": "outputs/integrated/tables/bottleneck_upgrade_projects.csv",
+      "sourceRows": 5
+    },
+    {
+      "complete": true,
+      "embeddedRows": 245,
+      "path": "outputs/integrated/tables/bottleneck_upgrade_trajectory.csv",
+      "sourceRows": 245
+    },
+    {
+      "complete": true,
+      "embeddedRows": 4,
+      "path": "outputs/integrated/tables/closure_loop_ablation_matrix.csv",
+      "sourceRows": 4
+    },
+    {
+      "complete": true,
+      "embeddedRows": 4,
+      "path": "outputs/integrated/tables/cognitive_physical_labor.csv",
+      "sourceRows": 4
+    },
+    {
+      "complete": true,
+      "embeddedRows": 2,
+      "path": "outputs/integrated/tables/compute_cohort_summary.csv",
+      "sourceRows": 2
+    },
+    {
+      "complete": false,
+      "embeddedRows": 50,
+      "path": "outputs/integrated/tables/compute_cohort_trajectory.csv",
+      "sourceRows": 140
+    },
+    {
+      "complete": true,
+      "embeddedRows": 3,
+      "path": "outputs/integrated/tables/compute_demand_allocation_summary.csv",
+      "sourceRows": 3
+    },
+    {
+      "complete": true,
+      "embeddedRows": 63,
+      "path": "outputs/integrated/tables/compute_demand_allocation_trajectory.csv",
+      "sourceRows": 63
+    },
+    {
+      "complete": true,
+      "embeddedRows": 15,
+      "path": "outputs/integrated/tables/coordination_form_summary.csv",
+      "sourceRows": 15
+    },
+    {
+      "complete": false,
+      "embeddedRows": 50,
+      "path": "outputs/integrated/tables/coordination_form_uncertainty.csv",
+      "sourceRows": 768
+    },
+    {
+      "complete": true,
+      "embeddedRows": 81,
+      "path": "outputs/integrated/tables/coordination_sensitivity.csv",
+      "sourceRows": 81
+    },
+    {
+      "complete": true,
+      "embeddedRows": 7,
+      "path": "outputs/integrated/tables/data_advantage_profile.csv",
+      "sourceRows": 7
+    },
+    {
+      "complete": true,
+      "embeddedRows": 24,
+      "path": "outputs/integrated/tables/data_evaluator_coevolution.csv",
+      "sourceRows": 24
+    },
+    {
+      "complete": true,
+      "embeddedRows": 5,
+      "path": "outputs/integrated/tables/debris_summary.csv",
+      "sourceRows": 5
+    },
+    {
+      "complete": true,
+      "embeddedRows": 5,
+      "path": "outputs/integrated/tables/digital_channel_ablations.csv",
+      "sourceRows": 5
+    },
+    {
+      "complete": true,
+      "embeddedRows": 21,
+      "path": "outputs/integrated/tables/digital_elasticity_bounds.csv",
+      "sourceRows": 21
+    },
+    {
+      "complete": true,
+      "embeddedRows": 2,
+      "path": "outputs/integrated/tables/digital_learning_feedback.csv",
+      "sourceRows": 2
+    },
+    {
+      "complete": true,
+      "embeddedRows": 3,
+      "path": "outputs/integrated/tables/digital_loop_bottlenecks.csv",
+      "sourceRows": 3
+    },
+    {
+      "complete": true,
+      "embeddedRows": 243,
+      "path": "outputs/integrated/tables/digital_progress_regimes.csv",
+      "sourceRows": 243
+    },
+    {
+      "complete": true,
+      "embeddedRows": 6,
+      "path": "outputs/integrated/tables/digital_release_backtest_summary.csv",
+      "sourceRows": 6
+    },
+    {
+      "complete": true,
+      "embeddedRows": 14,
+      "path": "outputs/integrated/tables/digital_release_backtest.csv",
+      "sourceRows": 14
+    },
+    {
+      "complete": true,
+      "embeddedRows": 3,
+      "path": "outputs/integrated/tables/dynamic_regime_summary.csv",
+      "sourceRows": 3
+    },
+    {
+      "complete": true,
+      "embeddedRows": 46,
+      "path": "outputs/integrated/tables/embodiment_bom_requirements.csv",
+      "sourceRows": 46
+    },
+    {
+      "complete": true,
+      "embeddedRows": 24,
+      "path": "outputs/integrated/tables/embodiment_compatibility_matrix.csv",
+      "sourceRows": 24
+    },
+    {
+      "complete": true,
+      "embeddedRows": 88,
+      "path": "outputs/integrated/tables/embodiment_two_direction_sweep.csv",
+      "sourceRows": 88
+    },
+    {
+      "complete": true,
+      "embeddedRows": 4,
+      "path": "outputs/integrated/tables/ensemble_summary.csv",
+      "sourceRows": 4
+    },
+    {
+      "complete": true,
+      "embeddedRows": 20,
+      "path": "outputs/integrated/tables/import_stock_composition.csv",
+      "sourceRows": 20
+    },
+    {
+      "complete": true,
+      "embeddedRows": 8,
+      "path": "outputs/integrated/tables/industrial_reliability_ladder.csv",
+      "sourceRows": 8
+    },
+    {
+      "complete": true,
+      "embeddedRows": 5,
+      "path": "outputs/integrated/tables/intelligence_marginal_response.csv",
+      "sourceRows": 5
+    },
+    {
+      "complete": true,
+      "embeddedRows": 16,
+      "path": "outputs/integrated/tables/intergenerational_learning_faults.csv",
+      "sourceRows": 16
+    },
+    {
+      "complete": false,
+      "embeddedRows": 50,
+      "path": "outputs/integrated/tables/internal_public_capability_trajectories.csv",
+      "sourceRows": 243
+    },
+    {
+      "complete": true,
+      "embeddedRows": 9,
+      "path": "outputs/integrated/tables/long_horizon_endpoints.csv",
+      "sourceRows": 9
+    },
+    {
+      "complete": true,
+      "embeddedRows": 30,
+      "path": "outputs/integrated/tables/matched_lifecycle_cost_contributions.csv",
+      "sourceRows": 30
+    },
+    {
+      "complete": true,
+      "embeddedRows": 5,
+      "path": "outputs/integrated/tables/milestone_order_branches.csv",
+      "sourceRows": 5
+    },
+    {
+      "complete": true,
+      "embeddedRows": 4,
+      "path": "outputs/integrated/tables/observed_precursor_telemetry.csv",
+      "sourceRows": 4
+    },
+    {
+      "complete": false,
+      "embeddedRows": 50,
+      "path": "outputs/integrated/tables/orbital_ai_closure_stack.csv",
+      "sourceRows": 72
+    },
+    {
+      "complete": true,
+      "embeddedRows": 4,
+      "path": "outputs/integrated/tables/orbital_ai_closure_summary.csv",
+      "sourceRows": 4
+    },
+    {
+      "complete": true,
+      "embeddedRows": 18,
+      "path": "outputs/integrated/tables/orbital_ai_scenario_inputs.csv",
+      "sourceRows": 18
+    },
+    {
+      "complete": true,
+      "embeddedRows": 17,
+      "path": "outputs/integrated/tables/orbital_ai_scenario_results.csv",
+      "sourceRows": 17
+    },
+    {
+      "complete": true,
+      "embeddedRows": 2,
+      "path": "outputs/integrated/tables/orbital_breakup_cloud_summary.csv",
+      "sourceRows": 2
+    },
+    {
+      "complete": true,
+      "embeddedRows": 732,
+      "path": "outputs/integrated/tables/orbital_breakup_cloud_trajectory.csv",
+      "sourceRows": 732
+    },
+    {
+      "complete": true,
+      "embeddedRows": 5,
+      "path": "outputs/integrated/tables/orbital_cluster_layout_optimization.csv",
+      "sourceRows": 5
+    },
+    {
+      "complete": true,
+      "embeddedRows": 10,
+      "path": "outputs/integrated/tables/orbital_control_policy.csv",
+      "sourceRows": 10
+    },
+    {
+      "complete": true,
+      "embeddedRows": 6,
+      "path": "outputs/integrated/tables/orbital_degraded_control_stress.csv",
+      "sourceRows": 6
+    },
+    {
+      "complete": true,
+      "embeddedRows": 2,
+      "path": "outputs/integrated/tables/orbital_environment_strategy_comparison.csv",
+      "sourceRows": 2
+    },
+    {
+      "complete": true,
+      "embeddedRows": 18,
+      "path": "outputs/integrated/tables/orbital_fleet_amortization.csv",
+      "sourceRows": 18
+    },
+    {
+      "complete": true,
+      "embeddedRows": 8,
+      "path": "outputs/integrated/tables/orbital_governance_constraints.csv",
+      "sourceRows": 8
+    },
+    {
+      "complete": true,
+      "embeddedRows": 201,
+      "path": "outputs/integrated/tables/orbital_lifecycle_states.csv",
+      "sourceRows": 201
+    },
+    {
+      "complete": true,
+      "embeddedRows": 3,
+      "path": "outputs/integrated/tables/orbital_lifecycle_strategy_comparison.csv",
+      "sourceRows": 3
+    },
+    {
+      "complete": true,
+      "embeddedRows": 256,
+      "path": "outputs/integrated/tables/orbital_mitigation_portfolio_pareto.csv",
+      "sourceRows": 256
+    },
+    {
+      "complete": true,
+      "embeddedRows": 4,
+      "path": "outputs/integrated/tables/orbital_multi_operator_capacity.csv",
+      "sourceRows": 4
+    },
+    {
+      "complete": true,
+      "embeddedRows": 6,
+      "path": "outputs/integrated/tables/orbital_regime_assumptions.csv",
+      "sourceRows": 6
+    },
+    {
+      "complete": false,
+      "embeddedRows": 50,
+      "path": "outputs/integrated/tables/orbital_service_decision_comparison.csv",
+      "sourceRows": 324
+    },
+    {
+      "complete": false,
+      "embeddedRows": 50,
+      "path": "outputs/integrated/tables/orbital_transport_break_even_surface.csv",
+      "sourceRows": 768
+    },
+    {
+      "complete": true,
+      "embeddedRows": 88,
+      "path": "outputs/integrated/tables/orbital_transport_service_network.csv",
+      "sourceRows": 88
+    },
+    {
+      "complete": true,
+      "embeddedRows": 4,
+      "path": "outputs/integrated/tables/partial_closure_allocation_policies.csv",
+      "sourceRows": 4
+    },
+    {
+      "complete": true,
+      "embeddedRows": 4,
+      "path": "outputs/integrated/tables/partial_closure_dashboard.csv",
+      "sourceRows": 4
+    },
+    {
+      "complete": true,
+      "embeddedRows": 3,
+      "path": "outputs/integrated/tables/partial_closure_metrics.csv",
+      "sourceRows": 3
+    },
+    {
+      "complete": true,
+      "embeddedRows": 72,
+      "path": "outputs/integrated/tables/partial_closure_substitution_programs.csv",
+      "sourceRows": 72
+    },
+    {
+      "complete": false,
+      "embeddedRows": 50,
+      "path": "outputs/integrated/tables/partial_closure_supplier_boundary.csv",
+      "sourceRows": 984
+    },
+    {
+      "complete": true,
+      "embeddedRows": 164,
+      "path": "outputs/integrated/tables/partial_closure_support_policies.csv",
+      "sourceRows": 164
+    },
+    {
+      "complete": true,
+      "embeddedRows": 1,
+      "path": "outputs/integrated/tables/portfolio_sector_coverage_summary.csv",
+      "sourceRows": 1
+    },
+    {
+      "complete": true,
+      "embeddedRows": 18,
+      "path": "outputs/integrated/tables/portfolio_sector_coverage.csv",
+      "sourceRows": 18
+    },
+    {
+      "complete": true,
+      "embeddedRows": 5,
+      "path": "outputs/integrated/tables/portfolio_sector_group_summary.csv",
+      "sourceRows": 5
+    },
+    {
+      "complete": true,
+      "embeddedRows": 38,
+      "path": "outputs/integrated/tables/process_closure_gap_register.csv",
+      "sourceRows": 38
+    },
+    {
+      "complete": true,
+      "embeddedRows": 28,
+      "path": "outputs/integrated/tables/rehearsal_acceptance_matrix.csv",
+      "sourceRows": 28
+    },
+    {
+      "complete": true,
+      "embeddedRows": 3,
+      "path": "outputs/integrated/tables/replication_governance_externalities_summary.csv",
+      "sourceRows": 3
+    },
+    {
+      "complete": true,
+      "embeddedRows": 93,
+      "path": "outputs/integrated/tables/replication_governance_externalities_trajectory.csv",
+      "sourceRows": 93
+    },
+    {
+      "complete": true,
+      "embeddedRows": 36,
+      "path": "outputs/integrated/tables/robust_seed_pareto.csv",
+      "sourceRows": 36
+    },
+    {
+      "complete": false,
+      "embeddedRows": 50,
+      "path": "outputs/integrated/tables/sector_capacity_trajectory.csv",
+      "sourceRows": 8694
+    },
+    {
+      "complete": true,
+      "embeddedRows": 12,
+      "path": "outputs/integrated/tables/seed_objective_comparison.csv",
+      "sourceRows": 12
+    },
+    {
+      "complete": true,
+      "embeddedRows": 54,
+      "path": "outputs/integrated/tables/simulation_scenario_coverage.csv",
+      "sourceRows": 54
+    },
+    {
+      "complete": true,
+      "embeddedRows": 5,
+      "path": "outputs/integrated/tables/spacexai_economic_comparison.csv",
+      "sourceRows": 5
+    },
+    {
+      "complete": true,
+      "embeddedRows": 18,
+      "path": "outputs/integrated/tables/spacexai_proponent_case.csv",
+      "sourceRows": 18
+    },
+    {
+      "complete": true,
+      "embeddedRows": 12,
+      "path": "outputs/integrated/tables/spacexai_proponent_claim_crosswalk.csv",
+      "sourceRows": 12
+    },
+    {
+      "complete": true,
+      "embeddedRows": 21,
+      "path": "outputs/integrated/tables/spacexai_proponent_hybrid.csv",
+      "sourceRows": 21
+    },
+    {
+      "complete": true,
+      "embeddedRows": 12,
+      "path": "outputs/integrated/tables/spacexai_threshold_tornado.csv",
+      "sourceRows": 12
+    },
+    {
+      "complete": true,
+      "embeddedRows": 5,
+      "path": "outputs/integrated/tables/spacexai_time_to_useful_compute.csv",
+      "sourceRows": 5
+    },
+    {
+      "complete": true,
+      "embeddedRows": 64,
+      "path": "outputs/integrated/tables/terrestrial_rehearsal_embodiment_faults.csv",
+      "sourceRows": 64
+    },
+    {
+      "complete": true,
+      "embeddedRows": 36,
+      "path": "outputs/integrated/tables/verification_hierarchy.csv",
+      "sourceRows": 36
+    },
+    {
+      "complete": true,
+      "embeddedRows": 52,
+      "path": "outputs/tables/claim_provenance.csv",
+      "sourceRows": 52
+    },
+    {
+      "complete": true,
+      "embeddedRows": 10,
+      "path": "outputs/tables/import_decay_deep.csv",
+      "sourceRows": 10
+    },
+    {
+      "complete": true,
+      "embeddedRows": 12,
+      "path": "outputs/tables/mc_deep.csv",
+      "sourceRows": 12
+    }
+  ]
+}

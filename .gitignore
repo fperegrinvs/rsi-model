@@ -1,0 +1,19 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+node_modules/
+.coverage
+.DS_Store
+~$*
+outputs/*.log
+outputs/quality/*
+!outputs/quality/artifact_viewer_size_report.json
+_site/
+tmp/
+
+# Third-party copyrighted archives: kept locally for citation stability but
+# EXCLUDED from the public repository (see docs/sources/README.md for the
+# canonical URLs). Do not commit.
+docs/sources/*.pdf
+docs/transcripts/moonshots-266-2026-06-26.md
