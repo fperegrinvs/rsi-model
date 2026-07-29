@@ -9,7 +9,7 @@
 | .bun-version | 56b0485099b6c5427d3b68c042fd05b632d5e52e924c5064473389812227164c |
 | .gitattributes | 3165cbf5b965dd9f272f4c31525275a8ac1fc8056671d269c11c2d0f2f0d5de1 |
 | .github/dependabot.yml | e8c30d7c9a49b66e5a08552537ccbf037873d4637d9ad0a635631d0f930cc018 |
-| .github/workflows/publication.yml | 507e2221835f90df7040afcbbdc79d8941d9f923274503ea19904f6b3202e32b |
+| .github/workflows/publication.yml | 4601fff064daea99dae3c78b0b805a69d06617b478c2f574379a38199ff002ac |
 | .gitignore | 92c5639813179187a5114cc599a1a442d10910eb36ffc2acd3771805b115cd9c |
 | .markdownlint-cli2.jsonc | dabdcc4e1a6b12c75ff62dcc4f340cb0671429a3f5b498e87d27fdbe30186e32 |
 | .python-version | 02e735b3dfe1c32833eb550b7ff8ffa17f5f2bc3fa1e7bae61a8f5a3883ce398 |
