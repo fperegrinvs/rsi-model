@@ -1162,10 +1162,10 @@ download.
 
 - [x] Start from a reviewed, clean release commit after all concurrent work is
       integrated.
-- [ ] Run the full clean-clone Linux publication workflow and resolve any
-      platform-dependent artifact drift.
+- [ ] Run the full strict local Apple-silicon macOS candidate workflow on the
+      exact clean release commit and confirm that it produces no tracked drift.
 - [ ] Obtain the external release authorization bound to the exact commit and
-      passing CI run.
+      checksum-verified strict local candidate audit.
 - [ ] Create the immutable `r4.0` tag and archive.
 - [ ] Mint/record the version DOI and canonical immutable URL.
 - [ ] Regenerate publication metadata and verify both manifests byte-for-byte.
@@ -1994,19 +1994,19 @@ to the reviewed immutable SHA current at implementation time.
       Pyright, config/workflow lint, pytest, and branch coverage.
 - [x] Create a package job that builds sdist/wheel and performs isolated import
       and CLI smoke tests.
-- [x] Run the expensive publication-integrity and artifact-regeneration job only
-      after fast quality gates pass. Preserve the current rejection of
-      unexplained generated-file drift.
+- [x] Run expensive publication-integrity and artifact regeneration only in the
+      canonical local macOS candidate command. Preserve the rejection of
+      unexplained generated-file drift; do not spend hosted CI minutes on
+      automatic regeneration.
 - [x] Keep deployment separate and dependent on all required build and
       publication checks. Give only that job deployment permissions.
-- [x] Use the same commands locally and in CI; `package.json` may provide short
-      aliases, but it must delegate to locked `uv run` commands rather than
-      becoming a second source of truth.
-- [x] Test the declared Python version on Linux for every change. Add a macOS
-      smoke job or scheduled portability job if the project promises local Mac
-      support; keep publication generation on one pinned reference platform.
-- [x] Cancel superseded CI runs and cache by `uv.lock`, but never let a warm
-      cache substitute for `uv lock --check` or locked synchronization.
+- [x] Keep one local command surface in `package.json`; it orchestrates the
+      existing locked `uv run` and Bun/pnpm commands instead of reimplementing
+      the model or checks.
+- [x] Test the declared versions on the canonical Apple-silicon macOS platform.
+      Cross-platform numerical equality is not part of the release contract.
+- [x] Keep the hosted workflow explicit and manual, with no scheduled or
+      per-change consumption of the free GitHub Actions allowance.
 
 Migration order:
 

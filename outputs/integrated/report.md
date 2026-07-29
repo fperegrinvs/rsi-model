@@ -44,7 +44,7 @@ The aggregate material model is now paired with a process-closure acceptance con
 - residual intervention: 193.2 h/year
 - lunar feed: 540.0 t/year
 - asteroid feed: 0.0 t/year
-- tight constraints: `element:Ni` (-1.78e-15), `element:Cu` (-1.78e-15), `element:Cr` (-4.44e-16), `element:rare_earths` (-2.22e-16), `element:N` (-1.39e-17)
+- tight constraints: `element:Cr` (-3.11e-15), `element:Ni` (-2.66e-15), `element:C` (-1.78e-15), `element:rare_earths` (-4.44e-16), `element:H` (-5.55e-17)
 
 ### lunar_strategic_material_bridge
 
@@ -53,7 +53,7 @@ The aggregate material model is now paired with a process-closure acceptance con
 - residual intervention: 130.5 h/year
 - lunar feed: 540.0 t/year
 - asteroid feed: 0.0 t/year
-- tight constraints: `element:Ni` (-5.33e-15), `element:C` (-3.55e-15), `element:Cu` (-3.55e-15), `element:Cr` (-8.88e-16), `element:Li` (-3.33e-16)
+- tight constraints: `element:Cu` (-7.11e-15), `element:Ni` (-3.55e-15), `element:C` (-2.66e-15), `element:Li` (-1.11e-16), `element:H` (-5.55e-17)
 
 ### lunar_strict
 
@@ -67,7 +67,7 @@ The aggregate material model is now paired with a process-closure acceptance con
 - residual intervention: 31.0 h/year
 - lunar feed: 360.3 t/year
 - asteroid feed: 179.7 t/year
-- tight constraints: `throughput:asteroid_mining` (-2.84e-14), `element:dopants` (-1.39e-17), `throughput:asteroid_transport` (+0.00e+00), `throughput:refining` (+0.00e+00), `autonomy:intervention_budget` (+9.74e-01)
+- tight constraints: `throughput:refining` (-2.84e-14), `throughput:asteroid_mining` (+0.00e+00), `throughput:asteroid_transport` (+0.00e+00), `element:dopants` (+1.39e-17), `autonomy:intervention_budget` (+9.74e-01)
 
 ## Delivered-to-operating seed stage (r4.0)
 
@@ -200,17 +200,17 @@ The central release remains on the identity `centrifuge_only` profile for contin
 
 | scenario | environment | feasible | seed mass | top binding row | at year 40 | doubling | survived |
 |---|---|:---:|---:|---|---:|---:|:---:|
-| terrestrial_rehearsal | centrifuge_only | yes | 206.9 t | element:Ni | 0.47 | — | no |
-| terrestrial_rehearsal | lunar_nominal | yes | 210.6 t | element:Cu | 0.51 | — | yes |
+| terrestrial_rehearsal | centrifuge_only | yes | 206.9 t | element:Cr | 0.47 | — | no |
+| terrestrial_rehearsal | lunar_nominal | yes | 210.6 t | element:C | 0.51 | — | yes |
 | terrestrial_rehearsal | lunar_adverse | no | — t | — | — | — | — |
-| lunar_strategic_material_bridge | centrifuge_only | yes | 217.0 t | element:Ni | 0.54 | — | no |
-| lunar_strategic_material_bridge | lunar_nominal | yes | 223.2 t | element:Ni | 0.59 | — | no |
+| lunar_strategic_material_bridge | centrifuge_only | yes | 217.0 t | element:Cu | 0.54 | — | no |
+| lunar_strategic_material_bridge | lunar_nominal | yes | 223.2 t | element:Cu | 0.59 | — | no |
 | lunar_strategic_material_bridge | lunar_adverse | no | — t | — | — | — | — |
 | lunar_strict | centrifuge_only | no | — t | — | — | — | — |
 | lunar_strict | lunar_nominal | no | — t | — | — | — | — |
 | lunar_strict | lunar_adverse | no | — t | — | — | — | — |
-| moon_asteroid_network | centrifuge_only | yes | 187.9 t | throughput:asteroid_mining | 3.28 | 35.2 yr | yes |
-| moon_asteroid_network | lunar_nominal | yes | 195.4 t | element:dopants | 3.43 | 35.0 yr | yes |
+| moon_asteroid_network | centrifuge_only | yes | 187.9 t | throughput:refining | 3.28 | 35.2 yr | yes |
+| moon_asteroid_network | lunar_nominal | yes | 195.4 t | throughput:refining | 3.43 | 35.0 yr | yes |
 | moon_asteroid_network | lunar_adverse | yes | 209.8 t | throughput:refining | 3.61 | 34.5 yr | yes |
 
 The nominal/adverse penalties change seed mass and binding rows; the adverse lunar bridge becomes LP-infeasible. Some feasible penalized profiles can improve the year-40 trajectory because the minimum-mass LP responds by installing more initial capacity. That is an objective frontier artifact, not evidence that a harsher environment helps. Machine-readable: `tables/environment_process_effects.csv`.
@@ -347,10 +347,10 @@ All three objectives return the identical central design in every LP-feasible sc
 
 Per-draw failure reasons, top binding constraints among feasible draws, and Spearman rank sensitivity of the named multipliers (machine-readable: `tables/diagnostics_histograms.csv`, `tables/ensemble_sensitivity.csv`):
 
-- **terrestrial_rehearsal**: failures — autonomy_threshold 77, lp_infeasible 42; top binding — element:C 21, element:Cu 15, element:Cr 14, element:Fe 11.
-- **lunar_strategic_material_bridge**: failures — autonomy_threshold 54, lp_infeasible 20; top binding — element:Ni 42, element:C 34, element:Cu 21, element:Cr 15.
+- **terrestrial_rehearsal**: failures — autonomy_threshold 77, lp_infeasible 42; top binding — element:Cu 19, element:C 18, element:Fe 11, element:Cr 11.
+- **lunar_strategic_material_bridge**: failures — autonomy_threshold 54, lp_infeasible 20; top binding — element:Ni 44, element:C 31, element:Cu 24, element:Cr 11.
 - **lunar_strict**: failures — lp_infeasible 167, autonomy_threshold 33; top binding — n/a.
-- **moon_asteroid_network**: failures — autonomy_threshold 13; top binding — throughput:refining 81, element:dopants 43, throughput:asteroid_mining 28, throughput:asteroid_transport 24.
+- **moon_asteroid_network**: failures — autonomy_threshold 13; top binding — throughput:refining 58, element:dopants 57, throughput:asteroid_transport 38, element:Ti 18.
 
 These are rank screens inside the declared independent multiplier measure, not causal effects or global sensitivity. Sector resolution changes both signs and magnitudes relative to the scalar-state run; the machine-readable table is authoritative and no previous depreciation-direction claim is carried forward.
 

@@ -1,25 +1,9 @@
 # Appendix C: Reproducibility {#appendix-c-reproducibility}
 
-    uv sync --locked --all-groups
-    pnpm install --frozen-lockfile
-    uv run --locked rsi-run-baseline --output-dir outputs  # Part I sweep + figures (~3 min)
-    uv run --locked rsi-run-part2 --output-dir outputs     # Part II (~15 s)
-    uv run --locked rsi-run-deep --output-dir outputs      # deep run (hardware-dependent)
-    uv run --locked rsi-run-integrated
-    uv run --locked rsi-write-provenance --project-root .
-    pnpm run check:propositions
-    pnpm run check:readability
-    pnpm run build:manuscript                 # r4.0 standalone HTML
-    pnpm run build:site
-    pnpm run check:footnotes
-    uv run --locked rsi-write-manifest --project-root .  # run last
-    uv run --locked rsi-verify-manifests --project-root .
-    uv run --locked rsi-release-preflight --project-root . --mode candidate
-    uv run --locked rsi-publication-preflight \
-        --write-authorization-template /secure/path/paper-authorization.json
-    uv run --locked rsi-evaluate-evidence process_closure \
-        --write-template /secure/path/process-closure-bundle.json
-    uv run --locked pytest -q
+    corepack pnpm install --frozen-lockfile
+    corepack pnpm run setup:local-tools
+    corepack pnpm run candidate:macos:update  # regenerate and review
+    corepack pnpm run candidate:macos         # strict clean reproduction
 
 Model: `src/rsimodel/{model,delta,cutsets,montecarlo,lco,policies,plots,report}.py`;
 parameters: `params/{anchors,assumptions,environments}.yaml`; generated
@@ -34,7 +18,7 @@ script derives its seeds from stable crc32 strings (never Python's
 process-salted `hash()`), and each anchor's Monte Carlo
 draw is keyed by the run seed plus the anchor's NAME, so results are stable
 both across processes and under anchor-list growth. All tables regenerate
-deterministically within a pinned reference environment.
+deterministically within the pinned Apple-silicon macOS reference environment.
 `outputs/MANIFEST.md` records the sha256 of every release artifact,
 including the canonical Markdown and standalone HTML, plus library versions;
 it omits a self-referential generating-commit field. `tests/test_repro.py` cross-checks

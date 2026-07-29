@@ -1801,27 +1801,14 @@
     {
       "file": "docs/manuscript/51-appendix-c-reproducibility.md",
       "section": "front-matter",
-      "opening": "uv sync locked all-groups pnpm install frozen-lockfile uv run locked rsi-run-baseline output-dir",
-      "wordCount": 115,
-      "signals": [
-        "long paragraph (115 words)",
-        "long sentence (115 words)"
-      ],
-      "id": "7d19070ee50e2912",
-      "disposition": "keep_appendix",
-      "rationale": "Reviewed as reproducibility or method detail already located in the appendix path."
-    },
-    {
-      "file": "docs/manuscript/51-appendix-c-reproducibility.md",
-      "section": "front-matter",
       "opening": "Model src rsimodel py parameters params yaml generated reports with per-run provenance",
-      "wordCount": 208,
+      "wordCount": 210,
       "signals": [
-        "long paragraph (208 words)",
-        "long sentence (75 words)",
+        "long paragraph (210 words)",
+        "long sentence (77 words)",
         "nested parentheses (depth 2)"
       ],
-      "id": "62125530a6a31da5",
+      "id": "c7b7108478ac8598",
       "disposition": "keep_appendix",
       "rationale": "Reviewed as reproducibility or method detail already located in the appendix path."
     },

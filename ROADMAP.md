@@ -30,36 +30,35 @@ be restated as demonstrated feasibility.
 ### 1. Exercise the release workflow and publish the immutable archive
 
 **What is already done:** the repository now has a complete hashed dependency
-lock, an explicit `osqp` dependency, and a Linux CI workflow that installs
-from the locked environments, runs the full test suite, regenerates the
+lock, an explicit `osqp` dependency, and a single local Apple-silicon macOS
+candidate command that installs from the locked environments, regenerates the
 artifact sets and canonical HTML, rejects generated drift, and verifies every
-row in both artifact manifests byte-for-byte. The complete local candidate
-pipeline passed on 2026-07-29, including model regeneration, provenance,
-standalone and Quarto builds, 255 Python tests, 17 Bun tests, coverage,
+row in both artifact manifests byte-for-byte. It covers model regeneration,
+provenance, standalone and Quarto builds, Python and Bun tests, coverage,
 package isolation, dependency audits, SBOM generation, cross-browser layout,
-site/accessibility checks, and 570 manifest records. Candidate and
-publication preflight modes also check r4.0 identity, clean-tree state, tag
-state, version versus concept DOI, release-date agreement, and immutable HTML
-metadata.
+and site/accessibility checks. GitHub Actions is manual-only: it verifies
+committed artifacts and optionally deploys Pages without regenerating the
+models. Candidate and publication preflight modes also check r4.0 identity,
+clean-tree state, tag state, version versus concept DOI, release-date
+agreement, and immutable HTML metadata.
 Publication mode additionally requires an external authorization record
-bound to the exact commit, passing Linux CI run, archive record, release
-date, version DOI, canonical URL, responsible person, and attestation. The
-record stays outside Git so approving a commit does not change it.
+bound to the exact commit, checksum-verified strict local candidate audit,
+archive record, release date, version DOI, canonical URL, responsible person,
+and attestation. The record stays outside Git so approving a commit does not
+change it.
 
 **Why it remains:** the reviewed release candidate is prepared on a dedicated
-branch, but the workflow has not yet passed against that exact commit in
-GitHub's clean Linux runner or been merged into the remote default branch. No
-local immutable `r4.0` tag, archive, canonical release URL, or version DOI
-exists. Those publication actions still require a passing remote Linux run,
-author or release-manager authorization bound to the exact commit, and an
-immutable archive.
+branch, but the strict local workflow has not yet passed without tracked drift
+against the exact final commit or been merged into the remote default branch.
+No local immutable `r4.0` tag, archive, canonical release URL, or version DOI
+exists. Those publication actions still require the checksum-verified local
+audit, author or release-manager authorization bound to the exact commit, and
+an immutable archive.
 
 **Complete when:**
 
-- the publication workflow passes on the release commit in a clean Linux
-  runner;
-- any platform-dependent artifact drift is resolved or explicitly removed
-  from the cross-platform equality contract;
+- the strict candidate workflow passes on the exact clean release commit in
+  the pinned Apple-silicon macOS environment without tracked drift;
 - the clean commit is tagged `r4.0` and archived immutably;
 - the manuscript, `CITATION.cff`, HTML metadata, and release record carry the
   same date, canonical URL, commit, and version DOI;

@@ -10,6 +10,7 @@ outputs/*.log
 outputs/quality/*
 !outputs/quality/artifact_viewer_size_report.json
 _site/
+.tools/
 tmp/
 
 # Third-party copyrighted archives: kept locally for citation stability but

@@ -75,6 +75,9 @@ function run(command: string, args: string[], options: { env?: NodeJS.ProcessEnv
     encoding: "utf8",
     ...options,
   });
+  if (result.error !== undefined) {
+    fail(`${command} could not start: ${result.error.message}`);
+  }
   if (result.status !== 0) {
     fail(result.stderr || result.stdout || `${command} failed`);
   }

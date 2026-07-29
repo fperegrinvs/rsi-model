@@ -15,8 +15,15 @@ from rsimodel.manifests import verify_manifest, verify_release_manifest
 from rsimodel.yaml_adapter import load_yaml_mapping, require_mapping, require_sequence
 
 CONCEPT_DOI = "10.5281/zenodo.21619447"
-RELEASE_AUTHORIZATION_SCHEMA = "r4.0-release-authorization-v1"
-REPOSITORY_URL = "https://github.com/fperegrinvs/rsi-model"
+RELEASE_AUTHORIZATION_SCHEMA = "r4.0-release-authorization-v2"
+CANONICAL_CANDIDATE_TOOLS = {
+    "Bun": "1.3.14",
+    "pnpm": "11.17.0",
+    "uv": "0.9.18",
+    "Python": "3.13.0",
+    "Pandoc": "3.10.1",
+    "Quarto": "1.9.38",
+}
 SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 type ReleaseMode = Literal["candidate", "publication"]
 
@@ -35,12 +42,8 @@ class ReleaseAuthorizationRecord(TypedDict):
     approved_commit: str | None
     author_or_release_manager: str | None
     approval_timestamp_utc: str | None
-    linux_ci_run_url: str | None
-    linux_ci_repository: str
-    linux_ci_commit: str | None
-    linux_ci_conclusion: str | None
-    linux_ci_evidence_path: str | None
-    linux_ci_evidence_sha256: str | None
+    candidate_audit_path: str | None
+    candidate_audit_sha256: str | None
     archive_record_url: str | None
     release_date: str | None
     version_doi: str | None
@@ -75,12 +78,8 @@ def release_authorization_template() -> ReleaseAuthorizationRecord:
         "approved_commit": None,
         "author_or_release_manager": None,
         "approval_timestamp_utc": None,
-        "linux_ci_run_url": None,
-        "linux_ci_repository": REPOSITORY_URL,
-        "linux_ci_commit": None,
-        "linux_ci_conclusion": None,
-        "linux_ci_evidence_path": None,
-        "linux_ci_evidence_sha256": None,
+        "candidate_audit_path": None,
+        "candidate_audit_sha256": None,
         "archive_record_url": None,
         "release_date": None,
         "version_doi": None,
@@ -136,38 +135,43 @@ def release_authorization_gates(
         except ValueError:
             pass
     approved_commit = record.get("approved_commit")
-    ci_evidence_valid, ci_evidence_detail, ci_content = _verified_file(
+    audit_valid, audit_detail, audit_content = _verified_file(
         evidence_root,
-        record.get("linux_ci_evidence_path"),
-        record.get("linux_ci_evidence_sha256"),
+        record.get("candidate_audit_path"),
+        record.get("candidate_audit_sha256"),
     )
-    ci_payload: dict[str, object] = {}
-    if ci_evidence_valid and ci_content is not None:
+    audit_payload: dict[str, object] = {}
+    if audit_valid and audit_content is not None:
         try:
-            candidate: object = json.loads(ci_content)
+            candidate: object = json.loads(audit_content)
             try:
-                ci_payload = require_mapping(candidate, label="CI evidence")
+                audit_payload = require_mapping(candidate, label="candidate audit")
             except ValueError:
-                ci_evidence_valid = False
-                ci_evidence_detail = "CI evidence must be a JSON object"
+                audit_valid = False
+                audit_detail = "candidate audit must be a JSON object"
         except (UnicodeDecodeError, json.JSONDecodeError):
-            ci_evidence_valid = False
-            ci_evidence_detail = "CI evidence must be valid JSON"
-    ci_url = record.get("linux_ci_run_url")
-    expected_ci_url = re.compile(
-        r"^https://github\.com/fperegrinvs/rsi-model/actions/runs/\d+"
-        r"(?:/attempts/\d+)?$"
-    )
-    ci_claims_valid = (
-        record.get("linux_ci_repository") == REPOSITORY_URL
-        and record.get("linux_ci_commit") == head_commit
-        and record.get("linux_ci_conclusion") == "success"
-        and isinstance(ci_url, str)
-        and bool(expected_ci_url.fullmatch(ci_url))
-        and ci_payload.get("repository") == REPOSITORY_URL
-        and ci_payload.get("head_sha") == head_commit
-        and ci_payload.get("conclusion") == "success"
-        and ci_payload.get("html_url") == ci_url
+            audit_valid = False
+            audit_detail = "candidate audit must be valid JSON"
+    audit_completed_at = audit_payload.get("completed_at")
+    audit_completed_at_valid = False
+    if isinstance(audit_completed_at, str):
+        try:
+            parsed_audit_time = datetime.fromisoformat(audit_completed_at.replace("Z", "+00:00"))
+            audit_completed_at_valid = parsed_audit_time.tzinfo is not None
+        except ValueError:
+            pass
+    audit_duration = audit_payload.get("duration_seconds")
+    audit_claims_valid = (
+        audit_payload.get("schema") == "r4.0-local-candidate-audit-v1"
+        and audit_payload.get("commit") == head_commit
+        and audit_payload.get("mode") == "strict"
+        and audit_payload.get("platform") == "darwin-arm64"
+        and audit_payload.get("tools") == CANONICAL_CANDIDATE_TOOLS
+        and audit_payload.get("result") == "pass"
+        and audit_completed_at_valid
+        and isinstance(audit_duration, int)
+        and not isinstance(audit_duration, bool)
+        and audit_duration > 0
     )
     attestation_valid, attestation_detail, _ = _verified_file(
         evidence_root,
@@ -217,12 +221,13 @@ def release_authorization_gates(
             str(timestamp),
         ),
         Gate(
-            "linux_ci_evidence",
-            ci_evidence_valid and ci_claims_valid,
+            "candidate_audit_evidence",
+            audit_valid and audit_claims_valid,
             (
-                f"{ci_evidence_detail}; url={ci_url}; "
-                f"commit={record.get('linux_ci_commit')}; "
-                f"conclusion={record.get('linux_ci_conclusion')}"
+                f"{audit_detail}; commit={audit_payload.get('commit')}; "
+                f"mode={audit_payload.get('mode')}; "
+                f"platform={audit_payload.get('platform')}; "
+                f"result={audit_payload.get('result')}"
             ),
         ),
         Gate(

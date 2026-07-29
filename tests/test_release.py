@@ -57,15 +57,25 @@ def test_external_release_authorization_is_exact_and_fails_from_template(
     )
     assert not all(gate.passed for gate in gates)
 
-    ci_url = "https://github.com/fperegrinvs/rsi-model/actions/runs/123456"
-    ci_evidence = tmp_path / "ci.json"
-    ci_evidence.write_text(
+    candidate_audit = tmp_path / "candidate-audit.json"
+    candidate_audit.write_text(
         json.dumps(
             {
-                "repository": "https://github.com/fperegrinvs/rsi-model",
-                "head_sha": head,
-                "conclusion": "success",
-                "html_url": ci_url,
+                "schema": "r4.0-local-candidate-audit-v1",
+                "commit": head,
+                "completed_at": "2026-07-28T11:45:00Z",
+                "duration_seconds": 320,
+                "mode": "strict",
+                "platform": "darwin-arm64",
+                "tools": {
+                    "Bun": "1.3.14",
+                    "pnpm": "11.17.0",
+                    "uv": "0.9.18",
+                    "Python": "3.13.0",
+                    "Pandoc": "3.10.1",
+                    "Quarto": "1.9.38",
+                },
+                "result": "pass",
             }
         ),
         encoding="utf-8",
@@ -78,12 +88,8 @@ def test_external_release_authorization_is_exact_and_fails_from_template(
         "approved_commit": head,
         "author_or_release_manager": "Authorized release manager",
         "approval_timestamp_utc": "2026-07-28T12:00:00Z",
-        "linux_ci_run_url": ci_url,
-        "linux_ci_repository": "https://github.com/fperegrinvs/rsi-model",
-        "linux_ci_commit": head,
-        "linux_ci_conclusion": "success",
-        "linux_ci_evidence_path": ci_evidence.name,
-        "linux_ci_evidence_sha256": hashlib.sha256(ci_evidence.read_bytes()).hexdigest(),
+        "candidate_audit_path": candidate_audit.name,
+        "candidate_audit_sha256": hashlib.sha256(candidate_audit.read_bytes()).hexdigest(),
         "archive_record_url": "https://zenodo.org/records/99999999",
         "release_date": "2026-07-28",
         "version_doi": "10.5281/zenodo.99999999",
@@ -104,7 +110,7 @@ def test_external_release_authorization_is_exact_and_fails_from_template(
     )
 
 
-def test_release_authorization_rejects_url_only_claims(tmp_path: Path) -> None:
+def test_release_authorization_rejects_missing_audit(tmp_path: Path) -> None:
     head = "a" * 40
     record = {
         **release_authorization_template(),
@@ -112,7 +118,6 @@ def test_release_authorization_rejects_url_only_claims(tmp_path: Path) -> None:
         "approved_commit": head,
         "author_or_release_manager": "release manager",
         "approval_timestamp_utc": "2026-07-28T12:00:00Z",
-        "linux_ci_run_url": "https://example.com/actions/runs/1",
         "archive_record_url": "https://example.com/archive/99999999",
         "release_date": "2026-07-28",
         "version_doi": "10.5281/zenodo.99999999",
@@ -127,4 +132,8 @@ def test_release_authorization_rejects_url_only_claims(tmp_path: Path) -> None:
         evidence_root=tmp_path,
     )
     failed = {gate.name for gate in gates if not gate.passed}
-    assert {"linux_ci_evidence", "archive_record", "authorization_canonical_url"} <= failed
+    assert {
+        "candidate_audit_evidence",
+        "archive_record",
+        "authorization_canonical_url",
+    } <= failed

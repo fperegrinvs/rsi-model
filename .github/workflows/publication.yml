@@ -1,12 +1,13 @@
-name: publication-integrity
+name: manual-publication
 
 on:
-  push:
-    branches: [main]
-  pull_request:
   workflow_dispatch:
-  schedule:
-    - cron: "17 3 * * 1"
+    inputs:
+      deploy_pages:
+        description: Deploy the verified reader site from main
+        required: true
+        default: false
+        type: boolean
 
 permissions:
   contents: read
@@ -116,10 +117,10 @@ jobs:
           if-no-files-found: error
 
   publication:
-    name: Regenerate and verify publication
+    name: Verify committed publication
     needs: [quality, package]
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 30
     steps:
       - name: Check out the repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -153,15 +154,10 @@ jobs:
           pnpm install --frozen-lockfile
       - name: Install the publication browsers
         run: pnpm exec playwright install --with-deps chromium firefox webkit
-      - name: Regenerate model artifacts
+      - name: Verify the committed macOS candidate
         run: |
-          uv run --locked rsi-run-baseline --output-dir outputs
-          uv run --locked rsi-run-part2 --output-dir outputs
-          uv run --locked rsi-run-integrated
-          uv run --locked rsi-run-deep --output-dir outputs
-          uv run --locked rsi-write-provenance --project-root .
-      - name: Refresh regenerated artifact manifests
-        run: uv run --locked rsi-write-manifest --project-root .
+          uv run --locked rsi-verify-manifests --project-root .
+          uv run --locked rsi-release-preflight --project-root . --mode candidate
       - name: Build and check the publication
         run: |
           pnpm run check:notation
@@ -182,17 +178,6 @@ jobs:
           pnpm run check:equation-explanations
           pnpm run check:footnotes
           pnpm run check:math-layout
-      - name: Verify manifests and release gates
-        run: |
-          uv run --locked rsi-write-manifest --project-root .
-          uv run --locked rsi-verify-manifests --project-root .
-          uv run --locked rsi-release-preflight --project-root . --mode candidate
-      - name: Reject generated drift
-        run: >-
-          git diff --exit-code --
-          outputs
-          docs/Recursive_Industrial_Intelligence_r4.0.md
-          docs/Recursive_Industrial_Intelligence_r4.0.html
       - name: Upload publication failure diagnostics
         if: failure()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
@@ -205,62 +190,26 @@ jobs:
           if-no-files-found: warn
           retention-days: 7
       - name: Report external-link availability
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         continue-on-error: true
         run: pnpm run check:external-links
-      - name: Check version-sensitive AI-R&D sources
-        if: github.event_name == 'schedule'
-        run: pnpm run check:ai-rnd-source-refresh
       - name: Configure GitHub Pages
         if: >-
           github.ref == 'refs/heads/main' &&
-          (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+          inputs.deploy_pages
         uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
       - name: Upload GitHub Pages artifact
         if: >-
           github.ref == 'refs/heads/main' &&
-          (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+          inputs.deploy_pages
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
           path: _site
-
-  portability:
-    name: Scheduled macOS smoke test
-    if: github.event_name == 'schedule'
-    needs: quality
-    runs-on: macos-15
-    timeout-minutes: 20
-    steps:
-      - name: Check out the repository
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - name: Install uv
-        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
-        with:
-          version: ${{ env.UV_VERSION }}
-          enable-cache: true
-      - name: Install Python
-        run: uv python install "${PYTHON_VERSION}"
-      - name: Install pnpm
-        uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6.0.9
-        with:
-          run_install: false
-      - name: Install Bun
-        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
-        with:
-          bun-version-file: .bun-version
-      - name: Run portability checks
-        run: |
-          uv sync --locked --all-groups
-          pnpm install --frozen-lockfile
-          pnpm run quality:python
-          pnpm run check:typescript
-          pnpm test
 
   deploy:
     name: Deploy GitHub Pages
     if: >-
       github.ref == 'refs/heads/main' &&
-      (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+      inputs.deploy_pages
     needs: publication
     runs-on: ubuntu-latest
     permissions:

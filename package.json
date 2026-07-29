@@ -10,6 +10,9 @@
   "scripts": {
     "build:manuscript": "bun scripts/build-manuscript.ts",
     "build:site": "bun scripts/build-site.ts",
+    "setup:local-tools": "bun scripts/setup-local-tools.ts",
+    "candidate:macos": "bun scripts/run-candidate.ts",
+    "candidate:macos:update": "bun scripts/run-candidate.ts --update",
     "generate:baseline": "uv run --locked rsi-run-baseline --output-dir outputs",
     "generate:deep": "uv run --locked rsi-run-deep --output-dir outputs",
     "generate:integrated": "uv run --locked rsi-run-integrated --project-root . --output-dir outputs/integrated",

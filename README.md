@@ -19,63 +19,47 @@ estimates, or forecasts.
 
 ## Reproduce the release candidate
 
+The canonical artifact-generation environment is Apple-silicon macOS with
 Python 3.13.0, uv 0.9.18, Bun 1.3.14, pnpm 11.17.0, Pandoc 3.10.1, and
-Quarto 1.9.38 are the pinned CI toolchain. Bun runs the TypeScript publication
-tools, pnpm installs their locked dependencies, Pandoc creates the archival
-self-contained HTML, and Quarto creates the multi-page GitHub Pages edition
-from the same ordered fragments.
+Quarto 1.9.38. Bun runs the TypeScript publication tools, pnpm installs their
+locked dependencies, Pandoc creates the archival self-contained HTML, and
+Quarto creates the multi-page GitHub Pages edition from the same ordered
+fragments. The setup command downloads the pinned Quarto archive, verifies its
+sha256, and installs it under the ignored `.tools/` directory.
 
 ```sh
-uv sync --locked --all-groups
-pnpm install --frozen-lockfile
-pnpm run check:dependencies
-uv run --locked rsi-run-baseline --output-dir outputs
-uv run --locked rsi-run-part2 --output-dir outputs
-uv run --locked rsi-run-deep --output-dir outputs
-uv run --locked rsi-run-integrated
-uv run --locked rsi-write-provenance --project-root .
-pnpm run check:notation
-pnpm run check:prose
-pnpm run check:scenario-policy
-pnpm run check:propositions
-pnpm run check:readability
-pnpm run build:manuscript
-pnpm run build:site
-pnpm run check:site
-pnpm run check:accessibility
-pnpm run check:footnotes
-pnpm run quality:python
-pnpm run test:coverage
-pnpm run check:package
-pnpm run audit
-pnpm run sbom
-uv run --locked rsi-write-manifest --project-root .
-uv run --locked rsi-verify-manifests --project-root .
-uv run --locked rsi-release-preflight --project-root . --mode candidate
-pnpm test
+corepack pnpm install --frozen-lockfile
+corepack pnpm run setup:local-tools
+corepack pnpm run candidate:macos:update
+# Review and commit the regenerated files, then prove clean reproduction:
+corepack pnpm run candidate:macos
 ```
 
-`pnpm run check:package` builds both distributions, then imports the wheel and
-checks all installed maintenance commands from an isolated temporary
-environment outside the checkout. `pnpm run audit` scans the fully resolved
-Python environment; `pnpm audit` covers the locked publication toolchain.
-`pnpm run sbom` writes the reproducible CycloneDX record to
-`outputs/quality/sbom.cdx.json`.
+The candidate command regenerates every model artifact, provenance record,
+manifest, standalone document, and reader page; runs all Python and TypeScript
+tests, package and dependency audits, and three-browser publication checks;
+and rejects tracked drift in strict mode. It records the exact commit,
+toolchain, platform, duration, and result in the ignored
+`outputs/quality/candidate-audit.json`. `pnpm run check:package` also imports
+the built wheel and exercises every installed maintenance command from an
+isolated temporary environment outside the checkout.
 
 Generated reports, tables, and figures live under `outputs/`. The canonical
 `outputs/MANIFEST.md` binds the manuscript, HTML, release inputs, and
 generated artifacts. `outputs/integrated/MANIFEST.md` provides an additional
 content-addressed record for the integrated-model run.
-The pinned Ubuntu publication job is the canonical artifact-generation
-environment. The scheduled macOS job is a portability smoke test only; it
-does not regenerate, redefine, or gate the committed release artifacts.
+The local Apple-silicon macOS candidate command is the sole canonical
+artifact-generation workflow. GitHub Actions runs only when manually
+dispatched: it verifies the committed artifacts and can deploy the reader
+site, but it never regenerates or redefines the numerical outputs.
 
 The fragments are the only hand-edited manuscript source. The monolithic
 Markdown, standalone HTML, and `_site/` tree are deterministic products; do
-not edit them directly. The publication workflow crawls every Quarto page,
-checks internal assets and fragments, compares equation/table/figure/source
-counts against the standalone HTML, and deploys `_site/` to GitHub Pages after
-a non-pull-request build passes. The configured project URL is
+not edit them directly. The local candidate workflow crawls every Quarto page,
+checks internal assets and fragments, and compares
+equation/table/figure/source counts against the standalone HTML. A successful
+manual workflow dispatch from `main` can deploy `_site/` to GitHub Pages. The
+configured project URL is
 <https://fperegrinvs.github.io/rsi-model/>.
 
 That Pages root is the mutable reader edition for the latest reviewed state
