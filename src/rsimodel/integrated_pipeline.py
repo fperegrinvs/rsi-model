@@ -11,6 +11,9 @@ import numpy as np
 
 from rsimodel.ai_rnd_evidence import write_ai_rnd_evidence_csvs
 from rsimodel.economic_calibration import write_economic_calibration_csv
+from rsimodel.economic_calibration_baseline import (
+    write_economic_calibration_public_baseline,
+)
 from rsimodel.integrated import (
     compare_compute_regimes,
     load_integrated_params,
@@ -46,8 +49,10 @@ from rsimodel.orbital_ai_scenarios import write_orbital_ai_scenario_csvs
 from rsimodel.portfolio_coverage import write_portfolio_coverage_csvs
 from rsimodel.precursor_telemetry import write_precursor_telemetry_csv
 from rsimodel.process_closure import write_process_closure_gap_csv
+from rsimodel.process_closure_baseline import write_process_closure_public_baseline
 from rsimodel.publication import write_publication_readiness_csv
 from rsimodel.rehearsal import write_rehearsal_acceptance_csv
+from rsimodel.rehearsal_kit import write_rehearsal_execution_kit
 from rsimodel.run_config import IntegratedRunConfig
 from rsimodel.solver_adapter import scipy_version
 from rsimodel.spacexai_economics import write_spacexai_economic_artifacts
@@ -268,6 +273,26 @@ def run(config: IntegratedRunConfig) -> None:
     write_rehearsal_acceptance_csv(workspace.table_directory / "rehearsal_acceptance_matrix.csv")
     write_economic_calibration_csv(workspace.table_directory / "economic_calibration_readiness.csv")
     write_process_closure_gap_csv(workspace.table_directory / "process_closure_gap_register.csv")
+    process_bundle, process_evaluation = write_process_closure_public_baseline(
+        root=workspace.project_root,
+        bundle_path=workspace.output_directory
+        / "evidence"
+        / "process_closure_public_baseline.json",
+        evaluation_path=workspace.output_directory
+        / "evidence"
+        / "process_closure_public_baseline_evaluation.json",
+    )
+    economic_bundle, economic_evaluation = write_economic_calibration_public_baseline(
+        root=workspace.project_root,
+        bundle_path=workspace.output_directory
+        / "evidence"
+        / "economic_calibration_public_baseline.json",
+        evaluation_path=workspace.output_directory
+        / "evidence"
+        / "economic_calibration_public_baseline_evaluation.json",
+    )
+    rehearsal_kit_directory = workspace.output_directory / "evidence" / "rehearsal_execution_kit"
+    write_rehearsal_execution_kit(rehearsal_kit_directory)
     write_precursor_telemetry_csv(
         workspace.table_directory / "observed_precursor_telemetry.csv",
         workspace.project_root / "params" / "observed_precursor_telemetry.json",
@@ -373,6 +398,14 @@ def run(config: IntegratedRunConfig) -> None:
         workspace.project_root / "params" / "spacexai_economic_case.json",
         workspace.project_root / "params" / "publication_targets.yaml",
         workspace.project_root / "docs" / "sources" / "orbital-ai-landscape-2026-07-28.md",
+        workspace.project_root
+        / "docs"
+        / "sources"
+        / "economic-calibration-public-evidence-2026-07-29.md",
+        workspace.project_root
+        / "docs"
+        / "sources"
+        / "process-closure-public-evidence-2026-07-29.md",
         workspace.project_root / "docs" / "sources" / "spacex-ai-aspirations-2026-06.md",
         workspace.project_root / "docs" / "sources" / "starmind-ai1-2026-07-27.md",
         workspace.project_root / "docs" / "sources" / "spacexai-economic-thesis-2026-07-29.md",
@@ -393,8 +426,13 @@ def run(config: IntegratedRunConfig) -> None:
         workspace.project_root / "src" / "rsimodel" / "integrated_orbital_tables.py",
         workspace.project_root / "src" / "rsimodel" / "integrated_closure_tables.py",
         workspace.project_root / "src" / "rsimodel" / "rehearsal.py",
+        workspace.project_root / "src" / "rsimodel" / "rehearsal_archive.py",
+        workspace.project_root / "src" / "rsimodel" / "rehearsal_archive_cli.py",
+        workspace.project_root / "src" / "rsimodel" / "rehearsal_kit.py",
         workspace.project_root / "src" / "rsimodel" / "economic_calibration.py",
+        workspace.project_root / "src" / "rsimodel" / "economic_calibration_baseline.py",
         workspace.project_root / "src" / "rsimodel" / "process_closure.py",
+        workspace.project_root / "src" / "rsimodel" / "process_closure_baseline.py",
         workspace.project_root / "src" / "rsimodel" / "precursor_telemetry.py",
         workspace.project_root / "src" / "rsimodel" / "ai_rnd_evidence.py",
         workspace.project_root / "src" / "rsimodel" / "portfolio_coverage.py",
@@ -416,7 +454,11 @@ def run(config: IntegratedRunConfig) -> None:
         workspace.project_root / "tests" / "test_integrated_analysis.py",
         workspace.project_root / "tests" / "test_rehearsal.py",
         workspace.project_root / "tests" / "test_economic_calibration.py",
+        workspace.project_root / "tests" / "test_economic_calibration_baseline.py",
         workspace.project_root / "tests" / "test_process_closure.py",
+        workspace.project_root / "tests" / "test_process_closure_baseline.py",
+        workspace.project_root / "tests" / "test_rehearsal_archive.py",
+        workspace.project_root / "tests" / "test_rehearsal_kit.py",
         workspace.project_root / "tests" / "test_ai_rnd_evidence.py",
         workspace.project_root / "tests" / "test_spacexai_economics.py",
         workspace.project_root / "tests" / "test_manifests.py",
@@ -437,6 +479,11 @@ def run(config: IntegratedRunConfig) -> None:
     ]
     artifacts = [
         report,
+        economic_bundle,
+        economic_evaluation,
+        process_bundle,
+        process_evaluation,
+        *(path for path in rehearsal_kit_directory.rglob("*") if path.is_file()),
         *workspace.table_directory.glob("*.csv"),
         *workspace.figure_directory.glob("*.png"),
     ]

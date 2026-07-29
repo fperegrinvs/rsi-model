@@ -76,10 +76,49 @@ The generated
 checklist. Until an immutable raw event archive and auditor report populate
 it, all rows remain `execution_pending`.
 
+## Raw-event capture
+
+The repository includes a hash-chained JSONL recorder and deterministic
+coverage report for facility instrumentation. Create one archive per signed
+campaign, append individually witnessed event objects, and verify the chain
+before copying its digest into an evidence bundle:
+
+```bash
+uv run --locked rsi-rehearsal-archive init /secure/campaign/events.jsonl
+uv run --locked rsi-rehearsal-archive append \
+  /secure/campaign/events.jsonl /secure/incoming/event.json
+uv run --locked rsi-rehearsal-archive verify \
+  /secure/campaign/events.jsonl \
+  --output /secure/campaign/acquisition-report.json
+```
+
+The recorder rejects missing schema fields, malformed witness hashes,
+duplicate event identifiers, backward monotonic time, broken sequence
+numbers, and any content change that breaks the record chain. The report
+measures event/fault coverage and metered totals only. It cannot pass an
+acceptance gate, certify physical truth, replace the independent audit, or
+turn an unexecuted rehearsal into evidence.
+
+Generate the complete facility handoff package with:
+
+```bash
+uv run --locked rsi-write-rehearsal-kit
+```
+
+The content-addressed kit under
+`outputs/integrated/evidence/rehearsal_execution_kit/` includes portable JSON
+Schema, one template per event type, gate-query and fault-campaign plans, the
+parameter-replacement plan, a second-cell build record, and an independent
+auditor-report template. Its manifest remains
+`facility_handoff_ready_physical_execution_pending`; generating the kit does
+not sign the protocol or execute any physical gate.
+
 A current complete-shape template can be generated with:
 
-    rsi-evaluate-evidence rehearsal \
-      --write-template rehearsal_bundle.json
+```bash
+rsi-evaluate-evidence rehearsal \
+  --write-template rehearsal_bundle.json
+```
 
 It contains every event type, fault case, gate, and replacement record, but
 its null measurements and invalid hash placeholders make it impossible to

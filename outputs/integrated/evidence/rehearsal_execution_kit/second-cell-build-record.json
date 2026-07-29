@@ -1,0 +1,22 @@
+{
+  "campaign_id": null,
+  "cell_id": "cell_1",
+  "independence_rule": "Every indispensable subsystem must have its own BOM, material custody chain, construction record, commissioning result, achieved yield, service connections, and viable-floor test. A continuous aggregate capacity crossing is not sufficient.\n",
+  "indispensable_subsystems": [
+    {
+      "auditor_disposition": null,
+      "bom_sha256": null,
+      "commissioning_event_ids": [],
+      "construction_event_ids": [],
+      "material_custody_query_sha256": null,
+      "retained_operation_query_sha256": null,
+      "sector": null,
+      "service_connection_query_sha256": null,
+      "subsystem_id": null,
+      "viable_floor_query_sha256": null,
+      "yield_query_sha256": null
+    }
+  ],
+  "protocol_id": "stage0-terrestrial-autonomous-closure",
+  "record_status": "template_not_evidence"
+}

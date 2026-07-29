@@ -65,6 +65,18 @@ source_class under the epistemic rules.
   and the unresolved conflict between Astropolitics' two live peer-review
   statements. Source_class: `publisher_instructions`.
 
+- **process-closure-public-evidence-2026-07-29.md** — NASA, NIST, USGS, and
+  portfolio evidence boundary for the generated typed industrial dependency
+  graph. It supports a negative evaluation—eight failed closure gates—and
+  forbids filling missing yields, purity, tool life, fleet, or parent-tool
+  records from the aggregate model.
+
+- **economic-calibration-public-evidence-2026-07-29.md** — primary-source
+  extraction and missingness record for all six calibration packages. It
+  records the available NASA reliability, FCC regulatory, Starmind design,
+  EIA energy-price, and filing evidence while preserving five failed
+  correlation holdouts and zero empirical parameter promotions.
+
 The r4.0 provenance audit deliberately reclassified reporting-derived model
 bands as `ASSUMPTION` when the cited material did not directly support both
 modeled endpoints and their transformation. Contextual reporting remains

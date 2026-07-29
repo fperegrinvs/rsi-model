@@ -1,0 +1,21 @@
+{
+  "files": {
+    "event-templates/build_state.json": "7cbe5b397231f0c8ff826bd9b82bb04c9622d79dfe7250f875fbc4abeaf522f8",
+    "event-templates/fault_event.json": "559ec49aa8f90b29a9ce617458c476f78303c277aac4ba80b87da910ffd3e57d",
+    "event-templates/governance_action.json": "4d150c2696c659b9cb7f24b238f721ee21b9f56cbfc04558163be92e8c941eb4",
+    "event-templates/intervention_event.json": "f3c95ef738ccee36275091c28bfb8fc7f67e1313171a16abde18e6c0fa7dc0ad",
+    "event-templates/material_transaction.json": "1094ac8606130cafd113da97465ba8f1bc483e1faa1d046b4f5e1f8314f1999b",
+    "event-templates/process_batch.json": "a96c5a8bcabbca925cec4369f383a8118983eb960159984e71592c8dca1ed676",
+    "event-templates/task_attempt.json": "6ecd5fe5b5cada7fb9249962d9d26d99f294b544b71dc17158f112420c8c7a1c",
+    "event-templates/utility_meter.json": "b15f3ae7a24e022dc8c9c62312a6381e007dfbf58ec47229269422b2710f1d54",
+    "fault-campaign-plan.json": "25429ba2b603a0c632637dc963af756c4693169dde413320b435059e8d5c90fc",
+    "gate-query-plan.json": "3f5b667ec9663952a8c805fe30b8d695187f82207f5b45ae748e5d3690bde6c2",
+    "independent-auditor-report.md": "c1aac4ac85dd1ffdcf4d344c44211302c8f4602fbdcf63bf48e32808ba93e299",
+    "parameter-replacement-plan.json": "5cbe69ce6eb52e9cd850bcbdb165190a5ed86421d49545c7a4f1ee623e180843",
+    "rehearsal-event.schema.json": "d6ae3d6eac8b92f4aab5aef4c4624cd061a8cd6cc5213035166c6ec86bb701c3",
+    "second-cell-build-record.json": "59f08db5e1134cbba4be66d368829a782e7233c9e8dc443126143f41713433e3"
+  },
+  "kit_status": "facility_handoff_ready_physical_execution_pending",
+  "protocol_id": "stage0-terrestrial-autonomous-closure",
+  "warning": "Templates and hashes are not measurements, witness evidence, a signed campaign, or an acceptance result."
+}

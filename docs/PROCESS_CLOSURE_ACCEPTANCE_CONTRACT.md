@@ -74,3 +74,20 @@ records, linked source and fleet registers, the complete grade ladder, every
 critical part family, every process stage, and all eight independently
 witnessed binary results. Empty,
 aggregate-only, or provenance-free graphs fail validation.
+
+## Public-evidence baseline
+
+The repository also generates a typed negative-evidence graph from the
+current NASA, NIST, USGS, and public company evidence boundary:
+
+    rsi-write-process-baseline
+
+The resulting bundle and evaluation are written below
+`outputs/integrated/evidence/`. They contain all required grade, process,
+critical-part, sector-equipment, source, fleet, and waste node classes and
+are accepted by the evidence validator as a structurally complete **failed**
+evaluation. All eight gates remain `fail`: missing numerical values are
+represented as undisclosed or unmeasured, never imputed from the aggregate
+model. This baseline turns the absence of closure evidence into a
+machine-readable dependency graph; it does not calibrate the graph or claim
+that autonomous closure is impossible.

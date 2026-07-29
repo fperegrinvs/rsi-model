@@ -88,3 +88,18 @@ correlation fits and holdout results, every cash-flow event type, immutable
 hashes, and a reviewed retain/promote decision for every bound parameter.
 Supplying point estimates without failed/censored records and validation is
 rejected.
+
+## Public-evidence baseline
+
+Run the reproducible public-record calibration with:
+
+    rsi-write-economic-baseline
+
+The generated bundle and evaluation under `outputs/integrated/evidence/`
+populate all six evidence packages, all five correlation groups, all eleven
+cash-flow event classes, and every parameter decision. Missing project-ledger
+amounts remain visibly labeled sentinels rather than inferred observations.
+The current result is `holdout_failed`: all five joint holdouts fail and all
+forty parameters retain `ASSUMPTION` status. This is a completed negative
+calibration against the public evidence boundary, not a substitute for the
+architecture-matched audited histories required for empirical promotion.

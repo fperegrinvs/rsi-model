@@ -1,0 +1,18 @@
+{
+  "edge_count": 52,
+  "evidence_record_count": 1,
+  "fleet_record_count": 1,
+  "gate_status": {
+    "C01_species_mass_balance": "fail",
+    "C02_energy_and_capacity": "fail",
+    "C03_grade_progression": "fail",
+    "C04_part_and_parent_tool_ancestry": "fail",
+    "C05_source_transport_fleet": "fail",
+    "C06_failure_and_substitution": "fail",
+    "C07_empirical_calibration": "fail",
+    "C08_minimum_external_vector": "fail"
+  },
+  "node_count": 53,
+  "overall_status": "failed",
+  "source_record_count": 1
+}

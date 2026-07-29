@@ -1,0 +1,18 @@
+{
+  "actor_or_controller": null,
+  "affected_task": null,
+  "cell_id": "cell_0",
+  "counterfactual_stop_without_intervention": null,
+  "duration_person_hours": null,
+  "event_id": "REPLACE_INTERVENTION_EVENT_ID",
+  "event_type": "intervention_event",
+  "external_witness_hash": "REPLACE_WITH_64_CHARACTER_LOWERCASE_SHA256",
+  "information_or_material_supplied": null,
+  "monotonic_time_s": null,
+  "reason": null,
+  "remote_or_entry": null,
+  "sensor_source": null,
+  "signed_build_or_fault_campaign_id": null,
+  "software_and_recipe_version": null,
+  "timestamp_utc": null
+}

@@ -1,0 +1,753 @@
+{
+  "$id": "https://fperegrinvs.github.io/rsi-model/schema/rehearsal-event-r4.0.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "oneOf": [
+    {
+      "properties": {
+        "event_type": {
+          "const": "build_state"
+        },
+        "new_state": {
+          "enum": [
+            "commissioning",
+            "delivered",
+            "failed",
+            "installed",
+            "operating",
+            "recovered",
+            "repair_queue",
+            "repaired",
+            "retired",
+            "staged"
+          ]
+        },
+        "prior_state": {
+          "enum": [
+            "commissioning",
+            "delivered",
+            "failed",
+            "installed",
+            "operating",
+            "recovered",
+            "repair_queue",
+            "repaired",
+            "retired",
+            "staged"
+          ]
+        }
+      },
+      "required": [
+        "actor_or_controller",
+        "bom_version",
+        "cell_id",
+        "cohort_id",
+        "event_id",
+        "event_type",
+        "external_witness_hash",
+        "material_lot_ids",
+        "measured_mass_kg",
+        "monotonic_time_s",
+        "new_state",
+        "prior_state",
+        "sector",
+        "sensor_source",
+        "signed_build_or_fault_campaign_id",
+        "software_and_recipe_version",
+        "subsystem_id",
+        "timestamp_utc",
+        "verification_result"
+      ]
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "material_transaction"
+        }
+      },
+      "required": [
+        "actor_or_controller",
+        "assay",
+        "cell_id",
+        "contamination",
+        "destination",
+        "event_id",
+        "event_type",
+        "external_witness_hash",
+        "grade",
+        "gross_mass_kg",
+        "material_or_species",
+        "monotonic_time_s",
+        "sensor_source",
+        "signed_build_or_fault_campaign_id",
+        "software_and_recipe_version",
+        "source_lot",
+        "timestamp_utc",
+        "uncertainty_kg",
+        "waste_mass_kg"
+      ]
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "task_attempt"
+        }
+      },
+      "required": [
+        "actor_or_controller",
+        "autonomous_or_intervened",
+        "cell_id",
+        "completion",
+        "duration_s",
+        "event_id",
+        "event_type",
+        "external_witness_hash",
+        "fault_diagnosis",
+        "monotonic_time_s",
+        "named_task",
+        "outcome_quality",
+        "sector",
+        "sensor_source",
+        "signed_build_or_fault_campaign_id",
+        "software_and_recipe_version",
+        "timestamp_utc",
+        "verification_backlog_s"
+      ]
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "process_batch"
+        }
+      },
+      "required": [
+        "actor_or_controller",
+        "cell_id",
+        "consumables",
+        "contamination",
+        "energy_kwh",
+        "event_id",
+        "event_type",
+        "external_witness_hash",
+        "input_species_and_grades",
+        "monotonic_time_s",
+        "output_species_and_grades",
+        "process_route",
+        "rework",
+        "sensor_source",
+        "signed_build_or_fault_campaign_id",
+        "software_and_recipe_version",
+        "timestamp_utc",
+        "tool_wear",
+        "yield"
+      ]
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "intervention_event"
+        }
+      },
+      "required": [
+        "actor_or_controller",
+        "affected_task",
+        "cell_id",
+        "counterfactual_stop_without_intervention",
+        "duration_person_hours",
+        "event_id",
+        "event_type",
+        "external_witness_hash",
+        "information_or_material_supplied",
+        "monotonic_time_s",
+        "reason",
+        "remote_or_entry",
+        "sensor_source",
+        "signed_build_or_fault_campaign_id",
+        "software_and_recipe_version",
+        "timestamp_utc"
+      ]
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "fault_event"
+        }
+      },
+      "required": [
+        "actor_or_controller",
+        "affected_asset",
+        "campaign_case",
+        "cell_id",
+        "containment_latency_s",
+        "control_trace",
+        "detection_latency_s",
+        "event_id",
+        "event_type",
+        "external_witness_hash",
+        "injected_or_natural",
+        "monotonic_time_s",
+        "physical_consequence",
+        "recovery_latency_s",
+        "sensor_source",
+        "signed_build_or_fault_campaign_id",
+        "software_and_recipe_version",
+        "timestamp_utc"
+      ]
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "governance_action"
+        }
+      },
+      "required": [
+        "actor_or_controller",
+        "authorization_roots",
+        "cell_id",
+        "communication_state",
+        "event_id",
+        "event_type",
+        "external_witness_hash",
+        "interlock_decision",
+        "monotonic_time_s",
+        "physical_order_rate_after",
+        "physical_order_rate_before",
+        "requested_action",
+        "sensor_source",
+        "signed_build_or_fault_campaign_id",
+        "software_and_recipe_version",
+        "timestamp_utc"
+      ]
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "utility_meter"
+        }
+      },
+      "required": [
+        "actor_or_controller",
+        "cell_id",
+        "electricity_kwh",
+        "event_id",
+        "event_type",
+        "external_witness_hash",
+        "monotonic_time_s",
+        "sensor_source",
+        "signed_build_or_fault_campaign_id",
+        "software_and_recipe_version",
+        "storage_charge_kwh",
+        "storage_discharge_kwh",
+        "thermal_input_kwh",
+        "timestamp_utc",
+        "unserved_energy_kwh"
+      ]
+    }
+  ],
+  "properties": {
+    "actor_or_controller": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "affected_asset": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "affected_task": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "assay": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "authorization_roots": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "autonomous_or_intervened": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "bom_version": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "campaign_case": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "cell_id": {
+      "enum": [
+        "cell_0",
+        "cell_1",
+        "site"
+      ]
+    },
+    "cohort_id": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "communication_state": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "completion": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "consumables": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "containment_latency_s": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "contamination": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "control_trace": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "counterfactual_stop_without_intervention": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "destination": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "detection_latency_s": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "duration_person_hours": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "duration_s": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "electricity_kwh": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "energy_kwh": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "event_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "event_type": {
+      "enum": [
+        "build_state",
+        "fault_event",
+        "governance_action",
+        "intervention_event",
+        "material_transaction",
+        "process_batch",
+        "task_attempt",
+        "utility_meter"
+      ]
+    },
+    "external_witness_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "fault_diagnosis": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "grade": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "gross_mass_kg": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "information_or_material_supplied": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "injected_or_natural": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "input_species_and_grades": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "interlock_decision": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "material_lot_ids": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "material_or_species": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "measured_mass_kg": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "monotonic_time_s": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "named_task": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "new_state": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "outcome_quality": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "output_species_and_grades": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "physical_consequence": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "physical_order_rate_after": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "physical_order_rate_before": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "prior_state": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "process_route": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "reason": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "recovery_latency_s": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "remote_or_entry": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "requested_action": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "rework": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "sector": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "sensor_source": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "signed_build_or_fault_campaign_id": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "software_and_recipe_version": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "source_lot": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "storage_charge_kwh": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "storage_discharge_kwh": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "subsystem_id": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "thermal_input_kwh": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "timestamp_utc": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "tool_wear": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "uncertainty_kg": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "unserved_energy_kwh": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "verification_backlog_s": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "verification_result": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ]
+    },
+    "waste_mass_kg": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "yield": {
+      "minimum": 0,
+      "type": "number"
+    }
+  },
+  "required": [
+    "event_id",
+    "event_type"
+  ],
+  "title": "Stage-0 terrestrial autonomous-closure event",
+  "type": "object"
+}

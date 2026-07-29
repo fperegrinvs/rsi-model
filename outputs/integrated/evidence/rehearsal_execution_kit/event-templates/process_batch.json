@@ -1,0 +1,21 @@
+{
+  "actor_or_controller": null,
+  "cell_id": "cell_0",
+  "consumables": null,
+  "contamination": null,
+  "energy_kwh": null,
+  "event_id": "REPLACE_PROCESS_BATCH_ID",
+  "event_type": "process_batch",
+  "external_witness_hash": "REPLACE_WITH_64_CHARACTER_LOWERCASE_SHA256",
+  "input_species_and_grades": null,
+  "monotonic_time_s": null,
+  "output_species_and_grades": null,
+  "process_route": null,
+  "rework": null,
+  "sensor_source": null,
+  "signed_build_or_fault_campaign_id": null,
+  "software_and_recipe_version": null,
+  "timestamp_utc": null,
+  "tool_wear": null,
+  "yield": null
+}

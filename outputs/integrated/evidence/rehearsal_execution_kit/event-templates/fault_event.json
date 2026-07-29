@@ -1,0 +1,20 @@
+{
+  "actor_or_controller": null,
+  "affected_asset": null,
+  "campaign_case": null,
+  "cell_id": "cell_0",
+  "containment_latency_s": null,
+  "control_trace": null,
+  "detection_latency_s": null,
+  "event_id": "REPLACE_FAULT_EVENT_ID",
+  "event_type": "fault_event",
+  "external_witness_hash": "REPLACE_WITH_64_CHARACTER_LOWERCASE_SHA256",
+  "injected_or_natural": null,
+  "monotonic_time_s": null,
+  "physical_consequence": null,
+  "recovery_latency_s": null,
+  "sensor_source": null,
+  "signed_build_or_fault_campaign_id": null,
+  "software_and_recipe_version": null,
+  "timestamp_utc": null
+}

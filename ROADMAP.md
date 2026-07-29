@@ -87,6 +87,11 @@ requires non-empty source and fleet registers linked from every source-lot
 and transport-leg node. A deterministic complete-shape bundle template is
 generated from the live contract and is deliberately invalid until real
 measurements, hashes, and results replace its placeholders.
+A generated public-evidence baseline now instantiates 53 typed nodes and 52
+edges across every required grade, process stage, critical part family,
+sector-equipment class, source, fleet, and waste stream. The validator accepts
+its evidence shape and returns the intended negative result: all eight gates
+fail because unavailable measurements remain explicit rather than imputed.
 
 **Why it remains:** these additions are still aggregate assumption structures.
 They do not establish mineral recovery, semiconductor or parent-tool
@@ -135,6 +140,11 @@ auditor/archive hashes, witnessed binary results, and complete parameter
 replacement records before it can return a campaign result. Its generated
 campaign template enumerates every required event, fault, gate, and parameter
 record but cannot pass with placeholder data.
+A facility handoff kit now generates portable event JSON Schema, typed event
+templates, a hash-chained JSONL recorder/verifier, gate-query and fault plans,
+the replacement plan, second-cell record, auditor template, and
+content-addressed manifest. It removes the remaining logging/tooling ambiguity
+without claiming that a physical run occurred.
 
 **Why it remains:** none of those coefficients or controls has been validated
 as an integrated physical system. The article correctly calls Stage 0 a
@@ -186,6 +196,11 @@ and reviewed promotion decisions for every bound parameter.
 A generated calibration-release template enumerates every package, fit,
 cash-flow event type, and parameter decision while failing closed until
 measurements, immutable hashes, holdouts, and independent reviews exist.
+A generated public-evidence calibration now exercises all six packages, five
+correlation groups, eleven ledger event classes, and forty parameter
+decisions. Its five holdouts fail and all forty parameters remain
+`ASSUMPTION`, establishing a reproducible negative result instead of silently
+completing missing project records.
 
 **Why it remains:** most newly explicit terms have wide assumption bounds.
 Qualification, service life, availability, repairability, insurance,

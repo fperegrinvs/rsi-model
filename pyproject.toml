@@ -47,14 +47,18 @@ rsi-check-package = "rsimodel.package_gate:package_main"
 rsi-check-prose = "rsimodel.prose_gate:main"
 rsi-evaluate-evidence = "rsimodel.evidence_cli:main"
 rsi-publication-preflight = "rsimodel.publication_cli:main"
+rsi-rehearsal-archive = "rsimodel.rehearsal_archive_cli:main"
 rsi-release-preflight = "rsimodel.release_cli:main"
 rsi-run-baseline = "rsimodel.baseline_runner:baseline_main"
 rsi-run-deep = "rsimodel.deep_runner:deep_main"
 rsi-run-integrated = "rsimodel.integrated_runner:integrated_main"
 rsi-run-part2 = "rsimodel.part2_runner:part2_main"
 rsi-verify-manifests = "rsimodel.manifest_cli:main"
+rsi-write-economic-baseline = "rsimodel.economic_calibration_baseline:main"
 rsi-write-manifest = "rsimodel.release_manifest:main"
+rsi-write-process-baseline = "rsimodel.process_closure_baseline:main"
 rsi-write-provenance = "rsimodel.provenance_cli:main"
+rsi-write-rehearsal-kit = "rsimodel.rehearsal_kit:main"
 
 [dependency-groups]
 test = [
@@ -197,10 +201,12 @@ strict = [
   "src/rsimodel/yaml_adapter.py",
   "src/rsimodel/delta.py",
   "src/rsimodel/economic_calibration.py",
+  "src/rsimodel/economic_calibration_baseline.py",
   "src/rsimodel/model.py",
   "src/rsimodel/policies.py",
   "src/rsimodel/montecarlo.py",
   "src/rsimodel/process_closure.py",
+  "src/rsimodel/process_closure_baseline.py",
   "src/rsimodel/precursor_telemetry.py",
   "src/rsimodel/portfolio_coverage.py",
   "src/rsimodel/orbital_ai_scenarios.py",
@@ -212,6 +218,9 @@ strict = [
   "src/rsimodel/integrated_artifacts.py",
   "src/rsimodel/integrated_types.py",
   "src/rsimodel/rehearsal.py",
+  "src/rsimodel/rehearsal_archive.py",
+  "src/rsimodel/rehearsal_archive_cli.py",
+  "src/rsimodel/rehearsal_kit.py",
   "src/rsimodel/release.py",
 ]
 typeCheckingMode = "standard"

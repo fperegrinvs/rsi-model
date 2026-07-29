@@ -1,0 +1,953 @@
+{
+  "archive_sha256": "025a6a5f20d1e7f6d99536e40488ba4e45ba49bf9f2da5ce8fab858415b28af7",
+  "artifact_files": {
+    "economic-calibration-public-evidence-2026-07-29": {
+      "path": "docs/sources/economic-calibration-public-evidence-2026-07-29.md",
+      "sha256": "025a6a5f20d1e7f6d99536e40488ba4e45ba49bf9f2da5ce8fab858415b28af7"
+    },
+    "economic_calibration_baseline": {
+      "path": "src/rsimodel/economic_calibration_baseline.py",
+      "sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3"
+    },
+    "orbital_ai_scenario_registry": {
+      "path": "params/orbital_ai_scenario_registry.json",
+      "sha256": "85c6682539a39d7da742f74c688cf9bc70306e5d7256f79aa6d6abc967643bfc"
+    },
+    "spacexai-economic-thesis-2026-07-29": {
+      "path": "docs/sources/spacexai-economic-thesis-2026-07-29.md",
+      "sha256": "731309190f4980b17ceb0e6ffb85d443509b7af11943057763df8687acad4fca"
+    },
+    "starmind-ai1-2026-07-27": {
+      "path": "docs/sources/starmind-ai1-2026-07-27.md",
+      "sha256": "96c032db335903a1de0f7f7b054ba50d80981ef5b06886d815a96ed5707ec96a"
+    }
+  },
+  "cash_flow_events": [
+    {
+      "amount": 0.0,
+      "architecture_case": "public_evidence_gap",
+      "asset_or_work_package": "not_disclosed_within_public_evidence_boundary",
+      "committed_amount": "not_disclosed_within_public_evidence_boundary",
+      "event_id": "CASH_EVENT_REPLACE_001",
+      "event_time": "2026-07-29",
+      "event_type": "capex_commitment",
+      "nominal_currency": "USD",
+      "payment_schedule": "not_disclosed_within_public_evidence_boundary",
+      "price_base_date": "2026-07-29",
+      "project_id": "PUBLIC_GAP_NO_AUDITED_LEDGER",
+      "quantity_and_units": "missing-data sentinel; not an observed zero",
+      "record_status": "evidence_missing",
+      "source_document_hash": "025a6a5f20d1e7f6d99536e40488ba4e45ba49bf9f2da5ce8fab858415b28af7"
+    },
+    {
+      "amount": 0.0,
+      "amount_paid": "not_disclosed_within_public_evidence_boundary",
+      "architecture_case": "public_evidence_gap",
+      "asset_or_work_package": "not_disclosed_within_public_evidence_boundary",
+      "event_id": "CASH_EVENT_REPLACE_002",
+      "event_time": "2026-07-29",
+      "event_type": "construction_payment",
+      "milestone": "not_disclosed_within_public_evidence_boundary",
+      "nominal_currency": "USD",
+      "price_base_date": "2026-07-29",
+      "project_id": "PUBLIC_GAP_NO_AUDITED_LEDGER",
+      "quantity_and_units": "missing-data sentinel; not an observed zero",
+      "record_status": "evidence_missing",
+      "source_document_hash": "025a6a5f20d1e7f6d99536e40488ba4e45ba49bf9f2da5ce8fab858415b28af7"
+    },
+    {
+      "amount": 0.0,
+      "architecture_case": "public_evidence_gap",
+      "delivered_mass": "not_disclosed_within_public_evidence_boundary",
+      "destination": "not_disclosed_within_public_evidence_boundary",
+      "event_id": "CASH_EVENT_REPLACE_003",
+      "event_time": "2026-07-29",
+      "event_type": "launch_or_transfer",
+      "manifest": "not_disclosed_within_public_evidence_boundary",
+      "nominal_currency": "USD",
+      "price": "not_disclosed_within_public_evidence_boundary",
+      "price_base_date": "2026-07-29",
+      "project_id": "PUBLIC_GAP_NO_AUDITED_LEDGER",
+      "quantity_and_units": "missing-data sentinel; not an observed zero",
+      "record_status": "evidence_missing",
+      "source_document_hash": "025a6a5f20d1e7f6d99536e40488ba4e45ba49bf9f2da5ce8fab858415b28af7"
+    },
+    {
+      "acceptance_result": "not_disclosed_within_public_evidence_boundary",
+      "amount": 0.0,
+      "architecture_case": "public_evidence_gap",
+      "asset_id": "not_disclosed_within_public_evidence_boundary",
+      "commissioned_capacity": "not_disclosed_within_public_evidence_boundary",
+      "event_id": "CASH_EVENT_REPLACE_004",
+      "event_time": "2026-07-29",
+      "event_type": "commissioning",
+      "nominal_currency": "USD",
+      "price_base_date": "2026-07-29",
+      "project_id": "PUBLIC_GAP_NO_AUDITED_LEDGER",
+      "quantity_and_units": "missing-data sentinel; not an observed zero",
+      "record_status": "evidence_missing",
+      "source_document_hash": "025a6a5f20d1e7f6d99536e40488ba4e45ba49bf9f2da5ce8fab858415b28af7"
+    },
+    {
+      "amount": 0.0,
+      "architecture_case": "public_evidence_gap",
+      "availability": "not_disclosed_within_public_evidence_boundary",
+      "event_id": "CASH_EVENT_REPLACE_005",
+      "event_time": "2026-07-29",
+      "event_type": "operation",
+      "nominal_currency": "USD",
+      "operating_cost": "not_disclosed_within_public_evidence_boundary",
+      "price_base_date": "2026-07-29",
+      "project_id": "PUBLIC_GAP_NO_AUDITED_LEDGER",
+      "quantity_and_units": "missing-data sentinel; not an observed zero",
+      "record_status": "evidence_missing",
+      "revenue": "not_disclosed_within_public_evidence_boundary",
+      "service_quantity": "not_disclosed_within_public_evidence_boundary",
+      "source_document_hash": "025a6a5f20d1e7f6d99536e40488ba4e45ba49bf9f2da5ce8fab858415b28af7"
+    },
+    {
+      "amount": 0.0,
+      "architecture_case": "public_evidence_gap",
+      "asset_id": "not_disclosed_within_public_evidence_boundary",
+      "downtime": "not_disclosed_within_public_evidence_boundary",
+      "event_id": "CASH_EVENT_REPLACE_006",
+      "event_time": "2026-07-29",
+      "event_type": "failure_and_repair",
+      "failure_mode": "not_disclosed_within_public_evidence_boundary",
+      "lost_service": "not_disclosed_within_public_evidence_boundary",
+      "nominal_currency": "USD",
+      "price_base_date": "2026-07-29",
+      "project_id": "PUBLIC_GAP_NO_AUDITED_LEDGER",
+      "quantity_and_units": "missing-data sentinel; not an observed zero",
+      "record_status": "evidence_missing",
+      "repair_cost": "not_disclosed_within_public_evidence_boundary",
+      "source_document_hash": "025a6a5f20d1e7f6d99536e40488ba4e45ba49bf9f2da5ce8fab858415b28af7"
+    },
+    {
+      "amount": 0.0,
+      "architecture_case": "public_evidence_gap",
+      "claim": "not_disclosed_within_public_evidence_boundary",
+      "event_id": "CASH_EVENT_REPLACE_007",
+      "event_time": "2026-07-29",
+      "event_type": "insurance",
+      "insured_value": "not_disclosed_within_public_evidence_boundary",
+      "nominal_currency": "USD",
+      "premium": "not_disclosed_within_public_evidence_boundary",
+      "price_base_date": "2026-07-29",
+      "project_id": "PUBLIC_GAP_NO_AUDITED_LEDGER",
+      "quantity_and_units": "missing-data sentinel; not an observed zero",
+      "record_status": "evidence_missing",
+      "recovery": "not_disclosed_within_public_evidence_boundary",
+      "source_document_hash": "025a6a5f20d1e7f6d99536e40488ba4e45ba49bf9f2da5ce8fab858415b28af7"
+    },
+    {
+      "amount": 0.0,
+      "architecture_case": "public_evidence_gap",
+      "event_id": "CASH_EVENT_REPLACE_008",
+      "event_time": "2026-07-29",
+      "event_type": "financing",
+      "fees": "not_disclosed_within_public_evidence_boundary",
+      "instrument": "not_disclosed_within_public_evidence_boundary",
+      "interest": "not_disclosed_within_public_evidence_boundary",
+      "maturity": "not_disclosed_within_public_evidence_boundary",
+      "nominal_currency": "USD",
+      "price_base_date": "2026-07-29",
+      "principal": "not_disclosed_within_public_evidence_boundary",
+      "project_id": "PUBLIC_GAP_NO_AUDITED_LEDGER",
+      "quantity_and_units": "missing-data sentinel; not an observed zero",
+      "record_status": "evidence_missing",
+      "source_document_hash": "025a6a5f20d1e7f6d99536e40488ba4e45ba49bf9f2da5ce8fab858415b28af7"
+    },
+    {
+      "amount": 0.0,
+      "architecture_case": "public_evidence_gap",
+      "delay": "not_disclosed_within_public_evidence_boundary",
+      "event_id": "CASH_EVENT_REPLACE_009",
+      "event_time": "2026-07-29",
+      "event_type": "regulatory",
+      "fee": "not_disclosed_within_public_evidence_boundary",
+      "filing_or_license": "not_disclosed_within_public_evidence_boundary",
+      "jurisdiction": "not_disclosed_within_public_evidence_boundary",
+      "nominal_currency": "USD",
+      "price_base_date": "2026-07-29",
+      "project_id": "PUBLIC_GAP_NO_AUDITED_LEDGER",
+      "quantity_and_units": "missing-data sentinel; not an observed zero",
+      "record_status": "evidence_missing",
+      "source_document_hash": "025a6a5f20d1e7f6d99536e40488ba4e45ba49bf9f2da5ce8fab858415b28af7"
+    },
+    {
+      "amount": 0.0,
+      "architecture_case": "public_evidence_gap",
+      "asset_id": "not_disclosed_within_public_evidence_boundary",
+      "disposal_cost": "not_disclosed_within_public_evidence_boundary",
+      "event_id": "CASH_EVENT_REPLACE_010",
+      "event_time": "2026-07-29",
+      "event_type": "retirement_disposal",
+      "nominal_currency": "USD",
+      "price_base_date": "2026-07-29",
+      "project_id": "PUBLIC_GAP_NO_AUDITED_LEDGER",
+      "quantity_and_units": "missing-data sentinel; not an observed zero",
+      "record_status": "evidence_missing",
+      "residual_proceeds": "not_disclosed_within_public_evidence_boundary",
+      "retirement_reason": "not_disclosed_within_public_evidence_boundary",
+      "source_document_hash": "025a6a5f20d1e7f6d99536e40488ba4e45ba49bf9f2da5ce8fab858415b28af7"
+    },
+    {
+      "amount": 0.0,
+      "architecture_case": "public_evidence_gap",
+      "capacity_effect": "not_disclosed_within_public_evidence_boundary",
+      "event_id": "CASH_EVENT_REPLACE_011",
+      "event_time": "2026-07-29",
+      "event_type": "earth_resource",
+      "grid_region": "not_disclosed_within_public_evidence_boundary",
+      "labor": "not_disclosed_within_public_evidence_boundary",
+      "land": "not_disclosed_within_public_evidence_boundary",
+      "nominal_currency": "USD",
+      "price_base_date": "2026-07-29",
+      "project_id": "PUBLIC_GAP_NO_AUDITED_LEDGER",
+      "quantity_and_units": "missing-data sentinel; not an observed zero",
+      "record_status": "evidence_missing",
+      "site": "not_disclosed_within_public_evidence_boundary",
+      "source_document_hash": "025a6a5f20d1e7f6d99536e40488ba4e45ba49bf9f2da5ce8fab858415b28af7",
+      "water": "not_disclosed_within_public_evidence_boundary"
+    }
+  ],
+  "correlation_fits": {
+    "demand_price_financing": {
+      "calibration_period": "public records through 2025",
+      "diagnostics": {
+        "promotion_allowed": false,
+        "result": "insufficient architecture-matched observations"
+      },
+      "fit_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "holdout_status": "fail",
+      "members": [
+        "dynamic_economics.markets.commodity_compute.revenue_musd_per_compute_unit_year",
+        "dynamic_economics.markets.commodity_compute.demand_growth_per_year",
+        "dynamic_economics.markets.space_native_services.revenue_musd_per_compute_unit_year",
+        "dynamic_economics.markets.space_native_services.demand_growth_per_year",
+        "dynamic_economics.space.max_debt_to_annual_revenue",
+        "dynamic_economics.earth.max_debt_to_annual_revenue"
+      ],
+      "model": "no joint fit; public evidence is structurally incomplete",
+      "validation_period": "2026 holdout"
+    },
+    "earth_grid_land_water_labor": {
+      "calibration_period": "public records through 2025",
+      "diagnostics": {
+        "promotion_allowed": false,
+        "result": "insufficient architecture-matched observations"
+      },
+      "fit_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "holdout_status": "fail",
+      "members": [
+        "earth.power_price_kwh",
+        "earth.dc_capex_per_kw_it",
+        "earth.pue",
+        "dynamic_economics.earth.regulatory_delay_years",
+        "dynamic_economics.earth.induced_resource_ceiling_units_per_year"
+      ],
+      "model": "no joint fit; public evidence is structurally incomplete",
+      "validation_period": "2026 holdout"
+    },
+    "link_latency_throughput": {
+      "calibration_period": "public records through 2025",
+      "diagnostics": {
+        "promotion_allowed": false,
+        "result": "insufficient architecture-matched observations"
+      },
+      "fit_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "holdout_status": "fail",
+      "members": [
+        "space_cost_completion.communications_capex_per_kw",
+        "space_cost_completion.ground_network_capex_per_kw",
+        "workloads.inference_latency_availability_fraction",
+        "workloads.training_network_efficiency_space"
+      ],
+      "model": "no joint fit; public evidence is structurally incomplete",
+      "validation_period": "2026 holdout"
+    },
+    "mass_thermal_power": {
+      "calibration_period": "public records through 2025",
+      "diagnostics": {
+        "promotion_allowed": false,
+        "result": "insufficient architecture-matched observations"
+      },
+      "fit_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "holdout_status": "fail",
+      "members": [
+        "compute.hw_mass_kg_per_kw",
+        "compute.power_overhead_space",
+        "power_systems.pv_specific_power_w_per_kg",
+        "power_systems.radiator_kg_per_kw",
+        "space_cost_completion.radiator_rejection_temperature_k",
+        "space_cost_completion.thermal_reliability_mass_margin"
+      ],
+      "model": "no joint fit; public evidence is structurally incomplete",
+      "validation_period": "2026 holdout"
+    },
+    "qualification_life_availability_finance": {
+      "calibration_period": "public records through 2025",
+      "diagnostics": {
+        "promotion_allowed": false,
+        "result": "insufficient architecture-matched observations"
+      },
+      "fit_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "holdout_status": "fail",
+      "members": [
+        "compute.space_qual_multiplier",
+        "compute.life_years_space",
+        "compute.utilization_leo",
+        "space_cost_completion.insurance_fraction_per_year",
+        "space_cost_completion.wacc"
+      ],
+      "model": "no joint fit; public evidence is structurally incomplete",
+      "validation_period": "2026 holdout"
+    }
+  },
+  "evidence_packages": {
+    "E01_workload_benchmark": {
+      "normalized_records_sha256": "025a6a5f20d1e7f6d99536e40488ba4e45ba49bf9f2da5ce8fab858415b28af7",
+      "records": [
+        {
+          "accuracy_or_quality_gate": "not_disclosed_within_public_evidence_boundary",
+          "availability_and_service_level": "not_disclosed_within_public_evidence_boundary",
+          "batch_and_sequence_shape": "not_disclosed_within_public_evidence_boundary",
+          "benchmark_id": "PUBLIC_GAP_EQUAL_WORKLOAD_2026",
+          "failed_or_retried_work": "not_disclosed_within_public_evidence_boundary",
+          "fault_and_checkpoint_policy": "not_disclosed_within_public_evidence_boundary",
+          "latency_distribution": "not_disclosed_within_public_evidence_boundary",
+          "measured_energy_kwh": "not disclosed for a matched accepted workload",
+          "memory_capacity_and_bandwidth": "not_disclosed_within_public_evidence_boundary",
+          "model_and_version": "not matched across Earth and space",
+          "precision_and_quantization": "not_disclosed_within_public_evidence_boundary",
+          "record_status": "partial_public_evidence_no_promotion",
+          "source_note_sha256": "025a6a5f20d1e7f6d99536e40488ba4e45ba49bf9f2da5ce8fab858415b28af7",
+          "topology_and_synchronization": "not_disclosed_within_public_evidence_boundary",
+          "useful_completed_work": "not disclosed"
+        }
+      ]
+    },
+    "E02_space_asset_reliability": {
+      "normalized_records_sha256": "025a6a5f20d1e7f6d99536e40488ba4e45ba49bf9f2da5ce8fab858415b28af7",
+      "records": [
+        {
+          "asset_and_configuration": "NASA historical spacecraft populations; no architecture-matched orbital AI fleet",
+          "component_and_system_failures": "historical public failures exist but are not configuration-matched",
+          "launch_and_commissioning_date": "not_disclosed_within_public_evidence_boundary",
+          "qualification_campaign": "not_disclosed_within_public_evidence_boundary",
+          "radiation_and_orbit_exposure": "not_disclosed_within_public_evidence_boundary",
+          "record_status": "partial_public_evidence_no_promotion",
+          "repair_or_replacement_action": "not_disclosed_within_public_evidence_boundary",
+          "residual_value": "not_disclosed_within_public_evidence_boundary",
+          "retirement_reason": "not_disclosed_within_public_evidence_boundary",
+          "right_censoring": "NASA studies retain active spacecraft; AI fleet absent",
+          "scheduled_and_unscheduled_downtime": "not_disclosed_within_public_evidence_boundary",
+          "source_note_sha256": "025a6a5f20d1e7f6d99536e40488ba4e45ba49bf9f2da5ce8fab858415b28af7"
+        }
+      ]
+    },
+    "E03_link_and_ground_network": {
+      "normalized_records_sha256": "025a6a5f20d1e7f6d99536e40488ba4e45ba49bf9f2da5ce8fab858415b28af7",
+      "records": [
+        {
+          "delivered_throughput": "no operating orbital-AI service disclosed",
+          "latency_distribution": "not_disclosed_within_public_evidence_boundary",
+          "operations_and_ground_cost": "not_disclosed_within_public_evidence_boundary",
+          "orbit_and_constellation_geometry": "FCC SAT-LOA-20260108-00016 proposes 500-2000 km orbital data centers",
+          "payload_and_gateway_capex": "not_disclosed_within_public_evidence_boundary",
+          "record_status": "partial_public_evidence_no_promotion",
+          "retransmission_and_routing_overhead": "not_disclosed_within_public_evidence_boundary",
+          "source_note_sha256": "025a6a5f20d1e7f6d99536e40488ba4e45ba49bf9f2da5ce8fab858415b28af7",
+          "spectrum_and_regulatory_case": "FCC DA 26-113 accepted for filing",
+          "transmit_power_and_link_margin": "not_disclosed_within_public_evidence_boundary",
+          "weather_and_coverage_outages": "not_disclosed_within_public_evidence_boundary"
+        }
+      ]
+    },
+    "E04_thermal_mass_power": {
+      "normalized_records_sha256": "025a6a5f20d1e7f6d99536e40488ba4e45ba49bf9f2da5ce8fab858415b28af7",
+      "records": [
+        {
+          "beginning_and_end_of_life_mass": "not_disclosed_within_public_evidence_boundary",
+          "configuration_and_bom": "Starmind AI1 vehicle-level public specification",
+          "degradation_and_failure_history": "not_disclosed_within_public_evidence_boundary",
+          "heat_load_and_rejection_temperature": "not_disclosed_within_public_evidence_boundary",
+          "measured_it_and_total_power": "120 kW average compute and 150 kW solar nameplate; not an operating measurement",
+          "pumping_power": "not_disclosed_within_public_evidence_boundary",
+          "radiator_area_and_mass": "110 m2 area disclosed; radiator mass not disclosed",
+          "record_status": "partial_public_evidence_no_promotion",
+          "shielding_and_redundancy": "not_disclosed_within_public_evidence_boundary",
+          "source_note_sha256": "025a6a5f20d1e7f6d99536e40488ba4e45ba49bf9f2da5ce8fab858415b28af7",
+          "view_factor_and_environment": "not_disclosed_within_public_evidence_boundary"
+        }
+      ]
+    },
+    "E05_earth_resource_buildout": {
+      "normalized_records_sha256": "025a6a5f20d1e7f6d99536e40488ba4e45ba49bf9f2da5ce8fab858415b28af7",
+      "records": [
+        {
+          "achieved_pue_and_availability": "not matched to the orbital workload case",
+          "build_delay_and_cancellation": "not_disclosed_within_public_evidence_boundary",
+          "capacity_addition_and_retirement": "not_disclosed_within_public_evidence_boundary",
+          "construction_and_equipment_cost": "not_disclosed_within_public_evidence_boundary",
+          "labor_and_operations_cost": "not_disclosed_within_public_evidence_boundary",
+          "land_and_water_commitments": "not_disclosed_within_public_evidence_boundary",
+          "power_contract_and_grid_charges": "2025 average 13.41 cents/kWh commercial and 8.62 cents/kWh industrial",
+          "queue_and_permitting_dates": "not_disclosed_within_public_evidence_boundary",
+          "record_status": "partial_public_evidence_no_promotion",
+          "site_and_grid_region": "United States aggregate; not a matched project site",
+          "source_note_sha256": "025a6a5f20d1e7f6d99536e40488ba4e45ba49bf9f2da5ce8fab858415b28af7"
+        }
+      ]
+    },
+    "E06_cash_flows_and_financing": {
+      "normalized_records_sha256": "025a6a5f20d1e7f6d99536e40488ba4e45ba49bf9f2da5ce8fab858415b28af7",
+      "records": [
+        {
+          "cash_flow_category": "all required event classes represented as missingness rows",
+          "committed_and_paid_amount": "not disclosed by project architecture period",
+          "counterparty_class": "not_disclosed_within_public_evidence_boundary",
+          "disposal_or_residual_proceeds": "not_disclosed_within_public_evidence_boundary",
+          "event_id": "PUBLIC_GAP_LEDGER_2026",
+          "event_time": "not_disclosed_within_public_evidence_boundary",
+          "financing_instrument": "not_disclosed_within_public_evidence_boundary",
+          "insured_value_and_claims": "not_disclosed_within_public_evidence_boundary",
+          "interest_and_fees": "not_disclosed_within_public_evidence_boundary",
+          "nominal_currency_and_base_date": "not_disclosed_within_public_evidence_boundary",
+          "project_and_architecture": "no complete matched project ledger disclosed",
+          "record_status": "partial_public_evidence_no_promotion",
+          "revenue_quantity_price_and_collection": "not_disclosed_within_public_evidence_boundary",
+          "source_note_sha256": "025a6a5f20d1e7f6d99536e40488ba4e45ba49bf9f2da5ce8fab858415b28af7"
+        }
+      ]
+    }
+  },
+  "promotion_decisions": {
+    "compute.hw_mass_kg_per_kw": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E04_thermal_mass_power"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    },
+    "compute.life_years_space": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E02_space_asset_reliability"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    },
+    "compute.ops_fraction_per_year": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E03_link_and_ground_network"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    },
+    "compute.power_overhead_space": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E04_thermal_mass_power"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    },
+    "compute.space_qual_multiplier": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E02_space_asset_reliability"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    },
+    "compute.utilization_leo": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E02_space_asset_reliability"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    },
+    "dynamic_economics.earth.bridge_financing_musd": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E06_cash_flows_and_financing"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    },
+    "dynamic_economics.earth.induced_resource_ceiling_units_per_year": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E05_earth_resource_buildout"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    },
+    "dynamic_economics.earth.initial_equity_musd": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E06_cash_flows_and_financing"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    },
+    "dynamic_economics.earth.initial_resource_ceiling_units": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E05_earth_resource_buildout"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    },
+    "dynamic_economics.earth.max_debt_to_annual_revenue": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E06_cash_flows_and_financing"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    },
+    "dynamic_economics.earth.regulatory_delay_years": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E05_earth_resource_buildout"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    },
+    "dynamic_economics.earth.wacc": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E06_cash_flows_and_financing"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    },
+    "dynamic_economics.space.bridge_financing_musd": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E06_cash_flows_and_financing"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    },
+    "dynamic_economics.space.initial_equity_musd": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E06_cash_flows_and_financing"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    },
+    "dynamic_economics.space.max_debt_to_annual_revenue": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E06_cash_flows_and_financing"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    },
+    "dynamic_economics.space.wacc": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E06_cash_flows_and_financing"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    },
+    "earth.dc_capex_per_kw_it": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E05_earth_resource_buildout"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    },
+    "earth.power_price_kwh": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E05_earth_resource_buildout"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    },
+    "earth.pue": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E05_earth_resource_buildout"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    },
+    "earth.wacc": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E05_earth_resource_buildout",
+        "E06_cash_flows_and_financing"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    },
+    "power_systems.pv_specific_power_w_per_kg": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E04_thermal_mass_power"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    },
+    "power_systems.radiator_kg_per_kw": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E04_thermal_mass_power"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    },
+    "power_systems.structure_overhead_fraction": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E04_thermal_mass_power"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    },
+    "space_cost_completion.chip_to_radiator_temperature_drop_k": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E04_thermal_mass_power"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    },
+    "space_cost_completion.communications_capex_per_kw": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E03_link_and_ground_network"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    },
+    "space_cost_completion.environmental_view_factor": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E04_thermal_mass_power"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    },
+    "space_cost_completion.ground_network_capex_per_kw": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E03_link_and_ground_network"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    },
+    "space_cost_completion.insurance_fraction_per_year": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E02_space_asset_reliability"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    },
+    "space_cost_completion.pumping_power_fraction": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E04_thermal_mass_power"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    },
+    "space_cost_completion.radiator_rejection_temperature_k": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E04_thermal_mass_power"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    },
+    "space_cost_completion.residual_value_fraction_disposable": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E02_space_asset_reliability"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    },
+    "space_cost_completion.residual_value_fraction_serviceable": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E02_space_asset_reliability"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    },
+    "space_cost_completion.spectrum_regulatory_per_kw_year": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E03_link_and_ground_network"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    },
+    "space_cost_completion.thermal_reliability_mass_margin": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E04_thermal_mass_power"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    },
+    "space_cost_completion.wacc": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E06_cash_flows_and_financing"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    },
+    "workloads.inference_latency_availability_fraction": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E01_workload_benchmark",
+        "E03_link_and_ground_network"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    },
+    "workloads.inference_requests_per_kwh": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E01_workload_benchmark"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    },
+    "workloads.training_network_efficiency_earth": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E01_workload_benchmark"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    },
+    "workloads.training_network_efficiency_space": {
+      "calibration_query_sha256": "49c97992955a0527d3f08ea8b7f225a43561475d6b4697d3b988995ba07fd5e3",
+      "decision": "retain_assumption",
+      "estimate": "not promoted",
+      "evidence_package_ids": [
+        "E01_workload_benchmark",
+        "E03_link_and_ground_network"
+      ],
+      "failed_and_censored_count": 1.0,
+      "holdout_result": "fail",
+      "independent_review_status": "rejected",
+      "uncertainty": "unbounded by a passing architecture-matched holdout",
+      "units": "not applicable"
+    }
+  },
+  "protocol_id": "symmetric-compute-economics-calibration",
+  "template_status": "completed_negative_public_evidence_calibration"
+}

@@ -1,0 +1,110 @@
+{
+  "G01_closed_boundary": {
+    "acceptance": "zero prohibited events; any emergency entry is preserved and fails this gate",
+    "evidence": [
+      "intervention_event",
+      "material_transaction",
+      "external_witness_hash"
+    ],
+    "query_sha256": null,
+    "result": null,
+    "witness_hash": null
+  },
+  "G02_provenance_complete": {
+    "acceptance": "100% required-field completeness and no orphan state transition",
+    "evidence": [
+      "build_state",
+      "material_transaction"
+    ],
+    "query_sha256": null,
+    "result": null,
+    "witness_hash": null
+  },
+  "G03_mass_energy_reconciled": {
+    "acceptance": "absolute unexplained mass <= 1% of throughput and zero unmetered energy",
+    "evidence": [
+      "material_transaction",
+      "process_batch",
+      "utility_meter"
+    ],
+    "query_sha256": null,
+    "result": null,
+    "witness_hash": null
+  },
+  "G04_second_cell_discrete": {
+    "acceptance": "all declared indispensable subsystems pass individually; no aggregate proxy",
+    "evidence": [
+      "build_state",
+      "process_batch",
+      "task_attempt"
+    ],
+    "query_sha256": null,
+    "result": null,
+    "witness_hash": null
+  },
+  "G05_second_cell_retained_operation": {
+    "acceptance": "all indispensable sectors remain above their declared viable floors with no cell_0 capacity counted as cell_1",
+    "evidence": [
+      "build_state",
+      "process_batch",
+      "utility_meter"
+    ],
+    "query_sha256": null,
+    "result": null,
+    "witness_hash": null
+  },
+  "G06_observable_autonomy": {
+    "acceptance": "complete denominator and outcome records for every critical task family",
+    "evidence": [
+      "task_attempt",
+      "intervention_event",
+      "fault_event",
+      "process_batch"
+    ],
+    "query_sha256": null,
+    "result": null,
+    "witness_hash": null
+  },
+  "G07_fault_campaign": {
+    "acceptance": "no omitted case, unauthorized build, silent log gap, or uncontained physical hazard",
+    "evidence": [
+      "fault_event",
+      "governance_action",
+      "build_state"
+    ],
+    "query_sha256": null,
+    "result": null,
+    "witness_hash": null
+  },
+  "G08_lost_link_safe_hold": {
+    "acceptance": "new-build order rate reaches zero within one control cycle and remains zero until two-channel reauthorization",
+    "evidence": [
+      "governance_action",
+      "build_state"
+    ],
+    "query_sha256": null,
+    "result": null,
+    "witness_hash": null
+  },
+  "G09_independent_audit": {
+    "acceptance": "all discrepancies are resolved or force safe hold; selective disclosure fails the gate",
+    "evidence": [
+      "external_witness_hash",
+      "material_transaction",
+      "utility_meter",
+      "build_state"
+    ],
+    "query_sha256": null,
+    "result": null,
+    "witness_hash": null
+  },
+  "G10_assumption_replacement": {
+    "acceptance": "only parameters with a complete replacement record may be promoted out of ASSUMPTION",
+    "evidence": [
+      "all_event_types"
+    ],
+    "query_sha256": null,
+    "result": null,
+    "witness_hash": null
+  }
+}

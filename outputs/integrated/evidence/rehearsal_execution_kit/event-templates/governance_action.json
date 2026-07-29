@@ -1,0 +1,18 @@
+{
+  "actor_or_controller": null,
+  "authorization_roots": null,
+  "cell_id": "site",
+  "communication_state": null,
+  "event_id": "REPLACE_GOVERNANCE_ACTION_ID",
+  "event_type": "governance_action",
+  "external_witness_hash": "REPLACE_WITH_64_CHARACTER_LOWERCASE_SHA256",
+  "interlock_decision": null,
+  "monotonic_time_s": null,
+  "physical_order_rate_after": null,
+  "physical_order_rate_before": null,
+  "requested_action": null,
+  "sensor_source": null,
+  "signed_build_or_fault_campaign_id": null,
+  "software_and_recipe_version": null,
+  "timestamp_utc": null
+}

@@ -1,0 +1,3141 @@
+{
+  "archive_sha256": "fb04b8e7d345978f529c25c4ece0992b91671e8d7c1f218ca659505eb0e5f4f2",
+  "artifact_files": {
+    "claim_provenance": {
+      "path": "params/claim_provenance.yaml",
+      "sha256": "cab7019620193a2c33127fc074822ea9fed0b5b5f6353096e101a60c2f440337"
+    },
+    "portfolio_sector_coverage": {
+      "path": "params/portfolio_sector_coverage.json",
+      "sha256": "6c77fafc2d41467af53bfd879abbcf40149aca49cd51f066639ce4071ef1db91"
+    },
+    "process-closure-public-evidence-2026-07-29": {
+      "path": "docs/sources/process-closure-public-evidence-2026-07-29.md",
+      "sha256": "fb04b8e7d345978f529c25c4ece0992b91671e8d7c1f218ca659505eb0e5f4f2"
+    },
+    "process_closure_baseline": {
+      "path": "src/rsimodel/process_closure_baseline.py",
+      "sha256": "00cfa9e65fb99bdffbab0d383767d1f1558ae0ee42318bc526927c4b981385be"
+    }
+  },
+  "contract_id": "process-feasible-industrial-closure",
+  "edges": [
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "edge_id": "EDGE_PUBLIC_001",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_SOURCE_EARTH_PUBLIC_SUPPLY_CHAIN",
+      "output_node": "NODE_PROCESS_EXCAVATION_AND_SIZE_REDUCTION",
+      "process_stage": "excavation_and_size_reduction",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "edge_id": "EDGE_PUBLIC_002",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_PROCESS_EXCAVATION_AND_SIZE_REDUCTION",
+      "output_node": "NODE_PROCESS_BENEFICIATION_AND_SEPARATION",
+      "process_stage": "beneficiation_and_separation",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "edge_id": "EDGE_PUBLIC_003",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_PROCESS_BENEFICIATION_AND_SEPARATION",
+      "output_node": "NODE_PROCESS_REFINING_AND_SPECIES_CONVERSION",
+      "process_stage": "refining_and_species_conversion",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "edge_id": "EDGE_PUBLIC_004",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_PROCESS_REFINING_AND_SPECIES_CONVERSION",
+      "output_node": "NODE_PROCESS_PURIFICATION_AND_CONTAMINATION_CONTROL",
+      "process_stage": "purification_and_contamination_control",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "edge_id": "EDGE_PUBLIC_005",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_PROCESS_PURIFICATION_AND_CONTAMINATION_CONTROL",
+      "output_node": "NODE_PROCESS_ALLOYING_AND_HEAT_TREATMENT",
+      "process_stage": "alloying_and_heat_treatment",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "edge_id": "EDGE_PUBLIC_006",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_PROCESS_ALLOYING_AND_HEAT_TREATMENT",
+      "output_node": "NODE_PROCESS_FORMING_MACHINING_AND_JOINING",
+      "process_stage": "forming_machining_and_joining",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "edge_id": "EDGE_PUBLIC_007",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_PROCESS_FORMING_MACHINING_AND_JOINING",
+      "output_node": "NODE_PROCESS_ELECTRONICS_MATERIALS_AND_WAFER_PROCESS",
+      "process_stage": "electronics_materials_and_wafer_process",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "edge_id": "EDGE_PUBLIC_008",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_PROCESS_ELECTRONICS_MATERIALS_AND_WAFER_PROCESS",
+      "output_node": "NODE_PROCESS_COMPONENT_FABRICATION_AND_PACKAGING",
+      "process_stage": "component_fabrication_and_packaging",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "edge_id": "EDGE_PUBLIC_009",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_PROCESS_COMPONENT_FABRICATION_AND_PACKAGING",
+      "output_node": "NODE_PROCESS_ASSEMBLY_CALIBRATION_AND_ACCEPTANCE",
+      "process_stage": "assembly_calibration_and_acceptance",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "edge_id": "EDGE_PUBLIC_010",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_PROCESS_ASSEMBLY_CALIBRATION_AND_ACCEPTANCE",
+      "output_node": "NODE_PROCESS_MAINTENANCE_REPAIR_AND_RECYCLING",
+      "process_stage": "maintenance_repair_and_recycling",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "edge_id": "EDGE_PUBLIC_011",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_PROCESS_MAINTENANCE_REPAIR_AND_RECYCLING",
+      "output_node": "NODE_PROCESS_WASTE_TREATMENT_AND_DISPOSAL",
+      "process_stage": "waste_treatment_and_disposal",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "full-chain measurements are unavailable"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "transport fleet is not reproduced by the source portfolio"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "transport fleet is not reproduced by the source portfolio"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "transport fleet is not reproduced by the source portfolio"
+      },
+      "edge_id": "EDGE_PUBLIC_012",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "transport fleet is not reproduced by the source portfolio"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_SOURCE_EARTH_PUBLIC_SUPPLY_CHAIN",
+      "output_node": "NODE_TRANSPORT_PUBLICLY_UNCLOSED",
+      "process_stage": "excavation_and_size_reduction",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "transport fleet is not reproduced by the source portfolio"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "transport fleet is not reproduced by the source portfolio"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "transport fleet is not reproduced by the source portfolio"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "raw_mineral progression remains uncalibrated"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "raw_mineral progression remains uncalibrated"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "raw_mineral progression remains uncalibrated"
+      },
+      "edge_id": "EDGE_PUBLIC_013",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "raw_mineral progression remains uncalibrated"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_PROCESS_WASTE_TREATMENT_AND_DISPOSAL",
+      "output_node": "NODE_MATERIAL_RAW_MINERAL",
+      "process_stage": "purification_and_contamination_control",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "raw_mineral progression remains uncalibrated"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "raw_mineral progression remains uncalibrated"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "raw_mineral progression remains uncalibrated"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "concentrate progression remains uncalibrated"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "concentrate progression remains uncalibrated"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "concentrate progression remains uncalibrated"
+      },
+      "edge_id": "EDGE_PUBLIC_014",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "concentrate progression remains uncalibrated"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_PROCESS_WASTE_TREATMENT_AND_DISPOSAL",
+      "output_node": "NODE_MATERIAL_CONCENTRATE",
+      "process_stage": "purification_and_contamination_control",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "concentrate progression remains uncalibrated"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "concentrate progression remains uncalibrated"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "concentrate progression remains uncalibrated"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "bulk progression remains uncalibrated"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "bulk progression remains uncalibrated"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "bulk progression remains uncalibrated"
+      },
+      "edge_id": "EDGE_PUBLIC_015",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "bulk progression remains uncalibrated"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_PROCESS_WASTE_TREATMENT_AND_DISPOSAL",
+      "output_node": "NODE_MATERIAL_BULK",
+      "process_stage": "purification_and_contamination_control",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "bulk progression remains uncalibrated"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "bulk progression remains uncalibrated"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "bulk progression remains uncalibrated"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "structural_alloy progression remains uncalibrated"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "structural_alloy progression remains uncalibrated"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "structural_alloy progression remains uncalibrated"
+      },
+      "edge_id": "EDGE_PUBLIC_016",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "structural_alloy progression remains uncalibrated"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_PROCESS_WASTE_TREATMENT_AND_DISPOSAL",
+      "output_node": "NODE_MATERIAL_STRUCTURAL_ALLOY",
+      "process_stage": "purification_and_contamination_control",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "structural_alloy progression remains uncalibrated"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "structural_alloy progression remains uncalibrated"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "structural_alloy progression remains uncalibrated"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "electronic_grade progression remains uncalibrated"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "electronic_grade progression remains uncalibrated"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "electronic_grade progression remains uncalibrated"
+      },
+      "edge_id": "EDGE_PUBLIC_017",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "electronic_grade progression remains uncalibrated"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_PROCESS_WASTE_TREATMENT_AND_DISPOSAL",
+      "output_node": "NODE_MATERIAL_ELECTRONIC_GRADE",
+      "process_stage": "purification_and_contamination_control",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "electronic_grade progression remains uncalibrated"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "electronic_grade progression remains uncalibrated"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "electronic_grade progression remains uncalibrated"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "semiconductor_grade progression remains uncalibrated"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "semiconductor_grade progression remains uncalibrated"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "semiconductor_grade progression remains uncalibrated"
+      },
+      "edge_id": "EDGE_PUBLIC_018",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "semiconductor_grade progression remains uncalibrated"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_PROCESS_WASTE_TREATMENT_AND_DISPOSAL",
+      "output_node": "NODE_MATERIAL_SEMICONDUCTOR_GRADE",
+      "process_stage": "purification_and_contamination_control",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "semiconductor_grade progression remains uncalibrated"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "semiconductor_grade progression remains uncalibrated"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "semiconductor_grade progression remains uncalibrated"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "ultra_pure_process_input progression remains uncalibrated"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "ultra_pure_process_input progression remains uncalibrated"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "ultra_pure_process_input progression remains uncalibrated"
+      },
+      "edge_id": "EDGE_PUBLIC_019",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "ultra_pure_process_input progression remains uncalibrated"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_PROCESS_WASTE_TREATMENT_AND_DISPOSAL",
+      "output_node": "NODE_MATERIAL_ULTRA_PURE_PROCESS_INPUT",
+      "process_stage": "purification_and_contamination_control",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "ultra_pure_process_input progression remains uncalibrated"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "ultra_pure_process_input progression remains uncalibrated"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "ultra_pure_process_input progression remains uncalibrated"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "process_gases remains imported or unsupported"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "process_gases remains imported or unsupported"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "process_gases remains imported or unsupported"
+      },
+      "edge_id": "EDGE_PUBLIC_020",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "process_gases remains imported or unsupported"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_MATERIAL_BULK",
+      "output_node": "NODE_PART_PROCESS_GASES",
+      "process_stage": "component_fabrication_and_packaging",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "process_gases remains imported or unsupported"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "process_gases remains imported or unsupported"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "process_gases remains imported or unsupported"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "process_chemicals remains imported or unsupported"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "process_chemicals remains imported or unsupported"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "process_chemicals remains imported or unsupported"
+      },
+      "edge_id": "EDGE_PUBLIC_021",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "process_chemicals remains imported or unsupported"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_MATERIAL_BULK",
+      "output_node": "NODE_PART_PROCESS_CHEMICALS",
+      "process_stage": "component_fabrication_and_packaging",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "process_chemicals remains imported or unsupported"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "process_chemicals remains imported or unsupported"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "process_chemicals remains imported or unsupported"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "masks_and_reticles remains imported or unsupported"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "masks_and_reticles remains imported or unsupported"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "masks_and_reticles remains imported or unsupported"
+      },
+      "edge_id": "EDGE_PUBLIC_022",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "masks_and_reticles remains imported or unsupported"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_MATERIAL_BULK",
+      "output_node": "NODE_PART_MASKS_AND_RETICLES",
+      "process_stage": "component_fabrication_and_packaging",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "masks_and_reticles remains imported or unsupported"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "masks_and_reticles remains imported or unsupported"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "masks_and_reticles remains imported or unsupported"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "resists_and_photochemicals remains imported or unsupported"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "resists_and_photochemicals remains imported or unsupported"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "resists_and_photochemicals remains imported or unsupported"
+      },
+      "edge_id": "EDGE_PUBLIC_023",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "resists_and_photochemicals remains imported or unsupported"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_MATERIAL_BULK",
+      "output_node": "NODE_PART_RESISTS_AND_PHOTOCHEMICALS",
+      "process_stage": "component_fabrication_and_packaging",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "resists_and_photochemicals remains imported or unsupported"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "resists_and_photochemicals remains imported or unsupported"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "resists_and_photochemicals remains imported or unsupported"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "filters_and_membranes remains imported or unsupported"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "filters_and_membranes remains imported or unsupported"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "filters_and_membranes remains imported or unsupported"
+      },
+      "edge_id": "EDGE_PUBLIC_024",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "filters_and_membranes remains imported or unsupported"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_MATERIAL_BULK",
+      "output_node": "NODE_PART_FILTERS_AND_MEMBRANES",
+      "process_stage": "component_fabrication_and_packaging",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "filters_and_membranes remains imported or unsupported"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "filters_and_membranes remains imported or unsupported"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "filters_and_membranes remains imported or unsupported"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "optics_and_laser_sources remains imported or unsupported"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "optics_and_laser_sources remains imported or unsupported"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "optics_and_laser_sources remains imported or unsupported"
+      },
+      "edge_id": "EDGE_PUBLIC_025",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "optics_and_laser_sources remains imported or unsupported"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_MATERIAL_BULK",
+      "output_node": "NODE_PART_OPTICS_AND_LASER_SOURCES",
+      "process_stage": "component_fabrication_and_packaging",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "optics_and_laser_sources remains imported or unsupported"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "optics_and_laser_sources remains imported or unsupported"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "optics_and_laser_sources remains imported or unsupported"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "coatings_and_surface_treatments remains imported or unsupported"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "coatings_and_surface_treatments remains imported or unsupported"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "coatings_and_surface_treatments remains imported or unsupported"
+      },
+      "edge_id": "EDGE_PUBLIC_026",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "coatings_and_surface_treatments remains imported or unsupported"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_MATERIAL_BULK",
+      "output_node": "NODE_PART_COATINGS_AND_SURFACE_TREATMENTS",
+      "process_stage": "component_fabrication_and_packaging",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "coatings_and_surface_treatments remains imported or unsupported"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "coatings_and_surface_treatments remains imported or unsupported"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "coatings_and_surface_treatments remains imported or unsupported"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "seals_and_flexible_elements remains imported or unsupported"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "seals_and_flexible_elements remains imported or unsupported"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "seals_and_flexible_elements remains imported or unsupported"
+      },
+      "edge_id": "EDGE_PUBLIC_027",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "seals_and_flexible_elements remains imported or unsupported"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_MATERIAL_BULK",
+      "output_node": "NODE_PART_SEALS_AND_FLEXIBLE_ELEMENTS",
+      "process_stage": "component_fabrication_and_packaging",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "seals_and_flexible_elements remains imported or unsupported"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "seals_and_flexible_elements remains imported or unsupported"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "seals_and_flexible_elements remains imported or unsupported"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "lubricants_and_working_fluids remains imported or unsupported"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "lubricants_and_working_fluids remains imported or unsupported"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "lubricants_and_working_fluids remains imported or unsupported"
+      },
+      "edge_id": "EDGE_PUBLIC_028",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "lubricants_and_working_fluids remains imported or unsupported"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_MATERIAL_BULK",
+      "output_node": "NODE_PART_LUBRICANTS_AND_WORKING_FLUIDS",
+      "process_stage": "component_fabrication_and_packaging",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "lubricants_and_working_fluids remains imported or unsupported"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "lubricants_and_working_fluids remains imported or unsupported"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "lubricants_and_working_fluids remains imported or unsupported"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "bearings_and_precision_motion remains imported or unsupported"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "bearings_and_precision_motion remains imported or unsupported"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "bearings_and_precision_motion remains imported or unsupported"
+      },
+      "edge_id": "EDGE_PUBLIC_029",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "bearings_and_precision_motion remains imported or unsupported"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_MATERIAL_BULK",
+      "output_node": "NODE_PART_BEARINGS_AND_PRECISION_MOTION",
+      "process_stage": "component_fabrication_and_packaging",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "bearings_and_precision_motion remains imported or unsupported"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "bearings_and_precision_motion remains imported or unsupported"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "bearings_and_precision_motion remains imported or unsupported"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "calibration_artifacts remains imported or unsupported"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "calibration_artifacts remains imported or unsupported"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "calibration_artifacts remains imported or unsupported"
+      },
+      "edge_id": "EDGE_PUBLIC_030",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "calibration_artifacts remains imported or unsupported"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_MATERIAL_BULK",
+      "output_node": "NODE_PART_CALIBRATION_ARTIFACTS",
+      "process_stage": "component_fabrication_and_packaging",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "calibration_artifacts remains imported or unsupported"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "calibration_artifacts remains imported or unsupported"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "calibration_artifacts remains imported or unsupported"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "metrology_and_test remains imported or unsupported"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "metrology_and_test remains imported or unsupported"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "metrology_and_test remains imported or unsupported"
+      },
+      "edge_id": "EDGE_PUBLIC_031",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "metrology_and_test remains imported or unsupported"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_MATERIAL_BULK",
+      "output_node": "NODE_PART_METROLOGY_AND_TEST",
+      "process_stage": "component_fabrication_and_packaging",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "metrology_and_test remains imported or unsupported"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "metrology_and_test remains imported or unsupported"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "metrology_and_test remains imported or unsupported"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "controls_and_power_electronics remains imported or unsupported"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "controls_and_power_electronics remains imported or unsupported"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "controls_and_power_electronics remains imported or unsupported"
+      },
+      "edge_id": "EDGE_PUBLIC_032",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "controls_and_power_electronics remains imported or unsupported"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_MATERIAL_BULK",
+      "output_node": "NODE_PART_CONTROLS_AND_POWER_ELECTRONICS",
+      "process_stage": "component_fabrication_and_packaging",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "controls_and_power_electronics remains imported or unsupported"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "controls_and_power_electronics remains imported or unsupported"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "controls_and_power_electronics remains imported or unsupported"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "parent_tools remains imported or unsupported"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "parent_tools remains imported or unsupported"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "parent_tools remains imported or unsupported"
+      },
+      "edge_id": "EDGE_PUBLIC_033",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "parent_tools remains imported or unsupported"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_MATERIAL_BULK",
+      "output_node": "NODE_PART_PARENT_TOOLS",
+      "process_stage": "component_fabrication_and_packaging",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "parent_tools remains imported or unsupported"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "parent_tools remains imported or unsupported"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "parent_tools remains imported or unsupported"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "power parent-tool ancestry is not closed"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "power parent-tool ancestry is not closed"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "power parent-tool ancestry is not closed"
+      },
+      "edge_id": "EDGE_PUBLIC_034",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "power parent-tool ancestry is not closed"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_MATERIAL_STRUCTURAL_ALLOY",
+      "output_node": "NODE_EQUIPMENT_SECTOR_POWER",
+      "process_stage": "assembly_calibration_and_acceptance",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "power parent-tool ancestry is not closed"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "power parent-tool ancestry is not closed"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "power parent-tool ancestry is not closed"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "mining parent-tool ancestry is not closed"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "mining parent-tool ancestry is not closed"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "mining parent-tool ancestry is not closed"
+      },
+      "edge_id": "EDGE_PUBLIC_035",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "mining parent-tool ancestry is not closed"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_MATERIAL_STRUCTURAL_ALLOY",
+      "output_node": "NODE_EQUIPMENT_SECTOR_MINING",
+      "process_stage": "assembly_calibration_and_acceptance",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "mining parent-tool ancestry is not closed"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "mining parent-tool ancestry is not closed"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "mining parent-tool ancestry is not closed"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "refining parent-tool ancestry is not closed"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "refining parent-tool ancestry is not closed"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "refining parent-tool ancestry is not closed"
+      },
+      "edge_id": "EDGE_PUBLIC_036",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "refining parent-tool ancestry is not closed"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_MATERIAL_STRUCTURAL_ALLOY",
+      "output_node": "NODE_EQUIPMENT_SECTOR_REFINING",
+      "process_stage": "assembly_calibration_and_acceptance",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "refining parent-tool ancestry is not closed"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "refining parent-tool ancestry is not closed"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "refining parent-tool ancestry is not closed"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "robotics parent-tool ancestry is not closed"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "robotics parent-tool ancestry is not closed"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "robotics parent-tool ancestry is not closed"
+      },
+      "edge_id": "EDGE_PUBLIC_037",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "robotics parent-tool ancestry is not closed"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_MATERIAL_STRUCTURAL_ALLOY",
+      "output_node": "NODE_EQUIPMENT_SECTOR_ROBOTICS",
+      "process_stage": "assembly_calibration_and_acceptance",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "robotics parent-tool ancestry is not closed"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "robotics parent-tool ancestry is not closed"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "robotics parent-tool ancestry is not closed"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "machine_tools parent-tool ancestry is not closed"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "machine_tools parent-tool ancestry is not closed"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "machine_tools parent-tool ancestry is not closed"
+      },
+      "edge_id": "EDGE_PUBLIC_038",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "machine_tools parent-tool ancestry is not closed"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_MATERIAL_STRUCTURAL_ALLOY",
+      "output_node": "NODE_EQUIPMENT_SECTOR_MACHINE_TOOLS",
+      "process_stage": "assembly_calibration_and_acceptance",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "machine_tools parent-tool ancestry is not closed"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "machine_tools parent-tool ancestry is not closed"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "machine_tools parent-tool ancestry is not closed"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "construction parent-tool ancestry is not closed"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "construction parent-tool ancestry is not closed"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "construction parent-tool ancestry is not closed"
+      },
+      "edge_id": "EDGE_PUBLIC_039",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "construction parent-tool ancestry is not closed"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_MATERIAL_STRUCTURAL_ALLOY",
+      "output_node": "NODE_EQUIPMENT_SECTOR_CONSTRUCTION",
+      "process_stage": "assembly_calibration_and_acceptance",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "construction parent-tool ancestry is not closed"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "construction parent-tool ancestry is not closed"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "construction parent-tool ancestry is not closed"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "thermal parent-tool ancestry is not closed"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "thermal parent-tool ancestry is not closed"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "thermal parent-tool ancestry is not closed"
+      },
+      "edge_id": "EDGE_PUBLIC_040",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "thermal parent-tool ancestry is not closed"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_MATERIAL_STRUCTURAL_ALLOY",
+      "output_node": "NODE_EQUIPMENT_SECTOR_THERMAL",
+      "process_stage": "assembly_calibration_and_acceptance",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "thermal parent-tool ancestry is not closed"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "thermal parent-tool ancestry is not closed"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "thermal parent-tool ancestry is not closed"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "transport parent-tool ancestry is not closed"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "transport parent-tool ancestry is not closed"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "transport parent-tool ancestry is not closed"
+      },
+      "edge_id": "EDGE_PUBLIC_041",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "transport parent-tool ancestry is not closed"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_MATERIAL_STRUCTURAL_ALLOY",
+      "output_node": "NODE_EQUIPMENT_SECTOR_TRANSPORT",
+      "process_stage": "assembly_calibration_and_acceptance",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "transport parent-tool ancestry is not closed"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "transport parent-tool ancestry is not closed"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "transport parent-tool ancestry is not closed"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "repair parent-tool ancestry is not closed"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "repair parent-tool ancestry is not closed"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "repair parent-tool ancestry is not closed"
+      },
+      "edge_id": "EDGE_PUBLIC_042",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "repair parent-tool ancestry is not closed"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_MATERIAL_STRUCTURAL_ALLOY",
+      "output_node": "NODE_EQUIPMENT_SECTOR_REPAIR",
+      "process_stage": "assembly_calibration_and_acceptance",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "repair parent-tool ancestry is not closed"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "repair parent-tool ancestry is not closed"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "repair parent-tool ancestry is not closed"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "recycling parent-tool ancestry is not closed"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "recycling parent-tool ancestry is not closed"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "recycling parent-tool ancestry is not closed"
+      },
+      "edge_id": "EDGE_PUBLIC_043",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "recycling parent-tool ancestry is not closed"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_MATERIAL_STRUCTURAL_ALLOY",
+      "output_node": "NODE_EQUIPMENT_SECTOR_RECYCLING",
+      "process_stage": "assembly_calibration_and_acceptance",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "recycling parent-tool ancestry is not closed"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "recycling parent-tool ancestry is not closed"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "recycling parent-tool ancestry is not closed"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "interconnects_boards parent-tool ancestry is not closed"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "interconnects_boards parent-tool ancestry is not closed"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "interconnects_boards parent-tool ancestry is not closed"
+      },
+      "edge_id": "EDGE_PUBLIC_044",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "interconnects_boards parent-tool ancestry is not closed"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_MATERIAL_STRUCTURAL_ALLOY",
+      "output_node": "NODE_EQUIPMENT_SECTOR_INTERCONNECTS_BOARDS",
+      "process_stage": "assembly_calibration_and_acceptance",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "interconnects_boards parent-tool ancestry is not closed"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "interconnects_boards parent-tool ancestry is not closed"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "interconnects_boards parent-tool ancestry is not closed"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "passives_power parent-tool ancestry is not closed"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "passives_power parent-tool ancestry is not closed"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "passives_power parent-tool ancestry is not closed"
+      },
+      "edge_id": "EDGE_PUBLIC_045",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "passives_power parent-tool ancestry is not closed"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_MATERIAL_STRUCTURAL_ALLOY",
+      "output_node": "NODE_EQUIPMENT_SECTOR_PASSIVES_POWER",
+      "process_stage": "assembly_calibration_and_acceptance",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "passives_power parent-tool ancestry is not closed"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "passives_power parent-tool ancestry is not closed"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "passives_power parent-tool ancestry is not closed"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "sensors_control parent-tool ancestry is not closed"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "sensors_control parent-tool ancestry is not closed"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "sensors_control parent-tool ancestry is not closed"
+      },
+      "edge_id": "EDGE_PUBLIC_046",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "sensors_control parent-tool ancestry is not closed"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_MATERIAL_STRUCTURAL_ALLOY",
+      "output_node": "NODE_EQUIPMENT_SECTOR_SENSORS_CONTROL",
+      "process_stage": "assembly_calibration_and_acceptance",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "sensors_control parent-tool ancestry is not closed"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "sensors_control parent-tool ancestry is not closed"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "sensors_control parent-tool ancestry is not closed"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "packaging_test parent-tool ancestry is not closed"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "packaging_test parent-tool ancestry is not closed"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "packaging_test parent-tool ancestry is not closed"
+      },
+      "edge_id": "EDGE_PUBLIC_047",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "packaging_test parent-tool ancestry is not closed"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_MATERIAL_STRUCTURAL_ALLOY",
+      "output_node": "NODE_EQUIPMENT_SECTOR_PACKAGING_TEST",
+      "process_stage": "assembly_calibration_and_acceptance",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "packaging_test parent-tool ancestry is not closed"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "packaging_test parent-tool ancestry is not closed"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "packaging_test parent-tool ancestry is not closed"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "mature_logic parent-tool ancestry is not closed"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "mature_logic parent-tool ancestry is not closed"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "mature_logic parent-tool ancestry is not closed"
+      },
+      "edge_id": "EDGE_PUBLIC_048",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "mature_logic parent-tool ancestry is not closed"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_MATERIAL_STRUCTURAL_ALLOY",
+      "output_node": "NODE_EQUIPMENT_SECTOR_MATURE_LOGIC",
+      "process_stage": "assembly_calibration_and_acceptance",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "mature_logic parent-tool ancestry is not closed"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "mature_logic parent-tool ancestry is not closed"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "mature_logic parent-tool ancestry is not closed"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "advanced_logic_memory parent-tool ancestry is not closed"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "advanced_logic_memory parent-tool ancestry is not closed"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "advanced_logic_memory parent-tool ancestry is not closed"
+      },
+      "edge_id": "EDGE_PUBLIC_049",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "advanced_logic_memory parent-tool ancestry is not closed"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_MATERIAL_STRUCTURAL_ALLOY",
+      "output_node": "NODE_EQUIPMENT_SECTOR_ADVANCED_LOGIC_MEMORY",
+      "process_stage": "assembly_calibration_and_acceptance",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "advanced_logic_memory parent-tool ancestry is not closed"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "advanced_logic_memory parent-tool ancestry is not closed"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "advanced_logic_memory parent-tool ancestry is not closed"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "process_equipment_metrology parent-tool ancestry is not closed"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "process_equipment_metrology parent-tool ancestry is not closed"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "process_equipment_metrology parent-tool ancestry is not closed"
+      },
+      "edge_id": "EDGE_PUBLIC_050",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "process_equipment_metrology parent-tool ancestry is not closed"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_MATERIAL_STRUCTURAL_ALLOY",
+      "output_node": "NODE_EQUIPMENT_SECTOR_PROCESS_EQUIPMENT_METROLOGY",
+      "process_stage": "assembly_calibration_and_acceptance",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "process_equipment_metrology parent-tool ancestry is not closed"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "process_equipment_metrology parent-tool ancestry is not closed"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "process_equipment_metrology parent-tool ancestry is not closed"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "compute parent-tool ancestry is not closed"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "compute parent-tool ancestry is not closed"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "compute parent-tool ancestry is not closed"
+      },
+      "edge_id": "EDGE_PUBLIC_051",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "compute parent-tool ancestry is not closed"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_MATERIAL_STRUCTURAL_ALLOY",
+      "output_node": "NODE_EQUIPMENT_SECTOR_COMPUTE",
+      "process_stage": "assembly_calibration_and_acceptance",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "compute parent-tool ancestry is not closed"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "compute parent-tool ancestry is not closed"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "compute parent-tool ancestry is not closed"
+      }
+    },
+    {
+      "capacity_and_cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "waste and recovery flows are not species-balanced"
+      },
+      "consumables_and_tool_wear": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "waste and recovery flows are not species-balanced"
+      },
+      "contamination_and_rework": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "waste and recovery flows are not species-balanced"
+      },
+      "edge_id": "EDGE_PUBLIC_052",
+      "energy_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "waste and recovery flows are not species-balanced"
+      },
+      "evidence_record": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "input_node": "NODE_PROCESS_WASTE_TREATMENT_AND_DISPOSAL",
+      "output_node": "NODE_WASTE_PUBLICLY_UNCLOSED",
+      "process_stage": "maintenance_repair_and_recycling",
+      "quantity_and_units": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "waste and recovery flows are not species-balanced"
+      },
+      "stoichiometry_or_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "waste and recovery flows are not species-balanced"
+      },
+      "yield_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "waste and recovery flows are not species-balanced"
+      }
+    }
+  ],
+  "evidence_records": [
+    {
+      "date": "2026-07-29",
+      "denominator_and_boundary": "selected public terrestrial and lunar-process evidence; not an integrated source-to-reproduction campaign",
+      "exact_locator": "docs/sources/process-closure-public-evidence-2026-07-29.md",
+      "extracted_value_and_units": "15-20% demonstrated lunar-simulant oxygen yield; all other graph-wide coefficients remain undisclosed or unmeasured",
+      "independent_review_status": "not independently audited; every closure gate remains failed",
+      "organization_or_authors": "NASA; NIST; U.S. Geological Survey; rsi-model",
+      "persistent_identifier_or_archive_hash": "fb04b8e7d345978f529c25c4ece0992b91671e8d7c1f218ca659505eb0e5f4f2",
+      "record_id": "EVIDENCE_PUBLIC_GAP_BASELINE",
+      "source_class": "mixed_primary_source_negative_evidence_audit",
+      "source_or_experiment": "NASA lunar ISRU and replicating-systems reports; NIST semiconductor metrology projects; USGS MCS 2026; public portfolio register",
+      "title_or_protocol": "Process-closure public-evidence baseline",
+      "transformation": "Map evidenced capability and every explicit gap to typed graph nodes; do not impute missing numerical fields",
+      "uncertainty_and_detection_limit": "source-specific values retained; no graph-wide uncertainty fit exists"
+    }
+  ],
+  "fleet_records": [
+    {
+      "delta_v_and_transfer_windows": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no reproducible source-to-factory off-world fleet is evidenced"
+      },
+      "excavation_and_processing_rate": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "NASA oxygen experiments do not establish fleet production rate"
+      },
+      "fleet_id": "FLEET_PUBLICLY_UNCLOSED_TRANSPORT_2026",
+      "fleet_manufacture_and_replacement_bom": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "vehicles and parent tools remain external"
+      },
+      "propellant_and_consumables": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no closed propellant and consumables route is demonstrated"
+      },
+      "reliability_and_failed_missions": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no applicable operating campaign exists"
+      },
+      "reserve_and_inventory_accounting": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no assayed off-world reserve is connected to a reproducing fleet"
+      },
+      "transit_and_turnaround_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "architecture and source are unresolved"
+      },
+      "vehicle_payload_and_dry_mass": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no verified fleet is bound to this process graph"
+      }
+    }
+  ],
+  "gate_results": {
+    "C01_species_mass_balance": {
+      "evaluator_id": "rsi-model-process-public-baseline-v1",
+      "evidence_query_sha256": "00cfa9e65fb99bdffbab0d383767d1f1558ae0ee42318bc526927c4b981385be",
+      "status": "fail",
+      "witness_hash": "fb04b8e7d345978f529c25c4ece0992b91671e8d7c1f218ca659505eb0e5f4f2"
+    },
+    "C02_energy_and_capacity": {
+      "evaluator_id": "rsi-model-process-public-baseline-v1",
+      "evidence_query_sha256": "00cfa9e65fb99bdffbab0d383767d1f1558ae0ee42318bc526927c4b981385be",
+      "status": "fail",
+      "witness_hash": "fb04b8e7d345978f529c25c4ece0992b91671e8d7c1f218ca659505eb0e5f4f2"
+    },
+    "C03_grade_progression": {
+      "evaluator_id": "rsi-model-process-public-baseline-v1",
+      "evidence_query_sha256": "00cfa9e65fb99bdffbab0d383767d1f1558ae0ee42318bc526927c4b981385be",
+      "status": "fail",
+      "witness_hash": "fb04b8e7d345978f529c25c4ece0992b91671e8d7c1f218ca659505eb0e5f4f2"
+    },
+    "C04_part_and_parent_tool_ancestry": {
+      "evaluator_id": "rsi-model-process-public-baseline-v1",
+      "evidence_query_sha256": "00cfa9e65fb99bdffbab0d383767d1f1558ae0ee42318bc526927c4b981385be",
+      "status": "fail",
+      "witness_hash": "fb04b8e7d345978f529c25c4ece0992b91671e8d7c1f218ca659505eb0e5f4f2"
+    },
+    "C05_source_transport_fleet": {
+      "evaluator_id": "rsi-model-process-public-baseline-v1",
+      "evidence_query_sha256": "00cfa9e65fb99bdffbab0d383767d1f1558ae0ee42318bc526927c4b981385be",
+      "status": "fail",
+      "witness_hash": "fb04b8e7d345978f529c25c4ece0992b91671e8d7c1f218ca659505eb0e5f4f2"
+    },
+    "C06_failure_and_substitution": {
+      "evaluator_id": "rsi-model-process-public-baseline-v1",
+      "evidence_query_sha256": "00cfa9e65fb99bdffbab0d383767d1f1558ae0ee42318bc526927c4b981385be",
+      "status": "fail",
+      "witness_hash": "fb04b8e7d345978f529c25c4ece0992b91671e8d7c1f218ca659505eb0e5f4f2"
+    },
+    "C07_empirical_calibration": {
+      "evaluator_id": "rsi-model-process-public-baseline-v1",
+      "evidence_query_sha256": "00cfa9e65fb99bdffbab0d383767d1f1558ae0ee42318bc526927c4b981385be",
+      "status": "fail",
+      "witness_hash": "fb04b8e7d345978f529c25c4ece0992b91671e8d7c1f218ca659505eb0e5f4f2"
+    },
+    "C08_minimum_external_vector": {
+      "evaluator_id": "rsi-model-process-public-baseline-v1",
+      "evidence_query_sha256": "00cfa9e65fb99bdffbab0d383767d1f1558ae0ee42318bc526927c4b981385be",
+      "status": "fail",
+      "witness_hash": "fb04b8e7d345978f529c25c4ece0992b91671e8d7c1f218ca659505eb0e5f4f2"
+    }
+  },
+  "graph_version": "public-evidence-gap-graph-v1",
+  "nodes": [
+    {
+      "accessibility": "available only through an external mature economy",
+      "body_or_site": "Earth public industrial-supply boundary",
+      "depletion_state": "external dependency",
+      "grade_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "not a single assayed lot"
+      },
+      "mineral_form": "heterogeneous terrestrial supply",
+      "node_id": "NODE_SOURCE_EARTH_PUBLIC_SUPPLY_CHAIN",
+      "node_type": "source_lot",
+      "recoverable_reserve": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "not transferable to an off-world source claim"
+      },
+      "source_record_id": "SOURCE_EARTH_PUBLIC_SUPPLY_CHAIN_2026",
+      "uncertainty": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "commodity-specific and not graph-harmonized"
+      }
+    },
+    {
+      "cycle_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no operating campaign"
+      },
+      "delta_v": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "destination/source architecture unresolved"
+      },
+      "destination": "candidate industrial system",
+      "fleet_record_id": "FLEET_PUBLICLY_UNCLOSED_TRANSPORT_2026",
+      "loss_rate": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no operating campaign"
+      },
+      "node_id": "NODE_TRANSPORT_PUBLICLY_UNCLOSED",
+      "node_type": "transport_leg",
+      "origin": "external Earth supply boundary",
+      "payload": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no verified manifest"
+      },
+      "propellant": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no closed route"
+      },
+      "transfer_window": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "destination/source architecture unresolved"
+      },
+      "transit_time": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "destination/source architecture unresolved"
+      }
+    },
+    {
+      "disposal_route": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "not demonstrated"
+      },
+      "node_id": "NODE_WASTE_PUBLICLY_UNCLOSED",
+      "node_type": "waste_or_recycle_stream",
+      "quantity": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "species mass balance is incomplete"
+      },
+      "recoverable_fraction": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no full-chain recycling campaign"
+      },
+      "species_and_grade": "all unresolved process losses",
+      "treatment_route": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "not demonstrated"
+      }
+    },
+    {
+      "assay": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no graph-wide raw_mineral assay dataset"
+      },
+      "chemical_identity": "multiple required species; unresolved by public evidence",
+      "contamination_limits": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no complete named specification for raw_mineral"
+      },
+      "grade_id": "raw_mineral",
+      "material_grade": "mineral phases and assay distribution are explicit",
+      "node_id": "NODE_MATERIAL_RAW_MINERAL",
+      "node_type": "material_or_species",
+      "physical_form": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "route-specific raw_mineral form not demonstrated"
+      }
+    },
+    {
+      "assay": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no graph-wide concentrate assay dataset"
+      },
+      "chemical_identity": "multiple required species; unresolved by public evidence",
+      "contamination_limits": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no complete named specification for concentrate"
+      },
+      "grade_id": "concentrate",
+      "material_grade": "beneficiation output and impurity envelope are explicit",
+      "node_id": "NODE_MATERIAL_CONCENTRATE",
+      "node_type": "material_or_species",
+      "physical_form": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "route-specific concentrate form not demonstrated"
+      }
+    },
+    {
+      "assay": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no graph-wide bulk assay dataset"
+      },
+      "chemical_identity": "multiple required species; unresolved by public evidence",
+      "contamination_limits": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no complete named specification for bulk"
+      },
+      "grade_id": "bulk",
+      "material_grade": "commodity material meets a named use specification",
+      "node_id": "NODE_MATERIAL_BULK",
+      "node_type": "material_or_species",
+      "physical_form": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "route-specific bulk form not demonstrated"
+      }
+    },
+    {
+      "assay": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no graph-wide structural_alloy assay dataset"
+      },
+      "chemical_identity": "multiple required species; unresolved by public evidence",
+      "contamination_limits": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no complete named specification for structural_alloy"
+      },
+      "grade_id": "structural_alloy",
+      "material_grade": "alloy chemistry, heat treatment, and mechanical properties pass",
+      "node_id": "NODE_MATERIAL_STRUCTURAL_ALLOY",
+      "node_type": "material_or_species",
+      "physical_form": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "route-specific structural_alloy form not demonstrated"
+      }
+    },
+    {
+      "assay": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no graph-wide electronic_grade assay dataset"
+      },
+      "chemical_identity": "multiple required species; unresolved by public evidence",
+      "contamination_limits": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no complete named specification for electronic_grade"
+      },
+      "grade_id": "electronic_grade",
+      "material_grade": "purity and contaminant limits meet a named electronic process",
+      "node_id": "NODE_MATERIAL_ELECTRONIC_GRADE",
+      "node_type": "material_or_species",
+      "physical_form": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "route-specific electronic_grade form not demonstrated"
+      }
+    },
+    {
+      "assay": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no graph-wide semiconductor_grade assay dataset"
+      },
+      "chemical_identity": "multiple required species; unresolved by public evidence",
+      "contamination_limits": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no complete named specification for semiconductor_grade"
+      },
+      "grade_id": "semiconductor_grade",
+      "material_grade": "wafer or precursor purity and defect limits pass",
+      "node_id": "NODE_MATERIAL_SEMICONDUCTOR_GRADE",
+      "node_type": "material_or_species",
+      "physical_form": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "route-specific semiconductor_grade form not demonstrated"
+      }
+    },
+    {
+      "assay": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no graph-wide ultra_pure_process_input assay dataset"
+      },
+      "chemical_identity": "multiple required species; unresolved by public evidence",
+      "contamination_limits": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no complete named specification for ultra_pure_process_input"
+      },
+      "grade_id": "ultra_pure_process_input",
+      "material_grade": "gas, chemical, water, or reagent specification and delivery form pass",
+      "node_id": "NODE_MATERIAL_ULTRA_PURE_PROCESS_INPUT",
+      "node_type": "material_or_species",
+      "physical_form": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "route-specific ultra_pure_process_input form not demonstrated"
+      }
+    },
+    {
+      "batch_or_continuous": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "route not selected and demonstrated"
+      },
+      "consumables": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "external and undisclosed consumables remain"
+      },
+      "energy": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no metered full-chain energy dataset"
+      },
+      "equipment_family": "excavation_and_size_reduction",
+      "node_id": "NODE_PROCESS_EXCAVATION_AND_SIZE_REDUCTION",
+      "node_type": "process_unit",
+      "operating_envelope": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no integrated campaign envelope"
+      },
+      "throughput": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no measured full-chain throughput"
+      },
+      "tool_life": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no measured parent-tool campaign"
+      }
+    },
+    {
+      "batch_or_continuous": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "route not selected and demonstrated"
+      },
+      "consumables": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "external and undisclosed consumables remain"
+      },
+      "energy": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no metered full-chain energy dataset"
+      },
+      "equipment_family": "beneficiation_and_separation",
+      "node_id": "NODE_PROCESS_BENEFICIATION_AND_SEPARATION",
+      "node_type": "process_unit",
+      "operating_envelope": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no integrated campaign envelope"
+      },
+      "throughput": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no measured full-chain throughput"
+      },
+      "tool_life": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no measured parent-tool campaign"
+      }
+    },
+    {
+      "batch_or_continuous": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "route not selected and demonstrated"
+      },
+      "consumables": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "external and undisclosed consumables remain"
+      },
+      "energy": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no metered full-chain energy dataset"
+      },
+      "equipment_family": "refining_and_species_conversion",
+      "node_id": "NODE_PROCESS_REFINING_AND_SPECIES_CONVERSION",
+      "node_type": "process_unit",
+      "operating_envelope": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no integrated campaign envelope"
+      },
+      "throughput": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no measured full-chain throughput"
+      },
+      "tool_life": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no measured parent-tool campaign"
+      }
+    },
+    {
+      "batch_or_continuous": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "route not selected and demonstrated"
+      },
+      "consumables": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "external and undisclosed consumables remain"
+      },
+      "energy": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no metered full-chain energy dataset"
+      },
+      "equipment_family": "purification_and_contamination_control",
+      "node_id": "NODE_PROCESS_PURIFICATION_AND_CONTAMINATION_CONTROL",
+      "node_type": "process_unit",
+      "operating_envelope": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no integrated campaign envelope"
+      },
+      "throughput": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no measured full-chain throughput"
+      },
+      "tool_life": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no measured parent-tool campaign"
+      }
+    },
+    {
+      "batch_or_continuous": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "route not selected and demonstrated"
+      },
+      "consumables": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "external and undisclosed consumables remain"
+      },
+      "energy": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no metered full-chain energy dataset"
+      },
+      "equipment_family": "alloying_and_heat_treatment",
+      "node_id": "NODE_PROCESS_ALLOYING_AND_HEAT_TREATMENT",
+      "node_type": "process_unit",
+      "operating_envelope": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no integrated campaign envelope"
+      },
+      "throughput": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no measured full-chain throughput"
+      },
+      "tool_life": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no measured parent-tool campaign"
+      }
+    },
+    {
+      "batch_or_continuous": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "route not selected and demonstrated"
+      },
+      "consumables": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "external and undisclosed consumables remain"
+      },
+      "energy": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no metered full-chain energy dataset"
+      },
+      "equipment_family": "forming_machining_and_joining",
+      "node_id": "NODE_PROCESS_FORMING_MACHINING_AND_JOINING",
+      "node_type": "process_unit",
+      "operating_envelope": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no integrated campaign envelope"
+      },
+      "throughput": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no measured full-chain throughput"
+      },
+      "tool_life": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no measured parent-tool campaign"
+      }
+    },
+    {
+      "batch_or_continuous": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "route not selected and demonstrated"
+      },
+      "consumables": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "external and undisclosed consumables remain"
+      },
+      "energy": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no metered full-chain energy dataset"
+      },
+      "equipment_family": "electronics_materials_and_wafer_process",
+      "node_id": "NODE_PROCESS_ELECTRONICS_MATERIALS_AND_WAFER_PROCESS",
+      "node_type": "process_unit",
+      "operating_envelope": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no integrated campaign envelope"
+      },
+      "throughput": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no measured full-chain throughput"
+      },
+      "tool_life": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no measured parent-tool campaign"
+      }
+    },
+    {
+      "batch_or_continuous": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "route not selected and demonstrated"
+      },
+      "consumables": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "external and undisclosed consumables remain"
+      },
+      "energy": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no metered full-chain energy dataset"
+      },
+      "equipment_family": "component_fabrication_and_packaging",
+      "node_id": "NODE_PROCESS_COMPONENT_FABRICATION_AND_PACKAGING",
+      "node_type": "process_unit",
+      "operating_envelope": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no integrated campaign envelope"
+      },
+      "throughput": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no measured full-chain throughput"
+      },
+      "tool_life": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no measured parent-tool campaign"
+      }
+    },
+    {
+      "batch_or_continuous": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "route not selected and demonstrated"
+      },
+      "consumables": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "external and undisclosed consumables remain"
+      },
+      "energy": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no metered full-chain energy dataset"
+      },
+      "equipment_family": "assembly_calibration_and_acceptance",
+      "node_id": "NODE_PROCESS_ASSEMBLY_CALIBRATION_AND_ACCEPTANCE",
+      "node_type": "process_unit",
+      "operating_envelope": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no integrated campaign envelope"
+      },
+      "throughput": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no measured full-chain throughput"
+      },
+      "tool_life": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no measured parent-tool campaign"
+      }
+    },
+    {
+      "batch_or_continuous": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "route not selected and demonstrated"
+      },
+      "consumables": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "external and undisclosed consumables remain"
+      },
+      "energy": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no metered full-chain energy dataset"
+      },
+      "equipment_family": "maintenance_repair_and_recycling",
+      "node_id": "NODE_PROCESS_MAINTENANCE_REPAIR_AND_RECYCLING",
+      "node_type": "process_unit",
+      "operating_envelope": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no integrated campaign envelope"
+      },
+      "throughput": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no measured full-chain throughput"
+      },
+      "tool_life": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no measured parent-tool campaign"
+      }
+    },
+    {
+      "batch_or_continuous": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "route not selected and demonstrated"
+      },
+      "consumables": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "external and undisclosed consumables remain"
+      },
+      "energy": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no metered full-chain energy dataset"
+      },
+      "equipment_family": "waste_treatment_and_disposal",
+      "node_id": "NODE_PROCESS_WASTE_TREATMENT_AND_DISPOSAL",
+      "node_type": "process_unit",
+      "operating_envelope": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no integrated campaign envelope"
+      },
+      "throughput": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no measured full-chain throughput"
+      },
+      "tool_life": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no measured parent-tool campaign"
+      }
+    },
+    {
+      "acceptable_substitutes": [
+        "explicit external import"
+      ],
+      "failure_modes": [
+        "supply loss",
+        "qualification failure",
+        "parent-tool loss"
+      ],
+      "inspection": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no independently witnessed acceptance campaign"
+      },
+      "node_id": "NODE_PART_PROCESS_GASES",
+      "node_type": "part_family",
+      "requirement_id": "process_gases",
+      "service_life": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no applicable closed-system fleet history"
+      },
+      "specification": "supply route"
+    },
+    {
+      "acceptable_substitutes": [
+        "explicit external import"
+      ],
+      "failure_modes": [
+        "supply loss",
+        "qualification failure",
+        "parent-tool loss"
+      ],
+      "inspection": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no independently witnessed acceptance campaign"
+      },
+      "node_id": "NODE_PART_PROCESS_CHEMICALS",
+      "node_type": "part_family",
+      "requirement_id": "process_chemicals",
+      "service_life": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no applicable closed-system fleet history"
+      },
+      "specification": "synthesis or import"
+    },
+    {
+      "acceptable_substitutes": [
+        "explicit external import"
+      ],
+      "failure_modes": [
+        "supply loss",
+        "qualification failure",
+        "parent-tool loss"
+      ],
+      "inspection": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no independently witnessed acceptance campaign"
+      },
+      "node_id": "NODE_PART_MASKS_AND_RETICLES",
+      "node_type": "part_family",
+      "requirement_id": "masks_and_reticles",
+      "service_life": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no applicable closed-system fleet history"
+      },
+      "specification": "design"
+    },
+    {
+      "acceptable_substitutes": [
+        "explicit external import"
+      ],
+      "failure_modes": [
+        "supply loss",
+        "qualification failure",
+        "parent-tool loss"
+      ],
+      "inspection": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no independently witnessed acceptance campaign"
+      },
+      "node_id": "NODE_PART_RESISTS_AND_PHOTOCHEMICALS",
+      "node_type": "part_family",
+      "requirement_id": "resists_and_photochemicals",
+      "service_life": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no applicable closed-system fleet history"
+      },
+      "specification": "formulation"
+    },
+    {
+      "acceptable_substitutes": [
+        "explicit external import"
+      ],
+      "failure_modes": [
+        "supply loss",
+        "qualification failure",
+        "parent-tool loss"
+      ],
+      "inspection": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no independently witnessed acceptance campaign"
+      },
+      "node_id": "NODE_PART_FILTERS_AND_MEMBRANES",
+      "node_type": "part_family",
+      "requirement_id": "filters_and_membranes",
+      "service_life": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no applicable closed-system fleet history"
+      },
+      "specification": "media production"
+    },
+    {
+      "acceptable_substitutes": [
+        "explicit external import"
+      ],
+      "failure_modes": [
+        "supply loss",
+        "qualification failure",
+        "parent-tool loss"
+      ],
+      "inspection": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no independently witnessed acceptance campaign"
+      },
+      "node_id": "NODE_PART_OPTICS_AND_LASER_SOURCES",
+      "node_type": "part_family",
+      "requirement_id": "optics_and_laser_sources",
+      "service_life": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no applicable closed-system fleet history"
+      },
+      "specification": "substrates"
+    },
+    {
+      "acceptable_substitutes": [
+        "explicit external import"
+      ],
+      "failure_modes": [
+        "supply loss",
+        "qualification failure",
+        "parent-tool loss"
+      ],
+      "inspection": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no independently witnessed acceptance campaign"
+      },
+      "node_id": "NODE_PART_COATINGS_AND_SURFACE_TREATMENTS",
+      "node_type": "part_family",
+      "requirement_id": "coatings_and_surface_treatments",
+      "service_life": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no applicable closed-system fleet history"
+      },
+      "specification": "feed chemicals"
+    },
+    {
+      "acceptable_substitutes": [
+        "explicit external import"
+      ],
+      "failure_modes": [
+        "supply loss",
+        "qualification failure",
+        "parent-tool loss"
+      ],
+      "inspection": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no independently witnessed acceptance campaign"
+      },
+      "node_id": "NODE_PART_SEALS_AND_FLEXIBLE_ELEMENTS",
+      "node_type": "part_family",
+      "requirement_id": "seals_and_flexible_elements",
+      "service_life": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no applicable closed-system fleet history"
+      },
+      "specification": "material formulation"
+    },
+    {
+      "acceptable_substitutes": [
+        "explicit external import"
+      ],
+      "failure_modes": [
+        "supply loss",
+        "qualification failure",
+        "parent-tool loss"
+      ],
+      "inspection": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no independently witnessed acceptance campaign"
+      },
+      "node_id": "NODE_PART_LUBRICANTS_AND_WORKING_FLUIDS",
+      "node_type": "part_family",
+      "requirement_id": "lubricants_and_working_fluids",
+      "service_life": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no applicable closed-system fleet history"
+      },
+      "specification": "formulation"
+    },
+    {
+      "acceptable_substitutes": [
+        "explicit external import"
+      ],
+      "failure_modes": [
+        "supply loss",
+        "qualification failure",
+        "parent-tool loss"
+      ],
+      "inspection": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no independently witnessed acceptance campaign"
+      },
+      "node_id": "NODE_PART_BEARINGS_AND_PRECISION_MOTION",
+      "node_type": "part_family",
+      "requirement_id": "bearings_and_precision_motion",
+      "service_life": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no applicable closed-system fleet history"
+      },
+      "specification": "materials"
+    },
+    {
+      "acceptable_substitutes": [
+        "explicit external import"
+      ],
+      "failure_modes": [
+        "supply loss",
+        "qualification failure",
+        "parent-tool loss"
+      ],
+      "inspection": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no independently witnessed acceptance campaign"
+      },
+      "node_id": "NODE_PART_CALIBRATION_ARTIFACTS",
+      "node_type": "part_family",
+      "requirement_id": "calibration_artifacts",
+      "service_life": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no applicable closed-system fleet history"
+      },
+      "specification": "traceability"
+    },
+    {
+      "acceptable_substitutes": [
+        "explicit external import"
+      ],
+      "failure_modes": [
+        "supply loss",
+        "qualification failure",
+        "parent-tool loss"
+      ],
+      "inspection": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no independently witnessed acceptance campaign"
+      },
+      "node_id": "NODE_PART_METROLOGY_AND_TEST",
+      "node_type": "part_family",
+      "requirement_id": "metrology_and_test",
+      "service_life": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no applicable closed-system fleet history"
+      },
+      "specification": "sensors"
+    },
+    {
+      "acceptable_substitutes": [
+        "explicit external import"
+      ],
+      "failure_modes": [
+        "supply loss",
+        "qualification failure",
+        "parent-tool loss"
+      ],
+      "inspection": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no independently witnessed acceptance campaign"
+      },
+      "node_id": "NODE_PART_CONTROLS_AND_POWER_ELECTRONICS",
+      "node_type": "part_family",
+      "requirement_id": "controls_and_power_electronics",
+      "service_life": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no applicable closed-system fleet history"
+      },
+      "specification": "logic"
+    },
+    {
+      "acceptable_substitutes": [
+        "explicit external import"
+      ],
+      "failure_modes": [
+        "supply loss",
+        "qualification failure",
+        "parent-tool loss"
+      ],
+      "inspection": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no independently witnessed acceptance campaign"
+      },
+      "node_id": "NODE_PART_PARENT_TOOLS",
+      "node_type": "part_family",
+      "requirement_id": "parent_tools",
+      "service_life": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no applicable closed-system fleet history"
+      },
+      "specification": "each production tool has a reproducible ancestry and no circular unsupported edge"
+    },
+    {
+      "bom": {
+        "closure_gap": "No local reproduction of cells, inverters, array materials, turbines, switchgear, or their parent tools is demonstrated off-world.",
+        "upstream_suppliers": "solar-cell, battery-cell, semiconductor, grid-equipment, and gas-turbine suppliers remain material"
+      },
+      "calibration_artifacts": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no reproducible calibration chain for power"
+      },
+      "maintenance_inputs": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no closed maintenance history for power"
+      },
+      "node_id": "NODE_EQUIPMENT_SECTOR_POWER",
+      "node_type": "production_equipment",
+      "parent_tool": "cell and module lines, inverter/power-electronics lines, solar production tools, turbines, switchgear, metrology",
+      "software_and_controls": "Tesla Energy generation/storage and SpaceX/xAI on-site generation"
+    },
+    {
+      "bom": {
+        "closure_gap": "No extraction hardware, yield, reserve, duty cycle, maintenance record, or off-world production run is disclosed.",
+        "upstream_suppliers": "all excavation, beneficiation, power, transport, sensing, and maintenance hardware would be Earth supplied"
+      },
+      "calibration_artifacts": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no reproducible calibration chain for mining"
+      },
+      "maintenance_inputs": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no closed maintenance history for mining"
+      },
+      "node_id": "NODE_EQUIPMENT_SECTOR_MINING",
+      "node_type": "production_equipment",
+      "parent_tool": "excavators, drills, crushers, beneficiation plants, assay instruments, spares",
+      "software_and_controls": "declared lunar resource extraction and asteroid-mining portfolio"
+    },
+    {
+      "bom": {
+        "closure_gap": "The lithium process is not a validated recipe for lunar or asteroid feedstocks, and no local reagent, equipment, or assay chain is closed.",
+        "upstream_suppliers": "spodumene, reagents, energy, process consumables, and specialist equipment suppliers"
+      },
+      "calibration_artifacts": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no reproducible calibration chain for refining"
+      },
+      "maintenance_inputs": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no closed maintenance history for refining"
+      },
+      "node_id": "NODE_EQUIPMENT_SECTOR_REFINING",
+      "node_type": "production_equipment",
+      "parent_tool": "kilns/reactors, separation and purification trains, pumps, filters, analytical chemistry, environmental controls",
+      "software_and_controls": "Texas lithium refinery and cathode-material production"
+    },
+    {
+      "bom": {
+        "closure_gap": "No relevant-scale autonomous task coverage, off-world qualification, fleet reliability, self-repair, or robot-production closure is demonstrated.",
+        "upstream_suppliers": "actuators, bearings, sensors, semiconductors, batteries, gears, and machine-tool suppliers"
+      },
+      "calibration_artifacts": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no reproducible calibration chain for robotics"
+      },
+      "maintenance_inputs": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no closed maintenance history for robotics"
+      },
+      "node_id": "NODE_EQUIPMENT_SECTOR_ROBOTICS",
+      "node_type": "production_equipment",
+      "parent_tool": "precision machining, motor/winding lines, gear production, calibration rigs, fixtures, test equipment",
+      "software_and_controls": "Optimus general-purpose humanoid robot"
+    },
+    {
+      "bom": {
+        "closure_gap": "The filings do not show reproduction of precision machine tools, spindle/bearing chains, controls, or calibration standards off-world.",
+        "upstream_suppliers": "CNC, controls, bearings, metrology, cutting-tool, spindle, laser, and specialty-material suppliers"
+      },
+      "calibration_artifacts": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no reproducible calibration chain for machine_tools"
+      },
+      "maintenance_inputs": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no closed maintenance history for machine_tools"
+      },
+      "node_id": "NODE_EQUIPMENT_SECTOR_MACHINE_TOOLS",
+      "node_type": "production_equipment",
+      "parent_tool": "precision machine tools, foundry/casting equipment, tool steel, controls, calibration and metrology",
+      "software_and_controls": "Tesla die-making and line-building; SpaceX in-house production tools"
+    },
+    {
+      "bom": {
+        "closure_gap": "Terrestrial project delivery does not establish autonomous construction under vacuum/dust/gravity constraints or local reproduction of construction equipment.",
+        "upstream_suppliers": "civil contractors, steel/concrete, earthmoving equipment, utilities, cranes, and specialist installers"
+      },
+      "calibration_artifacts": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no reproducible calibration chain for construction"
+      },
+      "maintenance_inputs": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no closed maintenance history for construction"
+      },
+      "node_id": "NODE_EQUIPMENT_SECTOR_CONSTRUCTION",
+      "node_type": "production_equipment",
+      "parent_tool": "earthmoving, lifting, concrete/steel production, surveying, fixtures, commissioning equipment",
+      "software_and_controls": "factory, launch-site, data-center, and production-line construction"
+    },
+    {
+      "bom": {
+        "closure_gap": "No locally manufactured radiator/pump/fluid chain or maintainable high-power off-world thermal system is demonstrated.",
+        "upstream_suppliers": "pumps, heat exchangers, fluids, seals, radiators, power electronics, and materials suppliers"
+      },
+      "calibration_artifacts": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no reproducible calibration chain for thermal"
+      },
+      "maintenance_inputs": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no closed maintenance history for thermal"
+      },
+      "node_id": "NODE_EQUIPMENT_SECTOR_THERMAL",
+      "node_type": "production_equipment",
+      "parent_tool": "heat-exchanger and radiator lines, pumps, fluid processing, vacuum/thermal test and leak detection",
+      "software_and_controls": "vehicle/battery thermal systems, data-center cooling, and spacecraft thermal control"
+    },
+    {
+      "bom": {
+        "closure_gap": "Transport reaches orbit, but vehicles, propellant, pads, engines, avionics, and their industrial stack are not reproduced off-world.",
+        "upstream_suppliers": "specialized materials, components, chips, propellants, launch infrastructure, and external services"
+      },
+      "calibration_artifacts": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no reproducible calibration chain for transport"
+      },
+      "maintenance_inputs": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no closed maintenance history for transport"
+      },
+      "node_id": "NODE_EQUIPMENT_SECTOR_TRANSPORT",
+      "node_type": "production_equipment",
+      "parent_tool": "engine/structure/avionics factories, launch pads, propellant plants, test stands, recovery fleet",
+      "software_and_controls": "Falcon launch fleet, Dragon spacecraft, Starship development, and Starlink logistics"
+    },
+    {
+      "bom": {
+        "closure_gap": "No autonomous orbital depot, repair qualification regime, local spares chain, or repair-tool reproduction is demonstrated.",
+        "upstream_suppliers": "replacement parts, diagnostic tools, depots, transport, and specialist labor"
+      },
+      "calibration_artifacts": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no reproducible calibration chain for repair"
+      },
+      "maintenance_inputs": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no closed maintenance history for repair"
+      },
+      "node_id": "NODE_EQUIPMENT_SECTOR_REPAIR",
+      "node_type": "production_equipment",
+      "parent_tool": "diagnostics, nondestructive inspection, machining, spares production, calibration, qualification rigs",
+      "software_and_controls": "Tesla service/warranty network and SpaceX reusable-vehicle inspection/refurbishment"
+    },
+    {
+      "bom": {
+        "closure_gap": "Reported recovery is terrestrial, partly partner-dependent, chemistry-specific, and not a closed off-world material-quality loop.",
+        "upstream_suppliers": "collection logistics, third-party recyclers, hydrometallurgical consumables, and refining partners"
+      },
+      "calibration_artifacts": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no reproducible calibration chain for recycling"
+      },
+      "maintenance_inputs": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no closed maintenance history for recycling"
+      },
+      "node_id": "NODE_EQUIPMENT_SECTOR_RECYCLING",
+      "node_type": "production_equipment",
+      "parent_tool": "safe discharge, shredding, sorting, leaching/separation, refining, assay, emissions controls",
+      "software_and_controls": "battery-material recovery and in-house recycling process development"
+    },
+    {
+      "bom": {
+        "closure_gap": "In-house avionics integration does not disclose local PCB substrate, connector, solder, component, or board-fabrication closure.",
+        "upstream_suppliers": "printed-circuit-board fabricators, laminates, connectors, copper foil, solders, components, and assembly equipment"
+      },
+      "calibration_artifacts": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no reproducible calibration chain for interconnects_boards"
+      },
+      "maintenance_inputs": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no closed maintenance history for interconnects_boards"
+      },
+      "node_id": "NODE_EQUIPMENT_SECTOR_INTERCONNECTS_BOARDS",
+      "node_type": "production_equipment",
+      "parent_tool": "board fabrication, plating/etch, multilayer lamination, assembly, inspection, connectors, cable and harness tooling",
+      "software_and_controls": "internally designed vehicle electronics, rocket/satellite avionics, and Starlink terminals"
+    },
+    {
+      "bom": {
+        "closure_gap": "Product integration is not evidence of internally producing passive components, power semiconductors, insulation, or their parent equipment.",
+        "upstream_suppliers": "capacitors, magnetics, resistors, substrates, semiconductor power devices, insulation, and test equipment"
+      },
+      "calibration_artifacts": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no reproducible calibration chain for passives_power"
+      },
+      "maintenance_inputs": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no closed maintenance history for passives_power"
+      },
+      "node_id": "NODE_EQUIPMENT_SECTOR_PASSIVES_POWER",
+      "node_type": "production_equipment",
+      "parent_tool": "film/ceramic processing, winding, magnetics, semiconductor packaging, board assembly, high-voltage qualification",
+      "software_and_controls": "Tesla power electronics, inverters, battery-management hardware, and SpaceX avionics/power systems"
+    },
+    {
+      "bom": {
+        "closure_gap": "No local sensor/optics fabrication, calibration-artifact chain, radiation-qualified replacement production, or autonomous verification closure is shown.",
+        "upstream_suppliers": "image sensors, inertial sensors, semiconductor fabs, optics, connectors, processors, and calibration equipment"
+      },
+      "calibration_artifacts": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no reproducible calibration chain for sensors_control"
+      },
+      "maintenance_inputs": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no closed maintenance history for sensors_control"
+      },
+      "node_id": "NODE_EQUIPMENT_SECTOR_SENSORS_CONTROL",
+      "node_type": "production_equipment",
+      "parent_tool": "sensor fabs, optics, packaging, calibration standards, environmental qualification, control-computer production",
+      "software_and_controls": "vehicle vision/control, custom inference systems, rocket avionics, and autonomous satellite operations"
+    },
+    {
+      "bom": {
+        "closure_gap": "No production, yield, qualification, substrate/HBM supply, equipment ownership, or off-world packaging line is evidenced.",
+        "upstream_suppliers": "substrates, interposers, HBM, bonding tools, test handlers, probes, materials, and external OSAT capacity"
+      },
+      "calibration_artifacts": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no reproducible calibration chain for packaging_test"
+      },
+      "maintenance_inputs": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no closed maintenance history for packaging_test"
+      },
+      "node_id": "NODE_EQUIPMENT_SECTOR_PACKAGING_TEST",
+      "node_type": "production_equipment",
+      "parent_tool": "bonders, lithography, plating, dicing, inspection, probes, burn-in, handlers, metrology",
+      "software_and_controls": "Terafab advanced-packaging and rapid-test scope"
+    },
+    {
+      "bom": {
+        "closure_gap": "Chip design and purchased-chip operation do not establish wafer fabrication, consumable supply, yield, qualification, or parent-tool closure.",
+        "upstream_suppliers": "external foundries, wafers, gases, resists, masks, chemicals, equipment, and EDA"
+      },
+      "calibration_artifacts": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no reproducible calibration chain for mature_logic"
+      },
+      "maintenance_inputs": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no closed maintenance history for mature_logic"
+      },
+      "node_id": "NODE_EQUIPMENT_SECTOR_MATURE_LOGIC",
+      "node_type": "production_equipment",
+      "parent_tool": "lithography, deposition, etch, implant, furnaces, cleanrooms, masks, inspection and metrology",
+      "software_and_controls": "Terafab logic-fabrication scope and existing externally fabricated custom-chip designs"
+    },
+    {
+      "bom": {
+        "closure_gap": "No internal advanced-node/HBM production, yield, equipment stack, off-world qualification, or reproducible parent-tool chain is demonstrated.",
+        "upstream_suppliers": "concentrated advanced fabs, HBM/memory vendors, GPU suppliers, wafers, chemicals, equipment, and packaging firms"
+      },
+      "calibration_artifacts": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no reproducible calibration chain for advanced_logic_memory"
+      },
+      "maintenance_inputs": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no closed maintenance history for advanced_logic_memory"
+      },
+      "node_id": "NODE_EQUIPMENT_SECTOR_ADVANCED_LOGIC_MEMORY",
+      "node_type": "production_equipment",
+      "parent_tool": "EUV/DUV lithography, deposition, etch, cleanrooms, advanced packaging, HBM, probes and metrology",
+      "software_and_controls": "Terafab advanced logic/memory, Tesla AI5/AI6 supply agreements, and SpaceX/xAI accelerator procurement"
+    },
+    {
+      "bom": {
+        "closure_gap": "Operating purchased fab/metrology equipment is not evidence of making, maintaining, calibrating, and reproducing those tools; no qualifying portfolio evidence was found.",
+        "upstream_suppliers": "specialist lithography, deposition, etch, implant, optics, vacuum, inspection, metrology, calibration, and materials firms"
+      },
+      "calibration_artifacts": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no reproducible calibration chain for process_equipment_metrology"
+      },
+      "maintenance_inputs": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no closed maintenance history for process_equipment_metrology"
+      },
+      "node_id": "NODE_EQUIPMENT_SECTOR_PROCESS_EQUIPMENT_METROLOGY",
+      "node_type": "production_equipment",
+      "parent_tool": "the semiconductor-equipment and calibration stack itself, including its own optics, precision mechanics, controls, software, and standards",
+      "software_and_controls": "no qualifying disclosed program to reproduce semiconductor production/metrology parent tools"
+    },
+    {
+      "bom": {
+        "closure_gap": "All frontier accelerators, HBM, servers, networking, and most infrastructure remain Earth-produced; no off-world compute-production closure exists.",
+        "upstream_suppliers": "GPU, memory, server, network, power, cooling, construction, and telecommunications suppliers"
+      },
+      "calibration_artifacts": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no reproducible calibration chain for compute"
+      },
+      "maintenance_inputs": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no closed maintenance history for compute"
+      },
+      "node_id": "NODE_EQUIPMENT_SECTOR_COMPUTE",
+      "node_type": "production_equipment",
+      "parent_tool": "semiconductor fabs/packaging, server and network manufacturing, power generation, cooling and data-center construction",
+      "software_and_controls": "Tesla Cortex and SpaceX/xAI training/inference infrastructure"
+    }
+  ],
+  "source_records": [
+    {
+      "accessible_and_recoverable_reserve": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "terrestrial reserves do not establish lunar or asteroid recoverability"
+      },
+      "composition_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "USGS commodity records are not one assayed campaign source lot"
+      },
+      "depletion_and_failed_source_rule": "external imports remain explicit; loss of the Earth supply boundary breaks every dependent route",
+      "grade_distribution": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "commodity summaries do not supply one process-resolved grade distribution"
+      },
+      "mineral_form": "multiple terrestrial ores, concentrates, and traded products",
+      "named_body_or_defensible_source_class": "Earth industrial supply chain represented by USGS terrestrial production/reserve statistics; not an autonomous off-world source",
+      "source_id": "SOURCE_EARTH_PUBLIC_SUPPLY_CHAIN_2026",
+      "spatial_variability": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "no selected off-world site has been assayed"
+      },
+      "uncertainty_and_detection_limit": {
+        "evidence_status": "not_disclosed_or_not_measured",
+        "reason": "not harmonized across all required materials"
+      }
+    }
+  ],
+  "template_status": "completed_negative_public_evidence_baseline"
+}

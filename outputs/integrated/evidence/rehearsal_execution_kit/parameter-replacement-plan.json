@@ -1,0 +1,100 @@
+{
+  "P01": {
+    "decision": null,
+    "events": [
+      "build_state",
+      "process_batch"
+    ],
+    "evidence_query_sha256": null,
+    "measurement": "sector commissioning lag and yield ramp",
+    "model_paths": [
+      "sectors.*.commissioning_lag_years",
+      "sectors.*.yield_ramp_years"
+    ]
+  },
+  "P02": {
+    "decision": null,
+    "events": [
+      "task_attempt",
+      "intervention_event"
+    ],
+    "evidence_query_sha256": null,
+    "measurement": "task coverage and intervention intensity",
+    "model_paths": [
+      "sectors.*.autonomy_coverage_base",
+      "sectors.*.intervention_hours_per_capacity_year"
+    ]
+  },
+  "P03": {
+    "decision": null,
+    "events": [
+      "build_state",
+      "fault_event"
+    ],
+    "evidence_query_sha256": null,
+    "measurement": "deployment rate, startup failure, and recovery",
+    "model_paths": [
+      "deployment.installation_rate_t_per_year",
+      "deployment.commissioning_rate_t_per_year",
+      "deployment.startup_failure_fraction",
+      "deployment.recovery_rate_t_per_year"
+    ]
+  },
+  "P04": {
+    "decision": null,
+    "events": [
+      "process_batch",
+      "utility_meter"
+    ],
+    "evidence_query_sha256": null,
+    "measurement": "process-environment throughput, yield, power, and depreciation",
+    "model_paths": [
+      "process_environment_profiles.*.*.throughput_multiplier",
+      "process_environment_profiles.*.*.yield_multiplier",
+      "process_environment_profiles.*.*.power_multiplier",
+      "process_environment_profiles.*.*.depreciation_multiplier"
+    ]
+  },
+  "P05": {
+    "decision": null,
+    "events": [
+      "task_attempt",
+      "build_state"
+    ],
+    "evidence_query_sha256": null,
+    "measurement": "verification throughput and backlog",
+    "model_paths": [
+      "knowledge_autonomy.verification_throughput_per_service_unit",
+      "knowledge_autonomy.verification_units_per_new_capacity"
+    ]
+  },
+  "P06": {
+    "decision": null,
+    "events": [
+      "fault_event",
+      "intervention_event",
+      "material_transaction"
+    ],
+    "evidence_query_sha256": null,
+    "measurement": "repair success, parts use, intervention, and recovery time",
+    "model_paths": [
+      "dynamics.repairable_failure_fraction",
+      "dynamics.repair_parts_fraction_of_bom",
+      "dynamics.repair_intervention_hours_per_capacity",
+      "dynamics.repair_lag_years",
+      "knowledge_autonomy.repair_success_scale"
+    ]
+  },
+  "P07": {
+    "decision": null,
+    "events": [
+      "material_transaction",
+      "process_batch"
+    ],
+    "evidence_query_sha256": null,
+    "measurement": "material recovery and recycling",
+    "model_paths": [
+      "dynamics.recycling_recovery_fraction"
+    ]
+  }
+}

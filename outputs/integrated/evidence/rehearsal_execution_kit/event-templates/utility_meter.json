@@ -1,0 +1,17 @@
+{
+  "actor_or_controller": null,
+  "cell_id": "site",
+  "electricity_kwh": null,
+  "event_id": "REPLACE_UTILITY_METER_ID",
+  "event_type": "utility_meter",
+  "external_witness_hash": "REPLACE_WITH_64_CHARACTER_LOWERCASE_SHA256",
+  "monotonic_time_s": null,
+  "sensor_source": null,
+  "signed_build_or_fault_campaign_id": null,
+  "software_and_recipe_version": null,
+  "storage_charge_kwh": null,
+  "storage_discharge_kwh": null,
+  "thermal_input_kwh": null,
+  "timestamp_utc": null,
+  "unserved_energy_kwh": null
+}
