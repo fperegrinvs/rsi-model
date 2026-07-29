@@ -40,20 +40,20 @@ and site/accessibility checks. GitHub Actions is manual-only: it verifies
 committed artifacts and optionally deploys Pages without regenerating the
 models. Candidate and publication preflight modes also check r4.0 identity,
 clean-tree state, tag state, version versus concept DOI, release-date
-agreement, and immutable HTML metadata.
+agreement, and immutable HTML metadata. The complete strict local candidate
+pipeline passed from a clean commit on 2026-07-29 with no tracked drift.
 Publication mode additionally requires an external authorization record
 bound to the exact commit, checksum-verified strict local candidate audit,
 archive record, release date, version DOI, canonical URL, responsible person,
 and attestation. The record stays outside Git so approving a commit does not
 change it.
 
-**Why it remains:** the reviewed release candidate is prepared on a dedicated
-branch, but the strict local workflow has not yet passed without tracked drift
-against the exact final commit or been merged into the remote default branch.
-No local immutable `r4.0` tag, archive, canonical release URL, or version DOI
-exists. Those publication actions still require the checksum-verified local
-audit, author or release-manager authorization bound to the exact commit, and
-an immutable archive.
+**Why it remains:** the reviewed release candidate and strict local audit are
+prepared on a dedicated branch, but the candidate has not been merged into the
+remote default branch. No local immutable `r4.0` tag, archive, canonical
+release URL, or version DOI exists. The final metadata commit will require its
+own strict local audit, author or release-manager authorization bound to that
+exact commit, and an immutable archive.
 
 **Complete when:**
 

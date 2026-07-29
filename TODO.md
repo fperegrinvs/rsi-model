@@ -1162,7 +1162,7 @@ download.
 
 - [x] Start from a reviewed, clean release commit after all concurrent work is
       integrated.
-- [ ] Run the full strict local Apple-silicon macOS candidate workflow on the
+- [x] Run the full strict local Apple-silicon macOS candidate workflow on the
       exact clean release commit and confirm that it produces no tracked drift.
 - [ ] Obtain the external release authorization bound to the exact commit and
       checksum-verified strict local candidate audit.

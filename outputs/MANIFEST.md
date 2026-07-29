@@ -19,7 +19,7 @@
 | CLAUDE.md | 649e64793d66813757bdb04d5757868dca847e4f7a66fab6600515a02cbbdf4d |
 | LICENSE | 5906fa9427fc23b0ba41763dfb59640c5b81169e725e3a22e23a08b01bc4bef7 |
 | README.md | b5668fc84aeb7cae7132ab07daba6729b41465e414811fe133ba4bd04179de97 |
-| ROADMAP.md | a813b2e2ada480cb170a878a4376fe3b77c42f1a0e04fca151512b4453e305ba |
+| ROADMAP.md | d001f2552cc94caa78742b92e37996482a4bab547ffa6edc5253361b40648767 |
 | biome.json | 895652b8fbd99cb4ddaa47c8a3e3c063c23f8b73e59c0529ec7fa230b27d4add |
 | docs/ECONOMIC_CALIBRATION_PROTOCOL.md | b09261bff15ca2841e3b2f751707162ff8eeb8accd425a8629221c80805c39e9 |
 | docs/EDITORIAL_STYLE.md | d12b2d3d9648f84f3ad9bfd2a9c435548c2aaf59a8b5f22e7ea415964d432b5e |
@@ -30,7 +30,7 @@
 | docs/PART_III_HYPOTHESES.md | 365222189fb6ce23d93d3c59643bd451816702cdabd90e2712908eb0692c04e3 |
 | docs/PROCESS_CLOSURE_ACCEPTANCE_CONTRACT.md | af2283e35c6fa472b87b0feceab9e69a501e0fab8df809b09316358c0ab5b3d3 |
 | docs/QUALITY_BASELINE.md | 30403e6056b6caf3df49fe83b4aa43632d7125cbece3dc03cf833f06387cd6d7 |
-| docs/RELEASE_RUNBOOK.md | 0ef3726701fe46ce93f57bb92f3ab9e4beb44331c484d1ddef054ee0027893d4 |
+| docs/RELEASE_RUNBOOK.md | 876ee36f726e890725ba566babb82ac99e53cf6699b9b1a4f4e6682606f8ce37 |
 | docs/REVIEW_NOTES.md | 1745655fd0b079a5bdf857d3395457ea18bc3a5c8183b257ab2cc1234e9f3515 |
 | docs/Recursive_Industrial_Intelligence_r4.0.html | ef6c8104cc28c028268085fcdaea0bf0841fb15b02c67909deab1dc97e5fbb8f |
 | docs/Recursive_Industrial_Intelligence_r4.0.md | 4dc638cf7a10d57f9906578e89ff923cfebd3f323a5e400aa9fd3165d24c4d6d |
@@ -79,7 +79,7 @@
 | outputs/figures/survival.png | 4930c97422eb55a24d962f7882b910b2f689192da9540c71a3a6662bb0588229 |
 | outputs/figures/survival_deep_central.png | 07216ccad9e372e45bae791e8162572823b2aeb86ebbb0fcffde2f9dbb7a88e6 |
 | outputs/figures/survival_deep_lunar.png | 9b29233e19c8cbb07dafb991c7b8f5c24ab2029fc7dfed7febeccd244f42a137 |
-| outputs/integrated/MANIFEST.md | ad2e863f95b27f8092cb2d138eefc01e0f966a0223e68caa9a66af3b60293f6e |
+| outputs/integrated/MANIFEST.md | 00f8b8ca1cfddcd554e72271072a4638c854248af1bd65a6c39ebd4d9f318ecd |
 | outputs/integrated/figures/compute_growth_regimes.png | 5365ced99fadf06924fc6bdf2ad0f79d39c16bf31741ab831f0ce748a7cc38fd |
 | outputs/integrated/figures/debris_regimes.png | 5d9b772b3ae608fd666f978b42540cea0146769943d1833c6b995ffa17e40bf2 |
 | outputs/integrated/figures/operating_capacity.png | 1320d886a77e05000567fc857339489a794edf110840d0b36638fa9812ab0afa |

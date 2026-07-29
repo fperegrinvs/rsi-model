@@ -1,7 +1,7 @@
 # r4.0 immutable-release runbook
 
-Status: release-candidate checks implemented; publication not authorized or
-executed.
+Status: the strict local macOS release-candidate workflow has passed;
+publication is not authorized or executed.
 
 ## Reader-site operations
 
