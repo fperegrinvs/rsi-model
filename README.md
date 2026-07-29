@@ -66,6 +66,9 @@ Generated reports, tables, and figures live under `outputs/`. The canonical
 `outputs/MANIFEST.md` binds the manuscript, HTML, release inputs, and
 generated artifacts. `outputs/integrated/MANIFEST.md` provides an additional
 content-addressed record for the integrated-model run.
+The pinned Ubuntu publication job is the canonical artifact-generation
+environment. The scheduled macOS job is a portability smoke test only; it
+does not regenerate, redefine, or gate the committed release artifacts.
 
 The fragments are the only hand-edited manuscript source. The monolithic
 Markdown, standalone HTML, and `_site/` tree are deterministic products; do

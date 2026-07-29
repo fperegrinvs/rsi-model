@@ -42,7 +42,7 @@ Metric definitions:
   (shocks/run: 16.9; q jitter sigma=0.1, ASSUMPTION-class)
 - [conservative/mars] expanding @30yr: 2/400 = 0.01 (95% CI 0.00-0.02) | sustained [25-30]: 0/400 | pre-shock alloc endpoint: 2/400 | balanced dbl: never | aggregate dbl: never | λ@30 med 0.12 | binds: power 52%, electronics 48%, repair 0%
   (shocks/run: 25.5; q jitter sigma=0.1, ASSUMPTION-class)
-- [central/leo] expanding @30yr: 267/400 = 0.67 (95% CI 0.62-0.71) | sustained [25-30]: 122/400 | pre-shock alloc endpoint: 277/400 | balanced dbl: 26.0 yr (IQR 23.2-30.0, n=67) | aggregate dbl: 24.5 yr (IQR 20.0-28.1, n=120) | λ@30 med 1.26 | binds: mining 98%, electronics 2%
+- [central/leo] expanding @30yr: 268/400 = 0.67 (95% CI 0.62-0.71) | sustained [25-30]: 123/400 | pre-shock alloc endpoint: 277/400 | balanced dbl: 26.0 yr (IQR 23.2-30.0, n=67) | aggregate dbl: 24.5 yr (IQR 20.0-28.1, n=120) | λ@30 med 1.26 | binds: mining 98%, electronics 2%
   (shocks/run: 6.3; q jitter sigma=0.1, ASSUMPTION-class)
 - [central/lunar] expanding @30yr: 224/400 = 0.56 (95% CI 0.51-0.61) | sustained [25-30]: 20/400 | pre-shock alloc endpoint: 255/400 | balanced dbl: 5.0 yr (IQR 4.2-6.2, n=379) | aggregate dbl: 4.5 yr (IQR 4.0-5.2, n=396) | λ@30 med 2.87 | binds: electronics 96%, power 4%, machine_tools 0%
   (shocks/run: 16.9; q jitter sigma=0.1, ASSUMPTION-class)

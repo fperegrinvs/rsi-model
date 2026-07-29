@@ -321,7 +321,17 @@ try {
   const printPage = await browser.newPage({ viewport: { width: 794, height: 1123 } });
   await printPage.emulateMedia({ media: "print" });
   for (const route of routes) {
-    await printPage.goto(`http://127.0.0.1:${server.port}${route}`, { waitUntil: "load" });
+    const response = await printPage.goto(`http://127.0.0.1:${server.port}${route}`, {
+      waitUntil: "domcontentloaded",
+      timeout: 60_000,
+    });
+    check(response?.ok() === true, `print ${route} did not return a successful response`);
+    await printPage.evaluate(async () => {
+      await Promise.race([
+        document.fonts.ready,
+        new Promise((resolve) => setTimeout(resolve, 5_000)),
+      ]);
+    });
     const printEquations = await printPage
       .locator(".equation-math-scroll")
       .evaluateAll((elements) =>

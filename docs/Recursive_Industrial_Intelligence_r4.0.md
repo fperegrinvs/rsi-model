@@ -2726,7 +2726,7 @@ autonomous ecology.
 | conservative | LEO | 12/400 (0.03, 0.02–0.05) | 5 | 13 | 0 | 0.40 | mining 99.5% |
 | conservative | lunar | 33/400 (0.08, 0.06–0.11) | 4 | 36 | 51, 9.5 (8.5–12.6) | 0.84 | electronics 93.8%, power 5% |
 | conservative | Mars | 2/400 (0.01, 0.00–0.02) | 0 | 2 | 0 | 0.12 | power 51.8%, electronics 48% |
-| central | LEO | 267/400 (0.67, 0.62–0.71) | 122 | 277 | 67, 26.0 (23.2–30.0) | 1.26 | mining 97.7% |
+| central | LEO | 268/400 (0.67, 0.62–0.71) | 123 | 277 | 67, 26.0 (23.2–30.0) | 1.26 | mining 97.7% |
 | central | lunar | 224/400 (0.56, 0.51–0.61) | 20 | 255 | 379, 5.0 (4.2–6.2) | 2.87 | electronics 95.5% |
 | central | Mars | 60/400 (0.15, 0.12–0.19) | 4 | 66 | 33, 11.0 (8.0–11.2) | 0.55 | electronics 61.7%, power 38% |
 | optimistic | LEO | 387/400 (0.97, 0.95–0.98) | 173 | 400 | 399, 10.8 (9.2–12.8) | 4.61 | mining 86.5%, electronics 14% |
