@@ -3,14 +3,16 @@
 ## II.1 The bridge economy {#ii.1-the-bridge-economy}
 
 Each stage of the recursion must be independently profitable or deliberately
-financed: a staircase of self-supporting steps, not a single leap to
-closure. The plausible treads, in order: terrestrial products of the same
-machinery (vehicles, storage, robots — the ground floor pays rent **and**
-turns the autonomous seed into an audited industrial experiment); launch
-and connectivity (Starlink revenue and launch services fund transport);
-orbital compute services — a candidate tread priced explicitly in
-II.2–II.4; and in-space industrial services at higher
-closure. The test of the staircase: at every stage, revenue plus strategic
+financed: a staircase of self-supporting steps, not a single leap to closure.
+The first candidate tread is terrestrial output from the same machinery:
+vehicles, storage, and robots pay rent while turning the autonomous seed into
+an audited industrial experiment. Launch services and Starlink connectivity
+form the next tread by funding transport. Orbital compute, priced explicitly
+in II.2–II.4, could then become an anchor customer for launch, spacecraft
+production, power, thermal management, communications, silicon, autonomy,
+and servicing. In-space industrial services enter at higher closure.
+
+The test of the staircase: at every stage, revenue plus strategic
 financing must exceed the burn required to reach the next stage before the
 clock-setting components of Part I.4 expire — and Part I.8 makes the clock
 concrete: the electronics stockpile shelf life against the import ramp.
@@ -25,6 +27,14 @@ but the decisive deliverable is the measured ability to build and
 commission a second cell under lunar-palette and no-routine-entry
 constraints. A factory that is profitable yet requires tacit human rescue
 has not validated the exported loop.
+
+The bridge-economy claim is therefore narrower than first-generation cost
+parity. Orbital compute could function as an industrial seed while remaining
+more expensive than Earth only if attributable learning, faster capacity
+activation, cross-program reuse, or declining external dependence earns the
+difference. Those terms receive no automatic credit in the levelized-cost
+model; II.2–II.4 price the delivered compute product, and the evidence needed
+to value shared-stack effects remains a separate measurement requirement.
 
 ## II.2 The crossover model {#ii.2-the-crossover-model}
 

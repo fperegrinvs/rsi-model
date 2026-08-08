@@ -14,18 +14,25 @@ initiative list, while coordinated technical architecture is not established;
 
 ## The nested hypotheses
 
-- **H0** — matched portfolio adjacency: projects may share ownership,
-  branding, finance, suppliers, data, bilateral interfaces, and ordinary
-  commercial or supply-security motives without sharing one off-world
-  systems architecture. Orbital compute, a domestic fab, consolidation, and
-  cross-selling are H0-compatible.
-- **H1** — deliberate coordinated space–AI–industrial development (= P4a),
-  distinguished by shared technical interfaces, common architecture
-  documents, binding cross-program milestones, cross-subsidy, or joint
-  resource allocation rather than co-ownership alone.
-- **H2** — H1 *plus* an explicit intended transition to recursive industrial
-  closure (= P4b), distinguished by closure metrics, seed bills of material,
-  minimum-cut work, or locally reproducible production equipment.
+- **H0** — standalone commerce and matched portfolio adjacency: projects may
+  share ownership, branding, finance, suppliers, data, bilateral interfaces,
+  and ordinary commercial or supply-security motives without sharing one
+  off-world systems architecture. Orbital compute, launch demand, a domestic
+  fab, consolidation, and cross-selling are H0-compatible.
+- **H1** — physical-stack seeding through deliberate coordinated
+  space–AI–industrial development. The documented P4a portfolio direction is
+  a necessary but insufficient observation under this hypothesis. Orbital
+  compute is an anchor project for capabilities with value beyond the compute
+  service itself.
+  Distinctive evidence includes shared technical interfaces, common
+  architecture documents, binding learning and deployment milestones,
+  cross-subsidy, joint resource allocation, and evaluation through
+  cumulative learning, time-to-capacity, or cross-program reuse rather than
+  first-generation cost per token alone.
+- **H2** — H1 *plus* an explicit intended transition from physical-stack
+  seeding to recursive industrial closure (= P4b), distinguished by closure
+  metrics, seed bills of material, minimum-cut work, or locally reproducible
+  production equipment.
 
 Because the hypotheses nest, each item is assessed on two margins — H1 vs
 H0, and H2 vs H1 — with ordinal ratings (*neutral / weak / moderate /
@@ -81,7 +88,9 @@ engineering reference-class observations (announced prototypes early 2027;
    boundary; the company targets alone are 2.33×. The old incomplete-cost
    form was 0.76× and is no longer the reported result.
    Sustained scaled deployment after the unit economics are publicly evident
-   is a moderate-to-strong discriminator for H1/H2 over H0; quiet retreat
+   is a moderate-to-strong discriminator for H1/H2 over H0, especially if
+   management publishes shared-stack learning, time-to-capacity, or
+   cross-program reuse as the reason for accepting the gap; quiet retreat
    after the demonstration phase is what H0 predicts.
 3. **Recycling is the H2 tell in LEO.** Materials-recovery recycling at
    scale (not debris-compliance servicing) is the rational early move of a
@@ -126,12 +135,13 @@ a hiring corpus.
 
 ## Cumulative assessment (ordinal synthesis, not multiplication)
 
-The evidence **supports H1 at the level of declared direction but does not
-establish a coordinated technical architecture**: the initiative list (E6)
-and first-party messaging (E14) establish an off-world portfolio narrative,
-while matched H0 explains the observed actions through adjacent commercial,
-supply-security, financing, and promotional motives unless shared
-interfaces, milestones, or resource allocation appear. It **does not
+The evidence **supports a necessary condition for H1 at the level of declared
+direction but does not establish the physical-stack seeding mechanism or a
+coordinated technical architecture**: the initiative list (E6) and
+first-party messaging (E14) establish an off-world portfolio narrative, while
+matched H0 explains the observed actions through adjacent commercial,
+supply-security, financing, and promotional motives unless shared interfaces,
+learning milestones, or resource allocation appear. It **does not
 establish H2**: no item is more than weakly
 diagnostic for closure intent; the closure-specific observables (seed
 BOMs, reproduction metrics, minimum-cut roadmaps, locally reproducible

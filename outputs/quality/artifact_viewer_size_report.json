@@ -23,14 +23,14 @@
   },
   "measured": {
     "artifactCount": 90,
-    "brotliBytes": 1863962,
+    "brotliBytes": 1865765,
     "embeddedArtifactGzipBytes": 189955,
     "embeddedArtifactRawBytes": 1157131,
     "fullArtifacts": 82,
-    "gzipBytes": 2022319,
+    "gzipBytes": 2025105,
     "previewArtifacts": 8,
     "referencedCsvBytes": 3019763,
-    "standaloneRawBytes": 3687557
+    "standaloneRawBytes": 3695437
   },
   "artifacts": [
     {

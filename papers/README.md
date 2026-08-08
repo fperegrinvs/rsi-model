@@ -9,8 +9,8 @@ another:
 | Artifact | Propositions addressed | Propositions not established |
 |---|---|---|
 | `TECHNICAL_PAPER_r4.0.md` | P1 conceptual possibility; conditional P2 requirements and failure boundaries | real-world industrial closure; corporate intent; economic superiority |
-| `ORBITAL_COMPUTE_ECONOMICS_r4.0.md` | P3a bridge-economy orbital-compute boundary; conditions relevant to P3b | physical industrial closure; corporate coordination |
-| `STRATEGY_GOVERNANCE_CASE_STUDY_r4.0.md` | P4a declared direction; tests for P4b; governance requirements | technical feasibility; economic competitiveness; validated safety |
+| `ORBITAL_COMPUTE_ECONOMICS_r4.0.md` | P3a bridge-economy orbital-compute boundary; economic tests for an industrial-seeding interpretation; conditions relevant to P3b | quantified shared-stack spillovers; physical industrial closure; corporate coordination |
+| `STRATEGY_GOVERNANCE_CASE_STUDY_r4.0.md` | P4a declared direction; the H1 physical-stack seeding hypothesis; tests for P4b; governance requirements | management adoption of H1; technical feasibility; economic competitiveness; validated safety |
 | `TECHNICAL_SUPPLEMENT_r4.0.md` | model/release cross-reference, glossary, provenance and extended diagnostics | independent empirical evidence |
 
 The selected routes are:

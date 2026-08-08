@@ -1,10 +1,37 @@
 # Part III — Strategy Interpretation and Governance {#part-iii-strategy-interpretation-and-governance}
 
-## III.1 A Musk-associated technology stack {#iii.1-a-musk-associated-technology-stack}
+## III.1 Orbital compute and the physical-stack hypothesis {#iii.1-a-musk-associated-technology-stack}
 
-The following mapping is an analytical interpretation of how existing
-companies could supply layers of the proposed system — not proof that they
-are managed as one program, although the 2026 developments (the Terafab
+SpaceX's orbital data centers may be more ambitious than the product category
+suggests. The hypothesis examined here is that Starmind could function as an
+industrial seed: an initially expensive, Earth-supplied deployment that
+creates anchor demand and operating experience across the physical stack for
+a larger AI-driven space economy. In this reading, orbital compute is the
+opening use case rather than the endpoint. It exercises reusable launch,
+spacecraft production, power, thermal management, communications, specialized
+chips, autonomy, servicing, and eventually materials recovery as one
+operating system [S27] [S38].
+
+The associated high-conviction bet has two parts: transformative AI arrives,
+and its binding constraints increasingly become physical rather than purely
+algorithmic. Energy, chips, factories, robots, transport, and communications
+both support AI and give it the means to expand its own substrate. Some early
+assets may be above the cost-optimal frontier when built. Their strategic
+value would lie in establishing suppliers, factories, interfaces, operating
+data, and deployment cadence before more capable AI can improve them.
+
+AI could shorten design, scheduling, yield-improvement, and maintenance cycles,
+although construction, qualification, heat rejection, and material flows
+retain physical time constants. The proposed compounding is coupled: better
+intelligence improves industrial capacity, and additional industrial
+capacity supports more intelligence.
+
+The following mapping tests that interpretation against the public actor and
+capability boundary. It is an analytical interpretation of how existing
+companies could supply layers of the proposed system, not evidence that they
+share one program.
+
+The 2026 developments (the Terafab
 initiative; SpaceX's absorption of xAI) bind the transport, communications,
 intelligence, and fabrication layers by overlapping control, strategic
 coordination, and contractual collaboration. Tesla remains a separate
@@ -168,8 +195,12 @@ task coverage, commissioning, verification, or economics.
 
 The theoretical advantage is not ownership of complementary companies but
 a shorter verified end-to-end loop across design → manufacture → deploy →
-learn. The closure race rewards the shortest such loop, not the largest
-stock of any single input.
+learn. Orbital compute could supply anchor demand and a harsh operating
+environment for that loop even before it reaches commodity parity. Its
+strategic value would have to appear in attributable cumulative learning,
+faster activation of capacity, reuse across programs, or declining external
+inputs; none receives an automatic credit. The closure race rewards the
+shortest verified loop, not the largest stock of any single input.
 
 For this portfolio, the proposed sequence is the actor-specific instance of
 Equation [@eq:coupled-rsi-system]: xAI would improve intelligence and
@@ -177,12 +208,14 @@ automation; factories would expand energy and hardware; Terafab would expand
 chips; and the resulting terrestrial or orbital compute would feed another
 verified intelligence-improvement cycle.
 
-The advantage, if it exists, is the ability to integrate feedback, capital
-allocation, engineering, deployment environments, and industrial production
-into that shorter loop. Reported preparations for a SpaceX public offering
-would, if completed, add a financing event for the capital-intensive middle
-of the loop [S9] [S27]; financing capacity is an enabler, not evidence of
-closure intent.
+Section III.1 therefore establishes a capability map, not a unified plan.
+The portfolio crosswalk records 12 operating terrestrial-adjacent functions,
+five announced or under development, one without qualifying public evidence,
+and zero demonstrated off-world reproductively closed. The shorter
+design–manufacture–deploy–learn loop remains a physical-stack hypothesis;
+shared interfaces, attributable learning, cross-program reuse, and declining
+external inputs would strengthen it. Financing capacity can enable that loop,
+but it is not evidence of either seeding or closure intent.
 
 ## III.2 Terafab and the fabrication frontier {#iii.2-terafab-and-the-fabrication-frontier}
 
@@ -268,35 +301,54 @@ testable forecast, not a rhetorical counterweight [S10].
 
 The hypotheses are nested rather than exclusive, since a long-run off-world
 strategy can be *pursued through* vertical integration and supply hedging —
-those are mechanisms, not alternatives. **H0** is the matched
-portfolio-adjacency baseline: projects may share ownership, branding,
-finance, suppliers, data, bilateral interfaces, and ordinary commercial or
-supply-security motives without sharing one off-world systems architecture.
-Standalone orbital compute, a domestic fab, launch/AI consolidation, and
-cross-selling are all H0-compatible. **H1** adds deliberate coordinated
-space–AI–industrial development — the
+those are mechanisms, not alternatives. **H0** is the matched standalone-
+commercial and portfolio-adjacency baseline: projects may share ownership,
+branding, finance, suppliers, data, bilateral interfaces, and ordinary
+commercial or supply-security motives without sharing one off-world systems
+architecture. Standalone orbital compute, launch demand, a domestic fab,
+launch/AI consolidation, and cross-selling are all H0-compatible.
+
+**H1** is
+the physical-stack seeding hypothesis. It adds deliberate coordinated
+space–AI–industrial development in which orbital compute is an anchor project
+for capabilities with value beyond the compute service itself. The
 [P4a — Documented portfolio direction](proposition:P4a){.proposition-ref}
-claim — evidenced most strongly
-by shared technical interfaces, common architecture documents, binding
-cross-program milestones, cross-subsidy, or joint resource allocation, not
-by co-ownership alone. **H2** adds an explicit intended transition to
+finding is a necessary but insufficient observation under H1; the seeding
+mechanism would be evidenced most strongly by shared technical interfaces,
+common architecture documents, binding
+cross-program milestones, learning targets, cross-subsidy, or joint resource
+allocation, not by co-ownership alone.
+
+H1 predicts that management would
+evaluate early orbital systems partly through time-to-capacity, cumulative
+production learning, and reuse across launch, power, communications, silicon,
+robotics, and servicing, rather than only first-generation cost per token.
+
+**H2** adds an explicit intended transition from physical-stack seeding to
 recursive industrial closure — the
 [P4b — Recursive-closure intent](proposition:P4b){.proposition-ref}
 claim — with closure metrics, a seed
 bill of materials, minimum-cut work, or locally reproducible production
-equipment as its distinctive observables. Because the hypotheses nest, each evidence item is
+equipment as its distinctive observables.
+
+Because the hypotheses nest, each evidence item is
 assessed on two separate margins — does it separate H1 from H0, and does it
-separate H2 from H1 — and the assessments are **ordinal, not numerical**:
-the items are correlated (several derive from the same corporate
-communications), absence-items depend on assumed observability, and
-declared intent is cheap; assigning multiplicable likelihood ratios to such
-material would imply a probabilistic model that does not exist. Ratings:
+separate H2 from H1? The assessments are **ordinal, not numerical**. Several
+items derive from the same corporate communications, absence-items depend on
+assumed observability, and declared intent is cheap. Multiplying judgmental
+ratings would imply a probabilistic model that does not exist.
+
+Ratings are
 *neutral* (equally expected under both), *weak*, *moderate*, *strong*
-(difficult to explain under the alternative). A distinct motive reading
+(difficult to explain under the alternative).
+
+A distinct motive reading
 cuts across the nest: heavy industry moves off Earth to *protect the
 biosphere* rather than escape a constrained platform [S34] — same physics,
 different telos — which supplies an additional non-H2 explanation for any
-orbital-compute observation. Per the propositions ladder, everything here
+orbital-compute observation.
+
+Per the propositions ladder, everything here
 concerns P4, and P3 is decoupled from it: the migration case requires no
 claim about any company's intentions.
 
@@ -358,19 +410,26 @@ item or model input.
 
 **Cumulative assessment** (ordinal synthesis, not multiplication — the
 items are correlated and the ratings judgmental): the evidence
-**supports H1 at the level of declared direction but does not establish a
-coordinated technical architecture**. The initiative list in the SEC-filed
+**supports a necessary condition for H1 at the level of declared direction
+but does not establish the physical-stack seeding mechanism or a coordinated
+technical architecture**.
+
+The initiative list in the SEC-filed
 offering materials (E6) and the first-party messaging (E14) establish an
 off-world portfolio narrative, while E7/E9/E13 are consistent implementation
-steps; the matched H0 explains all of them through adjacent commercial,
+steps.
+
+The matched H0 explains all of them through adjacent commercial,
 supply-security, financing, and promotional motives unless shared
-interfaces, milestones, or resource allocation appear. It **does not
-establish H2**: no item in Table [@tbl-strategic-evidence-ledger] is more than
-weakly diagnostic for closure intent, the closure-specific observables
+interfaces, milestones, or resource allocation appear.
+
+The evidence **does not establish H2**. No item in Table
+[@tbl-strategic-evidence-ledger] is more than weakly diagnostic for closure
+intent. The closure-specific observables
 (seed bills of materials, reproduction metrics, minimum-cut roadmaps,
-locally reproducible production equipment) remain absent (E10), and most
-observed actions are equally expected under a conventional integrated
-off-world commercial strategy.
+locally reproducible production equipment) remain absent (E10). Most observed
+actions are equally expected under a conventional integrated off-world
+commercial strategy.
 [P4a — Documented portfolio direction](proposition:P4a){.proposition-ref} is
 documented; [P4b — Recursive-closure intent](proposition:P4b){.proposition-ref}
 remains inferential
@@ -558,8 +617,11 @@ The indicators carry ordinal diagnostic ratings informed by the models
    yields, recovery losses, transfer arcs, import-withdrawal milestones, and
    explicit strategic-material import stocks — strong for H2 over H1.
 6. **Sustained scaled orbital-compute deployment despite publicly evident
-   unfavorable unit economics** — moderate-to-strong for H1/H2 over H0 (Part II makes the test
-   operational — watch fleet growth after the economics are public).
+   unfavorable unit economics**, especially when paired with management
+   metrics for shared-stack learning, time-to-capacity, or cross-program reuse
+   — moderate-to-strong for H1/H2 over H0 (Part II makes the test operational
+   — watch fleet growth and the stated value account after the economics are
+   public).
 7. **Electronics strategic-material-gap engineering**: stockpile facilities,
    shelf-life-rated spares logistics, off-world packaging/test lines
    — moderate-to-strong for H2 over H1 (Part I makes it the rational first move of a closure strategy).
@@ -635,6 +697,16 @@ devolves into design-and-packaging dependent on external front-end
 fabrication, which would reopen the fabrication term entirely.
 
 ## III.6 Refined complete thesis {#iii.6-refined-complete-thesis}
+
+In the seeding interpretation, Starmind is not the completed ecology. It is
+an early demand center that forces several indispensable layers to operate
+together while they remain supplied from Earth. The initial systems may be
+economically inferior as standalone compute and still generate strategic
+value if they produce attributable learning, faster deployment, shared
+infrastructure, and declining external dependence. More capable AI could
+accelerate improvement across those layers; the test is whether the gains
+cross into commissioned physical capacity rather than remaining in designs
+and software.
 
 The coherent end state remains a recursively self-expanding space industrial
 ecology. Reusable rockets transport an initial seed. AI supplies scientific,
@@ -756,5 +828,15 @@ strength.
   conditional on the slow-to-medium branch in II.5.
 - It does not claim that closure is imminent, that model frequencies are
   empirical probabilities, or that space compute is economical today.
+
+Section III.6 therefore establishes the conditional coupled-loop thesis in
+Equation [@eq:coupled-rsi-system], not a forecast of takeoff. In the declared
+Moon–asteroid case, removing the dynamic coupling reduces year-40 net
+balanced growth by about 46%, while the same coupling is nearly inert in the
+material-starved terrestrial and lunar-bridge cases. That contrast is an
+implication of ASSUMPTION-class coefficients: evidence that verified AI
+improvements become commissioned physical capacity, together with the
+closure-specific artifacts in III.3 and III.5, would be required to move the
+claim beyond an executable hypothesis.
 
 * * *

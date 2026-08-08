@@ -197,16 +197,22 @@ benefits and externalities, and allocation determines who receives the
 resulting services. Ethical weights, distribution, rights, consent, and
 opportunity costs require a social choice outside this engineering model.
 
-The observed portfolio is consistent with an economic gradient toward
-greater integration — discovery until convergence, deployment after it,
-with space as one plausible arena under a demanding set of priced crossover
-conditions. Present evidence does not establish that recursive off-world
-industrial closure is the governing objective of the companies described in
-Part III. The executable model says that recursion is feasible only under
-assumptions that are
-currently choices rather than measurements; the economics point to Earth
-at every anchored value; and the observations that would change either
-conclusion are named, ranked, and observable.
+The observed portfolio is consistent with a physical-stack seeding strategy:
+orbital compute can create anchor demand and operating experience across
+launch, spacecraft production, energy, thermal management, communications,
+silicon, autonomy, and servicing. If capable AI accelerates improvement
+across that stack, more intelligence could create more industrial capacity,
+which could support more intelligence.
+
+The economics nevertheless point to
+Earth at every anchored value, so the seeding interpretation must earn its
+cost gap through measured learning, faster capacity activation,
+cross-program reuse, or declining Earth dependence. Present evidence does
+not establish that this is management's actual strategy or that recursive
+off-world industrial closure is the governing objective of the companies
+described in Part III. The executable model finds recursion only under
+assumptions that remain choices rather than measurements; the observations
+that would change either conclusion are named, ranked, and observable.
 
 The portfolio audit sharpens that boundary into minimum cuts rather than a
 coverage percentage. Public evidence is deepest in operating terrestrial
@@ -222,6 +228,16 @@ Closing 17 partially adjacent rows while leaving any one indispensable
 parent-tool chain open still leaves the system dependent. That
 dependency-aware result—not “12 of 18” or any implied percentage—is the
 relevant conclusion.
+
+Section IV.4 therefore yields a conditional option, not a scalar welfare or
+strategy verdict. Equation [@eq:welfare-activity-accounts] keeps relocation,
+expansion, humanitarian, scientific, and industrial allocations separate;
+the anchored economics still favor Earth; and the 17-of-18 portfolio breadth
+still contains an open parent-tool minimum cut. The seeding interpretation
+would strengthen only with measured shared-stack learning, faster capacity
+activation, cross-program reuse, or declining Earth dependence, while a
+closure claim would additionally require the missing production,
+verification, repair, and source chains to operate beyond Earth.
 
 ## Limitations and claim boundary {#limitations-and-claim-boundary}
 

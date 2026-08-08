@@ -7,13 +7,13 @@
     {
       "file": "docs/manuscript/00-front-matter.md",
       "section": "abstract",
-      "opening": "This paper develops and tests a conditional thesis advanced AI reusable launch",
-      "wordCount": 538,
+      "opening": "This paper expands the object of analysis from an abstract industrial substrate",
+      "wordCount": 503,
       "signals": [
-        "long paragraph (538 words)",
+        "long paragraph (503 words)",
         "long sentence (89 words)"
       ],
-      "id": "9dc96cce3d2e3287",
+      "id": "08740532ae408332",
       "disposition": "keep_main",
       "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
     },
@@ -70,14 +70,25 @@
       "file": "docs/manuscript/00-front-matter.md",
       "section": "executive-summary",
       "opening": "The strategic assessment Part III the evidence documents an integrated off-world portfolio",
-      "wordCount": 115,
+      "wordCount": 88,
       "signals": [
-        "long paragraph (115 words)",
         "nested parentheses (depth 2)"
       ],
-      "id": "5df4ef7e2b6f4046",
+      "id": "6c855b1eb2a5fc28",
       "disposition": "keep_main",
       "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
+    },
+    {
+      "file": "docs/manuscript/00-front-matter.md",
+      "section": "executive-summary",
+      "opening": "It also does not establish recursive closure as the objective P4b Recursive-closure",
+      "wordCount": 59,
+      "signals": [
+        "nested parentheses (depth 2)"
+      ],
+      "id": "7daeed16671b047a",
+      "disposition": "keep_main",
+      "rationale": "Kept in the reading path because it carries a result boundary or countercase needed for correct interpretation."
     },
     {
       "file": "docs/manuscript/10-part-i-foundations.md",
@@ -1131,19 +1142,6 @@
     },
     {
       "file": "docs/manuscript/20-part-ii-comparative-economics.md",
-      "section": "ii.1-the-bridge-economy",
-      "opening": "Each stage of the recursion must be independently profitable or deliberately financed",
-      "wordCount": 146,
-      "signals": [
-        "long paragraph (146 words)",
-        "long sentence (59 words)"
-      ],
-      "id": "d3acc8a666f5bdc3",
-      "disposition": "keep_main",
-      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
-    },
-    {
-      "file": "docs/manuscript/20-part-ii-comparative-economics.md",
       "section": "ii.2-the-crossover-model",
       "opening": "Unit dollars per frontier-equivalent kilowatt-year of delivered IT load defined as one",
       "wordCount": 238,
@@ -1540,19 +1538,6 @@
     {
       "file": "docs/manuscript/30-part-iii-strategy-governance.md",
       "section": "iii.3-competing-hypotheses-the-evidence-table",
-      "opening": "The hypotheses are nested rather than exclusive since a long-run off-world strategy",
-      "wordCount": 285,
-      "signals": [
-        "long paragraph (285 words)",
-        "long sentence (70 words)"
-      ],
-      "id": "e4a32d6ff48cdf2c",
-      "disposition": "keep_main",
-      "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
-    },
-    {
-      "file": "docs/manuscript/30-part-iii-strategy-governance.md",
-      "section": "iii.3-competing-hypotheses-the-evidence-table",
       "opening": "What the models add to interpretation A rational H2 actor facing Part",
       "wordCount": 168,
       "signals": [
@@ -1574,19 +1559,6 @@
       "id": "964c5323f4b0185d",
       "disposition": "keep_main",
       "rationale": "Kept in the reading path after contextual review because it states a central result or strategic inference rather than peripheral mechanics."
-    },
-    {
-      "file": "docs/manuscript/30-part-iii-strategy-governance.md",
-      "section": "iii.3-competing-hypotheses-the-evidence-table",
-      "opening": "Cumulative assessment ordinal synthesis not multiplication the items are correlated and the",
-      "wordCount": 153,
-      "signals": [
-        "long paragraph (153 words)",
-        "long sentence (71 words)"
-      ],
-      "id": "81b87a1e16e0f1c2",
-      "disposition": "keep_main",
-      "rationale": "Kept in the reading path because it carries a result boundary or countercase needed for correct interpretation."
     },
     {
       "file": "docs/manuscript/30-part-iii-strategy-governance.md",
@@ -1653,11 +1625,11 @@
       "file": "docs/manuscript/30-part-iii-strategy-governance.md",
       "section": "iii.5-falsifiable-indicators-model-ranked",
       "opening": "1 A terrestrial autonomous-closure demonstrator that constructs and commissions a second production",
-      "wordCount": 222,
+      "wordCount": 240,
       "signals": [
-        "long paragraph (222 words)"
+        "long paragraph (240 words)"
       ],
-      "id": "112fa279b381bda1",
+      "id": "abea3747aa72efb7",
       "disposition": "keep_main",
       "rationale": "Kept in the reading path because it defines or interprets a central model mechanism used by the next inference."
     },

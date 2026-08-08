@@ -4,14 +4,26 @@
 
 **Leonardo Stern · Independent researcher**
 
-*A self-sustaining, self-expanding space industrial system is coherent as an argument; whether it is feasible or economical is a question for models. This paper combines the executed models with an explicit autonomous seed, its knowledge package, its material flows, and the dynamics by which it attempts to expand operating capacity.*
+*Orbital compute may be more than a data-center product: it can be tested as
+the first anchor demand for a physical stack that capable AI could improve
+and eventually expand beyond Earth. This paper prices that Earth-dependent
+bridge and models the conditions under which an autonomous industrial seed
+could maintain and expand operating capacity.*
 
 ## Abstract {#abstract}
 
-This paper develops and tests a conditional thesis: advanced AI, reusable
-launch, robotics, energy systems, and automated manufacturing could be
-combined into an industrial system beyond Earth that maintains and expands
-its own productive capacity. This paper expands the object of analysis from
+SpaceX's orbital-compute program motivates a broader conditional thesis:
+Starmind could function as an industrial seed rather than only as a
+standalone data-center product. An initially expensive, Earth-dependent
+deployment could create anchor demand and operating experience across
+reusable launch, spacecraft manufacturing, energy, thermal management,
+communications, silicon, robotics, and servicing. If capable AI accelerates
+the improvement of that physical stack, additional industrial capacity could
+support more compute and intelligence, coupling digital and physical growth.
+This paper tests the engineering and economic conditions for that
+interpretation without treating it as established corporate intent.
+
+This paper expands the object of analysis from
 an abstract industrial substrate to a capacity-expanding autonomous seed:
 physical equipment, embodied autonomy, software and simulation, industrial
 memory, experimental capacity, and material-category-resolved supply. Part I implements a ten-sector, multisector
@@ -77,10 +89,16 @@ techno-economics; Monte Carlo.
 
 ## Executive Summary {#executive-summary}
 
-This document examines one possible long-horizon infrastructure value of
-advanced AI, reusable launch, energy systems, robotics, and automated
-manufacturing: combining them into a recursively improving industrial system
-beyond Earth. This is not a comparative claim that the pathway outweighs
+SpaceX's orbital data centers may be more ambitious than the product category
+suggests. This document examines whether they could serve as an industrial
+seed: initially costly, Earth-dependent infrastructure that creates anchor
+demand and operating experience for the launch, energy, manufacturing,
+communications, silicon, robotics, and servicing capabilities needed by a
+larger AI-driven space economy. If more capable AI can improve how that stack
+is designed, built, and operated, better intelligence could create more
+physical capacity, which could in turn support more intelligence.
+
+This is not a comparative claim that the pathway outweighs
 health, science, terrestrial abundance, climate, governance, or other uses of
 advanced AI. The end state is not merely a rocket fleet,
 a settlement, a humanoid robot, or a frontier model, but a distributed
@@ -207,6 +225,17 @@ complex. Both escapes pass through one passage: the bridge, in which the
 first self-replicating seed is bought at full market price, operated where
 depreciation is most severe, and financed by intermediate products.
 
+Orbital compute is a candidate bridge product because it exercises many of
+the required systems before they are locally reproducible. Its first
+generation need not be cost-optimal to create learning across launch cadence,
+spacecraft production, power, thermal management, communications, silicon,
+autonomy, and servicing. That strategic value is a hypothesis, not a free
+credit in the economic model: it must appear as attributable cost reduction,
+faster capacity activation, cross-program reuse, or declining Earth
+dependence. Capable AI could accelerate design and operating cycles across
+the stack, but it cannot remove construction, qualification, heat-rejection,
+or material-flow constraints.
+
 This paper prices the passage and models the seed. Five headline results:
 
 1. **The active bottleneck is architecture-specific.** A unit-invariant
@@ -311,9 +340,14 @@ cascade-threshold results [S45–S49].
 The strategic assessment (Part III): the evidence **documents an integrated
 off-world portfolio direction ([P4a — Documented portfolio direction](proposition:P4a){.proposition-ref}) but does not establish one coordinated
 technical architecture**. The initiative list and first-party messaging
-rule out a purely terrestrial reading, while the matched H0 still explains
-co-ownership, portfolio promotion, supply hedging, and adjacent commercial
-projects without a common systems plan. It **does not establish recursive
+rule out a purely terrestrial reading. They are consistent with a
+physical-stack seeding hypothesis in which orbital compute creates anchor
+demand and shared learning, while the matched H0 still explains co-ownership,
+portfolio promotion, supply hedging, and adjacent commercial projects without
+a common systems plan. The evidence therefore does not establish the seeding
+hypothesis as management's actual strategy.
+
+It also **does not establish recursive
 closure as the objective ([P4b — Recursive-closure intent](proposition:P4b){.proposition-ref})**: the closure-specific observables — seed
 bills of materials, reproduction metrics, minimum-cut roadmaps, locally
 reproducible production equipment — remain absent. The discriminating

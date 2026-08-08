@@ -134,7 +134,7 @@
 | `outputs/integrated/tables/portfolio_sector_coverage_summary.csv` | `69fe5d7c096479ff997ec4f6a78321bac547c0e2a1fc22168870fe023496decf` |
 | `outputs/integrated/tables/portfolio_sector_group_summary.csv` | `c387cdaef48a562659b0b5ccdca845ee639da20b042d6572c220eb2752227daf` |
 | `outputs/integrated/tables/process_closure_gap_register.csv` | `b0f7e02efa65b96a08d090a6e2a23a517738bc32403b73cb7fabb8cf8a13da18` |
-| `outputs/integrated/tables/publication_readiness.csv` | `2bcc9d0168432e29cd3796570c3c28cc6335652f7e6b21cb05e0c95cb49006ff` |
+| `outputs/integrated/tables/publication_readiness.csv` | `010a0350c1f1a35ae8ca18fd258ef973a3b7684cc3529cf6af8a2c3dae16fc7b` |
 | `outputs/integrated/tables/rehearsal_acceptance_matrix.csv` | `65c0c70187df144f9799bc7bb26e7912a41d280a3e8d6289fecaa3a6a95507b4` |
 | `outputs/integrated/tables/replication_governance_externalities_summary.csv` | `9447410ab1bcf2114138eb3370221bec11dbef8596605c6e58d1637f82501379` |
 | `outputs/integrated/tables/replication_governance_externalities_trajectory.csv` | `d539bdaab4daf89ab34aa636784ab493a6515f11866e30f3ff6a21ed543a64c2` |
@@ -156,9 +156,9 @@
 | `outputs/integrated/tables/terminal_endpoints.csv` | `94d2837f18e0e9dc657ef3827bf0be0c14052d023af92fab0d56b51682410008` |
 | `outputs/integrated/tables/terrestrial_rehearsal_embodiment_faults.csv` | `1c61d84401c12b3adc873ea04f8138e474ced3f6221ca94a598edf59226d6c12` |
 | `outputs/integrated/tables/verification_hierarchy.csv` | `897a5d7b83438ce9c7ecefd7626b407687640f28c2ede5bac1306e62c723737c` |
-| `papers/ORBITAL_COMPUTE_ECONOMICS_r4.0.md` | `517056a66987da0a45439284f910d6978f3dab6d1c7f7943b5f68cf6e4a74aa5` |
-| `papers/README.md` | `afbde6e94fa742fee885d2469a05a78ae66bfbae250eaf02df5c0791f60f6f01` |
-| `papers/STRATEGY_GOVERNANCE_CASE_STUDY_r4.0.md` | `c5d3408312f9e9d59d07e0adb14d16f8f41df20a213b2d3ab03ab089615e7d1d` |
+| `papers/ORBITAL_COMPUTE_ECONOMICS_r4.0.md` | `5a3d818bab98bc451ac4d9dce8931ef1c07cfb93c7aca8b9d70e00e8164d79c7` |
+| `papers/README.md` | `ecf6f7a24ec0a8ee2893cacc541cfd788f619e307228bf371ef2f7afaa556a12` |
+| `papers/STRATEGY_GOVERNANCE_CASE_STUDY_r4.0.md` | `81723db2a7fdd82979587a575a59d2ad34158bdc77c368b4d4588e74f4ff0b0d` |
 | `papers/TECHNICAL_PAPER_r4.0.md` | `7bc9e40ae66af71f97f4fde1da5264656a612e2ce7b24ecd06a42684b0b1f8de` |
 | `papers/TECHNICAL_SUPPLEMENT_r4.0.md` | `47c8988382c7b2603a296bfab3c2a85cbef1b559639343df0f2346583fc30aa9` |
 | `params/ai_rnd_evidence_registry.json` | `82d6b1cbc9efa48df0f2378591d26e1729aa41320189b3cd0c4af47f64ab2f1e` |

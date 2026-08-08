@@ -1,4 +1,4 @@
-# Orbital compute after complete system accounting
+# Orbital compute as an industrial seed: the economics of the Earth-dependent bridge
 
 ## Abstract
 
@@ -18,7 +18,12 @@ produces 0.76×. Training is less favorable because orbital network efficiency
 is an explicit gate. Present bridge architectures therefore do not reach
 commodity terrestrial parity under the declared ranges. Mature high-closure
 economics remain unresolved and require a dynamically financed physical
-system.
+system. These results do not test whether orbital compute could serve as
+anchor demand for launch, spacecraft manufacturing, power, communications,
+silicon, robotics, and servicing. They show that such an industrial-seeding
+thesis cannot be justified by present commodity-compute parity alone; it
+requires separately measured learning spillovers, deployment-speed value,
+cross-program reuse, and progress toward physical closure.
 
 ## Keywords
 
@@ -37,6 +42,16 @@ techno-economics
 This paper addresses P3a: the bridge-economy cost boundary for orbital
 compute. It does not establish physical industrial closure (P2), corporate
 coordination (P4), or mature high-closure economic advantage (P3b).
+The strategic motivation is broader than a standalone data-center product.
+Orbital compute could in principle be an anchor customer for a shared
+physical stack: launch, mass-produced spacecraft, energy, thermal management,
+laser communications, qualified silicon, autonomy, and servicing. An early
+system could then be strategically useful while remaining more expensive per
+delivered compute unit, if its cumulative learning, time-to-capacity, or
+cross-program reuse exceeded the cost gap. Those benefits are not credited in
+the levelized-cost result. Naming them prevents a narrow cost comparison from
+silently rejecting the strategic hypothesis, while preventing the strategic
+hypothesis from silently erasing present costs.
 Recent orbital-compute studies span clustered accelerators, system-level
 spacecraft constraints, mass-integrated inference concepts, and
 microdatacenters [1–4]. Their differing architectures and workloads are a
@@ -143,6 +158,17 @@ space-native price premium funds more of the off-world path, but the space
 case does not repay declared external capital within 40 years. Physical
 compounding is therefore not equivalent to economic self-financing.
 
+An industrial-seeding interpretation would require an additional value
+account rather than a favorable relabeling of the same cash flow. Candidate
+terms include reductions in later spacecraft and launch cost attributable to
+cumulative Starmind production; earlier activation of compute than the
+responsive terrestrial alternative; reuse of power, thermal, communications,
+silicon, autonomy, or servicing assets by other programs; and measurable
+declines in imported mass or external services per unit of operating orbital
+capacity. None is assigned a positive value here. A future model can admit a
+term only after it specifies the beneficiary, counterfactual, attribution
+rule, timing, and evidence class.
+
 ## 6. Limitations and conclusion
 
 All completed-boundary additions have wide assumption ranges. Correlated
@@ -153,9 +179,14 @@ market structure. Earth can respond technologically and geographically.
 
 The defensible conclusion is narrow: present bridge-economy orbital compute
 does not beat responsive terrestrial compute in the declared complete-system
-cases. Mature high-closure advantage is not refuted, but it is unpriced and
-unproven. It requires physical closure, reliable serviceability, source
-logistics, and cash-flow conditions that this result does not assume away.
+cases. Orbital compute may still function as an industrial seed, but that
+claim must earn the difference through measured anchor-demand effects,
+learning spillovers, faster capacity activation, cross-program reuse, or
+progress toward lower Earth dependence. Mature high-closure advantage is not
+refuted, but it is unpriced and unproven. It requires physical closure,
+reliable serviceability, source logistics, and cash-flow conditions that this
+result does not assume away. The current cost gap is therefore a strategic
+test, not a quantity that the strategic narrative can omit.
 
 ## Data and code availability
 
