@@ -53,16 +53,16 @@
     "sbom": "uv run --locked cyclonedx-py environment --pyproject pyproject.toml --output-reproducible --of JSON -o outputs/quality/sbom.cdx.json"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.6",
-    "@playwright/test": "1.62.0",
-    "@types/bun": "1.3.14",
-    "bun": "1.3.14",
-    "csv-parse": "7.0.1",
-    "eslint": "10.8.0",
-    "eslint-plugin-actionlint": "1.0.4",
-    "markdownlint-cli2": "0.23.2",
-    "typescript": "6.0.3",
-    "vite": "8.1.5",
+    "@biomejs/biome": "2.5.14",
+    "@playwright/test": "1.63.0",
+    "@types/bun": "1.4.2",
+    "bun": "1.4.2",
+    "csv-parse": "7.0.3",
+    "eslint": "10.11.0",
+    "eslint-plugin-actionlint": "1.0.6",
+    "markdownlint-cli2": "0.23.3",
+    "typescript": "7.0.2",
+    "vite": "8.3.1",
     "yaml-eslint-parser": "2.1.0"
   }
 }
